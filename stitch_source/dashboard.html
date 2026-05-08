@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAIROS | Dashboard Principal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0a0c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .zodiac-grid {
+            background-image: radial-gradient(circle at center, rgba(19, 91, 236, 0.05) 0%, transparent 70%);
+        }
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(19, 91, 236, 0.4);
+        }
+        .glow-green {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+        }
+        .glow-amber {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+        }
+        .glow-red {
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+        }
+        .technical-border {
+            border: 1px solid rgba(19, 91, 236, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col selection:bg-primary/30">
+<!-- Top Navigation Header -->
+<header class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 group cursor-pointer">
+<div class="size-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">acute</span>
+</div>
+<h1 class="text-xl font-bold tracking-tighter uppercase dark:text-white">KAIROS</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-primary border-b-2 border-primary pb-5 mt-5" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors pb-5 mt-5" href="#">Explorar</a>
+<a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors pb-5 mt-5" href="#">Reportes</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-1.5 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-semibold hover:border-primary transition-all">
+<span class="text-slate-400">EDAD:</span>
+<span>32</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-1.5 rounded border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-semibold hover:border-primary transition-all">
+<span class="text-slate-400">ASC:</span>
+<span>ESCORPIO</span>
+</button>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:border-slate-800 mx-2"></div>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">settings</span>
+</button>
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoYRgud5RHQgjfDgzRddHqTtPS3L133TPv8sRyFQDBICUrZZxDqeTCtJ7X8s7CohAjD9UBSsAs2gV_h3MhUT7744J7-53j-DAF17B7lXOVQbfXcmX0XsotvIvczkk6Lm2rsUKdViyCnqHwGNGPRExSLoon9x33QlDT30Gz3FODHU2UGYTlYwI6JIH5wCHwogfeppaBGiqw1zdIIOmkIG7kw3SeLmRIoxsGza8OqCV0QJVqwShTXxUFVXWfgwGyUqLWLI1g2BH1QFk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1440px] mx-auto w-full p-6 grid grid-cols-12 gap-6 items-start">
+<!-- Left Panel: Señor del Año -->
+<aside class="col-span-12 lg:col-span-3 space-y-6">
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 technical-border">
+<div class="flex items-center justify-between mb-8">
+<p class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase">Influencia Principal</p>
+<span class="material-symbols-outlined text-slate-400 text-sm">info</span>
+</div>
+<div class="flex flex-col items-center py-4">
+<div class="relative mb-6">
+<div class="absolute inset-0 bg-primary/10 blur-2xl rounded-full"></div>
+<span class="material-symbols-outlined text-7xl text-slate-800 dark:text-slate-200 relative z-10 font-light">
+                            shutter_speed
+                        </span>
+<div class="absolute -bottom-2 -right-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 size-8 rounded-full flex items-center justify-center font-bold text-sm">
+                            ♄
+                        </div>
+</div>
+<h3 class="text-xl font-bold mb-1 tracking-tight">Señor del Año</h3>
+<p class="text-slate-500 text-sm mb-8">Cronometría de Saturno</p>
+<div class="w-full space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">RESILIENCIA</span>
+<div class="flex gap-1">
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">ESTRUCTURA</span>
+<div class="flex gap-1">
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">AUTORIDAD</span>
+<div class="flex gap-1">
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-primary rounded-full"></div>
+<div class="w-3 h-1 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+<div class="w-3 h-1 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6">
+<p class="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase mb-4">Próximo Hito</p>
+<div class="flex items-start gap-4">
+<div class="p-2 rounded bg-amber-500/10 text-amber-500">
+<span class="material-symbols-outlined">wb_twilight</span>
+</div>
+<div>
+<p class="text-sm font-bold">Retorno de Saturno</p>
+<p class="text-xs text-slate-500">En 142 días</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center: Rueda del Ciclo Structural -->
+<section class="col-span-12 lg:col-span-6 flex flex-col items-center">
+<div class="w-full text-center mb-6">
+<h2 class="text-2xl font-bold tracking-tight">Rueda del Ciclo Structural</h2>
+<p class="text-slate-500 text-sm">Whole Sign House System • Precision Matrix</p>
+</div>
+<div class="relative w-full aspect-square max-w-[500px] flex items-center justify-center zodiac-grid rounded-full border border-primary/5">
+<!-- Main Wheel SVG Representation -->
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Subtle Glow for House 10 -->
+<div class="absolute w-[180px] h-[300px] bg-primary/10 blur-3xl -rotate-45 glow-blue rounded-full"></div>
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 400 400">
+<!-- Outer Circle -->
+<circle class="text-slate-300 dark:text-slate-800" cx="200" cy="200" fill="none" r="190" stroke="currentColor" stroke-width="0.5"></circle>
+<circle class="text-slate-200 dark:text-slate-900" cx="200" cy="200" fill="none" r="140" stroke="currentColor" stroke-width="1"></circle>
+<!-- House Divisions -->
+<g class="text-slate-200 dark:text-slate-800">
+<line stroke="currentColor" stroke-width="0.5" x1="200" x2="200" y1="10" y2="390"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="10" x2="390" y1="200" y2="200"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="53.6" x2="346.4" y1="115.5" y2="284.5"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="115.5" x2="284.5" y1="53.6" y2="346.4"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="53.6" x2="346.4" y1="284.5" y2="115.5"></line>
+<line stroke="currentColor" stroke-width="0.5" x1="115.5" x2="284.5" y1="346.4" y2="53.6"></line>
+</g>
+<!-- Highlighted House -->
+<path d="M 200 200 L 200 10 A 190 190 0 0 1 295 45 Z" fill="rgba(19, 91, 236, 0.15)" stroke="none"></path>
+<path class="text-primary" d="M 200 200 L 200 10 A 190 190 0 0 1 295 45 Z" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Center Core -->
+<div class="relative size-24 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 shadow-xl z-20">
+<div class="text-center">
+<p class="text-[10px] text-slate-400 font-bold">SOL</p>
+<p class="text-lg font-bold leading-none">14°</p>
+<p class="text-[10px] text-primary font-bold">♏</p>
+</div>
+</div>
+<!-- House Numbers / Labels -->
+<div class="absolute inset-0 pointer-events-none">
+<div class="absolute top-[8%] left-1/2 -translate-x-1/2 text-primary font-bold text-sm">MC</div>
+<div class="absolute bottom-[8%] left-1/2 -translate-x-1/2 text-slate-400 font-bold text-sm">IC</div>
+<div class="absolute left-[8%] top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">ASC</div>
+<div class="absolute right-[8%] top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">DSC</div>
+</div>
+</div>
+<!-- Details below wheel -->
+<div class="mt-12 grid grid-cols-2 gap-4 w-full">
+<div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Casa Profectada</p>
+<p class="text-lg font-bold">Décima Casa</p>
+</div>
+<span class="text-2xl text-primary font-bold">10</span>
+</div>
+<div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div>
+<p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest">Signo Regente</p>
+<p class="text-lg font-bold">Acuario</p>
+</div>
+<span class="text-2xl text-slate-800 dark:text-slate-200 font-bold">♒</span>
+</div>
+</div>
+</section>
+<!-- Right Panel: Semáforo de Intensidad -->
+<aside class="col-span-12 lg:col-span-3 space-y-6">
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-6 technical-border">
+<div class="flex items-center justify-between mb-8">
+<p class="text-[10px] font-bold tracking-[0.2em] text-primary uppercase">Métricas de Intensidad</p>
+<span class="material-symbols-outlined text-slate-400 text-sm">analytics</span>
+</div>
+<div class="space-y-8">
+<!-- Green Indicator -->
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="size-4 rounded-full bg-green-500 glow-green"></div>
+<div class="absolute inset-0 size-4 rounded-full bg-green-500 animate-pulse opacity-50"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline">
+<h4 class="text-sm font-bold">Profección</h4>
+<span class="text-[10px] font-mono text-green-500 font-bold">STABLE</span>
+</div>
+<p class="text-xs text-slate-500">Ciclo de maduración anual bajo control.</p>
+</div>
+</div>
+<!-- Amber Indicator -->
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="size-4 rounded-full bg-amber-500 glow-amber"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline">
+<h4 class="text-sm font-bold">Tránsitos 2026</h4>
+<span class="text-[10px] font-mono text-amber-500 font-bold">ACTIVE</span>
+</div>
+<p class="text-xs text-slate-500">Cuadratura Urano-Plutón en orbe.</p>
+</div>
+</div>
+<!-- Red Indicator -->
+<div class="flex items-center gap-5">
+<div class="relative">
+<div class="size-4 rounded-full bg-red-500 glow-red"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-baseline">
+<h4 class="text-sm font-bold">Luna Progresada</h4>
+<span class="text-[10px] font-mono text-red-500 font-bold">CRITICAL</span>
+</div>
+<p class="text-xs text-slate-500">Fase final del ciclo balsámico. Cierre.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-xl border border-primary/20 bg-primary/5">
+<p class="text-xs font-bold text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                    ASTRO-INSIGHT
+                </p>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                    "La consolidación estructural requiere sacrificar la gratificación inmediata por la solidez a largo plazo."
+                </p>
+</div>
+</aside>
+</main>
+<!-- Bottom Section: Misión del Día -->
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 backdrop-blur-md">
+<div class="max-w-[1440px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="px-2 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold tracking-tighter uppercase">
+                    Misión del Día
+                </div>
+<p class="text-sm font-medium tracking-tight">
+                    Enfoque en la consolidación de bases profesionales y límites personales.
+                </p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                    SYNC: 23:59:02 UTC
+                </div>
+<button class="bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">description</span>
+                    Generar Reporte Completo
+                </button>
+</div>
+</div>
+</footer>
+</body></html>

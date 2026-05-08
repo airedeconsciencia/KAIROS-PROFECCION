@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+</head>
+
+<body>
+    <div id="results">Calculating...</div>
+    <script>
+        window.onload = function () {
+            setTimeout(() => {
+                if (typeof Astronomy === 'undefined') {
+                    document.getElementById('results').innerText = 'Astronomy not loaded';
+                    return;
+                }
+                const now = new Date();
+                const time = Astronomy.MakeTime(now);
+                const bodies = ['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn'];
+                const res = {};
+
+                // Matriz de rotación: EQJ (J2000 Equator) -> ECT (True Ecliptic of Date)
+                const matrix = Astronomy.Rotation_EQJ_ECL(); // J2000
+                // Pero queremos el de FECHA (Tropical)
+                // Según docs, Ecliptic(time) nos da la rotación EQJ -> ECT para esa fecha
+                const rotMatrix = Astronomy.Ecliptic(time);
+
+                bodies.forEach(b => {
+                    try {
+                        if (b === 'Sun') {
+                            res[b] = Astronomy.SunPosition(time).elon;
+                        } else if (b === 'Moon') {
+                            res[b] = Astronomy.EclipticLongitude('Moon', time);
+                        } else {
+                            const gv = Astronomy.GeoVector(b, time, true); // J2000 Equator
+                            const ect_vec = Astronomy.CombineRotation(rotMatrix, gv);
+                            const sph = Astronomy.SphereFromVector(ect_vec);
+                            res[b] = sph.lon;
+                        }
+                    } catch (e) { res[b] = 'Error: ' + e.message; }
+                });
+                document.getElementById('results').innerText = JSON.stringify(res, null, 2);
+                console.log('FINAL_RES:', JSON.stringify(res));
+            }, 1000);
+        };
+    </script>
+</body>
+
+</html>

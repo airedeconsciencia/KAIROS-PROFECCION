@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIROS LAB | Natal Chart Assembly (Full v0.5.0)</title>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 2rem; margin: 0; }
+        .header { border-bottom: 2px solid #333; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .card { background: #1a1a1a; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; margin-bottom: 2rem; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #333; }
+        th { color: #888; text-transform: uppercase; font-size: 0.75rem; }
+        .applying { color: #4ade80; font-weight: bold; }
+        .separating { color: #f87171; font-weight: bold; }
+        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; background: #333; color: #fff;}
+        .aspect-name { color: #60a5fa; font-weight: bold; }
+        .planet-name { color: #facc15; font-weight: bold; }
+        .house-name { color: #94a3b8; font-weight: bold; }
+        pre { background: #000; padding: 1rem; border-radius: 4px; font-size: 0.75rem; border: 1px solid #222; overflow-x: auto; max-height: 400px;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌌 KAIROS Natal Chart Assembler</h1>
+        <p style="color: #888;">Ensamblado v0.5.0 | Integración CORE + Módulos Derivados</p>
+    </div>
+
+    <div class="card" id="status-card">
+        <p id="init-status">Iniciando orquestación con KAIROS CORE...</p>
+    </div>
+
+    <div id="full-chart-results"></div>
+
+    <!-- Librerías de soporte -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+
+    <!-- KAIROS CORE (Stable) -->
+    <script src="kairos-core/planetary_engine.js"></script>
+    <script src="kairos-core/houses_engine.js"></script>
+    <script src="kairos-core/ascendant_engine.js"></script>
+
+    <!-- Derivados -->
+    <script src="aspects_engine.js"></script>
+    <script src="chart_engine.js"></script>
+
+    <script type="module">
+        import SwissEph from './kairos-core/wasm/swisseph_wrapper.js';
+        window.SwissEphClass = SwissEph;
+        
+        try {
+            console.log("📍 KAIROS FULL LAB: Cargando motor nativo...");
+            const sweInstance = new SwissEph();
+            window.swisseph_native = sweInstance;
+            window.dispatchEvent(new Event('swisseph-ready'));
+        } catch (e) {
+            console.error("❌ Fallo cargando SwissEph:", e);
+        }
+    </script>
+
+    <script>
+        async function runFullAudit() {
+            const statusEl = document.getElementById('init-status');
+            try {
+                await initPlanetaryEngine();
+                statusEl.innerHTML = '<span class="success">✔️ Orquestación KAIROS Ensamblada. Generando carta estructural completa...</span>';
+
+                const caseRoberto = { name: "Roberto Ramos", date: "1973-05-29", time: "07:30", lat: 39.88, lon: 4.26, tz: "Europe/Madrid" };
+                
+                // 🚀 Generar Carta Completa con un solo comando
+                const fullChart = await window.generateFullChart(caseRoberto.date, caseRoberto.time, caseRoberto.lat, caseRoberto.lon, caseRoberto.tz);
+                
+                let html = `<div class="card">
+                    <h2 style="margin-top: 0; color: #facc15;">Audit Master Case: ${caseRoberto.name}</h2>
+                    <div style="font-size: 0.8rem; color: #888; margin-bottom: 1rem;">
+                        [${fullChart.metadata.version}] | Zodiac: ${fullChart.metadata.zodiac} | Houses: ${fullChart.metadata.house_system}
+                    </div>
+                    
+                    <h3>1. Posiciones Planetarias (Master Layout)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cuerpo</th>
+                                <th>Signo</th>
+                                <th>Posición (G|M|S)</th>
+                                <th>Retro</th>
+                                <th>Casa</th>
+                                <th>Velocidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+                
+                for (const [p, data] of Object.entries(fullChart.planets)) {
+                    const retroIcon = data.isRetro ? '<span style="color:#f87171">R</span>' : '-';
+                    html += `<tr>
+                        <td class="planet-name">${p}</td>
+                        <td>${data.sign}</td>
+                        <td align="left">${data.deg}º ${data.min}' ${data.sec}"</td>
+                        <td align="center">${retroIcon}</td>
+                        <td align="center" style="color: #60a5fa; font-weight: bold;">H${data.house}</td>
+                        <td align="right">${data.speed.toFixed(3)}º/d</td>
+                    </tr>`;
+                }
+
+                html += `</tbody></table>
+
+                    <h3>2. Ángulos Principales</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Ángulo</th><th>Signo</th><th>Posición</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="house-name">ASC (Ascendente)</td><td>${fullChart.angles.ASC.sign}</td><td>${fullChart.angles.ASC.deg}º ${fullChart.angles.ASC.min}' ${fullChart.angles.ASC.sec}"</td></tr>
+                            <tr><td class="house-name">MC (Medio Cielo)</td><td>${fullChart.angles.MC.sign}</td><td>${fullChart.angles.MC.deg}º ${fullChart.angles.MC.min}' ${fullChart.angles.MC.sec}"</td></tr>
+                            <tr><td class="house-name">DC (Descendente)</td><td>${fullChart.angles.DC.sign}</td><td>${fullChart.angles.DC.deg}º ${fullChart.angles.DC.min}' ${fullChart.angles.DC.sec}"</td></tr>
+                            <tr><td class="house-name">IC (Bajo Cielo)</td><td>${fullChart.angles.IC.sign}</td><td>${fullChart.angles.IC.deg}º ${fullChart.angles.IC.min}' ${fullChart.angles.IC.sec}"</td></tr>
+                        </tbody></table>
+
+                    <h3>3. Domificación (Cúspides 1-12)</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Casa</th><th>Signo</th><th>Longitud</th></tr>
+                        </thead>
+                        <tbody>`;
+                
+                fullChart.houses.forEach((c, idx) => {
+                    html += `<tr>
+                        <td class="house-name">Casa ${idx + 1}</td>
+                        <td>${c.sign}</td>
+                        <td>${c.deg}º ${c.min}' ${c.sec}"</td>
+                    </tr>`;
+                });
+
+                html += `</tbody></table>
+
+                    <h3>4. Matriz de Aspectos</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Pares Planetarios</th><th>Aspecto</th><th>Orbe</th><th>Estado</th></tr>
+                        </thead>
+                        <tbody>`;
+
+                fullChart.aspects.forEach(asp => {
+                    const sClass = asp.isApplying ? 'applying' : 'separating';
+                    const sText = asp.isApplying ? 'APLICATIVO' : 'SEPARATIVO';
+                    html += `<tr>
+                        <td><strong>${asp.p1}</strong> - <strong>${asp.p2}</strong></td>
+                        <td><span class="aspect-name">${asp.aspect}</span> (${asp.targetAngle}º)</td>
+                        <td>${asp.formattedOrb}</td>
+                        <td class="${sClass}">${sText}</td>
+                    </tr>`;
+                });
+
+                html += `</tbody></table>
+                    
+                    <h3>5. Master JSON (Clean Architecture)</h3>
+                    <pre>${JSON.stringify(fullChart, null, 2)}</pre>
+                </div>`;
+
+                document.getElementById('full-chart-results').innerHTML = html;
+
+            } catch (err) {
+                statusEl.innerHTML = `<span class="error">❌ Error en orquestación: ${err.message}</span>`;
+                console.error(err);
+            }
+        }
+
+        if (window.swisseph_native) {
+            runFullAudit();
+        } else {
+            window.addEventListener('swisseph-ready', runFullAudit);
+        }
+    </script>
+</body>
+</html>

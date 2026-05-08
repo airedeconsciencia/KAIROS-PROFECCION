@@ -1,0 +1,150 @@
+{
+  "202_significado_signos": {
+    "Aries": {
+      "significado_psicologico": "El impulso vital primario, el coraje de existir y la autoafirmación.",
+      "manifestacion_practica": "Iniciativa, liderazgo directo, competitividad y franqueza extrema.",
+      "riesgos": "Impulsividad, agresividad, egoísmo o falta de perseverancia.",
+      "potencial_evolutivo": "Arender a canalizar la fuerza para proteger y emprender causas nobles."
+    },
+    "Tauro": {
+      "significado_psicologico": "La estabilidad, el valor propio y la conexión con el cuerpo y la Tierra.",
+      "manifestacion_practica": "Gestión de recursos, persistencia, disfrute sensorial y lealtad.",
+      "riesgos": "Obstinación, apego excesivo a lo material o resistencia al cambio.",
+      "potencial_evolutivo": "Construir una seguridad interna que no dependa de lo externo."
+    },
+    "Géminis": {
+      "significado_psicologico": "La curiosidad intelectual, la dualidad y el intercambio de información.",
+      "manifestacion_practica": "Comunicación, versatilidad, aprendizaje rápido y redes sociales.",
+      "riesgos": "Superficialidad, inconsistencia o dispersión mental.",
+      "potencial_evolutivo": "Unir los opuestos y comunicar verdades con profundidad."
+    },
+    "Cáncer": {
+      "significado_psicologico": "La necesidad de pertenencia, protección emocional y el mundo interno.",
+      "manifestacion_practica": "Cuidado, empatía, memoria histórica y creación de hogar.",
+      "riesgos": "Hipersensibilidad, manipulación emocional o victimismo.",
+      "potencial_evolutivo": "Nutrir el alma propia y ser un refugio seguro para otros."
+    },
+    "Leo": {
+      "significado_psicologico": "La expresión creativa del Yo, el reconocimiento y la soberanía personal.",
+      "manifestacion_practica": "Creatividad, generosidad, carisma y presencia escénica.",
+      "riesgos": "Orgullo, necesidad de atención constante o egocentrismo.",
+      "potencial_evolutivo": "Brillar para inspirar a otros a encontrar su propia luz."
+    },
+    "Virgo": {
+      "significado_psicologico": "La búsqueda de perfección, el discernimiento y el sentido de utilidad.",
+      "manifestacion_practica": "Análisis, organización, salud, servicio y atención al detalle.",
+      "riesgos": "Crítica excesiva, obsesión por el orden o sentimiento de inferioridad.",
+      "potencial_evolutivo": "Poner el talento propio al servicio de un propósito espiritual."
+    },
+    "Libra": {
+      "significado_psicologico": "La armonía en los vínculos, la justicia y la apreciación estética.",
+      "manifestacion_practica": "Diplomacia, mediación, relaciones de pareja y sentido artístico.",
+      "riesgos": "Indecisión, complacencia o dependencia de la aprobación ajena.",
+      "potencial_evolutivo": "Lograr el equilibrio interno y la justicia social verdadera."
+    },
+    "Escorpio": {
+      "significado_psicologico": "La transformación profunda, el poder emocional y la capacidad de regeneración.",
+      "manifestacion_practica": "Investigación, intensidad, manejo de crisis y sexualidad sagrada.",
+      "riesgos": "Deseo de control, resentimiento, celos o conductas autodestructivas.",
+      "potencial_evolutivo": "Morir a lo viejo para renacer en una conciencia más elevada."
+    },
+    "Sagitario": {
+      "significado_psicologico": "La expansión de la conciencia, la búsqueda de la verdad y el optimismo cósmico.",
+      "manifestacion_practica": "Filosofía, viajes largos, enseñanza y entusiasmo.",
+      "riesgos": "Fanatismo, arrogancia intelectual o falta de realismo.",
+      "potencial_evolutivo": "Encontrar el sentido de la vida y vivir de acuerdo con la propia verdad."
+    },
+    "Capricornio": {
+      "significado_psicologico": "La integridad, la responsabilidad social y el dominio sobre la realidad material.",
+      "manifestacion_practica": "Carrera, disciplina, estructura, paciencia y ambición constructiva.",
+      "riesgos": "Frialdad, pesimismo, rigidez o ambición desmedida.",
+      "potencial_evolutivo": "Alcanzar la cima de la montaña personal con sabiduría y rectitud."
+    },
+    "Acuario": {
+      "significado_psicologico": "La libertad individual, la visión de futuro y la conciencia de red.",
+      "manifestacion_practica": "Innovación, activismo social, originalidad y amistad desapegada.",
+      "riesgos": "Rebeldía sin causa, desapego frío o dogmatismo ideológico.",
+      "potencial_evolutivo": "Ser el catalizador del cambio para la evolución de la humanidad."
+    },
+    "Piscis": {
+      "significado_psicologico": "La disolución del ego, la compasión universal y la conexión mística.",
+      "manifestacion_practica": "Espiritualidad, arte, sanación, sacrificio y sueños.",
+      "riesgos": "Evasión, confusión mental o falta de límites personales.",
+      "potencial_evolutivo": "Encarnar el amor incondicional y la unidad con el Todo."
+    }
+  },
+  "203_significado_casas": {
+    "Casa 1": {
+      "significado_base": "La identidad, la apariencia física y el arranque vital.",
+      "areas_de_experiencia": "El Yo, la personalidad, la vitalidad física.",
+      "manifestacion_practica": "La manera en que nos presentamos al mundo y nuestra energía primera.",
+      "potencial_evolutivo": "Desarrollar una autoexpresión auténtica y consciente."
+    },
+    "Casa 2": {
+      "significado_base": "Los recursos personales, el valor propio y la seguridad material.",
+      "areas_de_experiencia": "Finanzas personales, valores, talentos innatos.",
+      "manifestacion_practica": "La gestión del dinero, qué valoramos y cómo nos sostenemos.",
+      "potencial_evolutivo": "Encontrar la seguridad dentro de uno mismo más que en las posesiones."
+    },
+    "Casa 3": {
+      "significado_base": "El entorno inmediato, la comunicación y el aprendizaje primario.",
+      "areas_de_experiencia": "Hermanos, viajes cortos, estudios básicos, mente lógica.",
+      "manifestacion_practica": "Cómo hablamos, escribimos y nos relacionamos con lo cercano.",
+      "potencial_evolutivo": "Convertirse en un puente de información con propósito."
+    },
+    "Casa 4": {
+      "significado_base": "Las raíces, el hogar, la familia y el refugio emocional.",
+      "areas_de_experiencia": "Padres, ancestros, vivienda, intimidad.",
+      "manifestacion_practica": "La vida privada y la base sobre la cual construimos el resto del mundo.",
+      "potencial_evolutivo": "Sanar la base emocional para florecer en el mundo externo."
+    },
+    "Casa 5": {
+      "significado_base": "La autoexpresión creativa, el romance y el juego.",
+      "areas_de_experiencia": "Hijos, pasiones, creatividad, riesgos placenteros.",
+      "manifestacion_practica": "Cómo nos divertimos y qué creamos desde el corazón.",
+      "potencial_evolutivo": "Reconocerse como creador divino de la propia vida."
+    },
+    "Casa 6": {
+      "significado_base": "El servicio, la salud, la rutina y el trabajo cotidiano.",
+      "areas_de_experiencia": "Hábitos, mascotas, entorno laboral, bienestar físico.",
+      "manifestacion_practica": "Nuestra capacidad de ser útiles y cuidar de nuestro vehículo físico.",
+      "potencial_evolutivo": "Vivir con coherencia y servir con humildad."
+    },
+    "Casa 7": {
+      "significado_base": "Los vínculos comprometidos, el 'Otro' y los espejos sociales.",
+      "areas_de_experiencia": "Matrimonio, socios, enemigos declarados, contratos.",
+      "manifestacion_practica": "Cómo nos relacionamos de igual a igual y qué proyectamos en los demás.",
+      "potencial_evolutivo": "Lograr la integración de la polaridad a través del encuentro sagrado."
+    },
+    "Casa 8": {
+      "significado_base": "La transformación, los recursos compartidos y el misterio.",
+      "areas_de_experiencia": "Crisis, herencias, sexualidad profunda, procesos ocultos.",
+      "manifestacion_practica": "Manejo de situaciones límite y asociación profunda de recursos.",
+      "potencial_evolutivo": "Transmutar las sombras en poder espiritual compartido."
+    },
+    "Casa 9": {
+      "significado_base": "La búsqueda de sentido, la ley y el pensamiento superior.",
+      "areas_de_experiencia": "Viajes largos, religión, universidad, ética.",
+      "manifestacion_practica": "Nuestra cosmovisión y cómo expandimos nuestros horizontes.",
+      "potencial_evolutivo": "Encontrar la sabiduría que integra todas las experiencias."
+    },
+    "Casa 10": {
+      "significado_base": "La vocación, el estatus social y la realización pública.",
+      "areas_de_experiencia": "Carrera, reputación, metas a largo plazo, autoridad.",
+      "manifestacion_practica": "Nuestra contribución al mundo y cómo somos vistos socialmente.",
+      "potencial_evolutivo": "Ejercer la autoridad con integridad y servicio social."
+    },
+    "Casa 11": {
+      "significado_base": "Los grupos, los ideales y la conciencia colectiva.",
+      "areas_de_experiencia": "Amigos, proyectos, esperanzas, activismo.",
+      "manifestacion_practica": "Nuestra participación en redes de colaboración y visión de futuro.",
+      "potencial_evolutivo": "Ser un agente de cambio para el bienestar de la red humana."
+    },
+    "Casa 12": {
+      "significado_base": "El inconsciente colectivo, la disolución y el retiro.",
+      "areas_de_experiencia": "Soledad, espiritualidad, karma, aquello que está oculto.",
+      "manifestacion_practica": "Meditación, sueños, procesos de finalización y servicio desinteresado.",
+      "potencial_evolutivo": "Trascender la ilusión de separación y fundirse con la Unidad."
+    }
+  }
+}

@@ -1,0 +1,177 @@
+// ============================================================
+// ⚠️ MÓDULO ACTUALIZADO — natal_persistence_helper.js v1.7.2
+// HOTFIX v650.5.15: Eliminado fullChart de Firestore (Float64Array crash)
+// Validación: Abril 2026 — Roberto
+// ============================================================
+/*
+KAIROS | NATAL PERSISTENCE HELPER (v1.1)
+Fase 6.14K - Dataset Completo: Externos + Casas
+*/
+
+async function triggerNatalCalculationAndPersist(uid, userData = null) {
+    console.log('[KAIROS NATAL] Iniciando proceso para UID:', uid);
+
+    if (typeof db === 'undefined' && typeof firebase !== 'undefined') {
+        window.db = firebase.firestore();
+    }
+
+    if (typeof db === 'undefined') {
+        console.error('[KAIROS NATAL] Firestore db no detectado.');
+        return;
+    }
+
+    try {
+        let data = userData;
+
+        if (!data) {
+            const userDoc = await db.collection('users').doc(uid).get();
+            if (!userDoc.exists) {
+                throw new Error(`Usuario ${uid} no existe en Firestore`);
+            }
+            data = userDoc.data();
+        }
+
+        const birthDay = data.birthDay;
+        const birthMonth = data.birthMonth;
+        const birthYear = data.birthYear;
+        const birthTime = data.birthTime;
+        const birthLat = data.birthLat !== undefined ? data.birthLat : data.lat;
+        const birthLng = data.birthLng !== undefined ? data.birthLng : data.lng;
+        const birthTimeZone = data.birthTimeZone;
+
+        if (birthLat === undefined || birthLng === undefined || birthLat === null || birthLng === null) {
+            console.warn('[KAIROS NATAL] Faltan coordenadas geográficas. Objeto data:', JSON.stringify(data));
+            console.error('[KAIROS NATAL] Faltan coordenadas geográficas reales. Abortando.');
+            return;
+        }
+
+        const birthDateStr = `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`;
+        const birthTimeStr = birthTime || "12:00";
+        const tz = birthTimeZone || 'UTC';
+
+        console.log('[KAIROS NATAL] Datos de entrada:', { birthDateStr, birthTimeStr, birthLat, birthLng, tz });
+
+        if (typeof generateFullChart !== 'function') {
+            throw new Error('generateFullChart no está disponible (chart_engine.js no cargado)');
+        }
+
+        const fullChart = await generateFullChart(birthDateStr, birthTimeStr, birthLat, birthLng, tz);
+        console.log('[KAIROS NATAL] Carta calculada con éxito usando KAIROS CORE.');
+
+        // [v1.7.2 HOTFIX] Normalizar casas: Swiss Ephemeris devuelve Float64Array
+        // Firestore NO puede serializar TypedArrays — convertir a objetos planos
+        const ZODIAC_NAMES = ['Aries', 'Tauro', 'Géminis', 'Cáncer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis'];
+
+        const formatPosSafe = (lon) => {
+            const normLon = ((lon || 0) + 360) % 360;
+            const signIndex = Math.floor(normLon / 30);
+            const degAll = normLon % 30;
+            return {
+                longitude: normLon,
+                sign: ZODIAC_NAMES[signIndex] || 'Aries',
+                deg: Math.floor(degAll),
+                min: Math.floor((degAll % 1) * 60)
+            };
+        };
+
+        let housesArray = fullChart.houses;
+
+        // [v1.7.3] Detección robusta de casas inválidas
+        const hasValidHouses = housesArray &&
+            Array.isArray(housesArray) &&
+            housesArray.length >= 12 &&
+            housesArray[0] !== null &&
+            typeof housesArray[0] === 'object' &&
+            !isNaN(housesArray[0]?.longitude) &&
+            housesArray[0]?.longitude !== 0;
+
+        if (!hasValidHouses) {
+            console.log('[KAIROS NATAL] Casas inválidas — recalculando desde SWE...');
+            if (typeof getHousesAndAngles === 'function') {
+                try {
+                    const houseData = await getHousesAndAngles(birthDateStr, birthTimeStr, birthLat, birthLng, tz, 'P');
+                    housesArray = houseData.houses;
+                    console.log('[KAIROS NATAL] Casas recalculadas via getHousesAndAngles ✅', housesArray.length);
+                } catch (e) {
+                    console.warn('[KAIROS NATAL] Fallback getHousesAndAngles falló:', e);
+                }
+            }
+        }
+
+        if (!Array.isArray(housesArray) || housesArray.length < 12 || isNaN(housesArray[0]?.longitude)) {
+            console.warn('[KAIROS NATAL] Usando casas aproximadas desde ASC');
+            const ascLon = fullChart.angles?.ASC?.longitude || 0;
+            housesArray = Array.from({length: 12}, (_, i) => formatPosSafe((ascLon + i * 30) % 360));
+        }
+
+        const natalPlanets = {};
+        const planetMapping = {
+            'SOL': 'SUN', 'LUNA': 'MOON', 'MERCURIO': 'MERCURY',
+            'VENUS': 'VENUS', 'MARTE': 'MARS', 'JUPITER': 'JUPITER',
+            'SATURNO': 'SATURN', 'URANO': 'URANUS', 'NEPTUNO': 'NEPTUNE', 'PLUTON': 'PLUTO'
+        };
+
+        console.log("🛠️ KAIROS DEBUG: fullChart.planets keys:", Object.keys(fullChart.planets || {}));
+        for (const [esKey, enKey] of Object.entries(planetMapping)) {
+            const p = fullChart.planets[enKey];
+            if (p) {
+                natalPlanets[esKey] = {
+                    sign: p.sign, degree: p.deg, minute: p.min,
+                    longitude: p.longitude, house: p.house, isRetro: p.isRetro || false
+                };
+            } else {
+                console.warn(`⚠️ KAIROS DEBUG: No data for planet ${enKey}`);
+            }
+        }
+
+        const housesObject = {};
+        if (housesArray && housesArray.length >= 12) {
+            housesArray.forEach((h, index) => {
+                housesObject[index + 1] = { sign: h.sign, degree: h.deg };
+            });
+        }
+
+        const natal_context = {
+            planets: natalPlanets,
+            ascendant: fullChart.angles.ASC.sign || 'Aries',
+            ascDeg: fullChart.angles.ASC.deg || 0,
+            ascMin: fullChart.angles.ASC.min || 0,
+            ascDegAbs: (fullChart.angles.ASC.longitude !== undefined) ? fullChart.angles.ASC.longitude : (fullChart.angles.ASC.lon || 0),
+            houses: housesObject,
+            is_real: true
+        };
+
+        // [v1.7.2] fullChart ELIMINADO — contiene Float64Array que Firestore rechaza.
+        const updateData = {
+            natalPlanets: natalPlanets,
+            houses: housesObject,
+            natal_context: natal_context,
+            asc: fullChart.angles?.ASC?.sign || 'Aries',
+            ascDeg: fullChart.angles?.ASC?.deg || 0,
+            ascMin: fullChart.angles?.ASC?.min || 0,
+            ascDegAbs: fullChart.angles?.ASC?.lon || 0,
+            birthChart: {
+                calculatedAt: new Date().toISOString(),
+                engine: "KAIROS CORE",
+                version: fullChart.metadata?.version || "0.5.0-master",
+                location: { lat: birthLat, lon: birthLng, city: data.birthCity || 'Desconocido' }
+            }
+        };
+
+        await db.collection('users').doc(uid).update(updateData);
+
+        console.log('[KAIROS NATAL] Persistencia completa (10 planetas + casas) ✅', {
+            uid,
+            planets_keys: Object.keys(natalPlanets),
+            houses_count: Object.keys(housesObject).length
+        });
+
+        return { success: true, natalPlanets, houses: housesObject, natal_context };
+
+    } catch (error) {
+        console.error('[KAIROS NATAL] Error crítico en persistencia natal:', error);
+        throw error;
+    }
+}
+
+window.triggerNatalCalculationAndPersist = triggerNatalCalculationAndPersist;

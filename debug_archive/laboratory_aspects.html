@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIROS LAB | Aspects Auditor (v0.1.0)</title>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 2rem; margin: 0; }
+        .header { border-bottom: 2px solid #333; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .card { background: #1a1a1a; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; margin-bottom: 2rem; }
+        .success { color: #4ade80; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #333; }
+        th { color: #888; text-transform: uppercase; font-size: 0.75rem; }
+        .applying { color: #4ade80; font-weight: bold; }
+        .separating { color: #f87171; font-weight: bold; }
+        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; background: #333; color: #fff;}
+        .aspect-name { color: #60a5fa; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛰️ KAIROS Aspects Auditor</h1>
+        <p style="color: #888;">Módulo Independiente v0.1.0 | Basado en el Núcleo Consolidado</p>
+    </div>
+
+    <div class="card" id="status-card">
+        <p id="init-status">Conectando con KAIROS CORE...</p>
+    </div>
+
+    <div id="aspects-results"></div>
+
+    <!-- Dependencias Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+    
+    <!-- KAIROS CORE -->
+    <script src="kairos-core/planetary_engine.js"></script>
+    
+    <!-- NUEVO MÓDULO -->
+    <script src="aspects_engine.js"></script>
+
+    <script type="module">
+        import SwissEph from './kairos-core/wasm/swisseph_wrapper.js';
+        window.SwissEphClass = SwissEph;
+        
+        try {
+            console.log("📍 KAIROS ASPECTS LAB: Cargando motor nativo...");
+            const sweInstance = new SwissEph();
+            window.swisseph_native = sweInstance;
+            window.dispatchEvent(new Event('swisseph-ready'));
+        } catch (e) {
+            console.error("❌ Fallo cargando SwissEph:", e);
+        }
+    </script>
+
+    <script>
+        async function runAudit() {
+            const statusEl = document.getElementById('init-status');
+            try {
+                await initPlanetaryEngine();
+                statusEl.innerHTML = '<span class="success">✔️ Núcleo KAIROS CORE Validado. Analizando configuraciones celestes...</span>';
+
+                const cases = [
+                    { name: "Roberto (1973)", date: "1973-05-29", time: "07:30", lat: 39.88, lon: 4.26, tz: "Europe/Madrid" },
+                    { name: "Adi (1978)", date: "1978-08-21", time: "11:04", lat: 39.88, lon: 4.26, tz: "Europe/Madrid" }
+                ];
+
+                let html = "";
+
+                for (const c of cases) {
+                    const posResult = await getPlanetaryPositions(c.date, c.time, c.lat, c.lon, c.tz);
+                    const aspects = window.calculateAspects(posResult.positions);
+
+                    html += `<div class="card">
+                        <h2 style="margin-top: 0; color: #facc15;">Audit Case: ${c.name}</h2>
+                        <div style="font-size: 0.8rem; color: #888; margin-bottom: 1rem;">
+                            Fecha Local: ${c.date} ${c.time} | TZ: ${c.tz}<br>
+                            UTC: ${posResult.metadata.utc}
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pares Planetarios</th>
+                                    <th>Aspecto (Exacto)</th>
+                                    <th>Distancia Real</th>
+                                    <th>Orbe</th>
+                                    <th>Estado (App/Sep)</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                    if (aspects.length === 0) {
+                        html += `<tr><td colspan="5" align="center">No se detectaron aspectos mayores en esta configuración.</td></tr>`;
+                    }
+
+                    for (const asp of aspects) {
+                        const sClass = asp.isApplying ? 'applying' : 'separating';
+                        const sText = asp.isApplying ? 'APLICATIVO' : 'SEPARATIVO';
+
+                        html += `<tr>
+                            <td><strong>${asp.p1}</strong> - <strong>${asp.p2}</strong></td>
+                            <td><span class="aspect-name">${asp.aspect}</span> <span class="badge">${asp.targetAngle}º</span></td>
+                            <td>${asp.actualDistance.toFixed(2)}º</td>
+                            <td>${asp.formattedOrb}</td>
+                            <td class="${sClass}">${sText}</td>
+                        </tr>`;
+                    }
+
+                    html += `</tbody></table></div>`;
+                }
+
+                document.getElementById('aspects-results').innerHTML = html;
+
+            } catch (err) {
+                statusEl.innerHTML = `<span style="color:#f87171">❌ Error: ${err.message}</span>`;
+                console.error(err);
+            }
+        }
+
+        if (window.swisseph_native) {
+            runAudit();
+        } else {
+            window.addEventListener('swisseph-ready', runAudit);
+        }
+    </script>
+</body>
+</html>

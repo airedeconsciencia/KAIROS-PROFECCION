@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Biblioteca de conocimiento (Lectura pública, Escritura autenticada)
+    match /kairos_library/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Datos privados del usuario
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /user_charts/{docId} {
+      allow read, write: if request.auth != null; // Mejorar luego con validación de UID
+    }
+    
+    match /user_cycles/{docId} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /user_readings/{docId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Configuración y Subscripciones
+    match /app_config/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    match /subscriptions/{docId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+  }
+}

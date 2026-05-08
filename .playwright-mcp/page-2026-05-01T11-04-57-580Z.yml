@@ -1,0 +1,63 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - img "K" [ref=e5]
+      - generic [ref=e6]: KAIROS
+    - generic [ref=e7]:
+      - generic [ref=e8]: v650.5.68-PROD
+      - generic [ref=e9]: Hoy
+    - generic [ref=e10]:
+      - button "refresh" [ref=e11] [cursor=pointer]:
+        - generic [ref=e12]: refresh
+      - button "person" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]: person
+  - main [ref=e16]:
+    - generic [ref=e203]:
+      - generic [ref=e205]:
+        - generic [ref=e207]: brightness_6
+        - generic [ref=e208]:
+          - paragraph [ref=e209]: Guía para hoy
+          - 'heading "Casa 10 · Señor del Año: Saturno" [level=2] [ref=e210]'
+        - paragraph [ref=e211]: Esta guía combina la Luna de hoy, el planeta del día y tu ciclo anual para orientarte en el momento presente.
+      - generic [ref=e213]:
+        - paragraph [ref=e214]: ESCENARIO DEL DÍA
+        - paragraph [ref=e215]: "Hoy el pulso cae en: Vocación"
+      - article [ref=e216]:
+        - heading "\"Tu año está marcado por Vocación. Hoy la Luna en Escorpio añade un matiz de clima intenso, profundo y transformador. Las emociones se intensifican y tienden a vivirse con todo o nada. Se activa la necesidad de control o de fusión profunda.\"" [level=3] [ref=e217]
+      - generic [ref=e219]:
+        - generic [ref=e220]:
+          - paragraph [ref=e221]: CLIMA
+          - paragraph [ref=e222]: La mente se orienta al realismo, la responsabilidad y la consciencia del tiempo. tú sientes el peso del deber, de los límites y de la necesidad de consolidar.
+        - generic [ref=e224]:
+          - paragraph [ref=e225]: DIRECCIÓN
+          - paragraph [ref=e226]: Activar tu Vocación
+        - generic [ref=e228]:
+          - paragraph [ref=e229]: CUIDADO
+          - paragraph [ref=e230]: Celos, sospecha, rencor, control excesivo, extremismo emocional
+      - generic [ref=e231]:
+        - img [ref=e233]
+        - generic [ref=e236]:
+          - paragraph [ref=e237]: Viernes
+          - paragraph [ref=e238]: Venus marca el ritmo de hoy. Su cualidad es ideal para que logres organizar la jornada.
+      - generic [ref=e239]:
+        - paragraph [ref=e240]: TU RESONANCIA PERSONAL HOY
+        - paragraph [ref=e241]: Tu Ascendente en Aries te invita a observar cómo resuena hoy la energía de la Luna en tu Identidad.
+      - generic [ref=e243]:
+        - paragraph [ref=e244]: PREGUNTA CENTRAL
+        - paragraph [ref=e245]: "\"¿Cómo utilizas la fuerza de Saturno para potenciar tu avance bajo esta Luna?\""
+  - navigation [ref=e27]:
+    - generic [ref=e28] [cursor=pointer]:
+      - generic [ref=e29]: auto_awesome
+      - generic [ref=e30]: Año
+    - generic [ref=e31] [cursor=pointer]:
+      - generic [ref=e32]: today
+      - generic [ref=e33]: Hoy
+    - generic [ref=e34] [cursor=pointer]:
+      - generic [ref=e35]: calendar_view_week
+      - generic [ref=e36]: Semana
+    - generic [ref=e37] [cursor=pointer]:
+      - generic [ref=e38]: calendar_month
+      - generic [ref=e39]: Mes
+    - generic [ref=e40] [cursor=pointer]:
+      - generic [ref=e41]: analytics
+      - generic [ref=e42]: Matrix

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>KAIROS | Product Suite Laboratory</title>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    
+    <!-- Product Engines -->
+    <script src="projection_engine.js"></script>
+    <script src="matrix_engine.js"></script>
+    <script src="transit_engine.js"></script>
+    <script src="daily_engine.js"></script>
+    <script src="weekly_engine.js"></script>
+    <script src="monthly_engine.js"></script>
+
+    <style>
+        :root {
+            --primary: #d7c188;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            padding: 40px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .engine-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(215, 193, 136, 0.2);
+        }
+        h1 { color: var(--primary); text-transform: uppercase; letter-spacing: 4px; border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+        h2 { font-size: 14px; text-transform: uppercase; color: var(--primary); opacity: 0.7; margin-bottom: 10px; }
+        .label { font-weight: bold; color: var(--primary); }
+        .content { font-size: 14px; line-height: 1.6; margin-top: 10px; padding: 15px; background: rgba(0,0,0,0.2); border-left: 3px solid var(--primary); }
+        pre { background: #000; padding: 10px; border-radius: 8px; font-size: 12px; overflow-x: auto; }
+        .grid { display: grid; grid-cols: 1; gap: 20px; }
+        @media(min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .intensity-pill { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; }
+        .Estable { background: #15803d; color: white; }
+        .Moderada { background: #a16207; color: white; }
+        .Activación { background: #b91c1c; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KAIROS Product Suite Lab</h1>
+        <p>Auditoría de integración de Motores de Producto (Capa 2) alimentados por Astronomía (Capa 0/1).</p>
+        
+        <div class="engine-card">
+            <h2>1. Caso de Prueba (Input)</h2>
+            <div id="test-case-info">Cargando...</div>
+        </div>
+
+        <div class="grid">
+            <div class="engine-card" id="annual-output">
+                <h2>Prosección Anual & Matrix</h2>
+                <div id="annual-content"></div>
+            </div>
+
+            <div class="engine-card" id="transit-output">
+                <h2>Clima Astrológico Actual</h2>
+                <div id="transit-content"></div>
+            </div>
+        </div>
+
+        <div class="engine-card" id="daily-output">
+            <h2>Daily Ritual (Dinámico)</h2>
+            <div id="daily-content"></div>
+        </div>
+
+        <div class="engine-card" id="weekly-output">
+            <h2>Weekly Protocol (Dynamic Blocks)</h2>
+            <div id="weekly-content"></div>
+        </div>
+    </div>
+
+    <script>
+        async function runAudit() {
+            // 1. Mock de Usuario (Roberto 1973)
+            const user = {
+                name: "Roberto",
+                birthDate: "1973-05-15",
+                ascendant: "Cáncer",
+                age: 52 
+            };
+
+            document.getElementById('test-case-info').innerHTML = `
+                <p><span class="label">Nombre:</span> ${user.name}</p>
+                <p><span class="label">Edad:</span> ${user.age}</p>
+                <p><span class="label">Ascendente:</span> ${user.ascendant}</p>
+            `;
+
+            // 2. Ejecutar Motores
+            
+            // PROJECTION
+            const profection = projection_engine.calculateProfection(user.ascendant, user.age);
+            
+            // MATRIX
+            const matrix = matrix_engine.getMatrixData(profection.lordOfYear, 'es');
+            
+            // TRANSITS (Capa 1)
+            const transits = await transit_engine.getCurrentTransits();
+            const dayPlanet = transit_engine.getDayPlanet();
+            const intensity = matrix_engine.getIntensity(dayPlanet, profection.lordOfYear);
+
+            // RENDER ANNUAL/MATRIX
+            document.getElementById('annual-content').innerHTML = `
+                <p><span class="label">Casa Activada:</span> ${profection.activeHouse}</p>
+                <p><span class="label">Señor del Año:</span> ${profection.lordOfYear}</p>
+                <div class="intensity-pill ${intensity}">${intensity}</div>
+                <div class="content"><strong>Directiva:</strong> "${matrix.directive}"</div>
+            `;
+
+            // RENDER TRANSITS
+            let transitHtml = `<p><span class="label">Día del Planeta:</span> ${dayPlanet}</p><ul>`;
+            for (let p in transits) {
+                transitHtml += `<li><strong>${p}:</strong> ${transits[p]}</li>`;
+            }
+            transitHtml += "</ul>";
+            document.getElementById('transit-content').innerHTML = transitHtml;
+
+            // DAILY RITUAL (MIX)
+            const daily = daily_engine.generateDailyRitual({
+                name: user.name,
+                lordOfYear: profection.lordOfYear,
+                moonSign: transits['Luna'],
+                dayPlanet: dayPlanet,
+                intensity: intensity,
+                lang: 'es'
+            });
+
+            document.getElementById('daily-content').innerHTML = `
+                <div class="content"><strong>Morning Sync:</strong> ${daily.morningSync}</div>
+                <div class="content"><strong>Resolutive Action:</strong> ${daily.resolutiveAction}</div>
+            `;
+
+            // WEEKLY (DYNAMIC BLOCKS)
+            let weeklyHtml = "";
+            for(let i=1; i<=3; i++) {
+                const dynamicDesc = weekly_engine.getDynamicBlock(i, transits, 'es');
+                weeklyHtml += `<div class="content"><strong>Bloque 0${i}:</strong> ${dynamicDesc}</div>`;
+            }
+            document.getElementById('weekly-content').innerHTML = weeklyHtml;
+
+        }
+
+        window.onload = runAudit;
+    </script>
+</body>
+</html>

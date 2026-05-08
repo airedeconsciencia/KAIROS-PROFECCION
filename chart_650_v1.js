@@ -1,0 +1,366 @@
+// ============================================================
+// ⚠️ MÓDULO CONGELADO — chart_650_v1.js v1.7.1
+// NO MODIFICAR sin aprobación expresa de Roberto
+// Última validación: Fase 6.18 — Abril 2026
+// ============================================================
+
+(function () {
+  'use strict';
+
+  // ─── LIBRERÍA DE GLIFOS INTEGRADA (NO FETCH) ────────────────────────
+  const GLYPHS = {
+    zodiac: {
+      'Aries': `<path d="M20 30 C 20 10, 45 10, 50 35 C 55 10, 80 10, 80 30 M50 35 V 90"/><circle cx="50" cy="35" r="3" fill="currentColor" stroke="none"/>`,
+      'Tauro': `<circle cx="50" cy="60" r="25"/><path d="M20 20 C 20 40, 50 45, 50 45 C 50 45, 80 40, 80 20"/>`,
+      'Géminis': `<path d="M30 20 H 70 M30 80 H 70 M40 20 V 80 M60 20 V 80"/>`,
+      'Cáncer': `<circle cx="35" cy="40" r="15"/><circle cx="65" cy="60" r="15"/><path d="M35 25 Q 70 25, 70 45 M65 75 Q 30 75, 30 55"/>`,
+      'Leo': `<circle cx="30" cy="60" r="12"/><path d="M35 52 C 40 20, 80 20, 80 50 C 80 80, 50 90, 30 70"/>`,
+      'Virgo': `<path d="M20 30 V 70 M40 30 V 70 M60 30 V 70 Q 60 90, 80 70 V 30"/>`,
+      'Libra': `<path d="M20 80 H 80 M20 60 H 80 M50 20 V 60"/>`,
+      'Escorpio': `<path d="M20 30 V 70 M40 30 V 70 M60 30 V 70 L 80 90 M80 90 L 85 75 M80 90 L 65 85"/>`,
+      'Sagitario': `<path d="M20 80 L 80 20 M50 20 H 80 V 50 M35 35 L 55 55"/>`,
+      'Capricornio': `<path d="M20 30 L 40 80 L 60 40 C 80 40, 80 80, 60 80"/>`,
+      'Acuario': `<path d="M20 40 L 35 25 L 50 40 L 65 25 L 80 40 M20 70 L 35 55 L 50 70 L 65 55 L 80 70"/>`,
+      'Piscis': `<path d="M30 20 Q 50 50, 30 80 M70 20 Q 50 50, 70 80 M20 50 H 80"/>`
+    },
+    planets: {
+      'Sol': `<circle cx="50" cy="50" r="10" fill="currentColor" stroke="none"/><circle cx="50" cy="50" r="30" stroke-dasharray="6 4"/><path d="M50 10 V 20 M50 80 V 90 M10 50 H 20 M80 50 H 90"/>`,
+      'Luna': `<path d="M70 20 A 40 40 0 1 0 70 80 A 30 30 0 1 1 70 20" fill="currentColor" stroke="none"/>`,
+      'Mercurio': `<circle cx="50" cy="60" r="20"/><path d="M50 40 V 20 M35 15 Q 50 30, 65 15"/>`,
+      'Venus': `<circle cx="50" cy="40" r="25"/><path d="M50 65 V 95 M35 80 H 65"/>`,
+      'Marte': `<circle cx="40" cy="60" r="25"/><path d="M60 40 L 85 15 M65 15 H 85 V 35"/>`,
+      'Júpiter': `<path d="M30 40 H 70 M50 20 V 80 C 50 90, 30 90, 30 80"/>`,
+      'Saturno': `<path d="M40 20 V 70 C 40 85, 25 85, 25 75"/><path d="M20 50 Q 50 35, 80 50 Q 50 65, 10 45"/>`,
+      'Urano': `<circle cx="50" cy="55" r="20"/><circle cx="50" cy="55" r="2" fill="currentColor" stroke="none"/><path d="M50 35 V 15 M40 20 H 60"/>`,
+      'Neptuno': `<path d="M30 20 V 50 Q 30 70, 50 70 Q 70 70, 70 50 V 20 M50 70 V 90 M35 80 H 65"/>`,
+      'Plutón': `<circle cx="50" cy="30" r="15"/><path d="M30 35 Q 30 65, 50 65 Q 70 65, 70 35 M50 65 V 90 M35 85 H 65"/>`
+    }
+  };
+
+  function getKairosSymbol(type, key) {
+    const sym = GLYPHS[type][key];
+    if (sym) return sym;
+    const normalized = Object.keys(GLYPHS[type]).find(k => k.toLowerCase() === key.toLowerCase());
+    return GLYPHS[type][normalized] || null;
+  }
+
+  // Exportar para uso global en la UI
+  window.KAIROS_GLYPHS = GLYPHS;
+  window.getKairosSymbol = getKairosSymbol;
+
+  // ─── CONSTANTES GEOMÉTRICAS ──────────────────────────────────
+  const Z_LIST = ['Aries', 'Tauro', 'Géminis', 'Cáncer', 'Leo', 'Virgo', 'Libra', 'Escorpio', 'Sagitario', 'Capricornio', 'Acuario', 'Piscis'];
+  const SIGN_BASE = { aries: 0, tauro: 30, geminis: 60, cancer: 90, leo: 120, virgo: 150, libra: 180, escorpio: 210, sagitario: 240, capricornio: 270, acuario: 300, piscis: 330 };
+  const SIGN_COLORS = { aries: '#EF4444', leo: '#F59E0B', sagitario: '#DC2626', tauro: '#10B981', virgo: '#059669', capricornio: '#047857', geminis: '#8B5CF6', libra: '#7C3AED', acuario: '#6D28D9', cancer: '#3B82F6', escorpio: '#0891B2', piscis: '#0E7490' };
+  const PLANET_DEFS = { 
+    sol: '#B45309', sun: '#B45309', 
+    luna: '#7C3AED', moon: '#7C3AED', 
+    mercurio: '#0369A1', mercury: '#0369A1', 
+    venus: '#BE185D', 
+    marte: '#B91C1C', mars: '#B91C1C', 
+    jupiter: '#D97706', 
+    saturno: '#4B5563', saturn: '#4B5563', 
+    urano: '#0E7490', uranus: '#0E7490', 
+    neptuno: '#106191', neptune: '#106191', 
+    pluton: '#6B21A8', pluto: '#6B21A8' 
+  };
+
+  const CX = 200, CY = 200;
+  const R_S_OUT = 185, R_S_IN = 155, R_H_OUT = 155, R_H_IN = 100, R_P_BASE = 127;
+
+  function normKey(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function signToDeg(n) { return SIGN_BASE[normKey(n)] ?? -1; }
+
+  // ─── LA FÓRMULA SAGRADA ─────────────────────────────────────
+  function getVisualDeg(absDeg, ascAbsDeg) {
+    return (180 - (absDeg - ascAbsDeg) + 360) % 360;
+  }
+
+  function degToXY(v, r) {
+    const rad = v * (Math.PI / 180);
+    return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+  }
+
+  function arcPath(startV, endV, rI, rO) {
+    const p1o = degToXY(startV, rO), p2o = degToXY(endV, rO);
+    const p1i = degToXY(startV, rI), p2i = degToXY(endV, rI);
+    const diff = (startV - endV + 360) % 360;
+    const large = diff > 180 ? 1 : 0;
+    return `M ${p1o.x} ${p1o.y} A ${rO} ${rO} 0 ${large} 0 ${p2o.x} ${p2o.y} L ${p2i.x} ${p2i.y} A ${rI} ${rI} 0 ${large} 1 ${p1i.x} ${p1i.y} Z`;
+  }
+
+  function renderGlifo(pathStr, x, y, size, color) {
+    if (!pathStr) return '';
+    const cleanPath = pathStr.replace(/currentColor/g, color);
+    return `<g transform="translate(${x - size/2}, ${y - size/2})"><svg width="${size}" height="${size}" viewBox="0 0 100 100" style="overflow:visible;"><g fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${cleanPath}</g></svg></g>`;
+  }
+
+  // ─── CAPAS DE RENDERIZADO ────────────────────────────────────
+  
+  function buildZodiac(ascDeg) {
+    let out = '';
+    Z_LIST.forEach((name, i) => {
+      const v1 = getVisualDeg(i * 30, ascDeg);
+      const v2 = getVisualDeg((i + 1) * 30, ascDeg);
+      const col = SIGN_COLORS[normKey(name)] || '#999';
+      out += `<path d="${arcPath(v1, v2, R_S_IN, R_S_OUT)}" fill="${col}" fill-opacity="0.04" stroke="${col}" stroke-width="0.8"/>`;
+      const vMid = getVisualDeg(i * 30 + 15, ascDeg);
+      const p = degToXY(vMid, (R_S_OUT + R_S_IN) / 2);
+      const glifo = getKairosSymbol('zodiac', name);
+      if (glifo) out += renderGlifo(glifo, p.x, p.y, 16, col);
+    });
+    return out;
+  }
+
+  function buildHouses(data) {
+    let out = '<g stroke="#E5E7EB" stroke-width="0.5">';
+    const { houses, ascAbs } = data;
+    const isArr = Array.isArray(houses);
+    
+    for (let i = 1; i <= 12; i++) {
+      // Si es array, la Casa 1 suele estar en el índice 0 o 1 según el motor.
+      // chart_engine lo devuelve como 0-indexed (slice(1) de SWEEPH cusps 1..12).
+      const h = isArr ? (houses[i-1] || houses[i]) : houses[i];
+      if (!h) continue;
+      
+      const vDeg = getVisualDeg((signToDeg(h.sign) + parseFloat(h.degree)) % 360, ascAbs);
+      const pIn = degToXY(vDeg, R_H_IN), pOut = degToXY(vDeg, R_S_IN);
+      const isAngular = [1, 4, 7, 10].includes(i);
+      out += `<line x1="${pIn.x}" y1="${pIn.y}" x2="${pOut.x}" y2="${pOut.y}" stroke="${isAngular ? '#9CA3AF' : '#D1D5DB'}" stroke-width="${isAngular ? 1.5 : 0.8}" ${isAngular ? '' : 'stroke-dasharray="1,1"'} />`;
+      const hNext = isArr ? (houses[i] || houses[i === 12 ? 0 : i + 1]) : houses[i === 12 ? 1 : i + 1];
+      if (hNext) {
+        const d1 = (signToDeg(h.sign) + parseFloat(h.degree)) % 360;
+        const d2 = (signToDeg(hNext.sign) + parseFloat(hNext.degree)) % 360;
+        let diff = (d2 - d1 + 360) % 360;
+        const vMid = getVisualDeg((d1 + diff / 2) % 360, ascAbs);
+        const pMid = degToXY(vMid, R_H_IN + 12);
+        out += `<text x="${pMid.x}" y="${pMid.y}" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#9CA3AF" font-weight="bold">${i}</text>`;
+      }
+    }
+    return out + '</g>';
+  }
+
+  function buildPlanets(data) {
+    let out = '';
+    const { planets, ascAbs } = data;
+    
+    console.log('[KAIROS DEBUG] planets type:', Array.isArray(planets) ? 'ARRAY' : 'OBJECT', 'Keys:', Object.keys(planets));
+
+    const pList = Object.keys(planets).map(k => {
+      const p = planets[k];
+      if (!p || !p.sign) return null;
+
+      // Soporte Dual y Normalización de Nombres (Fix SUN/SUN, MOON/MOON)
+      let pKey = k;
+      if (!isNaN(k)) {
+          pKey = p.name || p.planet || k;
+      }
+
+      const degree = parseFloat(p.degree ?? p.deg ?? 0);
+      const minute = parseFloat(p.minute ?? p.min ?? 0);
+      const abs = (signToDeg(p.sign) + degree + minute / 60) % 360;
+      return { k: pKey, p, abs, deg_val: degree, vis: getVisualDeg(abs, ascAbs) };
+    }).filter(x => x).sort((a, b) => a.abs - b.abs);
+
+    const clusters = [];
+    if (pList.length) {
+      let cur = [pList[0]];
+      for (let i = 1; i < pList.length; i++) {
+        const dist = Math.min(Math.abs(pList[i].abs - pList[i-1].abs), 360 - Math.abs(pList[i].abs - pList[i-1].abs));
+        if (dist < 6) cur.push(pList[i]);
+        else { clusters.push(cur); cur = [pList[i]]; }
+      }
+      clusters.push(cur);
+    }
+
+    clusters.forEach(c => {
+      const count = c.length;
+      let offsets = [0];
+      if (count === 2) offsets = [-16, 16];
+      else if (count === 3) offsets = [-20, 0, 20];
+      else if (count === 4) offsets = [-30, -10, 10, 30];
+      else if (count >= 5) offsets = [-36, -18, 0, 18, 36];
+
+      c.forEach((item, idx) => {
+        const offset = offsets[idx] || (idx * 16 - (count-1)*8);
+        const pos = degToXY(item.vis, R_P_BASE + offset);
+        const color = PLANET_DEFS[item.k.toLowerCase()] || '#4B5563';
+        
+        // Línea guía al grado real
+        const lBase = degToXY(item.vis, R_S_IN - 2);
+        out += `<line x1="${lBase.x}" y1="${lBase.y}" x2="${pos.x}" y2="${pos.y}" stroke="${color}" stroke-width="0.5" stroke-dasharray="1,1" opacity="0.6"/>`;
+        
+        const glifoKey = { 
+          'SOL': 'Sol', 'SUN': 'Sol',
+          'LUNA': 'Luna', 'MOON': 'Luna',
+          'MERCURIO': 'Mercurio', 'MERCURY': 'Mercurio',
+          'VENUS': 'Venus',
+          'MARTE': 'Marte', 'MARS': 'Marte',
+          'JUPITER': 'Júpiter',
+          'SATURNO': 'Saturno', 'SATURN': 'Saturno',
+          'URANO': 'Urano', 'URANUS': 'Urano',
+          'NEPTUNO': 'Neptuno', 'NEPTUNE': 'Neptuno',
+          'PLUTON': 'Plutón', 'PLUTO': 'Plutón',
+          'MEAN_NODE': 'Plutón'
+        }[item.k.toUpperCase()] || item.k;
+        const glifo = getKairosSymbol('planets', glifoKey);
+        
+        if (glifo) out += `<g data-planet="${item.k.toLowerCase()}">${renderGlifo(glifo, pos.x, pos.y, 22, color)}</g>`;
+        else out += `<g data-planet="${item.k.toLowerCase()}"><circle cx="${pos.x}" cy="${pos.y}" r="3" fill="${color}"/></g>`;
+
+        const pText = degToXY(item.vis, R_P_BASE + offset - 16);
+        out += `<text x="${pText.x}" y="${pText.y}" text-anchor="middle" font-size="7" fill="${color}" font-weight="bold">${Math.floor(item.deg_val)}°</text>`;
+      });
+    });
+    return out;
+  }
+
+  function buildAspects(data) {
+    const { planets, ascAbs } = data;
+    const pList = Object.keys(planets).map(k => {
+      const p = planets[k];
+      if (!p || !p.sign) return null;
+
+      let pKey = k;
+      if (!isNaN(k)) pKey = p.name || p.planet || k;
+
+      const degree = parseFloat(p.degree ?? p.deg ?? 0);
+      const minute = parseFloat(p.minute ?? p.min ?? 0);
+      const abs = (signToDeg(p.sign) + degree + minute / 60) % 360;
+      return { k: pKey, abs, vis: getVisualDeg(abs, ascAbs) };
+    }).filter(x => x);
+
+    const ASPECT_DEFS = [
+      { angle: 0, orb: 8, color: '#EAB308' },  // Conj
+      { angle: 180, orb: 8, color: '#B91C1C' }, // Opp
+      { angle: 120, orb: 8, color: '#3B82F6' }, // Trig
+      { angle: 90, orb: 8, color: '#EF4444' },  // Cuadr
+      { angle: 60, orb: 6, color: '#06B6D4' }   // Sextil
+    ];
+
+    let out = '<defs><mask id="aspectMask"><rect x="0" y="0" width="400" height="400" fill="white"/><circle cx="200" cy="200" r="35" fill="black"/></mask></defs>';
+    out += '<g mask="url(#aspectMask)">';
+
+    for (let i = 0; i < pList.length; i++) {
+      for (let j = i + 1; j < pList.length; j++) {
+        const p1 = pList[i], p2 = pList[j];
+        const diff = Math.abs(p1.abs - p2.abs);
+        const ang = Math.min(diff, 360 - diff);
+        
+        for (const asp of ASPECT_DEFS) {
+          const orbDiff = Math.abs(ang - asp.angle);
+          if (orbDiff <= asp.orb) {
+            const intensity = 1 - (orbDiff / asp.orb);
+            const opacity = 0.15 + (intensity * 0.35);
+            const width = 0.6 + (intensity * 1.4);
+            const R_L = 95;
+            
+            if (asp.angle === 0) {
+              const pos1 = degToXY(p1.vis, R_L + 5), pos2 = degToXY(p2.vis, R_L + 5);
+              out += `<line x1="${pos1.x}" y1="${pos1.y}" x2="${pos2.x}" y2="${pos2.y}" stroke="${asp.color}" stroke-width="${width*2}" opacity="${opacity}" stroke-linecap="round"/>`;
+            } else {
+              const pos1 = degToXY(p1.vis, R_L), pos2 = degToXY(p2.vis, R_L);
+              out += `<line x1="${pos1.x}" y1="${pos1.y}" x2="${pos2.x}" y2="${pos2.y}" stroke="${asp.color}" stroke-width="${width}" opacity="${opacity}" />`;
+            }
+            break;
+          }
+        }
+      }
+    }
+    return out + '</g>';
+  }
+
+
+  function resolveNatalData(state, scArg) {
+    const fullCtx = scArg || window.getActiveKairosContext();
+    const sc = fullCtx.natal_context || {};
+    // [v650.5.29] Soporte dual: sc.planets (formato principal) o sc.positions (formato lab)
+    const planets = sc.planets || sc.positions || state?.user?.natalPlanets || {};
+    const houses = sc.houses || state?.user?.houses || {};
+
+    let ascAbs = 0;
+    // [v650.5.29] Soporte extendido de ascendente: incluye metadata.ascendant del formato lab
+    // [v650.5.35] Cambio ?? → || para descartar también el valor 0 (evita Aries por defecto)
+    const rawAsc = sc.ascendant_longitude || sc.ascendant_degree_absolute || sc.metadata?.ascendant || state?.user?.ascDegAbs || null;
+    
+    if (rawAsc !== undefined && !isNaN(parseFloat(rawAsc))) {
+      ascAbs = parseFloat(rawAsc);
+    } else {
+      // [v650.5.9] Soporte robusto para Ascendente (perfiles con claves en inglés, ASC, o arrays)
+      // [v650.5.37] Prioridad: Casa 1 de houses SOLO si no son casas aproximadas
+      const isHousesArr = Array.isArray(houses);
+      const h1 = isHousesArr ? (houses[0] || houses[1]) : (houses?.['1'] || houses?.[1]);
+      // [v650.5.37] Detectar casas aproximadas: si TODAS tienen degree===0, son producto del
+      // fallback ascLon=0 (bug .lon en natal_persistence_helper). No son fiables → skip.
+      const houseVals = isHousesArr ? houses.slice(0, 12) : Object.values(houses).slice(0, 12);
+      const allDegreeZero = houseVals.length >= 12 && houseVals.every(h => parseFloat(h?.degree ?? h?.deg ?? 0) === 0);
+      if (h1 && h1.sign && signToDeg(h1.sign) >= 0 && !allDegreeZero) {
+        ascAbs = (signToDeg(h1.sign) + parseFloat(h1.degree || 0)) % 360;
+      } else {
+        // Fallback fiable: signo ASC + grado guardado en el perfil
+        const s = sc.ascendant || state?.user?.asc || state?.user?.ASC || state?.user?.ascendant || 'Aries';
+        const d = sc.ascendant_degree || state?.user?.ascDeg || 0;
+        ascAbs = (signToDeg(s) + parseFloat(d)) % 360;
+        if (allDegreeZero) console.log('[KAIROS ASC] Casas aproximadas detectadas → usando signo+grado:', s, d, '→', ascAbs);
+      }
+    }
+
+    // Diagnóstico solicitado
+    console.log('[KAIROS DEBUG] ascAbs:', ascAbs, 'houses raw:', houses, 'asc raw:', state?.user?.asc || state?.user?.ASC || state?.user?.ascendant);
+    console.log('[KAIROS ASC] ascAbs calculado:', ascAbs, '| source:', JSON.stringify(sc).substring(0, 200));
+
+    return { ascAbs, planets, houses };
+  }
+
+  function renderChart650(state, scArg) {
+    let data;
+    try {
+      data = resolveNatalData(state, scArg);
+      const hasData = Object.keys(data.planets).length > 0;
+      const ascMarker = `<g><line x1="${degToXY(180, R_S_OUT + 8).x}" y1="${degToXY(180, R_S_OUT + 8).y}" x2="${degToXY(180, R_H_IN - 5).x}" y2="${degToXY(180, R_H_IN - 5).y}" stroke="#EF4444" stroke-width="2"/><text x="${degToXY(180, R_S_OUT + 8).x - 5}" y="${degToXY(180, R_S_OUT + 8).y}" text-anchor="end" dominant-baseline="middle" font-size="10" font-weight="900" fill="#EF4444">ASC</text></g>`;
+      
+      const svgParts = [
+        `<circle cx="${CX}" cy="${CY}" r="${R_S_OUT}" fill="#FFF" stroke="#E5E7EB" stroke-width="1"/><circle cx="${CX}" cy="${CY}" r="${R_H_IN}" fill="none" stroke="#F3F4F6" stroke-width="1"/>`,
+        hasData ? buildZodiac(data.ascAbs) : '',
+        hasData ? buildHouses(data) : '',
+        hasData ? buildAspects(data) : '',
+        hasData ? buildPlanets(data) : '',
+        hasData ? ascMarker : ''
+      ];
+
+      // Exponer helpers geométricos para v2
+      window.KAIROS_GEOM = {
+        getVisualDeg, degToXY, arcPath,
+        CX, CY, R_S_OUT, R_S_IN, R_H_OUT, R_H_IN, R_P_BASE,
+        signToDeg, normKey
+      };
+
+      const html = `<div id="kairos-natal-container" style="width:100%; display:flex; flex-direction:column; align-items:center; padding: 20px 0;"><div style="position:relative; width:400px; height:400px; background:radial-gradient(circle, #ffffff 0%, #f9fafb 100%); border-radius:50%; box-shadow: 0 20px 50px rgba(0,0,0,0.05);"><svg id="kairos-natal-svg" viewBox="0 0 400 400" style="width:100%; height:100%; overflow:visible;">${svgParts.join('')}${!hasData ? '<text x="200" y="200" text-anchor="middle" fill="#9CA3AF" font-size="12">PENDIENTE DE CALIBRACIÓN NATAL</text>' : ''}</svg></div><div style="margin-top:24px; font-size:9px; color:#9CA3AF; letter-spacing:0.2em; text-transform:uppercase; font-weight:900;">Serie 650 v1.7.1 • KAIROS Visual Engine</div>${!hasData ? '<div style="margin-top:20px; text-align:center;"><button onclick="showView(\'onboarding-1b\')" style="background:#c9a96e; color:#fff; border:none; border-radius:999px; padding:14px 36px; font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:0.3em; cursor:pointer; box-shadow:0 4px 20px rgba(201,169,110,0.4);">CALIBRAR CARTA NATAL</button></div>' : ''}</div>`;
+      return html;
+
+    } catch (e) {
+      console.error('[KAIROS] Error crítico en renderizado de carta natal:', e);
+      const errorMsg = `<div style="color:red;font-size:11px;padding:10px;word-break:break-all;">
+        ERROR: ${e.message}<br>${e.stack}
+      </div>`;
+      const container = document.getElementById('kairos-natal-container');
+      if (container) {
+        container.innerHTML = errorMsg;
+      }
+      return errorMsg;
+    } finally {
+      // Garantizar disparo del evento independientemente del éxito del renderizado
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('kairos:natal_chart_ready', { 
+          detail: { containerId: 'kairos-natal-svg', data: data || {} } 
+        }));
+      }, 50);
+    }
+  }
+
+  // Exponer para uso global
+  window.renderChart650 = renderChart650;
+  window.resolveNatalData = resolveNatalData;
+
+})();
+

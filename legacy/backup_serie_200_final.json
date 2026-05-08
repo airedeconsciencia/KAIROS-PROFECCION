@@ -1,0 +1,146 @@
+{
+  "204_significado_fases_lunares": {
+    "Luna Nueva": {
+      "significado_psicologico": "Inicios, siembra, potencial puro y oscuridad creativa.",
+      "manifestacion_practica": "Nuevos proyectos, intención clara, introspección profunda.",
+      "riesgos": "Confusión, impulsividad ciega, falta de dirección clara.",
+      "potencial_evolutivo": "Aprender a confiar en el vacío como espacio de gestación."
+    },
+    "Cuarto Creciente": {
+      "significado_psicologico": "Acción, superación de obstáculos y compromiso con el crecimiento.",
+      "manifestacion_practica": "Esfuerzo consciente, toma de decisiones, impulso dinámico.",
+      "riesgos": "Frustración, tensión, conflicto con la autoridad.",
+      "potencial_evolutivo": "Construir la voluntad a través del desafío."
+    },
+    "Luna Llena": {
+      "significado_psicologico": "Culminación, claridad total, revelación y realización.",
+      "manifestacion_practica": "Resultados visibles, cierre de ciclos, máxima energía social.",
+      "riesgos": "Emocionalidad desbordada, insomnio, falta de pragmatismo.",
+      "potencial_evolutivo": "Integrar la luz y la sombra para lograr la plenitud."
+    },
+    "Cuarto Menguante": {
+      "significado_psicologico": "Reflexión, soltar lo innecesario y reevaluación interna.",
+      "manifestacion_practica": "Limpieza, organización, finalización de tareas, descanso.",
+      "riesgos": "Melancolía, cansancio extremo, resistencia al cierre.",
+      "potencial_evolutivo": "Desarrollar la sabiduría del desapego."
+    }
+  },
+  "205_significado_planetas_retrogrados": {
+    "Mercurio Rx": {
+      "significado_base": "Introspección mental y revisión de la comunicación.",
+      "efecto_psicologico": "Repliegue de la lógica hacia el mundo interno.",
+      "manifestacion_practica": "Retrasos en viajes, malentendidos, revisión de documentos.",
+      "potencial_evolutivo": "Escuchar la voz interna antes de hablar al mundo."
+    },
+    "Venus Rx": {
+      "significado_base": "Reevaluación de los valores y los vínculos afectivos.",
+      "efecto_psicologico": "Cuestionamiento de lo que amamos y lo que deseamos.",
+      "manifestacion_practica": "Regreso de ex-parejas, cambios en las finanzas, revisión estética.",
+      "potencial_evolutivo": "Aprender a valorarse a uno mismo independientemente de los demás."
+    },
+    "Marte Rx": {
+      "significado_base": "Internalización del deseo y la fuerza asertiva.",
+      "efecto_psicologico": "Frustración acumulada o dirección interna de la voluntad.",
+      "manifestacion_practica": "Lentitud en la acción, necesidad de planificar antes de actuar.",
+      "potencial_evolutivo": "Dominar la ira y actuar con verdadera integridad interna."
+    }
+  },
+  "206_significado_planeta_del_dia": {
+    "Lunes": {
+      "tono_general": "Foco en el mundo emocional y el cuidado personal.",
+      "accion_recomendada": "Nutrir el cuerpo, descansar y estar con los seres queridos.",
+      "riesgo": "Humores cambiantes y pasividad excesiva.",
+      "uso_en_lectura_diaria": "Evaluar la receptividad y el estado de ánimo lunar."
+    },
+    "Martes": {
+      "tono_general": "Fuerza, coraje y capacidad de conquista.",
+      "accion_recommendeda": "Hacer ejercicio, tomar decisiones firmes e iniciar retos.",
+      "riesgo": "Conflictividad y prisa innecesaria.",
+      "uso_en_lectura_diaria": "Medir el nivel de energía y asertividad disponible."
+    },
+    "Miércoles": {
+      "tono_general": "Comunicación, aprendizaje y agilidad mental.",
+      "accion_recomendada": "Escribir, estudiar, negociar y conectar con otros.",
+      "riesgo": "Superficialidad y dispersión de ideas.",
+      "uso_en_lectura_diaria": "Analizar la claridad en los mensajes y acuerdos."
+    },
+    "Jueves": {
+      "tono_general": "Expansión, suerte y búsqueda de propósito.",
+      "accion_recomendada": "Planificar a largo plazo, viajar o estudiar filosofía.",
+      "riesgo": "Exageración y falta de límites realistas.",
+      "uso_en_lectura_diaria": "Aprovechar la confianza y el crecimiento optimista."
+    },
+    "Viernes": {
+      "tono_general": "Amor, belleza, placer y armonía social.",
+      "accion_recomendada": "Disfrutar del arte, relaciones y cuidarse estéticamente.",
+      "riesgo": "Indulgencia excesiva y pereza.",
+      "uso_en_lectura_diaria": "Enfocarse en la gratitud y la conexión placentera."
+    },
+    "Sábado": {
+      "tono_general": "Disciplina, orden, límites y responsabilidad.",
+      "accion_recomendada": "Organizar el tiempo, cumplir deberes y construir estructuras.",
+      "riesgo": "Rigidez, pesimismo y frialdad emocional.",
+      "uso_en_lectura_diaria": "Fortalecer la madurez y la paciencia persistente."
+    },
+    "Domingo": {
+      "tono_general": "Conciencia plena, identidad y vitalidad pura.",
+      "accion_recomendada": "Ser uno mismo, crear, brillar y recargar energía.",
+      "riesgo": "Arrogancia o necesidad de ser el centro de atención.",
+      "uso_en_lectura_diaria": "Conectar con el propósito vital y la esencia creativa."
+    }
+  },
+  "207_significado_profeccion_anual": {
+    "General": {
+      "definicion": "Técnica cronocrática que activa una casa zodiacal específica por cada año de vida.",
+      "principio_de_funcionamiento": "Movimiento de un signo por año a partir del Ascendente natal.",
+      "manifestacion_practica": "El foco temporal de la vida se desplaza al escenario de la casa activada.",
+      "reglas_de_uso": "Identificar la casa activada y el planeta regente de ese signo (Señor del Año)."
+    }
+  },
+  "208_significado_senor_del_ano": {
+    "Sol": {
+      "significado_psicologico": "Un año para brillar, liderar y ser consciente de la propia autoridad.",
+      "manifestacion_practica": "Éxito profesional, mayor visibilidad y vitalidad aumentada.",
+      "riesgos": "Excesivo foco en el ego o choque con figuras de autoridad.",
+      "potencial_evolutivo": "Consolidar una identidad auténtica y soberana."
+    },
+    "Luna": {
+      "significado_psicologico": "Un año de gran marea emocional, nutrición y enfoque en el hogar.",
+      "manifestacion_practica": "Mudanzas, cambios en la familia o mayor sensibilidad interna.",
+      "riesgos": "Inestabilidad emocional o exceso de dependencia.",
+      "potencial_evolutivo": "Sanar las raíces y desarrollar la seguridad interna."
+    },
+    "Marte": {
+      "significado_psicologico": "Un año de batalla, conquista y fuerte asertividad.",
+      "manifestacion_practica": "Nuevas aventuras, conflictos necesarios y alta capacidad física.",
+      "riesgos": "Accidentes, ira o impulsividad destructiva.",
+      "potencial_evolutivo": "Convertirse en el guerrero que actúa con coraje y rectitud."
+    }
+  },
+  "209_significado_elementos_modalidades_polaridades": {
+    "Fuego": {
+      "significado_base": "Energía radiante, entusiasmo e intuición vital.",
+      "expresion_psicologica": "Pasión, autoconfianza y necesidad de acción.",
+      "manifestacion_practica": "Movimiento, rapidez, iniciativa y liderazgo.",
+      "uso_en_interpretacion": "Evaluar el nivel de vitalidad y capacidad de arranque."
+    },
+    "Tierra": {
+      "significado_base": "Mundo físico, pragmatismo y realización material.",
+      "expresion_psicologica": "Estabilidad, paciencia y enfoque en los sentidos.",
+      "manifestacion_practica": "Trabajo, dinero, cuerpo físico y resultados tangibles.",
+      "uso_en_interpretacion": "Evaluar la capacidad de manifestación y realismo."
+    },
+    "Aire": {
+      "significado_base": "Mundo de las ideas, comunicación y relaciones sociales.",
+      "expresion_psicologica": "Objetividad, curiosidad y necesidad de intercambio.",
+      "manifestacion_practica": "Conversaciones, viajes, tecnología y aprendizaje.",
+      "uso_en_interpretacion": "Evaluar la agilidad mental y la conexión social."
+    },
+    "Agua": {
+      "significado_base": "Mundo emocional, empatía e inconsciente.",
+      "expresion_psicologica": "Sensibilidad, intuición y necesidad de vinculación profunda.",
+      "manifestacion_practica": "Cuidado, arte, sanación y vida privada mística.",
+      "uso_en_interpretacion": "Evaluar el flujo emocional y la capacidad receptiva."
+    }
+  }
+}

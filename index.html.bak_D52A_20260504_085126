@@ -1,0 +1,443 @@
+<!--
+KAIROS - TABLA DE VERDAD OPERATIVA (PRODUCCIÓN)
+
+Estado actual de este punto de entrada:
+- Este archivo define la entrada principal de producción.
+- Las vistas activas esperadas son: Año, Hoy, Semana, Mes, Matrix y Carta.
+- Perfil de usuario y Configuración pertenecen al espacio de usuario.
+- No deben mezclarse aquí superficies de laboratorio, auditoría o prototipos salvo necesidad explícita.
+
+Reglas de esta fase:
+- No tocar motores core astronómicos salvo bug crítico.
+- No introducir nuevos scripts de debug/auditoría en carga por defecto.
+- No cambiar orden de carga sin documentarlo.
+- Cualquier script cargado aquí debe marcarse con uno de estos estados:
+  CANONICO / PRODUCCION / OBSERVACION / LAB / DEPRECADO / ARCHIVE
+
+Objetivo de fase:
+Observar, clasificar, congelar y estabilizar sin refactor masivo.
+-->
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <script>
+      // KAIROS v650v5.0 — BASE ESTABLE CONGELADA
+      const V_STABLE = '650.5.0';
+      if (localStorage.getItem('current_v') !== V_STABLE) {
+        console.log("✅ KAIROS v650v5.0: Base Estable Congelada");
+        console.log("📍 KAIROS: Purging legacy cache and refreshing to v" + V_STABLE);
+        localStorage.clear();
+        localStorage.setItem('current_v', V_STABLE);
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            for(let r of regs) { r.unregister(); }
+          });
+        }
+        if ('caches' in window) {
+          caches.keys().then(function(ns) {
+            for (let n of ns) caches.delete(n);
+          });
+        }
+        // We delay reload slightly to allow storage writes to commit
+        setTimeout(() => { location.reload(true); }, 300);
+      }
+
+      // GLOBAL ERROR HANDLER TO PREVENT SILENT WHITE SCREEN
+      window.onerror = function(msg, url, lineNo, columnNo, error) {
+        console.error("🔥 FATAL ERROR:", msg, "at", url, ":", lineNo);
+        const errEl = document.getElementById('bootstrap-error');
+        const errTxt = document.getElementById('bootstrap-errorText');
+        if (errEl && errTxt) {
+          errEl.classList.remove('hidden');
+          errTxt.innerText = "Error Crítico: " + msg;
+          const status = document.getElementById('shell-bootstrap-message');
+          if (status) status.classList.remove('hidden');
+        }
+        return false;
+      };
+    </script>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>KAIROS v650.5.75-PROD (KAIROS D.4.7)</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=650.5.32">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Core Libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "primary": "#d7c188",
+                            "warm-grey": "#43433e",
+                            "deep-navy": "#0a0a0f"
+                        },
+                        fontFamily: {
+                            "display": ["Manrope", "sans-serif"],
+                            "technical": ["Space Grotesk", "sans-serif"]
+                        }
+                    },
+                },
+            }
+        } catch(e) { console.error("Tailwind Config Error:", e); }
+    </script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #fdfdfb;
+            overflow: hidden; /* Lock body, scroll shell */
+            overscroll-behavior: none;
+        }
+
+        /* CLEAN RECONSTRUCTED SHELL */
+        #app-shell {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            height: 100vh;
+            height: 100dvh; /* Dynamic Viewport Height for mobile */
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 100px rgba(0,0,0,0.05);
+            border: 2px solid #f1f5f9;
+            overflow: hidden;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        #app-header {
+            height: 64px;
+            width: 100%;
+            border-bottom: 1px solid #f1f5f9;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        #app-main {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            /* No bottom padding needed here if tabs are flex */
+            position: relative;
+            background: white;
+        }
+
+        #app-tabs {
+            height: 70px;
+            width: 100%;
+            border-top: 1px solid #f1f5f9;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .shell-tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .shell-tab-item.active {
+            color: #d7c188;
+        }
+
+        .shell-tab-label {
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 4px;
+        }
+
+        /* Generic views loader */
+        .shell-view {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shell-view.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app-shell">
+        
+        <!-- HEADER -->
+        <header id="app-header">
+            <div class="flex items-center gap-2">
+                <img src="logo_kairos.png" class="size-6 rounded-full" alt="K">
+                <span class="font-black text-[10px] uppercase tracking-widest text-warm-grey">KAIROS</span>
+            </div>
+            <div id="app-status-container" class="flex items-center gap-2">
+                <span class="text-[7px] font-black w-32 truncate text-slate-300 uppercase underline decoration-primary/30" id="main-build-version">v650.5.75-PROD</span>
+                <span id="txt-nav-status" class="text-[8px] font-black text-primary uppercase bg-primary/5 px-3 py-1 rounded-full tracking-widest">SISTEMA OK</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="localStorage.clear(); sessionStorage.clear(); location.reload();" class="text-slate-200 hover:text-slate-400 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">refresh</span>
+                </button>
+                <div class="relative group" id="profile-menu-container">
+                    <button id="profile-menu-btn" onclick="toggleProfileMenu()" class="text-warm-grey bg-slate-100 hover:bg-slate-200 p-1.5 rounded-full transition-colors flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[20px]">person</span>
+                    </button>
+                    <!-- Dropdown Panel (hidden by default) -->
+                    <div id="profile-menu-panel" class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-premium border border-slate-100 hidden flex-col py-2 z-50 transform origin-top-right transition-all">
+                        <div class="px-4 py-2 border-b border-slate-100 mb-1">
+                            <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest">Tu Espacio</span>
+                        </div>
+                        <button onclick="setTab('carta'); toggleProfileMenu();" class="text-left px-4 py-2.5 text-xs font-bold text-warm-grey hover:bg-slate-50 uppercase tracking-wider flex items-center"><span class="material-symbols-outlined text-[16px] mr-3 text-primary">map</span>Carta Natal</button>
+                        <button onclick="setTab('contact'); toggleProfileMenu();" class="text-left px-4 py-2.5 text-xs font-bold text-warm-grey hover:bg-slate-50 uppercase tracking-wider flex items-center"><span class="material-symbols-outlined text-[16px] mr-3 text-primary">manage_accounts</span>Perfil de Usuario</button>
+                        <button id="menu-item-lab" onclick="setTab('lab'); toggleProfileMenu();" class="hidden text-left px-4 py-2.5 text-xs font-bold text-warm-grey hover:bg-slate-50 uppercase tracking-wider flex items-center animate-pulse"><span class="material-symbols-outlined text-[16px] mr-3 text-indigo-500">science</span>Laboratorio Core</button>
+                        <button onclick="toggleProfileMenu(); alert('Configuración próximamente');" class="text-left px-4 py-2.5 text-xs font-bold text-warm-grey hover:bg-slate-50 uppercase tracking-wider flex items-center"><span class="material-symbols-outlined text-[16px] mr-3 text-primary">settings</span>Configuración</button>
+                        <div class="border-t border-slate-100 my-1"></div>
+                        <button onclick="logout(); toggleProfileMenu();" class="text-left px-4 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50 uppercase tracking-wider flex items-center"><span class="material-symbols-outlined text-[16px] mr-3">logout</span>Cerrar Sesión</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main id="app-main" class="relative">
+            <!-- DYNAMIC CONTENT INJECTED HERE -->
+            
+            <!-- 1. LOADING SHELL -->
+            <div id="shell-bootstrap-message" class="h-full flex flex-col items-center justify-center p-12 text-center bg-white">
+                <div class="animate-pulse mb-8 relative">
+                    <div class="absolute inset-0 bg-primary/10 rounded-full blur-xl animate-pulse-slow"></div>
+                    <img src="logo_kairos.png" class="size-24 opacity-30 relative z-10" alt="">
+                </div>
+                <h2 class="text-xl font-black text-warm-grey uppercase tracking-tighter mb-2" id="bootstrap-title">CONECTANDO SISTEMA</h2>
+                <div class="w-full max-w-[200px] h-1 bg-slate-100 rounded-full overflow-hidden mb-4">
+                    <div id="bootstrap-progress" class="h-full bg-primary w-1/3 rounded-full transition-all duration-500"></div>
+                </div>
+                <p id="bootstrap-statusText" class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">Verificando motor astrológico...</p>
+                
+                <!-- [v1.5 EXPRESS] Botón de Acceso Inmediato -->
+                <button id="btn-immediate-guest" onclick="if(window.bypassAuthMode){window.bypassAuthMode()}else{alert('Cargando motor... Inténtalo en 1s')}" class="mt-8 text-[9px] font-black text-primary uppercase tracking-[0.2em] border border-primary/20 px-6 py-3 rounded-full hover:bg-primary/5 transition-all shadow-sm">
+                    Entrar como Invitado
+                </button>
+
+                <div id="bootstrap-error" class="hidden mt-6 p-4 bg-red-50 rounded-lg border border-red-100">
+                    <span class="material-symbols-outlined text-red-400 mb-2">error</span>
+                    <p class="text-[10px] text-red-500 font-bold uppercase tracking-wider w-full" id="bootstrap-errorText">Error de conexión</p>
+                    <div class="flex flex-col gap-2 mt-3">
+                        <button onclick="location.reload()" class="text-[9px] font-black bg-white text-warm-grey px-4 py-2 rounded-md shadow-sm border border-slate-200 uppercase tracking-widest w-full">Reintentar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. AUTH VIEW (STATIC TO PREVENT OVERWRITE) -->
+            <div id="view-auth" class="view h-full flex flex-col p-8 space-y-8 animate-fade-in bg-white items-center justify-center">
+                <!-- Se poblará dinámicamente si existe, o se usará como ancla -->
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Iniciando sesión segura...</p>
+            </div>
+
+            <!-- 3. LABORATORY CORE VIEW -->
+            <div id="view-lab" class="view hidden h-full flex flex-col bg-slate-50 overflow-y-auto">
+                <div class="p-6 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-indigo-500 rounded-lg text-white">
+                            <span class="material-symbols-outlined text-xl">biotech</span>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-black text-warm-grey uppercase tracking-tight">KAIROS LAB v1.0</h2>
+                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Validación de Motores Astronómicos</p>
+                        </div>
+                    </div>
+
+                    <!-- Lab Form -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 space-y-4">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div>
+                                <label class="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1.5">Nombre de Prueba</label>
+                                <input type="text" id="lab-input-name" placeholder="Ej: Newton Test" class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 text-xs font-bold focus:ring-2 focus:ring-indigo-500/20 transition-all">
+                            </div>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div>
+                                    <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Año</label>
+                                    <input type="number" id="lab-input-year" placeholder="1985" class="w-full bg-slate-50 border-none rounded-xl px-3 py-3 text-xs font-bold text-center">
+                                </div>
+                                <div>
+                                    <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Mes</label>
+                                    <input type="number" id="lab-input-month" placeholder="8" min="1" max="12" class="w-full bg-slate-50 border-none rounded-xl px-3 py-3 text-xs font-bold text-center">
+                                </div>
+                                <div>
+                                    <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Día</label>
+                                    <input type="number" id="lab-input-day" placeholder="20" min="1" max="31" class="w-full bg-slate-50 border-none rounded-xl px-3 py-3 text-xs font-bold text-center">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Hora (HH:mm)</label>
+                                    <input type="time" id="lab-input-time" class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 text-xs font-bold text-center">
+                                </div>
+                                <div>
+                                    <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest block mb-1">Ciudad</label>
+                                    <input type="text" id="lab-input-city" placeholder="Madrid..." class="w-full bg-slate-50 border-none rounded-xl px-4 py-3 text-xs font-bold">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 pt-2">
+                            <button onclick="handleLabCalculate()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[10px] py-4 rounded-xl shadow-lg shadow-indigo-200 transition-all uppercase tracking-widest">Calcular</button>
+                            <button onclick="handleLabReset()" class="bg-slate-100 hover:bg-slate-200 text-slate-400 font-bold text-[10px] px-6 rounded-xl transition-all uppercase tracking-widest">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Lab Results (Initially hidden or showing placeholder) -->
+                    <div id="lab-results" class="hidden animate-fade-in space-y-6">
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-2xl border border-slate-100 flex items-center justify-between">
+                                <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Ascendente</span>
+                                <span id="lab-res-asc" class="text-sm font-black text-indigo-600 uppercase">---</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-2xl border border-slate-100 flex items-center justify-between">
+                                <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Señor del Año</span>
+                                <span id="lab-res-lord" class="text-sm font-black text-indigo-600 uppercase">---</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-3">
+                            <button onclick="handleLabViewMap()" class="flex-1 bg-white border border-slate-100 hover:bg-slate-50 p-4 rounded-xl flex flex-col items-center gap-2 transition-all group">
+                                <span class="material-symbols-outlined text-indigo-500 group-hover:scale-110 transition-transform">map</span>
+                                <span class="text-[9px] font-black text-warm-grey uppercase tracking-widest">Ver Mapa</span>
+                            </button>
+                            <button onclick="handleLabViewTable()" class="flex-1 bg-white border border-slate-100 hover:bg-slate-50 p-4 rounded-xl flex flex-col items-center gap-2 transition-all group">
+                                <span class="material-symbols-outlined text-indigo-500 group-hover:scale-110 transition-transform">list_alt</span>
+                                <span class="text-[9px] font-black text-warm-grey uppercase tracking-widest">Tabla Técnica</span>
+                            </button>
+                        </div>
+
+                        <!-- Technical Table Area (Detailed planets) -->
+                        <div id="lab-technical-area" class="bg-white rounded-2xl p-4 border border-slate-100 hidden">
+                             <table class="w-full text-left">
+                                 <thead>
+                                     <tr class="border-b border-slate-50">
+                                         <th class="py-2 text-[7px] font-black text-slate-300 uppercase tracking-widest">Planeta</th>
+                                         <th class="py-2 text-[7px] font-black text-slate-300 uppercase tracking-widest text-center">Signo</th>
+                                         <th class="py-2 text-[7px] font-black text-slate-300 uppercase tracking-widest text-right">Posición</th>
+                                         <th class="py-2 text-[7px] font-black text-slate-300 uppercase tracking-widest text-right">Casa</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody id="lab-table-body" class="text-[10px] font-bold text-warm-grey uppercase">
+                                     <!-- Rows injected here -->
+                                 </tbody>
+                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+          // v1.8 EMERGENCY RENDER GUARD - PROACTIVE REVEAL
+          setTimeout(() => {
+            const shell = document.getElementById('app-shell');
+            if (shell && window.getComputedStyle(shell).opacity === '0') {
+              shell.style.opacity = '1';
+            }
+            if (document.body.style.display === 'none') {
+               console.warn("⚠️ KAIROS: Forcing body visibility");
+               document.body.style.display = 'block';
+            }
+          }, 3000);
+        </script>
+
+        <!-- NAVIGATION TABS -->
+        <nav id="app-tabs">
+            <div onclick="setTab('annual')" class="shell-tab-item active" id="tab-annual">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <span class="shell-tab-label">Tu Año</span>
+            </div>
+            <div onclick="setTab('daily')" class="shell-tab-item" id="tab-daily">
+                <span class="material-symbols-outlined">today</span>
+                <span class="shell-tab-label">Hoy</span>
+            </div>
+            <div onclick="setTab('weekly')" class="shell-tab-item" id="tab-weekly">
+                <span class="material-symbols-outlined">calendar_view_week</span>
+                <span class="shell-tab-label">Semana</span>
+            </div>
+            <div onclick="setTab('monthly')" class="shell-tab-item" id="tab-monthly">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <span class="shell-tab-label">Mes</span>
+            </div>
+            <div onclick="setTab('matrix')" class="shell-tab-item" id="tab-matrix">
+                <span class="material-symbols-outlined">analytics</span>
+                <span class="shell-tab-label">Matrix</span>
+    <!-- UTILITY SCRIPTS (Core Engineering) -->
+    <script src="constants.js?v=650.5.33"></script>
+    <script src="ascendant_engine.js?v=650.5.33"></script>
+    <script type="module">
+        import SwissEph from './kairos-core/wasm/swisseph_wrapper.js';
+        window.swisseph_native = new SwissEph();
+        console.log("📍 KAIROS: SwissEph Wrapper instantiated and assigned to window.swisseph_native");
+    </script>
+    <script src="planetary_engine.js?v=650.5.34"></script>
+    <script src="chart_engine.js?v=650.5.34"></script>
+    
+    <!-- PRODUCT ENGINES -->
+    <script src="projection_engine.js?v=650.5.34"></script>
+    <script src="matrix_library_base.js?v=650.5.39"></script>
+    <script id="kairos-audit-module" src="scripts/ingestion/astro_audit.js?v=650.5.34"></script>
+    <script src="interpreter_engine.js?v=650.5.75"></script>
+
+    <!-- TEMPORAL ENGINES (eliminados por error en v650.5.29 — restaurados en v650.5.30) -->
+    <script src="weekly_engine.js?v=650.5.34"></script>
+    <script src="transit_engine.js?v=650.5.34"></script>
+    <script src="matrix_engine.js?v=650.5.34"></script>
+
+    <!-- KAIROS v2 NATIVE ENGINES (v650v5.1) -->
+    <script src="natal_panel_renderer.js?v=650.5.34"></script>
+    <script src="v2_layer_profection.js?v=650.5.39"></script>
+    <script src="v2_layer_transits.js?v=650.5.34"></script>
+    <script src="v2_ui_modes.js?v=650.5.34"></script>
+    <script src="chart_650_v1.js?v=650.5.37"></script>
+    <script src="chart_650_v2.js?v=650.5.34"></script>
+
+    <!-- MAIN ENGINE -->
+    <script src="natal_persistence_helper.js?v=650.5.38"></script>
+    <script src="engine_v483_final.js?v=650.5.78"></script>
+
+
+</body>
+
+</html>

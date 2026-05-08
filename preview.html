@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIROS Design System - Aire de Consciencia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    .preview-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    
+    .section {
+      margin-bottom: 60px;
+    }
+    
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      display: block;
+    }
+    
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+    
+    .token-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .token-color {
+      height: 60px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .token-name {
+      font-size: 0.8rem;
+      font-family: var(--font-technical);
+      color: var(--text-primary);
+    }
+    
+    .component-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    
+    .demo-card {
+      max-width: 350px;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    
+    .tag-mint { background-color: var(--accent-mint); color: #4A5D5C; }
+    
+    .card-title {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    
+    .card-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="preview-container">
+    <header style="margin-bottom: 80px;">
+      <h1 style="font-size: 2.5rem; margin-bottom: 10px;">KAIROS</h1>
+      <p style="color: var(--text-secondary); font-size: 1.1rem;">Sistema de Diseño • Aire de Consciencia</p>
+    </header>
+
+    <!-- 1. Tokens Section -->
+    <div class="section">
+      <span class="section-title">Variables de Color (Tokens)</span>
+      <div class="token-grid">
+        <div class="token-item">
+          <div class="token-color" style="background: var(--bg-primary);"></div>
+          <span class="token-name">--bg-primary</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--card-bg);"></div>
+          <span class="token-name">--card-bg</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--text-primary);"></div>
+          <span class="token-name">--text-primary</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--cta-gold);"></div>
+          <span class="token-name">--cta-gold</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--accent-mint);"></div>
+          <span class="token-name">--accent-mint</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--accent-lavender);"></div>
+          <span class="token-name">--accent-lavender</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--accent-pink);"></div>
+          <span class="token-name">--accent-pink</span>
+        </div>
+        <div class="token-item">
+          <div class="token-color" style="background: var(--accent-green-soft);"></div>
+          <span class="token-name">--accent-green-soft</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Components Section -->
+    <div class="section">
+      <span class="section-title">Ejemplo de Componentes</span>
+      <div class="component-demo">
+        
+        <!-- Tarjeta de Ejemplo -->
+        <div class="card demo-card">
+          <span class="tag tag-mint">Estable</span>
+          <h3 class="card-title">Ingeniería Vital</h3>
+          <p class="card-text">Explora tus ciclos anuales con precisión y calma. Una mirada estructurada hacia tu evolución personal.</p>
+          <a href="#" class="btn-cta">Comenzar Viaje</a>
+        </div>
+
+        <!-- Solo el Botón -->
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <button class="btn-cta">Botón Principal</button>
+          <span style="font-size: 0.8rem; color: var(--text-secondary);">CTA Dorado Suave</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

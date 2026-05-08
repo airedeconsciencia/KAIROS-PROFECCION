@@ -1,0 +1,47 @@
+[
+  {
+    "old": "201_significado_planetas",
+    "new": "200_significado_planetas",
+    "status": "success"
+  },
+  {
+    "old": "202_significado_signos",
+    "new": "210_significado_signos",
+    "status": "success"
+  },
+  {
+    "old": "203_significado_casas",
+    "new": "220_significado_casas",
+    "status": "success"
+  },
+  {
+    "old": "204_significado_fases_lunares",
+    "new": "230_fases_lunares",
+    "status": "success"
+  },
+  {
+    "old": "205_significado_planetas_retrogrados",
+    "new": "240_planetas_retrogrados",
+    "status": "success"
+  },
+  {
+    "old": "206_significado_planeta_del_dia",
+    "new": "250_planeta_del_dia",
+    "status": "success"
+  },
+  {
+    "old": "207_significado_profeccion_anual",
+    "new": "260_profeccion_anual",
+    "status": "success"
+  },
+  {
+    "old": "208_significado_senor_del_ano",
+    "new": "270_senor_del_ano",
+    "status": "success"
+  },
+  {
+    "old": "209_significado_elementos_modalidades_polaridades",
+    "new": "280_elementos_y_modalidades",
+    "status": "success"
+  }
+]

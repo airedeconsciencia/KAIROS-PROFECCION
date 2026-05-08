@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAIROS Onboarding Bienvenida</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d7c188",
+                        "background-light": "#f3f7fb",
+                        "background-dark": "#1e1b14",
+                        "warm-grey": "#4a4a45",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-warm-grey transition-colors duration-300">
+<!-- Main Container (Mobile Viewport Simulation) -->
+<div class="relative flex h-screen w-full max-w-md mx-auto flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Header / Status Bar Area -->
+<div class="flex items-center justify-between px-6 pt-12 pb-4">
+<div class="text-warm-grey/40 dark:text-slate-400">
+<span class="material-symbols-outlined text-2xl">info</span>
+</div>
+<div class="text-warm-grey/40 dark:text-slate-400">
+<span class="material-symbols-outlined text-2xl">language</span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex flex-1 flex-col items-center justify-center px-8 text-center">
+<!-- Brand Seal / Hero Visual -->
+<div class="relative mb-12 flex items-center justify-center">
+<!-- Outer Decorative Rings -->
+<div class="absolute h-64 w-64 rounded-full border border-primary/20 animate-pulse"></div>
+<div class="absolute h-72 w-72 rounded-full border border-primary/10"></div>
+<!-- Main Seal Placeholder -->
+<div class="relative h-56 w-56 overflow-hidden rounded-full bg-white/50 shadow-sm dark:bg-white/5 backdrop-blur-sm flex items-center justify-center">
+<img alt="Sello circular Aire de Consciencia con tonos tierra y símbolos astrológicos" class="h-full w-full object-cover mix-blend-multiply opacity-90" data-alt="Circular bronze astrological seal with earth tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFZ5oxACmq6ScZHbCsLF6IxX6RDOx6Qg06ErSIxjp_bcdHbwc3AI1qHTKrgbZ0OflRlKWfgx8U9wUCtFvnqHVo_gzKmPtoPcWDZ9A1pMbqj3wBMQSkQvRp1NKgc3bxYfFpPw2txRdQ8vrIqaVcIm09GRI5s_jcLxMg-k1r2vkyCHPRy-NJMES26kG7l3PF-xjusjsZmzeBQ7BryODoUSpmkPZ6eyprvq_CZTyHlIK5392_a6TY7vSp7i1ZHdrFiYjcqW7uf0-Wp2s"/>
+</div>
+</div>
+<!-- Typography Block -->
+<div class="space-y-4 max-w-xs">
+<h1 class="text-3xl font-extrabold tracking-tight text-warm-grey dark:text-slate-100 font-display">
+                    Bienvenido a KAIROS
+                </h1>
+<p class="text-base font-medium leading-relaxed text-warm-grey/70 dark:text-slate-400">
+                    Ingeniería vital para navegar tus ciclos naturales.
+                </p>
+</div>
+</div>
+<!-- Footer / Navigation Area -->
+<div class="flex flex-col items-center gap-8 pb-16 px-8">
+<!-- CTA Button -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 bg-primary text-white shadow-lg shadow-primary/20 hover:brightness-105 active:scale-[0.98] transition-all">
+<span class="text-lg font-bold tracking-wide">Comenzar</span>
+</button>
+<!-- Pagination Dots -->
+<div class="flex items-center gap-2">
+<div class="h-2 w-6 rounded-full bg-primary transition-all"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20 dark:bg-white/10"></div>
+<div class="h-2 w-2 rounded-full bg-primary/20 dark:bg-white/10"></div>
+</div>
+<!-- Optional Help/Skip Link -->
+<div class="pt-2">
+<button class="text-sm font-medium text-warm-grey/40 hover:text-warm-grey dark:text-slate-500 dark:hover:text-slate-300">
+                    Omitir introducción
+                </button>
+</div>
+</div>
+<!-- Bottom Safe Area Indicator (Visual only) -->
+<div class="h-2 w-32 bg-warm-grey/10 dark:bg-white/10 rounded-full mx-auto mb-2 shrink-0"></div>
+</div>
+</body></html>

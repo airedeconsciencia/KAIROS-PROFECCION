@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIROS LAB | Control de Precisión Planetaria</title>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 2rem; }
+        .card { background: #1a1a1a; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; margin-bottom: 2rem; }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .retro { color: #fbbf24; font-style: italic; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #333; }
+        th { color: #888; text-transform: uppercase; font-size: 0.75rem; }
+        pre { background: #000; padding: 1rem; border-radius: 4px; font-size: 0.8rem; overflow-x: auto; }
+        .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; background: #333; margin-left: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🛰️ KAIROS Laboratory</h1>
+    <p>Fase 2: Validación de Efemérides Galácticas (Swiss Ephemeris WASM)</p>
+
+    <div class="card" id="status-card">
+        <p id="init-status">Iniciando motor...</p>
+    </div>
+
+    <div class="card">
+        <h2>Prueba 1: Auditoría 1973 (Maó)</h2>
+        <p style="font-size: 0.8rem; color: #888;">Comparación entre el cálculo histórico real (IANA) y la posible convención Legacy.</p>
+        <div id="test-1-results">Calculando...</div>
+    </div>
+
+    <div class="card">
+        <h2>Prueba 2: Consistencia 1978 (Maó)</h2>
+        <p style="font-size: 0.8rem; color: #888;">Verificación de que el motor respeta el Horario de Verano oficial cuando existe.</p>
+        <div id="test-2-results">Calculando...</div>
+    </div>
+
+    <div class="card">
+        <h2>Prueba 3: Estabilidad Internacional (Londres 2024)</h2>
+        <p style="font-size: 0.8rem; color: #888;">Validación de que el motor es universal y no tiene sesgos geográficos.</p>
+        <div id="test-3-results">Calculando...</div>
+    </div>
+
+    <div class="card">
+        <h2>Prueba 4: Auditoría de Casas y Ascendente ( Roberto vs Adi )</h2>
+        <p style="font-size: 0.8rem; color: #888;">Comparación quirúrgica entre el motor actual (KAIROS Core) y la referencia Swiss Ephemeris.</p>
+        <div id="test-houses-results">Calculando...</div>
+    </div>
+
+    <!-- Librerías Externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+    
+    <!-- Motores KAIROS -->
+    <script src="ascendant_engine.js"></script>
+    <script src="planetary_engine.js"></script>
+
+    <script type="module">
+        import SwissEph from '/js/swisseph.js';
+        window.SwissEphClass = SwissEph;
+        
+        // Timeout de seguridad: 10 segundos
+        const startupTimeout = setTimeout(() => {
+            const statusEl = document.getElementById('init-status');
+            if (statusEl && !statusEl.innerHTML.includes('✔️')) {
+                statusEl.innerHTML = `<span class="error">🚨 CRIT: Timeout de inicialización (10s). El motor se ha bloqueado. Revisa la consola.</span>`;
+                console.error("⛔ KAIROS LAB: FATAL TIMEOUT during startup.");
+            }
+        }, 10000);
+
+        try {
+            console.log("STEP 1: before new SwissEph");
+            const sweInstance = new SwissEph(); 
+            console.log("STEP 2: after new SwissEph");
+            
+            window.swisseph_native = sweInstance;
+            
+            // Verificamos si ya está listo o disparamos el evento
+            console.log("📍 KAIROS LAB: Engine instance registered.");
+            window.dispatchEvent(new Event('swisseph-ready'));
+        } catch (e) {
+            clearTimeout(startupTimeout);
+            console.error("❌ STEP 2 FAILURE: Fallo instanciación WASM:", e);
+            document.getElementById('init-status').innerHTML = `<span class="error">❌ Error en STEP 1/2: ${e.message}</span>`;
+        }
+    </script>
+    
+    <!-- Módulo de Laboratorio -->
+    <script src="planetary_engine.js"></script>
+
+    <script>
+        async function runLab() {
+            const statusEl = document.getElementById('init-status');
+            
+            try {
+                console.log("STEP 7: before runLab (initPlanetaryEngine)");
+                await initPlanetaryEngine();
+                statusEl.innerHTML = '<span class="success">✔️ Motor KAIROS v0.5.0 (Canonical Worldwide) Validado.</span>';
+                
+                // 1. Caso Maó 1973 (Audit)
+                await runComparisonTest("1973-05-29", "07:30", 39.88, 4.26, "Europe/Madrid", 2, "test-1-results");
+                
+                // 2. Caso Maó 1978 (Consistencia)
+                await runComparisonTest("1978-08-21", "11:04", 39.88, 4.26, "Europe/Madrid", null, "test-2-results");
+
+                // 3. Caso International (Londres 2024)
+                await runComparisonTest("2024-01-01", "12:00", 51.5, -0.12, "Europe/London", null, "test-3-results");
+
+                // 3. Auditoría de Casas (Roberto y Adi)
+                await runHousesAudit();
+
+            } catch (err) {
+                statusEl.innerHTML = `<span class="error">❌ Error en validación final: ${err.message}</span>`;
+                console.error("❌ STEP 7 FAILURE:", err);
+            }
+        }
+
+        // DISPARADOR: Ejecutamos runLab cuando el motor base esté registrado
+        if (window.swisseph_native) {
+            console.log("🚀 KAIROS LAB: swisseph_native already exists, running lab directly.");
+            runLab();
+        } else {
+            console.log("🚀 KAIROS LAB: Waiting for swisseph-ready event...");
+            window.addEventListener('swisseph-ready', () => {
+                console.log("🚀 KAIROS LAB: swisseph-ready RECEIVED, running lab.");
+                runLab();
+            });
+        }
+
+        async function runHousesAudit() {
+            const target = document.getElementById('test-houses-results');
+            
+            const cases = [
+                { name: "Roberto (1973)", date: "1973-05-29", time: "07:30", lat: 39.88, lon: 4.26, tz: "Europe/Madrid" },
+                { name: "Adi (1978)", date: "1978-08-21", time: "11:04", lat: 39.88, lon: 4.26, tz: "Europe/Madrid" }
+            ];
+
+            let html = "";
+
+            for (const c of cases) {
+                try {
+                    // Motor Actual
+                    const resActual = getAscendant(c.date, c.time, c.lat, c.lon, c.tz);
+                    
+                    // Swiss Ephemeris (Placidus)
+                    const resSwe = await getHousesAndAngles(c.date, c.time, c.lat, c.lon, c.tz, 'P');
+
+                    html += `<div style="margin-bottom: 2rem; background: #000; border: 1px solid #333; padding: 15px; border-radius: 8px;">
+                        <h3 style="color: #60a5fa; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top:0;">
+                            Auditoría de Casas: ${c.name}
+                        </h3>
+                        
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 15px;">
+                            <div style="flex: 1; border: 1px solid #94a3b833; padding: 10px; border-radius: 6px;">
+                                <strong style="color: #94a3b8; font-size: 0.7rem;">ASC KAIROS CORE:</strong>
+                                <div style="font-size: 1.1rem; font-weight: bold;">${resActual.sign} ${resActual.deg}°${resActual.min}'</div>
+                            </div>
+                            <div style="flex: 1; border: 1px solid #4ade8033; padding: 10px; border-radius: 6px;">
+                                <strong style="color: #4ade80; font-size: 0.7rem;">ASC SWISS EPH:</strong>
+                                <div style="font-size: 1.1rem; font-weight: bold;">${resSwe.ascendant.sign} ${resSwe.ascendant.deg}°${resSwe.ascendant.min}'</div>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 0.75rem; color: #888; margin-bottom: 10px;">
+                            Comparativa: <strong>CORE (Signos Enteros)</strong> vs <strong>SWISS EPH (Placidus)</strong>
+                        </p>
+                        
+                        <table style="font-size: 0.8rem; width: 100%;">
+                            <thead>
+                                <tr style="color: #666; border-bottom: 1px solid #222;">
+                                    <th align="left">Casa</th>
+                                    <th align="left">KAIROS CORE (Enteros)</th>
+                                    <th align="left">SWISS EPH (Placidus)</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+                    // Generar nombres de los signos para la lógica de signos enteros
+                    const zodiac = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+                    const startSignIndex = zodiac.indexOf(resActual.sign);
+
+                    for (let i = 0; i < 12; i++) {
+                        const hNum = i + 1;
+                        
+                        // KAIROS CORE: Signos Enteros - Siempre empieza a 0° del signo correspondiente
+                        const signName = zodiac[(startSignIndex + i) % 12];
+                        const actualStr = `${signName} 0°00'`;
+                        
+                        // Swiss Ephemeris: Placidus Cusps
+                        const hSwe = resSwe.houses[i];
+                        const sweStr = `${hSwe.sign} ${hSwe.deg}°${hSwe.min}'`;
+                        
+                        html += `
+                        <tr style="border-bottom: 1px solid #111;">
+                            <td style="color: #94a3b8; font-weight: bold;">CASA ${hNum}</td>
+                            <td>${actualStr}</td>
+                            <td style="color: #4ade80;">${sweStr}</td>
+                        </tr>`;
+                    }
+
+                    html += `</tbody></table></div>`;
+                } catch (e) {
+                    console.error("Error in house audit:", e);
+                }
+            }
+            target.innerHTML = html;
+        }
+
+        async function runComparisonTest(date, time, lat, lon, tz, legacyOffset, targetId) {
+            const container = document.getElementById(targetId);
+            try {
+                // 1. Obtener Canónico
+                const resCan = await getPlanetaryPositions(date, time, lat, lon, tz, null);
+                
+                // 2. Obtener Legacy (opcional)
+                let resLeg = null;
+                if (legacyOffset !== null) {
+                    resLeg = await getPlanetaryPositions(date, time, lat, lon, tz, legacyOffset);
+                }
+
+                let html = `<div style="display: flex; gap: 20px; flex-wrap: wrap;">`;
+                
+                // Bloque Canónico
+                html += renderColumn("CANÓNICO (IANA)", resCan, "#60a5fa");
+
+                // Bloque Legacy
+                if (resLeg) {
+                    html += renderColumn(`LEGACY (Manual Offset: ${legacyOffset}h)`, resLeg, "#fbbf24");
+                }
+
+                html += `</div>`;
+                container.innerHTML = html;
+            } catch (e) {
+                container.innerHTML = `<span class="error">Error: ${e.message}</span>`;
+            }
+        }
+
+        function renderColumn(title, result, color) {
+            const m = result.metadata;
+            const bodies = ["SUN", "MOON", "MERCURY", "VENUS", "MARS", "JUPITER", "SATURN"];
+            
+            let html = `
+            <div style="flex: 1; min-width: 300px; border: 1px solid ${color}44; padding: 15px; border-radius: 8px; background: #111;">
+                <h3 style="color: ${color}; margin-top: 0; font-size: 0.9rem;">${title}</h3>
+                <div style="font-size: 0.75rem; margin-bottom: 10px; color: #888;">
+                    UTC: ${m.utc}<br>
+                    JD (UT): ${m.jdUt.toFixed(8)}<br>
+                    ΔT: ${m.deltaT.toFixed(2)}s
+                </div>
+                <table style="font-size: 0.8rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <th align="left">Cuerpo</th>
+                            <th align="right">Posición</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+            
+            for (const body of bodies) {
+                const d = result.positions[body];
+                const retro = d.isRetro ? '<span style="color:#f87171">R</span>' : '';
+                html += `
+                <tr>
+                    <td><strong>${body}</strong></td>
+                    <td align="right">${d.sign} ${d.deg}°${d.min}'${d.sec}" ${retro}</td>
+                </tr>`;
+            }
+            html += `</tbody></table></div>`;
+            return html;
+        }
+    </script>
+</body>
+</html>

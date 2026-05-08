@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>KAIROS | Visual Validation v1.7.0</title>
+    <style>
+        body { background: #0a0a0a; color: white; display: flex; flex-direction: column; align-items: center; padding: 2rem; font-family: sans-serif; }
+        #canvas-root { width: 600px; height: 600px; background: #111; border-radius: 50%; box-shadow: 0 0 50px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .controls { margin-top: 2rem; display: flex; gap: 1rem; }
+        .data-panel { margin-top: 2rem; background: #1a1a1a; padding: 1rem; border-radius: 8px; border: 1px solid #333; width: 600px; font-family: monospace; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Visual Validation: Serie 650 v1.7.0</h1>
+    <p>Objetivo: Verificar que el ASC (Cáncer) esté a la izquierda (180°) y el orden sea antihorario.</p>
+    
+    <div id="canvas-root"></div>
+
+    <div class="data-panel" id="debug-info"></div>
+
+    <script>
+        // Mock requirements for chart_650_v1.js
+        window.KAIROS_ICONS = { planets: {}, zodiac: {} };
+        window.totalShadowContext = {
+            natal_context: {
+                ascendant_degree_absolute: 90, // Cáncer
+                planets: {
+                    'Sol': { sign: 'Géminis', degree: 7 },
+                    'Mercurio': { sign: 'Géminis', degree: 8 },
+                    'Venus': { sign: 'Géminis', degree: 9 },
+                    'Marte': { sign: 'Géminis', degree: 10 },
+                    'Luna': { sign: 'Leo', degree: 14 }
+                }
+            }
+        };
+
+        const state = {
+            user: {
+                asc: 'Cáncer',
+                natalPlanets: {
+                    'Sol': { sign: 'Géminis', degree: 7, longitude: 67 },
+                    'Luna': { sign: 'Leo', degree: 14, longitude: 134 }
+                }
+            }
+        };
+
+        // Mock render function
+        window.renderChart650 = null;
+    </script>
+    
+    <script src="chart_650_v1.js"></script>
+
+    <script>
+        window.onload = () => {
+            const root = document.getElementById('canvas-root');
+            if (typeof window.renderChart650 === 'function') {
+                root.innerHTML = window.renderChart650(state);
+                document.getElementById('debug-info').innerText = "Motor cargado v1.7.0. Renderizado completado.";
+            } else {
+                document.getElementById('debug-info').innerText = "ERROR: renderChart650 no encontrado.";
+            }
+        };
+    </script>
+</body>
+</html>

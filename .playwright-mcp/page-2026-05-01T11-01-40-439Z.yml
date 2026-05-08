@@ -1,0 +1,140 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - img "K" [ref=e5]
+      - generic [ref=e6]: KAIROS
+    - generic [ref=e7]:
+      - generic [ref=e8]: v650.5.68-PROD
+      - generic [ref=e9]: Año
+    - generic [ref=e10]:
+      - button "refresh" [ref=e11] [cursor=pointer]:
+        - generic [ref=e12]: refresh
+      - button "person" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]: person
+  - main [ref=e16]:
+    - generic [ref=e57]:
+      - generic [ref=e58]:
+        - paragraph [ref=e59]: Tu Contexto Actual · Explorador
+        - generic [ref=e60]: "2026"
+        - generic [ref=e61]:
+          - button "-" [ref=e62] [cursor=pointer]
+          - generic [ref=e63] [cursor=pointer]:
+            - heading "33 años" [level=2] [ref=e64]
+            - paragraph: La profección anual indica qué área de tu vida toma protagonismo este año.
+            - generic [ref=e65]:
+              - generic [ref=e66]: edit
+              - text: Ajustar Edad
+          - button "+" [ref=e67] [cursor=pointer]
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - heading "Tu año · Casa 10" [level=3] [ref=e70]
+          - paragraph [ref=e71]: "\"\""
+        - generic [ref=e72]:
+          - img [ref=e74]
+          - generic [ref=e76]:
+            - generic [ref=e77]: ESCENARIO DEL AÑO
+            - generic [ref=e78]: CASA 10 · Capricornio
+        - paragraph [ref=e80]: Estructura formal, cénit
+        - generic [ref=e81]:
+          - paragraph [ref=e82]: Guía de Vida
+          - generic [ref=e83]:
+            - img [ref=e85]
+            - generic [ref=e88]:
+              - heading "Saturno" [level=4] [ref=e89]
+              - paragraph [ref=e90]: CICLO ACTIVO Y DE APRENDIZAJE
+          - paragraph [ref=e91]: Este año, Saturno te pide integrar su maestría con paciencia.
+        - generic [ref=e92]:
+          - generic [ref=e94]: Tu Ascendente FILTRO
+          - paragraph [ref=e95]: "Tu Ascendente Aries matiza este ciclo: buscas desarrollar tu valentía a través de directo, impulsivo."
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: CLIMA ANUAL
+            - paragraph [ref=e99]: Estructural, lento, exigente y consolidador
+          - generic [ref=e100]:
+            - generic [ref=e101]: DIRECCIÓN
+            - paragraph [ref=e102]: Materializar éxito, asumir autoridad y destacar.
+          - generic [ref=e103]:
+            - generic [ref=e104]: CUIDADO
+            - paragraph [ref=e105]: Evita la rigidez profesional extrema y el abandono de tu vida privada.
+        - generic [ref=e106]:
+          - heading "GUÍA PRÁCTICA" [level=4] [ref=e107]
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]: •
+              - paragraph [ref=e111]: Asume el liderazgo en proyectos profesionales importantes.
+            - generic [ref=e112]:
+              - generic [ref=e113]: •
+              - paragraph [ref=e114]: Diseña un plan estratégico para escalar en tu vocación.
+            - generic [ref=e115]:
+              - generic [ref=e116]: •
+              - paragraph [ref=e117]: Acepta la visibilidad y hazte cargo de tus responsabilidades.
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - heading "PROTOCOLO TÉCNICO" [level=4] [ref=e120]
+            - generic [ref=e121]: engineering
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - paragraph [ref=e124]: Casa Profectada
+              - paragraph [ref=e125]: CASA 10
+            - generic [ref=e126]:
+              - paragraph [ref=e127]: Signo Activado
+              - paragraph [ref=e128]: CAPRICORNIO
+            - generic [ref=e129]:
+              - paragraph [ref=e130]: Regente del Año
+              - paragraph [ref=e131]: SATURNO (Saturno)
+          - paragraph [ref=e133]: Sincronización basada en Profecciones Anuales (.).
+      - generic [ref=e134]:
+        - paragraph [ref=e136]: MAPA ZODIACAL DE APOYO
+        - generic [ref=e137]:
+          - generic [ref=e138] [cursor=pointer]:
+            - img [ref=e140]
+            - generic [ref=e143]: Aries
+          - generic [ref=e144] [cursor=pointer]:
+            - img [ref=e146]
+            - generic [ref=e149]: Tauro
+          - generic [ref=e150] [cursor=pointer]:
+            - img [ref=e152]
+            - generic [ref=e154]: Géminis
+          - generic [ref=e155] [cursor=pointer]:
+            - img [ref=e157]
+            - generic [ref=e161]: Cáncer
+          - generic [ref=e162] [cursor=pointer]:
+            - img [ref=e164]
+            - generic [ref=e167]: Leo
+          - generic [ref=e168] [cursor=pointer]:
+            - img [ref=e170]
+            - generic [ref=e172]: Virgo
+          - generic [ref=e173] [cursor=pointer]:
+            - img [ref=e175]
+            - generic [ref=e177]: Libra
+          - generic [ref=e178] [cursor=pointer]:
+            - img [ref=e180]
+            - generic [ref=e182]: Escorpio
+          - generic [ref=e183] [cursor=pointer]:
+            - img [ref=e185]
+            - generic [ref=e187]: Sagitario
+          - generic [ref=e188] [cursor=pointer]:
+            - img [ref=e190]
+            - generic [ref=e192]: Capricornio
+          - generic [ref=e193] [cursor=pointer]:
+            - img [ref=e195]
+            - generic [ref=e197]: Acuario
+          - generic [ref=e198] [cursor=pointer]:
+            - img [ref=e200]
+            - generic [ref=e202]: Piscis
+  - navigation [ref=e27]:
+    - generic [ref=e28] [cursor=pointer]:
+      - generic [ref=e29]: auto_awesome
+      - generic [ref=e30]: Año
+    - generic [ref=e31] [cursor=pointer]:
+      - generic [ref=e32]: today
+      - generic [ref=e33]: Hoy
+    - generic [ref=e34] [cursor=pointer]:
+      - generic [ref=e35]: calendar_view_week
+      - generic [ref=e36]: Semana
+    - generic [ref=e37] [cursor=pointer]:
+      - generic [ref=e38]: calendar_month
+      - generic [ref=e39]: Mes
+    - generic [ref=e40] [cursor=pointer]:
+      - generic [ref=e41]: analytics
+      - generic [ref=e42]: Matrix

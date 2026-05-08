@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIROS - Dashboard Aire de Consciencia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo-section">
+                <div class="logo-placeholder">AIRE DE<br>CONSCIENCIA</div>
+                <h1 class="technical" style="font-size: 1.8rem;">KAIROS</h1>
+            </div>
+            <div class="user-summary">
+                <div class="indicator-badge">Edad: 34</div>
+                <div class="indicator-badge">ASC: Escorpio</div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <!-- Sección Central: La Rueda -->
+            <section class="wheel-container">
+                <div class="zodiac-wheel">
+                    <!-- Representación técnica simplificada de la rueda -->
+                    <div class="active-house-glow"></div>
+                    <div class="technical" style="opacity: 0.3; text-align: center;">
+                        <p>Rueda de Signos Enteros</p>
+                        <p style="font-size: 0.7rem;">Casa del Año Activa: V</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Barra Lateral: Semáforo y Señor del Año -->
+            <aside class="sidebar">
+
+                <!-- Semáforo de Intensidad -->
+                <div class="card semaphore-card">
+                    <span class="technical"
+                        style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary);">Semáforo de
+                        Intensidad</span>
+
+                    <div class="semaphore-item">
+                        <div class="status-dot" style="background-color: var(--accent-mint);"></div>
+                        <span class="status-label">Profección</span>
+                        <span class="status-value">Moderada</span>
+                    </div>
+
+                    <div class="semaphore-item">
+                        <div class="status-dot" style="background-color: var(--accent-lavender);"></div>
+                        <span class="status-label">Tránsitos 2026</span>
+                        <span class="status-value">Activación</span>
+                    </div>
+
+                    <div class="semaphore-item">
+                        <div class="status-dot" style="background-color: var(--accent-green-soft);"></div>
+                        <span class="status-label">Reloj Interno</span>
+                        <span class="status-value">Estable</span>
+                    </div>
+                </div>
+
+                <!-- Señor del Año -->
+                <div class="card lord-card">
+                    <span class="technical"
+                        style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary);">Señor del
+                        Año</span>
+                    <span class="glyph-large">♄</span> <!-- Saturno Glyph -->
+                    <h3 class="technical">Saturno</h3>
+                    <div class="keywords">
+                        <span class="keyword">Resiliencia</span>
+                        <span class="keyword">Estructura</span>
+                        <span class="keyword">Autoridad</span>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-cta" style="width: 100%;">Cerrar Ciclo del Día</a>
+            </aside>
+        </main>
+
+        <!-- Sección Inferior: Misión -->
+        <footer class="card mission-banner">
+            <span class="technical"
+                style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; display: block;">Misión
+                del Día</span>
+            <p class="mission-text">Hoy es un momento para la consolidación de bases profesionales y el establecimiento
+                de límites personales claros.</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
