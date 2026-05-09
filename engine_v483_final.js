@@ -2136,6 +2136,11 @@ async function renderTabContent(tabId) {
                         </div>
                     </div>
 
+                    <!-- [SECCIÓN F] REGULACIÓN EMOCIONAL (KAIROS LEVANTADO) -->
+                    <div id="annual-regulatory-close" class="hidden bg-primary/10 p-8 rounded-[3rem] border-2 border-primary/20 text-center italic text-xs font-bold text-primary leading-relaxed shadow-lg">
+                        Sincronizando regulación emocional...
+                    </div>
+
                     <!-- 7. PROTOCOLO TÉCNICO & PROFECCIÓN (Capapa Secundaria) -->
                     <div class="bg-slate-900/90 p-8 rounded-[3rem] text-white/90 space-y-6 opacity-80 scale-95 origin-top transition-all hover:opacity-100 hover:scale-100">
                         <div class="flex items-center justify-between border-b border-white/10 pb-4">
@@ -2164,9 +2169,6 @@ async function renderTabContent(tabId) {
                             </p>
                         </div>
                     </div>
-
-                    <!-- Bloque Regulador Anual (Sprint 510.5) -->
-                    <p id="annual-regulatory-close" class="hidden text-sm text-warm-grey/70 italic mt-4"></p>
                 </div>
 
                 <!-- SELECTOR DE SEGURIDAD (Técnico) -->
@@ -2458,9 +2460,6 @@ async function renderTabContent(tabId) {
                             Sincronizando cielo natal...
                         </p>
                     </section>
-
-                    <!-- Bloque Regulador Diario (Sprint 510.5) -->
-                    <p id="daily-regulatory-close" class="hidden text-sm text-warm-grey/70 italic mt-4"></p>
     
                     <!-- [FEATURE FLAG OCULTA: daily_future_signals_visible = false] -->
                     <!-- TEMPLATE PREPARADO PARA FUTURA CAPA DE ANÁLISIS ASTROLÓGICA (No alterar div ni IDs) -->
@@ -2490,13 +2489,18 @@ async function renderTabContent(tabId) {
                         </div>
                         ` : ''}
     
-                        <div class="pt-4 text-center">
+                            <div class="pt-4 text-center">
                             <p class="text-[9px] font-black text-primary/30 uppercase tracking-[0.5em] mb-4">PREGUNTA CENTRAL</p>
-                        <p class="text-lg font-black text-warm-grey italic leading-tight mb-8 px-6" id="daily-pregunta">
-                            "${dailyData.dailyQuestion}"
-                        </p>
-                    </div>
-                </footer>
+                            <p class="text-lg font-black text-warm-grey italic leading-tight mb-8 px-6" id="daily-pregunta">
+                                "${dailyData.dailyQuestion}"
+                            </p>
+                        </div>
+
+                        <!-- [SECCIÓN F] REGULACIÓN EMOCIONAL DIARIA (KAIROS LEVANTADO) -->
+                        <div id="daily-regulatory-close" class="hidden mt-6 bg-slate-900 p-8 rounded-[3rem] text-center italic text-xs font-bold text-primary leading-relaxed shadow-xl border border-primary/20">
+                            Sincronizando regulación...
+                        </div>
+                    </footer>
             </div>
         `;
 
@@ -3576,6 +3580,13 @@ window.renderAnnualNarrative = (content, lang) => {
         update('annual-tech-lord', `${content.lord.planet.toUpperCase()} (${content.lord.planet})`);
         update('annual-profection-expl', `Sincronización basada en Profecciones Anuales (${content.profection.meaning.split('.')[0]}.).`);
     }
+
+    // [SECCIÓN F] Regulación Emocional Anual
+    const annualRegContainer = doc.getElementById('annual-regulatory-close');
+    if (annualRegContainer && content.regulatory_close) {
+        annualRegContainer.innerText = content.regulatory_close;
+        annualRegContainer.classList.remove('hidden');
+    }
     
     console.log("🎨 KAIROS: Narrativa Anual (Refined Structure) Renderizada.");
 };
@@ -4213,6 +4224,13 @@ function renderDailyNarrative(content) {
         }
     }
     */
+    
+    // [SECCIÓN F] Regulación Emocional Diaria
+    const dailyRegContainer = doc.getElementById('daily-regulatory-close');
+    if (dailyRegContainer && content.regulatory_close) {
+        dailyRegContainer.innerText = content.regulatory_close;
+        dailyRegContainer.classList.remove('hidden');
+    }
     
     console.log("🎨 KAIROS: Narrativa Diaria Renderizada.");
 };

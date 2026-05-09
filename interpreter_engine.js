@@ -558,6 +558,107 @@ const interpreter_engine = {
     },
 
     /**
+     * [Sprint 511-A] Wrapper para serializar narrativa a bloques y mantener sidecar.
+     * Facilita futura modulación sin romper estructuras rígidas (arrays, objetos).
+     */
+    toNarrativeBlockAnnual(content) {
+        const practicalStr = Array.isArray(content.practical)
+            ? content.practical.map(p => typeof p === 'string' ? p : (p.text || p.label || p.content || p.desc || '')).join(' | ')
+            : (content.practical || '');
+
+        const blocks = [
+            {
+                block_id: 'AÑO_reconocimiento_0',
+                block_type: 'reconocimiento',
+                module: 'AÑO',
+                intensity: 'T3',
+                premium: false,
+                enabled: true,
+                content: content.header?.phrase || '',
+                source: 'content.header.phrase',
+                priority: 1
+            },
+            {
+                block_id: 'AÑO_profundización_1',
+                block_type: 'profundización',
+                module: 'AÑO',
+                intensity: 'T4',
+                premium: false,
+                enabled: true,
+                content: content.scenario?.desc || '',
+                source: 'content.scenario.desc',
+                priority: 2
+            },
+            {
+                block_id: 'AÑO_profundización_2',
+                block_type: 'profundización',
+                module: 'AÑO',
+                intensity: 'T4',
+                premium: true,
+                enabled: true,
+                content: content.filter || '',
+                source: 'content.filter',
+                priority: 3
+            },
+            {
+                block_id: 'AÑO_acción_3',
+                block_type: 'acción',
+                module: 'AÑO',
+                intensity: 'T3',
+                premium: true,
+                enabled: true,
+                content: practicalStr,
+                source: 'content.practical',
+                priority: 4,
+                _readOnly: true
+            }
+        ];
+
+        return {
+            blocks,
+            sidecar: {
+                original_content: JSON.parse(JSON.stringify(content)),
+                _readOnly: true
+            }
+        };
+    },
+
+    /**
+     * [Sprint 511-A] Unwrapper para restaurar estructura original.
+     * Actualmente en modo Passthrough idéntico.
+     */
+    fromNarrativeBlockAnnual(wrapper) {
+        return wrapper.sidecar.original_content;
+    },
+
+    applyNarrativeModulation(blocks, context) {
+        let t4Count = 0;
+
+        for (const block of blocks) {
+            if (!block || !block.enabled || !block.intensity) continue;
+
+            if (block.intensity === 'T4') {
+                t4Count++;
+
+                if (t4Count > 1) {
+                    // 511-E — 510.2: reducir T4 excedente a T3
+                    // No se modifica el texto ni el bloque en producción — solo metadata interna
+                    block._flagged_intensity = true;
+                    block._original_intensity = 'T4';
+                    block.intensity = 'T3';
+
+                    console.log(
+                        '[511-E] T4 excedente reducido a T3:',
+                        block.block_id
+                    );
+                }
+            }
+        }
+
+        return blocks;
+    },
+
+    /**
      * Punto de entrada principal.
      */
     async processRequest(contextoInterpretativo) {
@@ -674,8 +775,13 @@ const interpreter_engine = {
                 technical_audit: { latency, status: "OK", lord_active: lord }
             };
 
-            this.applyEmotionalRegulation(content, context);
-            return this.buildOutput(content, 'annual', latency);
+            // [Sprint 511-C] Pipeline completo (modulación passthrough en esta fase)
+            const wrapper = this.toNarrativeBlockAnnual(content);
+            const modulatedBlocks = this.applyNarrativeModulation(wrapper.blocks, context);
+            const finalContent = this.fromNarrativeBlockAnnual({ blocks: modulatedBlocks, sidecar: wrapper.sidecar });
+
+            this.applyEmotionalRegulation(finalContent, context);
+            return this.buildOutput(finalContent, 'annual', latency);
 
         } catch (error) {
             console.error("[KAIROS SHADOW ANNUAL] ❌ Fallo en fetch/ensamblaje:", error);
@@ -1044,8 +1150,38 @@ const interpreter_engine = {
             }
         };
 
-        this.applyEmotionalRegulation(finalOutput, context);
-        return finalOutput;
+        // [Sprint 511-B] Passthrough
+        const wrapper = this.toNarrativeBlockDaily(finalOutput);
+        const processedOutput = this.fromNarrativeBlockDaily(wrapper);
+
+        this.applyEmotionalRegulation(processedOutput, context);
+        return processedOutput;
+    },
+
+    /**
+     * [Sprint 511-B] Wrapper para serializar narrativa a bloques y mantener sidecar (Módulo Hoy).
+     */
+    toNarrativeBlockDaily(content) {
+        return {
+            blocks: [
+                content.area_activada,
+                content.narrativa,
+                content.matiz,
+                content.resonancia_personal,
+                content.reflection
+            ],
+            sidecar: {
+                original_content: JSON.parse(JSON.stringify(content)),
+                _readOnly: true
+            }
+        };
+    },
+
+    /**
+     * [Sprint 511-B] Unwrapper para restaurar estructura original (Módulo Hoy).
+     */
+    fromNarrativeBlockDaily(wrapper) {
+        return wrapper.sidecar.original_content;
     },
 
     /**
