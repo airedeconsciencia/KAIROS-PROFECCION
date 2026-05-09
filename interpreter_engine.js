@@ -1150,8 +1150,9 @@ const interpreter_engine = {
             }
         };
 
-        // [Sprint 511-B] Passthrough
+        // [Sprint 511-B] Pipeline de modulación KAIROS
         const wrapper = this.toNarrativeBlockDaily(finalOutput);
+        wrapper.blocks = this.applyNarrativeModulation(wrapper.blocks, context);
         const processedOutput = this.fromNarrativeBlockDaily(wrapper);
 
         this.applyEmotionalRegulation(processedOutput, context);
@@ -1162,14 +1163,66 @@ const interpreter_engine = {
      * [Sprint 511-B] Wrapper para serializar narrativa a bloques y mantener sidecar (Módulo Hoy).
      */
     toNarrativeBlockDaily(content) {
+        const blocks = [
+            {
+                block_id: 'HOY_reconocimiento_0',
+                block_type: 'reconocimiento',
+                module: 'HOY',
+                intensity: 'T1',
+                premium: false,
+                enabled: true,
+                content: content.area_activada || '',
+                source: 'content.area_activada',
+                priority: 1
+            },
+            {
+                block_id: 'HOY_profundización_1',
+                block_type: 'profundización',
+                module: 'HOY',
+                intensity: 'T4',
+                premium: false,
+                enabled: true,
+                content: content.narrativa || '',
+                source: 'content.narrativa',
+                priority: 2
+            },
+            {
+                block_id: 'HOY_acción_2',
+                block_type: 'acción',
+                module: 'HOY',
+                intensity: 'T2',
+                premium: false,
+                enabled: true,
+                content: content.matiz || '',
+                source: 'content.matiz',
+                priority: 3
+            },
+            {
+                block_id: 'HOY_profundización_3',
+                block_type: 'profundización',
+                module: 'HOY',
+                intensity: 'T4',
+                premium: true,
+                enabled: true,
+                content: content.resonancia_personal || '',
+                source: 'content.resonancia_personal',
+                priority: 4
+            },
+            {
+                block_id: 'HOY_acción_4',
+                block_type: 'acción',
+                module: 'HOY',
+                intensity: 'T1',
+                premium: true,
+                enabled: true,
+                content: content.reflection || '',
+                source: 'content.reflection',
+                priority: 5
+            }
+        ];
+
         return {
-            blocks: [
-                content.area_activada,
-                content.narrativa,
-                content.matiz,
-                content.resonancia_personal,
-                content.reflection
-            ],
+            blocks,
             sidecar: {
                 original_content: JSON.parse(JSON.stringify(content)),
                 _readOnly: true
@@ -1181,6 +1234,8 @@ const interpreter_engine = {
      * [Sprint 511-B] Unwrapper para restaurar estructura original (Módulo Hoy).
      */
     fromNarrativeBlockDaily(wrapper) {
+        // En esta fase, restauramos desde sidecar (passthrough)
+        // Pero garantizamos la estructura para el renderer v483
         return wrapper.sidecar.original_content;
     },
 
