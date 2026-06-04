@@ -1,7 +1,40 @@
 // ⚠️ MÓDULO CONGELADO — engine_v483_final.js v1.7.2
 // NO MODIFICAR sin aprobación expresa de Roberto
 // Última validación: Fase 6.18 — Abril 2026
-// Versión Sistema: v650.5.92-PROD
+// Versión Sistema: v650.5.205
+// [v650.5.200] MES_PREMIUM_v1 — renderMonthlyPremiumBlock: 5 bloques activos (Activaciones Natales, Tránsitos de Tono, Momentos Clave, Activaciones Profundas, Tránsitos Avanzados) · personalización natal real · gate premium · IDs shell inyectables
+// [v650.5.201] MES_PREMIUM_textual — corrección calidad textual B1-B5: eliminadas frases prohibidas (algo concreto, opera como fondo, desde un ángulo diferente, algo específico, de forma personal) · fallbacks con explicación real · signos natales explicitados en todos los bloques
+// [v650.5.202] MES_PREMIUM_glyphs — glifos KAIROS inline en todos los bloques via window.getKairosSymbol · mapas _signMeaning y _planetMeaning · textos con planeta+signo+significado traducido · eliminadas: "creando un diálogo entre dos registros distintos", "La diferencia define cómo llega su influencia"
+// [v650.5.203] MES_PREMIUM_B2_variaciones — eliminada redundancia en Tránsitos de Tono: añadido mapa _planetChangePhrase con 7 frases diferenciadas (Mercurio/Venus/Marte/Sol/Luna/Júpiter/Saturno) · ya no se repite "[domain] llega en un modo distinto al que te resulta familiar" para cada planeta
+// [v650.5.204] MES_PREMIUM_B3_anti-repeticion — eliminada plantilla "El tránsito lo activa desde X — en un modo distinto, lo que pone en movimiento Y": sustituida por mapas _b3DirectPhrase y _b3CrossPhrase (7 entradas por planeta, frase única por caso) · B1 fallback diferenciado Luna Nueva vs Luna Llena sin activación natal
+// [v650.5.205] MES_PREMIUM_B3_variantes — _b3DirectPhrase/_b3CrossPhrase sustituidas por arrays de 3 variantes por planeta (_b3DirectPhraseVariants/_b3CrossPhraseVariants) + contador usedPlanetCounts: garantía mecánica de no-repetición cuando el mismo planeta natal se activa más de una vez en B3
+// [v650.5.206] AÑO_PREMIUM_v2.1 — Fase 1+2:
+// [v650.5.207] AÑO_PREMIUM_v2.2 — Humanización narrativa: _lordNatalQuality (84 entradas) reescrita en voz directa segunda persona sin "opera desde" ni nombre de planeta — patrón vivido del usuario, no descripción del mecanismo astrológico · _lordImplicitD actualizado · ensamblaje D elimina prefijo planeta+signo (A ya lo nombró)
+// [v650.5.208] AÑO_PREMIUM_v2.3 — Ancla astrológica D:
+// [v650.5.209] AÑO_PREMIUM_v2.4 — Desfragmentación visual:
+// [v650.5.210] AÑO_PREMIUM_v2.5 — Consistencia FREE/PREMIUM:
+// [v650.5.211] AÑO_PREMIUM_v2.6 — Pulido narrativo: LBL centrado · SUBLBL eliminado · dato astrológico con glifos integrado en apertura del cuerpo · glifo signo activo en finalTextB · _lordClosingB (7 entradas) rompe plantilla fija de cierre en bloque B FREE centrado (título+lock+teaser+CTA al centro como HOY) · PREMIUM labels genéricos iguales a FREE · dato astrológico como subtítulo en cuerpo (SUBLBL) debajo del label principal 4 tarjetas independientes FREE y PREMIUM (patrón MES/HOY/SEMANA) · FREE: 4 tarjetas bloqueadas sin datos astrológicos visibles (título genérico + teaser + CTA) · PREMIUM: 4 tarjetas beige independientes sin wrapper exterior compartido · eliminados WRAPPER_OPEN, WRAPPER_OPEN_PREMIUM, SEPARATOR _lordCharacterization (7 entradas) recupera glifo KAIROS + nombre planeta al inicio de D sin repetir el mecanismo de A · fórmula híbrida: [ancla simbólica] + [patrón vivido] + [puente natal→activa] + [ritmo] + [comprensión] glyphs KAIROS en labels A/B · IDs internos 4 bloques · tooltip eliminado · LORD_IN_SIGN (código muerto 84 entradas) eliminado · LORD_WINDOWS_V3 sustituido por función modular 4 capas (_lordNatalQuality 7×12 + bridge natal→activa + _lordTemporalRhythm + _cycleInsight 7×12): dos usuarios con mismo Señor del Año pero carta distinta reciben textos D claramente distintos
+// [v650.5.128] MATRIX_RENDER_2.5 — Guía expandible por tarjeta (campo accion, toggle Ver guía)
+// [v650.5.129] MATRIX_RENDER_2.6 — Header "Un espacio para regular", botón i, tono por pilar, anti-redundancia, duracion solo en guía
+// [v650.5.130] MATRIX microcopy emocional — 210 textos_kairos reescritos 18-30p, acompañamiento regulativo, voz aprobada GPT+Roberto
+// [v650.5.131] CAPA 0 atmosférica + fix contraste panel i (0.62) — entrada emocional MATRIX definitiva
+// [v650.5.132] CAPA 0 presencia visual (14px, warm white 0.80, text-transform:none, glow cálido) + elimination caja "recursos prácticos"
+// [v650.5.133] Sprint editorial MATRIX v1: "MATRIX" dorado en CAPA 0 + reordenación guías
+// [v650.5.134] Jerarquía editorial definitiva: titular atmosférico grande+uppercase+bold / "MATRIX" dorado itálico / subtítulo "regularte" fino discreto
+// [v650.5.135] Header 3 capas: título grande uppercase / MATRIX firma editorial dorado / subtítulo "Un espacio para regularte" presente
+// [v650.5.151] REFINAMIENTO AÑO PREMIUM — traducción psicológica Capa C sin A/B/C/D
+// [v650.5.152] CAPA A INTEGRACIÓN NARRATIVA — Marte en Piscis en Casa 9 integrado
+// [v650.5.154] FIX CAPA A — normalización case+diacritic lordOriginal→natalPlanets (elimina "Marte en —")
+// [v650.5.155] CLEANUP — eliminado console.log temporal [ANNUAL A]
+// [v650.5.156] AÑO POLISH — Mercurio D ritmos actualizados + Guía KAIROS reescrita sin numeración
+// [v650.5.157] GUÍA KAIROS — Humanización final de 'annual-premium-depth' sin numeración ni palabra premium
+// [v650.5.158] KAIROS_SESSION Fase 1 — Infraestructura de sesión en memoria compartida (lordKey, annual, sky, user)
+// [v650.5.159] KAIROS_SESSION Fase 2A — Carga de weeklyTramos en sesión + lectura con fallback en HOY y MES
+// [v650.5.160] KAIROS_SESSION Fase 2B — Migración de AÑO, SEMANA y MATRIX a KAIROS_SESSION con fallbacks
+// [v650.5.161] KAIROS_NAVIGATION_STABILITY — Corrección de render al revisitar HOY, MES o SEMANA diferiendo la restauración desde caché y moviendo SEMANA al ciclo de vida post-inyección
+// [v650.5.162] SPRINT — KAIROS_VISUAL_QUICK_WINS_v1 — Implementación de 5 refinamientos visuales en el módulo MES
+// [v650.5.163] SPRINT — KAIROS_VISUAL_QUICK_WINS_v1_FIX — Correcciones visuales en MES (icono celestial y sin duplicación de proceso), MATRIX (icono circular y etiqueta de maestría), SEMANA (eliminado bloque "Activaciones personales" translúcido)
+// [v650.5.164] MICRO SPRINT — KAIROS VISUAL LOCK FINAL — Corrección jerárquica del proceso de MES (isla interior destacada y subtítulo de cabecera inactivo) y tamaño del título de MATRIX
 const firebaseConfig = {
   apiKey: "AIzaSyD9kvSCv_Rz9Hu42f9qba2ZJsZl_7SY_S4",
   authDomain: "kairos-eng.firebaseapp.com",
@@ -29,7 +62,7 @@ window.KAIROS_FLAGS = {
     KAIROS_PREMIUM_ACTIVE: false, // [v650.5.48] Desactivado para habilitar gating de producto real
     KAIROS_PREMIUM_DEBUG: false, // [v650.5.48] Desactivado en producción — no inyectar TEST_DEBUG_PROFILE a usuarios reales
     INTERNAL_AUTH_EMAILS: [
-        'roberto.rivero.ramos@gmail.com', 
+        'roberto.rivero.ramos@gmail.com',
         'roberrivero@gmail.com',
         'admin@kairos.app',
         'adi_cardona@me.com',
@@ -92,7 +125,151 @@ const signToDeg = (signName) => {
 let auth, db;
 let googleProvider = null;
 
+// ─── KAIROS_SESSION — Memoria compartida del sistema ───────────────────────
+// Inicializa una vez al arrancar. Si falla, cada módulo funciona como antes.
+// v1.0 — Solo datos, sin cambios narrativos. Modo degradado obligatorio.
 
+async function initKairosSession(stateUser) {
+  try {
+    // 1. Identidad natal
+    const natalPlanets = stateUser.natalPlanets || (stateUser.natal_context?.planets) || {};
+    const natal = {
+      uid:          stateUser.uid || null,
+      birthDate:    stateUser.birthDate || (stateUser.birthYear && stateUser.birthMonth && stateUser.birthDay
+        ? `${stateUser.birthYear}-${String(stateUser.birthMonth).padStart(2, '0')}-${String(stateUser.birthDay).padStart(2, '0')}`
+        : null),
+      birthTime:    stateUser.birthTime || null,
+      birthLat:     stateUser.birthLat  || null,
+      birthLng:     stateUser.birthLng  || null,
+      timezone:     stateUser.timezone  || stateUser.birthTimeZone || null,
+      ascendant:    stateUser.asc || (stateUser.natal_context?.ascendant) || null,
+      natalPlanets: natalPlanets
+    };
+
+    // 2. Profección anual (leer desde state.user o calcular usando el motor existente si no están)
+    const asc = stateUser.asc || (stateUser.natal_context?.ascendant) || 'Aries';
+    const age = typeof stateUser.age === 'number' ? stateUser.age : 0;
+    const profection = (window.projection_engine && window.projection_engine.calculateProfection)
+      ? window.projection_engine.calculateProfection(asc, age)
+      : null;
+
+    const lordOriginal = stateUser.lordOfYear || (profection?.lordOfYear || 'Sol');
+
+    const annual = {
+      profectedHouse: stateUser.profectedHouse || (profection ? profection.activeHouse : null),
+      profectedSign:  stateUser.profectedSign  || (profection ? profection.activeSign : null),
+      lordOriginal:   lordOriginal,
+      lordKey:        lordOriginal
+        ? lordOriginal.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        : null,
+      lordNatalSign:  null,  // se completa abajo si hay datos
+      lordNatalHouse: null
+    };
+
+    // Completar datos natales del señor
+    if (annual.lordKey && natal.natalPlanets) {
+      let foundPlanet = null;
+      if (Array.isArray(natal.natalPlanets)) {
+        foundPlanet = natal.natalPlanets.find(p => {
+          const name = (p.name || p.planet || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          return name === annual.lordKey;
+        });
+      } else {
+        const keys = Object.keys(natal.natalPlanets);
+        const matchKey = keys.find(k => k.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === annual.lordKey);
+        if (matchKey) {
+          foundPlanet = natal.natalPlanets[matchKey];
+        }
+      }
+      
+      if (foundPlanet) {
+        annual.lordNatalSign  = foundPlanet.sign  || foundPlanet.signName || foundPlanet.signo || null;
+        annual.lordNatalHouse = foundPlanet.house || foundPlanet.casa || null;
+      }
+    }
+
+    // 3. Instantánea celeste (fecha y tiempo)
+    const now = new Date();
+    
+    // Asegurar que transits están cargados para evitar datos nulos
+    if (!window.CURRENT_TRANSITS || !window.CURRENT_TRANSITS.moon_phase) {
+      if (window.transit_engine && typeof window.transit_engine.getCurrentTransits === 'function') {
+        try {
+          window.CURRENT_TRANSITS = await window.transit_engine.getCurrentTransits();
+        } catch (e) {
+          console.error('[SESSION] Error loading current transits in initKairosSession:', e);
+        }
+      }
+    }
+
+    let weeklyTramos = null;
+    let weeklySequence = null;
+    if (window.transit_engine && typeof window.transit_engine.getWeeklySequence === 'function' && window.weekly_engine) {
+      try {
+        const moonSequence = await window.transit_engine.getWeeklySequence(asc);
+        weeklySequence = moonSequence;
+        const scoredDays = window.weekly_engine.scoreDays(moonSequence, lordOriginal || 'Sol', annual.profectedHouse || 1);
+        weeklyTramos = window.weekly_engine.buildTramos(scoredDays, {}, lordOriginal || 'Sol');
+      } catch (e) {
+        console.error('[SESSION] Error calculating weeklyTramos in initKairosSession:', e);
+      }
+    }
+
+    const sky = {
+      date:           now.toISOString().split('T')[0],
+      weekday:        now.getDay(),
+      planetOfDay:    (window.transit_engine && window.transit_engine.getDayPlanet) ? window.transit_engine.getDayPlanet(now) : null,
+      lunarPhase:     window.CURRENT_TRANSITS?.moon_phase || null,
+      lunarSign:      window.CURRENT_TRANSITS?.Luna || null,
+      currentTransits: [],   // se completa en Fase 2 desde transit_engine
+      weeklyTramos:   weeklyTramos,
+      weeklySequence: weeklySequence
+    };
+
+    // 4. Metadatos y contexto reservado
+    const meta = {
+      version: '1.0',
+      context: {
+        dominantTone:    null,  // reservado para futuro — AÑO lo calculará
+        energeticMode:   null,
+        emotionalWeight: null
+      }
+    };
+
+    // 5. Registro anti-redundancia (vacío al inicio)
+    const usage = {
+      conceptsUsed:    new Set(),
+      modulesRendered: new Set(),
+      lastRenderTime:  {}
+    };
+
+    // 6. Construir SESSION y marcar como lista
+    window.KAIROS_SESSION = {
+      ...meta,
+      user:  natal,
+      annual,
+      sky,
+      usage,
+      ready: true
+    };
+
+    console.log('[SESSION] ✅ KAIROS_SESSION v1.0 inicializada:', {
+      lord:      annual.lordOriginal,
+      lordKey:   annual.lordKey,
+      ascendant: natal.ascendant,
+      date:      sky.date
+    });
+
+    document.dispatchEvent(new Event('kairos-session-ready'));
+
+  } catch (err) {
+    // Modo degradado: SESSION no disponible, la app sigue funcionando
+    console.warn('[SESSION] ⚠️ initKairosSession falló — modo degradado activo:', err.message);
+    window.KAIROS_SESSION = { ready: false, version: '1.0' };
+    document.dispatchEvent(new Event('kairos-session-ready'));
+  }
+}
+// ─── FIN KAIROS_SESSION ─────────────────────────────────────────────────────
 
 const TRANSLATIONS = {
   es: {
@@ -447,7 +624,6 @@ let state = {
 };
 
 async function initApp() {
-  console.log("🚀 KAIROS PHASE 1: INIT APP START");
   // [v50.1.7] URL Parameter Parser - Support context-driven rendering
   const urlParams = new URLSearchParams(window.location.search);
   const contextRaw = urlParams.get('user_context');
@@ -455,7 +631,7 @@ async function initApp() {
       try {
           const contextObj = JSON.parse(contextRaw);
           state.user = { ...state.user, ...contextObj };
-          if (contextObj.name) console.log(`👤 KAIROS: Contexto inyectado [Name: ${contextObj.name}]`);
+          if (contextObj.name) { /* silence context log */ }
       } catch(e) { console.error("URL Context Parse Error:", e); }
   }
 
@@ -466,17 +642,14 @@ async function initApp() {
 
   if (statusEl) statusEl.innerText = "Verificando dependencias core...";
 
-  // AUDITORÍA DE CARGA EXTERNA (V48.3.3)
-  console.log("🔭 KAIROS Calibration: Astronomy loaded:", typeof Astronomy !== 'undefined');
-  console.log("🔭 KAIROS Calibration: Luxon loaded:", typeof luxon !== 'undefined');
-  console.log("🔭 KAIROS Calibration: Firebase loaded:", typeof firebase !== 'undefined');
+
 
   if (typeof Astronomy === 'undefined' || typeof luxon === 'undefined' || typeof firebase === 'undefined') {
     console.warn("⏳ KAIROS: Waiting for engineering libraries... (Retrying in 250ms)");
     setTimeout(initApp, 250);
     return;
   }
-  console.log("✅ KAIROS: Engineering engine fully operational.");
+
   if (statusEl) statusEl.innerText = "Descargando efemérides (tiempo real)...";
   if (progressEl) progressEl.style.width = "40%";
   
@@ -497,7 +670,6 @@ async function initApp() {
   if (progressEl) progressEl.style.width = "80%";
 
   try {
-    console.log("🚀 KAIROS PHASE 2: INITIALIZING FIREBASE SERVICES");
     auth = firebase.auth();
     db = firebase.firestore();
     window.db = db;
@@ -513,18 +685,7 @@ async function initApp() {
     }
 
     // [v6.8.6] CONSUMO DEL RESULTADO DE REDIRECT (SECUENCIAL)
-    if (auth) {
-        console.log("🚀 KAIROS PHASE 3: REDIRECT RESULT CHECK START");
-        const result = await auth.getRedirectResult();
-        if (result && result.user) {
-            console.log("🚀 KAIROS PHASE 3 (SUCCESS): REDIRECT RESULT FOUND. Email:", result.user.email);
-        } else {
-            console.log("🚀 KAIROS PHASE 3 (EMPTY): REDIRECT RESULT EMPTY (No pending login).");
-        }
-
-        // [v6.8.5] Audición inmediata de persistencia
-        console.log("🚀 KAIROS PHASE 4: AUTH CURRENT USER (Immediate):", auth.currentUser ? auth.currentUser.email : "null");
-    }
+        await auth.getRedirectResult();
   } catch (e) {
     console.error("Firebase services init error:", e);
   }
@@ -546,24 +707,23 @@ async function initApp() {
     }, 10000);
 
     auth.onAuthStateChanged(async (user) => {
-      console.log("🚀 KAIROS PHASE 5: ON AUTH STATE CHANGED:", user ? (user.email || user.uid) : "NULL (No Session)");
       clearTimeout(bootTimeout); // Cancelamos si hay respuesta
       
       if (user) {
         // [v6.8.5] Detección inmediata de usuario interno (antes de Firestore para evitar bloqueos)
         const isInternalAccount = user.email && window.KAIROS_FLAGS.INTERNAL_AUTH_EMAILS.includes(user.email);
-        console.log("🚀 KAIROS PHASE 6: INTERNAL USER DETECTED:", isInternalAccount);
+
         
         if (isInternalAccount) {
             window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE = true;
-            console.log("🚀 KAIROS PHASE 7: PREMIUM ACTIVE: TRUE (Internal Account)");
+
             // DEACTIVATED: El laboratorio ahora es externo (/lab.html)
             // const labMenu = document.getElementById('menu-item-lab');
             // if (labMenu) labMenu.classList.remove('hidden');
         } else {
             // [v50.1.13] Refuerzo de Gating: Asegurar que el flag se limpie si no es interno
             window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE = false;
-            console.log("🚀 KAIROS PHASE 7: PREMIUM ACTIVE: FALSE (Limited Account)");
+
         }
 
         try {
@@ -652,13 +812,7 @@ async function initApp() {
               }
             }
 
-            // Sync current state to confirm we are not in fallback
-            console.log("🔭 KAIROS Calibration: Final State Check ->", { 
-                name: state.user.name, 
-                age: state.user.age, 
-                asc: state.user.asc,
-                setup: state.user.setupComplete 
-            });
+
             
             // Forced UI Refresh
             try {
@@ -711,16 +865,22 @@ async function initApp() {
                     Object.assign(state.user, TEST_DEBUG_PROFILE);
                 }
                 
+                // Añadir ANTES del primer render / processRequest:
+                if (typeof initKairosSession === 'function') {
+                  await initKairosSession(state.user);
+                } else {
+                  console.warn('[SESSION] initKairosSession no disponible — modo degradado');
+                  window.KAIROS_SESSION = { ready: false, version: '1.0' };
+                }
+
                 const isDebugPath = window.location.pathname.includes('matrix-debug');
-                console.log("🚀 KAIROS PHASE 8: DETERMINING INITIAL VIEW...", { isDebugPath, premium: window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE });
+
 
                 if (isDebugPath) {
                     window.KAIROS_FLAGS.KAIROS_PREMIUM_DEBUG = true;
                     if (!state.user.birthDay) Object.assign(state.user, TEST_DEBUG_PROFILE);
-                    console.log("🚀 KAIROS PHASE 9: NAVIGATING TO DASHBOARD (DEBUG/ANNUAL)");
                     showView('main');
                 } else {
-                    console.log("🚀 KAIROS PHASE 9: NAVIGATING TO MAIN (ANNUAL FORCE)");
                     showView('main');
                 }
               }
@@ -778,7 +938,9 @@ async function initApp() {
   setupCitySearch();
   setupBirthDataListeners();
   updateTranslations();
+  initKairosGuideDOM();
 }
+
 
 /**
  * [v1.4 UNBLOCK] BYPASS DE SEGURIDAD
@@ -815,7 +977,17 @@ window.bypassAuthMode = function() {
     if (shellMessage) shellMessage.classList.add('hidden');
     
     updateTranslations();
-    showView('main');
+    if (typeof initKairosSession === 'function') {
+        initKairosSession(state.user).then(() => {
+            showView('main');
+        }).catch(() => {
+            window.KAIROS_SESSION = { ready: false, version: '1.0' };
+            showView('main');
+        });
+    } else {
+        window.KAIROS_SESSION = { ready: false, version: '1.0' };
+        showView('main');
+    }
 };
 
 let citySearchTimer = null;
@@ -1093,14 +1265,13 @@ async function handleAuth() {
 
   try {
     if (errorEl) errorEl.classList.add('hidden');
-    console.log(`📡 KAIROS AUTH: Intentando ${state.authMode} para ${email}...`);
     
     if (state.authMode === 'login') {
       await auth.signInWithEmailAndPassword(email, password);
     } else {
       await auth.createUserWithEmailAndPassword(email, password);
     }
-    console.log("✅ KAIROS AUTH: Operación exitosa.");
+    /* console.log("✅ KAIROS AUTH: Operación exitosa."); */
   } catch (error) {
     console.error("❌ KAIROS AUTH ERROR:", error.code, error.message);
     if (errorEl) {
@@ -1111,15 +1282,12 @@ async function handleAuth() {
 }
 
 async function loginWithGoogle() {
-  console.log("📡 KAIROS AUTH: loginWithGoogle triggered.");
   const errorEl = document.getElementById('auth-error');
   try {
     if (errorEl) errorEl.classList.add('hidden');
-    console.log("📡 KAIROS AUTH: Iniciando Google Login...");
     
     // [v6.8.1] Fix COOP on Localhost: Usar Redirect si estamos en local
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        console.log("📍 KAIROS: Localhost detectado, usando signInWithRedirect para evitar bloqueo COOP.");
         await auth.signInWithRedirect(googleProvider);
     } else {
         await auth.signInWithPopup(googleProvider);
@@ -1430,7 +1598,6 @@ window.nextStep = () => {
 };
 
 window.nextStep1b = async () => {
-  console.log("🚀 KAIROS CLICK: Entrando en nextStep1b");
   const dateVal = document.getElementById('input-birth-date').value;
   const t = document.getElementById('input-time').value;
   const cityNameInput = document.getElementById('city-input')?.value || '';
@@ -1472,7 +1639,7 @@ window.nextStep1b = async () => {
     const finalLat = parseFloat(state.tempCityData?.lat !== undefined ? state.tempCityData.lat : state.user.birthLat);
     const finalLon = parseFloat(state.tempCityData?.lon !== undefined ? state.tempCityData.lon : state.user.birthLng);
     
-    console.log(`🚀 KAIROS CLICK: Coords Finales -> Lat: ${finalLat}, Lon: ${finalLon}`);
+
 
     if (isNaN(finalLat) || isNaN(finalLon)) {
        console.error("❌ KAIROS: Coordenadas NaN detectadas antes de avanzar.");
@@ -1499,7 +1666,7 @@ window.nextStep1b = async () => {
     const hasAstronomy = typeof window.Astronomy !== 'undefined';
     const hasLuxon = typeof window.luxon !== 'undefined';
 
-    console.log(`🚀 KAIROS CLICK: Integrity Check -> Astronomy: ${hasAstronomy}, Luxon: ${hasLuxon}`);
+
 
     if (!hasAstronomy || !hasLuxon) {
        console.error("❌ KAIROS: Astronomy o Luxon NO LISTOS para el cálculo.");
@@ -1527,7 +1694,7 @@ window.nextStep1b = async () => {
     state.user.birthTimeZone = tzArg;
     state.user.engineVersion = 48.3;
 
-    console.log(`🚀 KAIROS CLICK: Ascendente calculado -> ${ascData.sign} ${ascData.deg}°`);
+
 
     // Fijar resultados en el estado maestro
     state.user.asc = ascData.sign;
@@ -1536,7 +1703,7 @@ window.nextStep1b = async () => {
     state.user.setupComplete = true;
     state.user.lang = state.lang;
 
-    console.log(`🚀 KAIROS V48.3: SINCRONIZACIÓN EXITOSA -> ${state.user.asc} ${state.user.ascDeg}°${state.user.ascMin}'`);
+
 
     // EXTRA SECURITY: Cleaning NaN values before Firestore
     Object.keys(state.user).forEach(key => {
@@ -1549,7 +1716,7 @@ window.nextStep1b = async () => {
     state.user.lat = state.user.birthLat;
     state.user.lng = state.user.birthLng;
 
-    console.log("🚀 KAIROS: Preparando persistencia natal. Coords:", state.user.lat, state.user.lng);
+
 
     // 🚀 [v650.5.15] Persistencia Natal Centralizada y Robusta
     if (typeof window.triggerNatalCalculationAndPersist === 'function') {
@@ -1634,7 +1801,6 @@ function renderZodiacSelector(containerId = 'zodiac-selector') {
     card.onclick = () => {
       // En el Dashboard (main), bloqueamos el cambio manual por directriz técnica (V24)
       if (containerId === 'dash-zodiac-selector') {
-        alert(state.lang === 'es' ? 'El Ascendente ha sido calculado por el motor de precisión y es inalterable.' : 'The Ascendant has been calculated by the precision engine and is unalterable.');
         return;
       }
       state.user.asc = sign;
@@ -1668,7 +1834,6 @@ function renderZodiacSelector(containerId = 'zodiac-selector') {
 
 async function setTab(tabId) {
   // [v650v4.0] BOOT PROTECTION: ensure annual is truly active if coming from main
-  console.log("📑 setTab START (v650v4.0):", tabId);
   const content = document.getElementById('app-main');
   const tabs = document.getElementById('app-tabs');
 
@@ -1703,16 +1868,14 @@ async function setTab(tabId) {
       statusEl.textContent = titles[tabId] || 'Engine';
   }
 
+
   // Transición suave
   content.style.opacity = '0.3';
 
   try {
-      console.log("🚀 Calling renderTabContent for", tabId);
       await renderTabContent(tabId);
+      updateKairosGuideVisibility();
       content.style.opacity = '1';
-      console.log("✅ setTab: renderTabContent completed. VISIBILITY CHECK:", {
-          rect: content.getBoundingClientRect().width + "x" + content.getBoundingClientRect().height
-      });
   } catch (err) {
       console.error("❌ setTab: Critical error during render:", err);
       content.innerHTML = `<div class="p-20 text-center opacity-50">Error en render [v49]: ${err.message}</div>`;
@@ -1818,15 +1981,7 @@ async function renderTabContent(tabId) {
     const natalCtx = sc.natal_context || {};
     let natalPlanets = natalCtx.planets || {};
 
-    // [FASE 6.14G] LOG ÚNICO DE CONFIRMACIÓN DE FUENTE
-    console.log('[KAIROS CONTEXT SOURCE]', {
-      mode: isLabActive ? 'LABORATORIO' : 'USUARIO_REAL',
-      totalShadowContext_keys: Object.keys(sc),
-      natal_context: natalCtx,
-      planets_keys: Object.keys(natalPlanets || {}),
-      asc: natalCtx.ascendant || natalCtx.ascendente || 'no encontrado',
-      is_lab: sc.is_lab || false
-    });
+
 
     // [FASE 6.14L] MAPEO ROBUSTO DE PLANETAS (Sol a Plutón + Casas)
     const getPlanetData = (esName, enName) => {
@@ -1908,26 +2063,54 @@ async function renderTabContent(tabId) {
     console.log("📊 Render Input Data:", { tabId, lang, age, asc, name });
 
     // 1. CAPA DE CÁLCULO (PRODUCT ENGINES)
-    const profection = (window.projection_engine && window.projection_engine.calculateProfection) ? window.projection_engine.calculateProfection(asc, age) : null;
-    
+    // [SESSION Fase 2B] Leer profección desde SESSION si está disponible — fallback a cálculo directo
+    const sessionAnnual = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual)
+      ? window.KAIROS_SESSION.annual
+      : null;
+
+    const profection = sessionAnnual
+      ? {
+          activeHouse: sessionAnnual.profectedHouse,
+          activeSign:  sessionAnnual.profectedSign,
+          lordOfYear:  sessionAnnual.lordOriginal,
+          lordKey:     sessionAnnual.lordKey
+        }
+      : ((window.projection_engine && window.projection_engine.calculateProfection)
+          ? window.projection_engine.calculateProfection(asc, age)
+          : null);
+
     if (!profection) {
         content.innerHTML = `<div class="p-20 text-center opacity-50 italic">Datos aún no disponibles [Motor Profección]</div>`;
         return;
     }
-    
-    // Guard for House Data
+
+    // Guard for House Data (mismo cálculo de siempre — solo cambia la fuente de activeHouse)
     const houseKey = profection.activeHouse || 1;
     const langHouseData = HOUSE_DATA_EXPANDED[lang] || HOUSE_DATA_EXPANDED['es'];
     profection.houseData = langHouseData[houseKey] || { name: "Ciclo de Vida", desc: "Sintonizando tu energía..." };
-    
-    // [v6.6] Prioridad al Lord forzado por escenario Debug
-    const lordOriginal = safeUser.lordOfYear || (profection.lordOfYear || 'Sol');
-    const matrixResult = (window.matrix_engine && window.matrix_engine.getMatrixData) ? window.matrix_engine.getMatrixData(lordOriginal, lang) : null;
+
+    // [SESSION Fase 2B] Leer lord desde SESSION — fallback al cálculo actual
+    const lordOriginal = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual?.lordOriginal)
+      ? window.KAIROS_SESSION.annual.lordOriginal
+      : (safeUser.lordOfYear || (profection?.lordOfYear || 'Sol'));
+
+    // [SESSION Fase 2B] Leer planeta del día desde SESSION — fallback a cálculo directo
+    const dayPlanet = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.sky?.planetOfDay)
+      ? window.KAIROS_SESSION.sky.planetOfDay
+      : ((window.transit_engine && window.transit_engine.getDayPlanet) ? window.transit_engine.getDayPlanet() : 'Sol');
+
+    const lunaPhase = getMoonPhaseES ? getMoonPhaseES() : 'Nueva';
+    const matrixContext = {
+        lord: lordOriginal,
+        lang: lang,
+        activeHouse: profection.activeHouse || 1,
+        lunaPhase: lunaPhase,
+        dayPlanet: dayPlanet
+    };
+    const matrixResult = (window.matrix_engine && window.matrix_engine.getMatrixData) ? window.matrix_engine.getMatrixData(lordOriginal, lang, matrixContext) : null;
     const matrix = matrixResult || {
         mastery: "Sincronía de la Matriz", body: "Cargando frecuencia...", mind: "Cargando frecuencia...", spirit: "Cargando frecuencia...", directive: "Escucha tu ritmo interno."
     };
-  
-  const dayPlanet = (window.transit_engine && window.transit_engine.getDayPlanet) ? window.transit_engine.getDayPlanet() : 'Sol';
   const intensityRaw = (window.matrix_engine && window.matrix_engine.getIntensity) ? window.matrix_engine.getIntensity(dayPlanet, lordOriginal) : 'Estable';
   
   // V49.5: Matrix Interpretation Enhancement
@@ -1979,17 +2162,34 @@ async function renderTabContent(tabId) {
           annual_context,
           temporal_context: { 
               day_planet: dayPlanet || 'Sol',
-              moon_phase: (window.CURRENT_TRANSITS?.moon_phase) || (window.totalShadowContext?.temporal_context?.moon_phase) || 'Nueva'
+              moon_phase: (window.KAIROS_SESSION && window.KAIROS_SESSION.ready && window.KAIROS_SESSION.sky?.lunarPhase)
+                  ? window.KAIROS_SESSION.sky.lunarPhase
+                  : ((window.CURRENT_TRANSITS?.moon_phase) || (window.totalShadowContext?.temporal_context?.moon_phase) || 'Nueva')
           },
           transit_context: {
-              moon_transit_sign: window.CURRENT_TRANSITS?.Luna || 'Aries',
+              moon_transit_sign: (window.KAIROS_SESSION && window.KAIROS_SESSION.ready && window.KAIROS_SESSION.sky?.lunarSign)
+                  ? window.KAIROS_SESSION.sky.lunarSign
+                  : (window.CURRENT_TRANSITS?.Luna || 'Aries'),
               sun_transit_sign: window.CURRENT_TRANSITS?.Sol || 'Aries',
-              planets: window.CURRENT_TRANSITS || null,
+              planets: (() => {
+                  const baseTransits = window.CURRENT_TRANSITS || {};
+                  if (window.KAIROS_SESSION && window.KAIROS_SESSION.ready && window.KAIROS_SESSION.sky?.lunarSign) {
+                      return {
+                          ...baseTransits,
+                          Luna: window.KAIROS_SESSION.sky.lunarSign,
+                          Moon: window.KAIROS_SESSION.sky.lunarSign
+                      };
+                  }
+                  return baseTransits;
+              })(),
               moon_transit_house: (() => {
                   if (window.projection_engine &&
                       typeof window.projection_engine.getHouseForSign === 'function') {
                       return window.projection_engine.getHouseForSign(
-                          window.CURRENT_TRANSITS?.Luna || 'Aries', asc
+                          (window.KAIROS_SESSION && window.KAIROS_SESSION.ready && window.KAIROS_SESSION.sky?.lunarSign)
+                              ? window.KAIROS_SESSION.sky.lunarSign
+                              : (window.CURRENT_TRANSITS?.Luna || 'Aries'),
+                          asc
                       );
                   }
                   return 1; // fallback seguro — documentar como mejora futura
@@ -2033,151 +2233,225 @@ async function renderTabContent(tabId) {
 
   if (tabId === 'annual') {
     html = `
-            <div class="p-8 space-y-12">
-                <section class="text-center annual-header">
-                    <p class="text-[10px] font-black text-primary uppercase tracking-[0.5em] mb-2">${t.profectionAnnual} · ${name}</p>
-                    <div class="text-[14px] font-technical font-bold text-warm-grey uppercase tracking-[0.2em] mb-4">${new Date().getFullYear()}</div>
-                    
-                    <div class="flex items-center justify-center gap-6">
-                        <button onclick="changeAge(-1)" class="size-10 rounded-full border border-primary/20 flex items-center justify-center text-primary transition-all text-lg font-bold hover:bg-primary/5">
-                            -
-                        </button>
+            <div class="p-6 space-y-10">
+                <!-- A-1 — Nuevo portal editorial de entrada -->
+                <section id="annual-portal" class="relative bg-[#F7F4EE] rounded-[2.5rem] border border-[rgba(180,160,120,0.08)] p-8 text-center overflow-hidden">
+                    <div class="relative z-10 space-y-6">
+                        <div class="space-y-2">
+                            <!-- A-1 — Personalización superior -->
+                            <p class="text-[12px] font-bold text-warm-grey/40 uppercase tracking-[0.25em] mb-1">${name} · ${age} años</p>
+                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.6em] mb-2">GUÍA DEL AÑO</p>
+                            <h2 id="annual-cycle-title-sub" class="text-4xl md:text-[3.2rem] font-black text-warm-grey uppercase tracking-tight leading-none mb-5">
+                                ${(profection.houseData && profection.houseData.name) || 'CICLO DE EVOLUCIÓN'}
+                            </h2>
+                        </div>
                         
-                        <div class="flex flex-col items-center group cursor-pointer" onclick="toggleAgeEdit()">
-                            <h2 id="display-age" class="text-5xl font-black text-warm-grey tracking-tighter mb-2">${age} ${lang === 'es' ? 'años' : 'years'}</h2>
-                            <p class="text-[10px] text-warm-grey/60 font-medium tracking-[0.05em] text-center max-w-[80%] leading-tight pointer-events-none mb-4">La profección anual indica qué área de tu vida toma protagonismo este año.</p>
-                            <span class="text-[8px] font-black text-primary uppercase tracking-widest opacity-40 group-hover:opacity-100 transition-all flex items-center gap-1">
-                                <span class="material-symbols-outlined text-xs">edit</span> ${t.slideRecalibrate}
-                            </span>
+                        <div class="space-y-1">
+                            <h3 class="text-[12px] font-bold text-warm-grey/60 uppercase tracking-[0.2em]">
+                                CASA ${profection.activeHouse} · ${translatedLord} · ${new Date().getFullYear()}
+                            </h3>
                         </div>
 
-                        <button onclick="changeAge(1)" class="size-10 rounded-full border border-primary/20 flex items-center justify-center text-primary transition-all text-lg font-bold hover:bg-primary/5">
-                            +
-                        </button>
+                        <!-- A-2 — SVG central con borde decorativo (A-4) -->
+                        <div class="relative size-48 mx-auto flex items-center justify-center py-4">
+                            <div class="absolute inset-0 bg-white/20 rounded-full blur-2xl"></div>
+                            <!-- Contenedor con borde y fondo suave -->
+                            <div class="absolute inset-4 border border-[rgba(180,160,120,0.16)] bg-white/45 rounded-full shadow-inner"></div>
+                            <div class="size-32 text-primary drop-shadow-[0_0_15px_rgba(215,193,136,0.3)] animate-pulse-slow relative z-10">
+                                ${KAIROS_ICONS.zodiac[profection.activeSign]}
+                            </div>
+                        </div>
+
+                        <!-- Isla interior para el escenario -->
+                        <div class="bg-white/55 rounded-[1.75rem] p-6 border border-[rgba(180,160,120,0.06)] shadow-sm">
+                            <p id="annual-scenario-desc" class="text-[13px] font-medium text-warm-grey/80 leading-relaxed italic">
+                                ${(profection.houseData && profection.houseData.desc) || 'Sintonizando con la base estructural de tu año...'}
+                            </p>
+                        </div>
+                        
+                        <!-- Firma técnica removida (A-2) -->
                     </div>
 
-                    <div id="edit-age-container" class="hidden mt-6 flex justify-center items-center gap-3">
-                        <input type="number" id="input-edit-age" class="w-24 text-center text-3xl font-black border-primary" value="${age}">
-                        <button onclick="saveAge()" class="bg-primary text-white p-2 rounded-2xl h-12 w-12 flex items-center justify-center shadow-lg shadow-primary/20"><span class="material-symbols-outlined">check</span></button>
-                        <button onclick="toggleAgeEdit()" class="bg-slate-100 text-slate-400 p-2 rounded-2xl h-12 w-12 flex items-center justify-center"><span class="material-symbols-outlined">close</span></button>
+                    <!-- A-3 — Botones +/- ocultos pero conservando IDs para lógica si fuera necesario -->
+                    <div class="hidden">
+                        <button onclick="changeAge(-1)" id="btn-age-minus">-</button>
+                        <button onclick="changeAge(1)" id="btn-age-plus">+</button>
+                        <h2 id="display-age">${age}</h2>
+                        <div id="edit-age-container">
+                            <input type="number" id="input-edit-age" value="${age}">
+                        </div>
                     </div>
                 </section>
 
-                <!-- PANEL INTERPRETATIVO KAIROS v4.0 (NARRATIVA ANUAL) -->
-                <div id="kairos-annual-narrative" class="space-y-12">
+                <!-- PANEL INTERPRETATIVO KAIROS v4.8 (NARRATIVA ANUAL) -->
+                <div id="kairos-annual-narrative" class="space-y-10">
                     
-                    <!-- 1. ENCABEZADO DEL CICLO -->
-                    <div class="text-center animate-fade-in">
-                        <h3 id="annual-cycle-title" class="text-2xl font-black uppercase tracking-tight text-warm-grey mb-2">${(profection.houseData && profection.houseData.name) || 'Ciclo de Evolución'}</h3>
-                        <p id="annual-cycle-phrase" class="text-sm italic text-warm-grey/60 font-medium">"${(profection.houseData && profection.houseData.desc.split('.')[0]) || 'Sintonizando con tu tiempo...'}"</p>
-                    </div>
-
-                    <!-- 2. ESCENARIO (CASA) -->
-                    <div class="relative size-64 mx-auto bg-slate-50 rounded-[4rem] border border-primary/10 flex items-center justify-center shadow-inner mt-4 mb-2">
-                        <div class="size-32 text-primary opacity-80 animate-pulse-slow">${KAIROS_ICONS.zodiac[profection.activeSign]}</div>
-                        <div class="absolute -bottom-4 bg-primary text-white px-8 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl flex flex-col items-center leading-tight">
-                            <span class="opacity-60 text-[8px] mb-1 font-bold">ESCENARIO DEL AÑO</span>
-                            <span>CASA ${profection.activeHouse} · ${profection.activeSign}</span>
+                    <!-- A-3 — Encabezado redundante eliminado -->
+                    <!-- A-7 — Mantener intacto GUÍA DE VIDA (Señor del Año) -->
+                    <div id="annual-life-guide" class="bg-warm-grey p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-8 opacity-5">
+                            <div class="size-32">${KAIROS_ICONS.planets[lordOriginal]}</div>
                         </div>
-                    </div>
-
-                    <div class="bg-slate-50/50 p-8 rounded-[3rem] border border-primary/5">
-                        <p id="annual-scenario-desc" class="text-xs font-medium text-warm-grey/70 leading-relaxed text-center">
-                            ${(profection.houseData && profection.houseData.desc) || 'Cargando escenario interpretativo...'}
-                        </p>
-                    </div>
-
-                    <!-- 3. EL SEÑOR DEL AÑO -->
-                    <div class="bg-warm-grey p-10 rounded-[3rem] text-white">
-                        <p class="text-[9px] font-black text-primary uppercase tracking-widest mb-6">${t.lord}</p>
-                        <div class="flex items-center gap-6 mb-8">
-                            <div class="size-16 text-primary">${KAIROS_ICONS.planets[lordOriginal]}</div>
+                        <p class="text-[9px] font-black text-primary uppercase tracking-[0.4em] mb-6">${t.lord}</p>
+                        <div class="flex items-center gap-6 mb-8 relative z-10">
+                            <div class="size-16 text-primary drop-shadow-[0_0_10px_rgba(215,193,136,0.2)]">${KAIROS_ICONS.planets[lordOriginal]}</div>
                             <div>
                                 <h4 class="text-2xl font-black uppercase tracking-tighter italic">${translatedLord}</h4>
-                                <p id="annual-lord-tone" class="text-[10px] text-white/60 font-medium uppercase tracking-[0.2em]">${lordOriginal === 'Saturno' ? 'LA ESTRUCTURA' : 'EL GUÍA DEL CICLO'}</p>
+                                <p id="annual-lord-tone" class="text-[10px] text-white/50 font-bold uppercase tracking-[0.25em] mt-1">${lordOriginal === 'Saturno' ? 'LA ESTRUCTURA' : 'EL GUÍA DEL CICLO'}</p>
                             </div>
                         </div>
-                        <p id="annual-lord-request" class="text-xs text-slate-300 italic font-medium leading-relaxed border-l-2 border-primary/20 pl-6">
+                        <p id="annual-lord-request" class="text-[13px] text-slate-300 italic font-medium leading-relaxed border-l border-primary/30 pl-6">
                             "${t.lordIntro}"
                         </p>
                     </div>
 
-                    <!-- 4. MATIZ ASCENDENTE -->
-                    <div class="bg-slate-50 p-8 rounded-[3rem] border border-slate-100 italic transition-all">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span class="text-[10px] font-black text-primary uppercase tracking-widest">${t.ascendant} FILTRO</span>
+                    <!-- A-6 — Renombrar bloque TU ASCENDENTE FILTRO -->
+                    <div class="bg-slate-50/50 p-8 rounded-[3rem] border border-slate-100/50 transition-all text-center">
+                        <div class="mb-4">
+                            <h4 class="text-[10px] font-black text-primary uppercase tracking-[0.3em] mb-1">TU FORMA DE VIVIR EL AÑO</h4>
+                            <p class="text-[9px] font-medium text-warm-grey/40 uppercase tracking-widest">Filtro de percepción basado en tu Ascendente natal</p>
                         </div>
-                        <p id="annual-filter-text" class="text-xs text-warm-grey/60 font-medium leading-relaxed">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                          <span class="w-5 h-5 opacity-60">${KAIROS_ICONS.zodiac[state.user.asc] || ''}</span>
+                          <span class="text-[11px] font-semibold text-warm-grey/60 uppercase tracking-[0.15em]">${state.user.asc}</span>
+                        </div>
+                        <p id="annual-filter-text" class="text-[13px] text-warm-grey/60 font-medium leading-relaxed">
                             Desde tu Ascendente ${asc}, tu forma de vivir este ciclo de ${translatedLord} busca el equilibrio a través de tu naturaleza única.
                         </p>
                     </div>
 
-                    <!-- 5. TRIPLETE KAIROS -->
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="bg-primary/5 p-6 rounded-[2.5rem] border border-primary/10">
-                            <span class="text-[8px] font-black text-primary uppercase tracking-[0.3em] mb-3 block">CLIMA ANUAL</span>
-                            <p id="annual-triplete-clima" class="text-xs font-bold text-warm-grey uppercase tracking-wider">Cargando...</p>
+                    <!-- A-5 — Agrupar Clima / Dirección / Cuidado -->
+                    <div class="space-y-4">
+                        <div id="annual-triplete" class="text-center mb-2">
+                            <p class="text-[9px] font-black text-warm-grey/30 uppercase tracking-[0.4em]">TRES CLAVES DEL AÑO</p>
                         </div>
-                        <div class="bg-primary p-6 rounded-[2.5rem] text-white shadow-xl shadow-primary/20">
-                            <span class="text-[8px] font-black text-white/40 uppercase tracking-[0.3em] mb-3 block">DIRECCIÓN</span>
-                            <p id="annual-triplete-direccion" class="text-xs font-bold uppercase tracking-wider">Cargando...</p>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-[2.5rem] text-white">
-                            <span class="text-[8px] font-black text-white/40 uppercase tracking-[0.3em] mb-3 block">CUIDADO</span>
-                            <p id="annual-triplete-cuidado" class="text-xs font-bold uppercase tracking-wider">Cargando...</p>
-                        </div>
-                    </div>
-
-                    <!-- 6. ORIENTACIÓN PRÁCTICA -->
-                    <div class="bg-slate-50 p-10 rounded-[4rem] border border-primary/5 text-center">
-                        <h4 class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-6">GUÍA PRÁCTICA</h4>
-                        <div id="annual-practical-key" class="text-left space-y-4">
-                            <p class="text-sm font-medium text-warm-grey/40 text-center animate-pulse">Sincronizando guía táctica...</p>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="bg-primary/5 p-6 rounded-[2.5rem] border border-primary/10 px-8 py-4">
+                                <p class="text-[9px] font-black text-primary uppercase tracking-[0.4em] mb-2">CLIMA</p>
+                                <p id="annual-triplete-clima" class="text-[11px] font-black text-warm-grey uppercase tracking-widest">Cargando...</p>
+                            </div>
+                            <div class="bg-primary p-6 rounded-[2.5rem] text-white shadow-xl shadow-primary/20 px-8 py-4">
+                                <p class="text-[9px] font-black text-white/50 uppercase tracking-[0.4em] mb-2">DIRECCIÓN</p>
+                                <p id="annual-triplete-direccion" class="text-[11px] font-black uppercase tracking-widest">Cargando...</p>
+                            </div>
+                            <div class="bg-slate-900 p-6 rounded-[2.5rem] text-white px-8 py-4">
+                                <p class="text-[9px] font-black text-white/30 uppercase tracking-[0.4em] mb-2">CUIDADO</p>
+                                <p id="annual-triplete-cuidado" class="text-[11px] font-black uppercase tracking-widest">Cargando...</p>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- [SECCIÓN F] REGULACIÓN EMOCIONAL (KAIROS LEVANTADO) -->
-                    <div id="annual-regulatory-close" class="hidden bg-primary/10 p-8 rounded-[3rem] border-2 border-primary/20 text-center italic text-xs font-bold text-primary leading-relaxed shadow-lg">
+                    <!-- A-5 — GUÍA PRÁCTICA -> CÓMO HABITAR ESTE AÑO -->
+                    <div id="annual-practical-block" class="bg-slate-50 p-10 rounded-[4rem] border border-primary/5">
+                        <div class="text-center mb-8">
+                            <h4 class="text-[10px] font-black text-primary uppercase tracking-[0.5em]">CÓMO HABITAR ESTE AÑO</h4>
+                        </div>
+                        <div id="annual-practical-key" class="space-y-5 px-2">
+                            <p class="text-xs font-medium text-warm-grey/40 text-center animate-pulse">Sincronizando guía táctica...</p>
+                        </div>
+                    </div>
+
+                    <!-- [SECCIÓN F] REGULACIÓN EMOCIONAL -->
+                    <div id="annual-regulatory-close" class="hidden bg-[#F7F4EE]/50 p-8 rounded-[3.5rem] border border-[rgba(180,160,120,0.1)] text-center italic text-[13px] font-bold text-warm-grey/70 leading-relaxed shadow-sm mx-4">
                         Sincronizando regulación emocional...
                     </div>
 
-                    <!-- 7. PROTOCOLO TÉCNICO & PROFECCIÓN (Capapa Secundaria) -->
-                    <div class="bg-slate-900/90 p-8 rounded-[3rem] text-white/90 space-y-6 opacity-80 scale-95 origin-top transition-all hover:opacity-100 hover:scale-100">
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <h4 class="text-[8px] font-black text-primary uppercase tracking-[0.4em]">${t.technicalProtocol}</h4>
-                            <span class="material-symbols-outlined text-white/20 text-sm">engineering</span>
+                    <!-- A-4 — PROTOCOLO TÉCNICO -> BASE DEL CICLO -->
+                    <div id="annual-base-cycle" class="p-8 rounded-[3rem] border border-slate-100 space-y-6 opacity-60 transition-all hover:opacity-100">
+                        <div class="relative flex items-center justify-center border-b border-slate-100 pb-4">
+                            <h4 class="text-[9px] font-black text-warm-grey/40 uppercase tracking-[0.4em] text-center w-full">BASE DEL CICLO</h4>
+                            <span class="material-symbols-outlined text-warm-grey/20 text-sm absolute right-0">architecture</span>
                         </div>
                         
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="space-y-1">
-                                <p class="text-[7px] font-black text-white/30 uppercase tracking-widest">${t.profectionHouse}</p>
-                                <p id="annual-tech-house" class="text-[10px] font-bold text-primary italic">CASA ---</p>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="space-y-1 text-center">
+                                <p class="text-[8px] font-black text-warm-grey/30 uppercase tracking-widest">${t.profectionHouse}</p>
+                                <p id="annual-tech-house" class="text-[10px] font-bold text-warm-grey/60 italic uppercase">CASA ---</p>
                             </div>
-                            <div class="space-y-1">
-                                <p class="text-[7px] font-black text-white/30 uppercase tracking-widest">${t.activatedSign}</p>
-                                <p id="annual-tech-sign" class="text-[10px] font-bold text-primary italic">---</p>
+                            <div class="space-y-1 text-center">
+                                <p class="text-[8px] font-black text-warm-grey/30 uppercase tracking-widest">${t.activatedSign}</p>
+                                <p id="annual-tech-sign" class="text-[10px] font-bold text-warm-grey/60 italic uppercase">---</p>
                             </div>
-                            <div class="col-span-2 space-y-1 pt-2 border-t border-white/5">
-                                <p class="text-[7px] font-black text-white/30 uppercase tracking-widest">${t.yearRuler}</p>
-                                <p id="annual-tech-lord" class="text-[10px] font-bold text-white italic uppercase">${translatedLord === lordOriginal ? translatedLord : `${translatedLord} (${lordOriginal})`}</p>
+                            <div class="col-span-2 space-y-1 pt-2 border-t border-slate-50 text-center">
+                                <p class="text-[8px] font-black text-warm-grey/30 uppercase tracking-widest">${t.yearRuler}</p>
+                                <p id="annual-tech-lord" class="text-[10px] font-bold text-warm-grey/60 italic uppercase">${translatedLord}</p>
                             </div>
                         </div>
 
-                        <div class="pt-4 border-t border-white/5">
-                            <p id="annual-profection-expl" class="text-[9px] text-slate-400 leading-relaxed italic opacity-60">
+                        <p id="annual-base-explanation" class="text-[10px] text-warm-grey/50 italic text-center mt-3 px-2 leading-relaxed">
+                            Casa ${profection.activeHouse} concentra la experiencia principal de este año. ${profection.activeSign} describe el tono psicológico con el que ese aprendizaje se activa.
+                        </p>
+
+                        <div class="pt-4 border-t border-slate-50">
+                            <p id="annual-profection-expl" class="text-[9px] text-warm-grey/40 leading-relaxed italic">
                                 Sincronización basada en Profecciones Anuales (Serie 300).
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- SELECTOR DE SEGURIDAD (Técnico) -->
-                <section class="bg-slate-50 p-6 rounded-[2.5rem] border border-slate-100">
-                    <div class="flex justify-between items-end mb-4 px-2">
-                        <p class="text-[9px] font-black text-primary uppercase tracking-widest">MAPA ZODIACAL DE APOYO</p>
+                <!-- A-6 — RUTA DEL CICLO ANUAL (Indicador visual) -->
+                <section id="annual-cycle-route" class="bg-slate-50/50 p-6 rounded-[2.5rem] border border-slate-100/50">
+                    <div class="mt-4">
+                      <p class="text-[9px] font-black text-warm-grey/30 uppercase tracking-[0.4em] text-center mb-4">
+                        RUTA DEL CICLO ANUAL
+                      </p>
+                      
+                      <div class="flex items-center justify-center gap-3">
+                        
+                        <!-- Nodo 1: Ascendente -->
+                        <div class="flex flex-col items-center gap-1">
+                          <div class="w-10 h-10 rounded-full bg-white/40 border border-[rgba(180,160,120,0.2)] flex items-center justify-center">
+                            <span class="w-5 h-5 opacity-60">${KAIROS_ICONS.zodiac[state.user.asc] || ''}</span>
+                          </div>
+                          <span class="text-[9px] text-warm-grey/60 font-semibold uppercase tracking-wide">${state.user.asc}</span>
+                          <span class="text-[8px] text-warm-grey/35 uppercase tracking-wider">Ascendente</span>
+                        </div>
+                        
+                        <!-- Conector -->
+                        <div class="flex flex-col items-center gap-1 pb-4">
+                          <div class="w-px h-4 bg-warm-grey/20"></div>
+                          <span class="text-[8px] text-warm-grey/30">→</span>
+                          <div class="w-px h-4 bg-warm-grey/20"></div>
+                        </div>
+                        
+                        <!-- Nodo 2: Casa activa -->
+                        <div class="flex flex-col items-center gap-1">
+                          <div class="w-12 h-12 rounded-full bg-primary/8 border border-primary/20 flex items-center justify-center">
+                            <span class="text-[13px] font-black text-primary">${profection.activeHouse}</span>
+                          </div>
+                          <span class="text-[9px] text-primary/70 font-semibold uppercase tracking-wide">Casa ${profection.activeHouse}</span>
+                          <span class="text-[8px] text-warm-grey/35 uppercase tracking-wider">Activa</span>
+                        </div>
+                        
+                        <!-- Conector -->
+                        <div class="flex flex-col items-center gap-1 pb-4">
+                          <div class="w-px h-4 bg-warm-grey/20"></div>
+                          <span class="text-[8px] text-warm-grey/30">→</span>
+                          <div class="w-px h-4 bg-warm-grey/20"></div>
+                        </div>
+                        
+                        <!-- Nodo 3: Signo activo -->
+                        <div class="flex flex-col items-center gap-1">
+                          <div class="w-10 h-10 rounded-full bg-white/40 border border-[rgba(180,160,120,0.2)] flex items-center justify-center">
+                            <span class="w-5 h-5 opacity-60">${KAIROS_ICONS.zodiac[profection.activeSign] || ''}</span>
+                          </div>
+                          <span class="text-[9px] text-warm-grey/60 font-semibold uppercase tracking-wide">${profection.activeSign}</span>
+                          <span class="text-[8px] text-warm-grey/35 uppercase tracking-wider">Signo activo</span>
+                        </div>
+                        
+                      </div>
+                      
+                      <!-- Texto de contexto -->
+                      <p class="text-[8px] text-warm-grey/35 italic text-center mt-3 px-4">
+                        Tu profección anual activa Casa ${profection.activeHouse} en ${profection.activeSign} este ciclo
+                      </p>
                     </div>
-                    <div id="dash-zodiac-selector" class="no-scrollbar flex overflow-x-auto gap-4 p-2"></div>
                 </section>
+
+                <!-- [AÑO_PREMIUM] Bloque premium — se puebla por renderAnnualPremiumBlock -->
+                <div id="annual-premium-container"></div>
+
             </div>
     `;
 
@@ -2194,35 +2468,61 @@ async function renderTabContent(tabId) {
             }
         })();
     }
+
+    // [AÑO_PREMIUM] Poblar bloque premium (siempre, independiente del interpreter)
+    renderAnnualPremiumBlock(lordOriginal, profection, lang);
+
   } else if (tabId === 'weekly') {
-    const ascSign = state.user?.asc || 'Aries';
-    const lordOfYear = typeof lordOriginal !== 'undefined' ? lordOriginal : 'Sol';
-    const profHouse  = typeof profection !== 'undefined' ? profection.activeHouse : 1;
+    const ascSign = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.user?.ascendant)
+      ? window.KAIROS_SESSION.user.ascendant
+      : (state.user?.asc || 'Aries');
+    const lordOfYear = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual?.lordOriginal)
+      ? window.KAIROS_SESSION.annual.lordOriginal
+      : (typeof lordOriginal !== 'undefined' ? lordOriginal : 'Sol');
 
     // --- 1. HTML Base del Módulo SEMANA ---
     html = `
-        <div class="p-6 space-y-8 pb-32" id="weekly-container">
+        <div class="px-4 pt-4 space-y-8 pb-32 animate-fade-in" id="weekly-container">
 
-            <!-- Cabecera -->
-            <section class="text-center animate-fade-in pt-2">
-                <p class="text-[10px] font-black text-primary uppercase tracking-[0.5em] mb-3 opacity-60">${name} &middot; Año de ${lordOfYear}</p>
-                <h2 class="text-4xl font-black text-warm-grey uppercase tracking-tighter leading-none" id="weekly-verb-title">SEMANA</h2>
-                <div class="mt-4 mx-auto max-w-xs">
-                    <p class="text-xs text-warm-grey/75 leading-relaxed" id="weekly-verb-desc">
-                        Esta vista te muestra cómo cambia tu energía a lo largo de la semana, qué días son más favorables y cuándo puede convenir ir más despacio.
+            <!-- SEMANA-VISUAL-1: Portal Editorial Superior -->
+            <div class="rounded-[2.5rem] bg-[#F7F4EE] border border-[rgba(180,160,120,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 pt-10 pb-9 space-y-7">
+
+                <!-- 1. ENCABEZADO -->
+                <header class="text-center">
+                    <div class="flex flex-col items-center gap-4">
+                        <div class="size-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10 shadow-sm mb-2">
+                             <span class="material-symbols-outlined text-4xl">auto_graph</span>
+                        </div>
+                        <div>
+                            <div id="weekly-header-label" class="mb-3 text-[10px] font-black text-primary uppercase tracking-[0.35em] leading-none">
+  GUÍA PARA LA SEMANA
+</div>
+                            <h2 class="text-4xl font-black text-warm-grey uppercase tracking-tighter leading-none" id="weekly-verb-title">SEMANA</h2>
+                        </div>
+                        <p class="text-xs text-warm-grey/75 leading-relaxed max-w-[260px] mx-auto mt-2 hidden" id="weekly-verb-desc"></p>
+                    </div>
+                </header>
+
+                <!-- SEPARADOR EDITORIAL -->
+                <div class="border-t border-[rgba(180,160,120,0.12)]"></div>
+
+                <!-- 2. ISLA INTERIOR — núcleo emocional semanal -->
+                <div class="rounded-[1.75rem] bg-white/55 px-5 py-7 space-y-5 text-center">
+                    <p id="weekly-intro-text" class="text-[22px] font-semibold text-warm-grey leading-[1.3] tracking-tight italic max-w-[280px] mx-auto">
+                        Sincronizando tu semana...
+                    </p>
+                    <!-- Firma / contexto astrológico semanal (Cambio 3) -->
+                    <p id="weekly-pulso-activo" class="text-[10px] uppercase tracking-[0.18em] text-warm-grey/40 font-bold hidden">
+                        <!-- Inyectado dinámicamente si existe -->
                     </p>
                 </div>
-            </section>
 
-            <!-- Intro Semanal D.4.2 -->
-            <section class="bg-primary/5 border border-primary/10 rounded-[2rem] p-6 animate-fade-in" id="weekly-intro-section">
-                <p id="weekly-intro-text" class="text-xs text-warm-grey/90 leading-relaxed">Sincronizando tu semana...</p>
-            </section>
+            </div>
 
             <!-- Gráfica de Ritmo Semanal -->
             <section class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm" id="weekly-chart-section">
-                <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] mb-5 flex items-center gap-2">
-                    <span class="material-symbols-outlined text-xs">show_chart</span> RITMO DE LA SEMANA
+                <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] mb-5">
+                    CÓMO RESPIRA LA SEMANA
                 </p>
 
                 <!-- Gráfica SVG de curva de ritmo -->
@@ -2245,26 +2545,26 @@ async function renderTabContent(tabId) {
                 <div class="mt-5 pt-4 border-t border-slate-100 space-y-2">
                     <p class="text-[8px] font-black text-warm-grey/40 uppercase tracking-widest mb-3">QUÉ SIGNIFICA EL COLOR</p>
                     <div class="flex items-start gap-3">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 mt-0.5 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/70 leading-relaxed"><strong class="text-warm-grey">Día favorable.</strong> El cielo te acompaña. Buen momento para avanzar, tomar decisiones y actuar.</p>
+                        <span class="w-2.5 h-2.5 rounded-full mt-0.5 flex-shrink-0" style="background-color:#C4A46A"></span>
+                        <p class="text-[10px] text-warm-grey/40 leading-relaxed"><strong class="text-warm-grey/60">Día abierto.</strong> El terreno tiene más espacio. Lo que se inicia tiene tracción natural.</p>
                     </div>
                     <div class="flex items-start gap-3">
-                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 mt-0.5 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/70 leading-relaxed"><strong class="text-warm-grey">Día de equilibrio.</strong> Ritmo sostenido. Trabaja con constancia sin forzar resultados.</p>
+                        <span class="w-2.5 h-2.5 rounded-full mt-0.5 flex-shrink-0" style="background-color:#9DA8B5"></span>
+                        <p class="text-[10px] text-warm-grey/40 leading-relaxed"><strong class="text-warm-grey/60">Día sostenido.</strong> El arco avanza con su propio ritmo. Sin empuje ni resistencia marcada.</p>
                     </div>
                     <div class="flex items-start gap-3">
-                        <span class="w-2.5 h-2.5 rounded-full bg-rose-400 mt-0.5 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/70 leading-relaxed"><strong class="text-warm-grey">Día sensible.</strong> Energía más baja o tensa. Mejor observar y descansar que forzar.</p>
+                        <span class="w-2.5 h-2.5 rounded-full mt-0.5 flex-shrink-0" style="background-color:#7C8CA0"></span>
+                        <p class="text-[10px] text-warm-grey/40 leading-relaxed"><strong class="text-warm-grey/60">Día denso.</strong> El arco concentra más peso. Conviene ir a lo esencial.</p>
                     </div>
                     <div class="flex items-start gap-3">
-                        <span class="text-[10px] flex-shrink-0 mt-0">⚡</span>
-                        <p class="text-[10px] text-warm-grey/70 leading-relaxed"><strong class="text-warm-grey">Cambio lunar.</strong> La Luna entra en nueva zona. El tono de la semana se renueva.</p>
+                        <span class="w-2.5 h-2.5 rounded-full border mt-0.5 flex-shrink-0" style="background-color:transparent;border-color:#9DA8B5"></span>
+                        <p class="text-[10px] text-warm-grey/40 leading-relaxed"><strong class="text-warm-grey/60">Cambio de tono.</strong> La Luna entra en nueva zona. El registro de la semana se desplaza.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Tres Tramos -->
-            <section>
+            <section id="weekly-movement-section">
                 <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
                     <span class="material-symbols-outlined text-xs">timeline</span> CÓMO SE MUEVE LA SEMANA
                 </p>
@@ -2275,84 +2575,63 @@ async function renderTabContent(tabId) {
                 </div>
             </section>
 
-            <!-- [FEATURE FLAG] Capa futura premium semanal (OCULTA) -->
-            <!-- weekly_premium_visible = false -->
-            <!-- Esta capa es distinta a la capa futura de HOY: es de escala semanal -->
-            <section id="weekly-future-premium" class="hidden opacity-40 grayscale"
-                     data-flag="weekly_premium_visible=false">
-                <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] mb-4">ACTIVACIONES PERSONALES</p>
-                <p class="text-xs text-warm-grey/60 italic" id="weekly-premium-activaciones">—</p>
-                <p class="text-xs text-warm-grey/60 italic" id="weekly-premium-ventanas">—</p>
-                <p class="text-xs text-warm-grey/60 italic" id="weekly-premium-senales">—</p>
-            </section>
+            <!-- Bloques Premium SEMANA -->
+            <section class="mt-2 space-y-4">
 
-            <!-- Teaser Premium Semanal (siempre visible, no funcional — capa futura) -->
-            <section class="p-6 rounded-[2rem] bg-slate-50/80 border border-slate-100 select-none pointer-events-none" aria-hidden="true">
-                <div class="flex items-center justify-between mb-4">
-                    <p class="text-[9px] font-black text-warm-grey/40 uppercase tracking-[0.4em]">PRÓXIMAMENTE</p>
-                    <span class="text-sm leading-none opacity-50">🔒</span>
-                </div>
-                <div class="space-y-3">
-                    <div class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-200 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/40">Activaciones personales de la semana</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-200 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/40">Mejores momentos para actuar</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-200 flex-shrink-0"></span>
-                        <p class="text-[10px] text-warm-grey/40">Señales clave de la semana</p>
+                <!-- 1. Activaciones personales -->
+                <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                    <div style="text-align:center;padding:4px 0 14px">
+                        <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                        <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Activaciones personales de la semana</p>
+                        <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Los momentos donde tu carta se activa con más intensidad durante esta semana.</p>
+                        <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
                     </div>
                 </div>
+
+                <!-- 2. Ventanas de oportunidad -->
+                <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                    <div style="text-align:center;padding:4px 0 14px">
+                        <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                        <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Ventanas de oportunidad dinámica</p>
+                        <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Días donde ciertas decisiones, conversaciones o movimientos encuentran más apertura.</p>
+                        <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                    </div>
+                </div>
+
+                <!-- 3. Zonas de desgaste -->
+                <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                    <div style="text-align:center;padding:4px 0 14px">
+                        <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                        <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Zonas de desgaste y saturación</p>
+                        <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Momentos donde conviene bajar ritmo, simplificar o evitar sobrecarga.</p>
+                        <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                    </div>
+                </div>
+
+                <!-- 4. Dirección emocional -->
+                <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                    <div style="text-align:center;padding:4px 0 14px">
+                        <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                        <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Dirección emocional de la semana</p>
+                        <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">El tono interno que atraviesa la semana y cómo puede influir en tu manera de responder.</p>
+                        <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                    </div>
+                </div>
+
             </section>
 
         </div>
     `;
 
-    // --- 2. Motor de Sombra Semanal con FIX de contexto ---
-    const cachedWeekly = checkCache('weekly');
-    if (cachedWeekly) {
-        renderWeeklyNarrative(cachedWeekly, state.lang);
-    } else if (window.KAIROS_FLAGS && window.KAIROS_FLAGS.ENABLE_SHADOW_INTERPRETER && window.interpreter_engine) {
-        (async () => {
-            try {
-                // Calcular la secuencia lunar real
-                const moonSequence = await window.transit_engine.getWeeklySequence(ascSign);
-
-                // Datos temporales mínimos para pasar validateContext (exige los 6 bloques)
-                const weeklyTransits  = window.CURRENT_TRANSITS || {};
-                const weeklyDayPlanet = (window.transit_engine?.getDayPlanet)
-                    ? window.transit_engine.getDayPlanet(new Date())
-                    : 'Sol';
-                const weeklyMoonSign  = (moonSequence && moonSequence[0]) ? moonSequence[0].moonSign : (weeklyTransits?.Luna || 'Aries');
-                const weeklyMoonHouse = (moonSequence && moonSequence[0]) ? moonSequence[0].moonHouse : 1;
-
-                // [v650.5.13] Usar el contexto unificado extendido
-                const weeklyShadowContext = {
-                    ...sc,
-                    weekly_context: {
-                        moon_sequence: moonSequence  // Datos reales de los 7 días
-                    },
-                    request_context: { view: 'weekly' }
-                };
-
-                const response = await window.interpreter_engine.processRequest(weeklyShadowContext);
-                if (response && response.content) {
-                    state.cache.interpretations['weekly'] = response.content;
-                    renderWeeklyNarrative(response.content, state.lang);
-                }
-            } catch (e) {
-                console.error('[KAIROS WEEKLY] Error en motor semanal:', e);
-            }
-        })();
-    }
+    // --- 2. Motor de Sombra Semanal (Post-inyección) ---
+    // [v650.5.161] Movido al ciclo de vida post-inyección para evitar race conditions en re-visitas.
   } else if (tabId === 'daily') {
     const dayName = new Date().toLocaleDateString(state.lang, { weekday: 'long' });
     const dayNameCap = dayName.charAt(0).toUpperCase() + dayName.slice(1);
     // Asegurar que planetas de día se calculen siempre frescos matemáticamente, no por fallbacks cacheados de estado
-    const planetDayCalc = (window.transit_engine && window.transit_engine.getDayPlanet) ? window.transit_engine.getDayPlanet(new Date()) : 'Sol';
+    const planetDayCalc = (window.KAIROS_SESSION && window.KAIROS_SESSION.ready && window.KAIROS_SESSION.sky?.planetOfDay)
+        ? window.KAIROS_SESSION.sky.planetOfDay
+        : ((window.transit_engine && window.transit_engine.getDayPlanet) ? window.transit_engine.getDayPlanet(new Date()) : 'Sol');
     const translatedDayPlanet = t.planets[planetDayCalc] || planetDayCalc;
 
     // Actualizar tránsitos globales de forma proactiva
@@ -2389,54 +2668,67 @@ async function renderTabContent(tabId) {
     }
 
     html = `
-            <div class="p-8 space-y-10 pb-32 animate-fade-in">
-                <!-- 1. ENCABEZADO PULSO LUNAR -->
-                <header class="text-center pt-6">
-                    <div class="flex flex-col items-center gap-4">
-                        <div class="size-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10 shadow-sm mb-2">
-                             <span class="material-symbols-outlined text-4xl">${currentTransits['Luna'] === 'Nueva' ? 'brightness_3' : 'brightness_6'}</span>
-                        </div>
-                        <div>
-                            <p class="text-[10px] font-black text-primary uppercase tracking-[0.6em] mb-3" id="daily-header-label">${t.profectionDaily}</p>
-                            <h2 class="text-3xl font-black text-warm-grey uppercase tracking-tighter leading-none" id="daily-header-title">${dailyData.title}</h2>
-                        </div>
-                        <p class="text-[10px] font-medium text-warm-grey/60 italic max-w-[260px] leading-relaxed mx-auto mt-2">
-                            Esta guía combina la Luna de hoy, el planeta del día y tu ciclo anual para orientarte en el momento presente.
-                        </p>
-                    </div>
-                 </header>
+            <div class="px-4 pt-4 space-y-6 pb-32 animate-fade-in">
 
-                <section class="text-center pt-2 space-y-3">
-                    <div class="flex flex-col items-center">
-                        <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-1">ESCENARIO DEL DÍA</p>
+                <!-- HOY-VISUAL-1: Portal Editorial Superior -->
+                <div id="daily-portal" class="rounded-[2.5rem] bg-[#F7F4EE] border border-[rgba(180,160,120,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 pt-10 pb-9 space-y-7">
+
+                    <!-- 1. ENCABEZADO PULSO LUNAR -->
+                    <header class="text-center">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="size-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10 shadow-sm mb-2">
+                                 <span class="material-symbols-outlined text-4xl">${currentTransits['Luna'] === 'Nueva' ? 'brightness_3' : 'brightness_6'}</span>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-primary uppercase tracking-[0.6em] mb-3" id="daily-header-label">${t.profectionDaily}</p>
+                                <h2 class="text-3xl font-black text-warm-grey uppercase tracking-tighter leading-none" id="daily-header-title">${dailyData.title}</h2>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- ESCENARIO DEL DÍA -->
+                    <section id="daily-scenario" class="text-center space-y-2 rounded-2xl border border-primary/10 px-4 py-3">
+                        <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em]">ESCENARIO DEL DÍA</p>
                         <p class="text-xs font-bold text-warm-grey italic opacity-80" id="daily-area-activada">Sincronizando escenario...</p>
+                    </section>
+
+                    <!-- 2.5. APERTURA HOY-2B -->
+                    <section class="text-center px-2">
+                        <p class="text-sm font-medium text-warm-grey leading-relaxed" id="daily-apertura" style="min-height:1.2em">&nbsp;</p>
+                    </section>
+
+                    <!-- 3. RELATO CENTRAL — HOY-VISUAL-3: isla interior núcleo emocional -->
+                    <article id="daily-narrative" class="text-center pt-6 border-t border-[rgba(180,160,120,0.12)]">
+                        <div class="rounded-[1.75rem] bg-white/55 px-5 py-7 space-y-5">
+                            <p id="daily-narrativa" class="text-[22px] font-semibold text-warm-grey leading-[1.3] tracking-tight italic max-w-[280px] mx-auto">
+                                ${dailyData.narrative}
+                            </p>
+                            <!-- Firma astrológica -->
+                            <p id="daily-pulso-activo" class="text-[10px] uppercase tracking-[0.18em] text-warm-grey/40 font-bold">
+                                ${dailyData.pulso_activo || ''}
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+                <!-- fin portal editorial HOY-VISUAL-1 -->
+
+
+                <!-- 4. TRIPLETE KAIROS — Layout vertical HOY-2B -->
+                <section id="daily-triplet" class="bg-slate-900 px-8 py-8 rounded-[3rem] text-white shadow-xl shadow-slate-200 space-y-6">
+                    <div>
+                        <p class="text-[7px] font-black text-white/30 uppercase tracking-widest mb-2">CLIMA</p>
+                        <p class="text-[12px] font-medium text-white/90 leading-relaxed" id="daily-triplete-clima">${dailyData.intensity}</p>
                     </div>
-                </section>
-
-                <!-- 3. RELATO CENTRAL (Pulso) -->
-                <article class="py-4 text-center">
-                    <h3 class="text-2xl font-black text-warm-grey leading-[1.1] tracking-tighter px-4" id="daily-narrativa">
-                        "${dailyData.synthesis}"
-                    </h3>
-                </article>
-
-                <!-- 4. TRIPLETE KAIROS HORIZONTAL -->
-                <section class="bg-slate-900 p-8 rounded-[3rem] text-white shadow-xl shadow-slate-200">
-                    <div class="flex items-center justify-between gap-1">
-                        <div class="flex-1 text-center">
-                            <p class="text-[7px] font-black text-white/30 uppercase tracking-widest mb-1">CLIMA</p>
-                            <p class="text-[10px] font-bold uppercase" id="daily-triplete-clima">${dailyData.intensity}</p>
-                        </div>
-                        <div class="w-px h-8 bg-white/10 mx-2"></div>
-                        <div class="flex-[1.5] text-center px-1">
-                            <p class="text-[7px] font-black text-primary uppercase tracking-widest mb-1">DIRECCIÓN</p>
-                            <p class="text-[10px] font-bold uppercase truncate" id="daily-triplete-direccion">${dailyData.actionRecommended}</p>
-                        </div>
-                        <div class="w-px h-8 bg-white/10 mx-2"></div>
-                        <div class="flex-1 text-center">
-                            <p class="text-[7px] font-black text-white/30 uppercase tracking-widest mb-1">CUIDADO</p>
-                            <p class="text-[10px] font-bold uppercase" id="daily-triplete-cuidado">${dailyData.warning}</p>
-                        </div>
+                    <div class="w-full h-px bg-white/10"></div>
+                    <div>
+                        <p class="text-[7px] font-black text-primary uppercase tracking-widest mb-2">DIRECCIÓN</p>
+                        <p class="text-[12px] font-semibold text-white leading-relaxed" id="daily-triplete-direccion">${dailyData.actionRecommended}</p>
+                    </div>
+                    <div class="w-full h-px bg-white/10"></div>
+                    <div>
+                        <p class="text-[7px] font-black text-white/30 uppercase tracking-widest mb-2">CUIDADO</p>
+                        <p class="text-[11px] font-medium text-white/60 italic leading-relaxed" id="daily-triplete-cuidado">${dailyData.warning}</p>
                     </div>
                 </section>
 
@@ -2454,13 +2746,62 @@ async function renderTabContent(tabId) {
                 </section>
 
                     <!-- 5.5. RESONANCIA PERSONAL -->
-                    <section class="pt-4 px-2 text-center">
+                    <section id="daily-resonance" class="pt-4 px-2 text-center">
                         <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-2">TU RESONANCIA PERSONAL HOY</p>
                         <p class="text-sm font-medium text-warm-grey italic leading-relaxed" id="daily-resonancia-personal">
                             Sincronizando cielo natal...
                         </p>
                     </section>
-    
+
+                    <!-- PREGUNTA CENTRAL — movida aquí, antes de los bloques bloqueados -->
+                    <div class="pt-6 text-center">
+                        <p class="text-[9px] font-black text-primary/30 uppercase tracking-[0.5em] mb-4">PREGUNTA CENTRAL</p>
+                        <p class="text-lg font-black text-warm-grey italic leading-tight mb-8 px-6" id="daily-pregunta">
+                            "${dailyData.dailyQuestion}"
+                        </p>
+                    </div>
+
+                    <!-- HOY-2B: Bloques avanzados bloqueados — tokens idénticos a AÑO -->
+                    <section class="mt-2 space-y-4">
+
+                        <!-- SEÑAL OCULTA -->
+                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Señal Oculta</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
+                                    Qué está siendo activado hoy en tu carta natal. La capa que explica por qué este día se siente diferente para ti.
+                                </p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <!-- BRÚJULA KAIROS -->
+                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Brújula Kairos</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
+                                    Tu orientación personalizada para hoy. Qué expandir, qué sostener, qué iniciar y qué soltar — según tu carta natal y el momento actual.
+                                </p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <!-- EL ORIGEN DEL DÍA -->
+                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">El Origen del Día</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
+                                    Por qué este día te afecta exactamente así a ti. La razón natal concreta detrás de lo que estás sintiendo.
+                                </p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                    </section>
+
                     <!-- [FEATURE FLAG OCULTA: daily_future_signals_visible = false] -->
                     <!-- TEMPLATE PREPARADO PARA FUTURA CAPA DE ANÁLISIS ASTROLÓGICA (No alterar div ni IDs) -->
                     <!-- Oculto para producción v650.5.45 -->
@@ -2475,8 +2816,8 @@ async function renderTabContent(tabId) {
                             <p class="text-[10px] font-bold text-warm-grey uppercase tracking-widest truncate" id="daily-future-key-days">DÍAS CLAVE DEL CICLO</p>
                         </div>
                     </section>
-    
-                    <!-- 6. MOMENT RADAR & QUESTION (Cierre) -->
+
+                    <!-- 6. MOMENT RADAR (Cierre) -->
                     <footer class="space-y-8 mt-8">
                         ${(state.momentRadar && radarHumanLabel !== "Día de Acción") ? `
                         <div class="p-8 rounded-[3rem] border border-primary/5 bg-white shadow-sm text-center radar-pulse radar-${radarStatusClass}">
@@ -2488,13 +2829,6 @@ async function renderTabContent(tabId) {
                             <div class="text-2xl font-black text-warm-grey tracking-tighter mb-2">${radarHumanLabel}</div>
                         </div>
                         ` : ''}
-    
-                            <div class="pt-4 text-center">
-                            <p class="text-[9px] font-black text-primary/30 uppercase tracking-[0.5em] mb-4">PREGUNTA CENTRAL</p>
-                            <p class="text-lg font-black text-warm-grey italic leading-tight mb-8 px-6" id="daily-pregunta">
-                                "${dailyData.dailyQuestion}"
-                            </p>
-                        </div>
 
                         <!-- [SECCIÓN F] REGULACIÓN EMOCIONAL DIARIA (KAIROS LEVANTADO) -->
                         <div id="daily-regulatory-close" class="hidden mt-6 bg-slate-900 p-8 rounded-[3rem] text-center italic text-xs font-bold text-primary leading-relaxed shadow-xl border border-primary/20">
@@ -2507,7 +2841,13 @@ async function renderTabContent(tabId) {
     // --- MODO SOMBRA KAIROS (Caché e Independencia) ---
     const cachedDaily = checkCache('daily');
     if (cachedDaily) {
-        renderDailyNarrative(cachedDaily);
+        // Diferir para asegurar que el DOM ya existe
+        setTimeout(() => {
+            if (state.currentTab === 'daily') {
+                console.log("📄 KAIROS: Restaurando narrativa diaria desde caché...");
+                renderDailyNarrative(cachedDaily);
+            }
+        }, 0);
     } else if (window.KAIROS_FLAGS && window.KAIROS_FLAGS.ENABLE_SHADOW_INTERPRETER && window.interpreter_engine) {
         (async () => {
             try {
@@ -2547,32 +2887,32 @@ async function renderTabContent(tabId) {
     // Gating eliminado para permitir shell FREE en v650.5.33
 
 
-    const ascSign = state.user?.asc || 'Aries';
-    const lord = typeof lordOriginal !== 'undefined' ? lordOriginal : 'Sol';
-    const currentPlanet = state.temporalContext?.day_planet || 'Sol';
+    const ascSign = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.user?.ascendant)
+      ? window.KAIROS_SESSION.user.ascendant
+      : (state.user?.asc || 'Aries');
+    const lord = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual?.lordOriginal)
+      ? window.KAIROS_SESSION.annual.lordOriginal
+      : (typeof lordOriginal !== 'undefined' ? lordOriginal : (state.user?.lordOfYear || 'Sol'));
+    const currentPlanet = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.sky?.planetOfDay)
+      ? window.KAIROS_SESSION.sky.planetOfDay
+      : (state.temporalContext?.day_planet || 'Sol');
     
     // --- 1. Preparación de HTML Base (Integrative Shell) ---
     html = `
         <div class="p-8 space-y-12 bg-deep-navy text-white min-h-screen rounded-t-[4rem]" id="matrix-container">
             <!-- Encabezado de Maestría -->
-            <section class="text-center pt-10 animate-fade-in">
-                <h2 class="text-4xl font-black italic tracking-tighter uppercase mb-4 leading-none" id="matrix-mastery-title">
-                    LO QUE TU MOMENTO NECESITA
-                </h2>
-                <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
-            </section>
-
-            <!-- La Directriz: El Mando Integrado -->
-            <section class="bg-white/5 p-10 rounded-[4rem] text-center border border-white/10 relative overflow-hidden space-y-6">
-                <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
-                
-                <div class="space-y-2">
-                    <p class="text-xs text-white/60 font-medium">MATRIX te propone recursos prácticos para acompañar mejor el día que estás viviendo.</p>
-                    <p class="text-[13px] text-primary italic font-medium leading-relaxed px-4" id="matrix-intro-val"></p>
+            <section class="text-center pt-10 animate-fade-in flex flex-col items-center">
+                <!-- Icono circular de MATRIX -->
+                <div class="size-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10 shadow-sm mb-4 mx-auto">
+                     <span class="material-symbols-outlined text-4xl">hub</span>
                 </div>
-
-                <!-- Subtítulo Humano Dinámico -->
-                <p class="text-3xl font-black italic tracking-tighter leading-tight pt-4 border-t border-white/5" id="matrix-directive-val"></p>
+                <div>
+                    <p class="text-sm font-black text-primary uppercase tracking-[0.6em] mb-3" id="matrix-header-label">MATRIX</p>
+                    <h2 class="text-4xl font-black italic tracking-tighter uppercase mb-4 leading-none" id="matrix-mastery-title">
+                        LO QUE TU MOMENTO NECESITA
+                    </h2>
+                </div>
+                <div class="h-1 w-12 bg-primary mx-auto rounded-full mt-2"></div>
             </section>
 
             <!-- TOOLKIT DE NAVEGACIÓN: Los 3 Pilares -->
@@ -2582,7 +2922,7 @@ async function renderTabContent(tabId) {
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-lg">health_and_safety</span>
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">CUERPO</h4>
+                            <h4 class="text-[11px] font-black tracking-[0.1em] text-primary">Cuerpo</h4>
                         </div>
                         <div class="flex gap-1" id="intensity-body">
                             <div class="w-3 h-1 rounded-full bg-white/10"></div>
@@ -2600,7 +2940,7 @@ async function renderTabContent(tabId) {
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-lg">psychology</span>
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">MENTE</h4>
+                            <h4 class="text-[11px] font-black tracking-[0.1em] text-primary">Mente</h4>
                         </div>
                         <div class="flex gap-1" id="intensity-mind">
                             <div class="w-3 h-1 rounded-full bg-white/10"></div>
@@ -2618,7 +2958,7 @@ async function renderTabContent(tabId) {
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-primary text-lg">flare</span>
-                            <h4 class="text-[10px] font-black uppercase tracking-[0.3em] text-primary">ENERGÍA</h4>
+                            <h4 class="text-[11px] font-black tracking-[0.1em] text-primary">Energía</h4>
                         </div>
                         <div class="flex gap-1" id="intensity-energy">
                             <div class="w-3 h-1 rounded-full bg-white/10"></div>
@@ -2632,24 +2972,8 @@ async function renderTabContent(tabId) {
                 </div>
             </div>
 
-            <!-- Monitor de Intensidad Oculto o Minimalista -->
-            <div class="hidden" id="matrix-intensity-monitor">
-            </div>
 
-            ${!hasPremiumAccess ? `
-            <section class="p-8 rounded-[3rem] bg-white/5 border border-white/10 text-center space-y-6 mt-4">
-                <div class="space-y-3">
-                    <span class="material-symbols-outlined text-4xl text-primary">lock</span>
-                    <h3 class="text-xl font-black italic tracking-tighter uppercase leading-none">ANÁLISIS PROFUNDO PREMIUM</h3>
-                    <p class="text-sm text-slate-400 leading-relaxed font-medium">
-                        Accede al análisis completo que integra tu carta natal, tránsitos actuales y ciclo anual en una sola visión práctica.
-                    </p>
-                </div>
-                <button onclick="initPaymentSession('premium')" class="w-full bg-primary text-deep-navy font-black px-8 py-5 rounded-full uppercase tracking-tighter hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary/20">
-                    DESBLOQUEAR MATRIX PREMIUM
-                </button>
-            </section>
-            ` : ''}
+
         </div>
     `;
 
@@ -2666,7 +2990,10 @@ async function renderTabContent(tabId) {
             // Recolectar contextos de todas las vistas de forma autónoma
             const moonHouse = await window.transit_engine.getMoonHouse(ascSign);
             const monthlyHotspots = await window.transit_engine.getMonthlyHotspots();
-            const weeklySequence = await window.transit_engine.getWeeklySequence(ascSign);
+            // [SESSION Fase 2B] Leer secuencia semanal desde SESSION — fallback a cálculo directo
+            const weeklySequence = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.sky?.weeklySequence)
+              ? window.KAIROS_SESSION.sky.weeklySequence
+              : await window.transit_engine.getWeeklySequence(ascSign);
             
             // [v650.5.35] Normalizar claves de natal_context.planets para compatibilidad con módulo Matrix
             const rawNatalPlanets = sc.natal_context?.planets || {};
@@ -2733,112 +3060,60 @@ async function renderTabContent(tabId) {
   } else if (tabId === 'monthly') {
     const ascSign = state.user?.asc || 'Aries';
     
-    // --- 1. Preparación de HTML Base (Arquitectura MES v1.5 - REFINADA) ---
+    // --- 1. Preparación de HTML Base (MES-EDITORIAL-1) ---
     html = `
-        <div class="p-6 space-y-12 pb-32" id="monthly-container">
-            <!-- Encabezado Estratégico -->
-            <section class="text-center animate-fade-in pt-8">
-                <p class="text-[10px] font-black text-primary uppercase tracking-[0.6em] mb-3">${t.profectionMonthly}</p>
-                <h2 class="text-4xl font-black text-warm-grey uppercase tracking-tighter mb-4" id="monthly-verb-title">${t.monthlyTitle}</h2>
-                <p id="monthly-subtitle" class="text-[11px] text-warm-grey/60 max-w-[300px] mx-auto leading-relaxed italic">
-                    Analizamos el pulso de tu año para que sepas cuándo accionar y dónde observar dentro de este ciclo.
-                </p>
-            </section>
+        <div class="p-6 space-y-6 pb-32 animate-fade-in" id="monthly-container">
+            
+            <!-- 1. PORTAL EDITORIAL SUPERIOR -->
+            <div id="monthly-portal-container" class="rounded-[2.5rem] bg-[#F7F4EE] border border-[rgba(180,160,120,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 pt-10 pb-9 space-y-7">
+                
+                <!-- EJE DEL MES — pieza dominante con Icono (Cambio 1 & 5) -->
+                <header class="text-center">
+                    <div class="flex flex-col items-center gap-4">
+                        <!-- Icono circular de MES -->
+                        <div class="size-16 bg-primary/5 rounded-full flex items-center justify-center text-primary border border-primary/10 shadow-sm mb-2">
+                             <span class="material-symbols-outlined text-4xl">autorenew</span>
+                        </div>
+                        <p class="text-[10px] font-black text-primary uppercase tracking-[0.6em] mb-3" id="monthly-header-label">GUÍA PARA EL MES</p>
+                        <div>
+                            <h2 class="text-4xl font-black text-warm-grey uppercase tracking-tighter leading-[0.95] text-center mb-4" id="monthly-verb-title">
+                                ${t.monthlyTitle}
+                            </h2>
+                        </div>
 
-            <!-- [A] CLAVES DEL MES -->
-            <section id="monthly-keys-grid" class="grid grid-cols-2 gap-4 animate-fade-in hidden">
-                <div class="p-5 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center">
-                    <span class="material-symbols-outlined text-primary text-xl mb-2">speed</span>
-                    <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">INTENSIDAD</p>
-                    <p class="text-[11px] font-bold text-warm-grey" id="monthly-key-intensity">Moderada</p>
-                </div>
-                <div class="p-5 rounded-[2rem] bg-slate-50 border border-slate-100 flex flex-col items-center text-center">
-                    <span class="material-symbols-outlined text-primary text-xl mb-2">navigation</span>
-                    <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-1 shadow-sm">FOCO</p>
-                    <p class="text-[11px] font-bold text-warm-grey" id="monthly-key-focus">Observar</p>
-                </div>
-            </section>
+                    </div>
+                </header>
 
-            <!-- [B] RITMO MENSUAL: Onda de Energía v1.5 -->
-            <section class="bg-white p-7 rounded-[3.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[14px]">analytics</span> ONDA DE ENERGÍA
+                <!-- Separador editorial -->
+                <div class="border-t border-[rgba(180,160,120,0.12)]"></div>
+
+                <!-- Isla interior — desarrollo del eje -->
+                <div class="rounded-[1.75rem] bg-white/55 px-5 py-7 space-y-4 text-center">
+                    <h3 id="monthly-proceso-destacado" class="text-2xl font-black text-primary uppercase tracking-wide leading-none mb-1">
+                        PROCESO EN...
+                    </h3>
+                    <p id="monthly-intro-text" class="text-[22px] font-semibold text-warm-grey leading-[1.3] tracking-tight italic max-w-[280px] mx-auto">
+                        Sincronizando el eje del mes...
                     </p>
-                    <span class="text-[8px] font-black text-slate-300 uppercase tracking-widest" id="monthly-current-month">--</span>
+                    <p id="monthly-firma" class="text-[10px] uppercase tracking-[0.18em] text-warm-grey/40 font-bold">
+                        <!-- Inyectado dinámicamente -->
+                    </p>
                 </div>
-                
-                <div class="mb-4 text-center px-4">
-                    <p class="text-[9px] font-black text-warm-grey/30 uppercase tracking-[0.2em] mb-1">Sincronización Mensual</p>
-                    <p id="monthly-graph-explanation" class="text-[11px] text-warm-grey/60 italic font-medium leading-relaxed">"Tu energía se mueve según la Luna y tu ciclo personal."</p>
-                </div>
-                
-                <div class="relative h-48 mb-4 mt-8">
-                    <!-- SVG de Onda Bezier Suave -->
-                    <svg id="monthly-wave-svg" class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-                         <!-- Path dinámico -->
-                    </svg>
-                    
-                    <!-- Cursor Hoy -->
-                    <div id="monthly-today-cursor" class="absolute h-full w-px bg-orange-400/30 transition-all duration-1000 z-10 bottom-0" style="left: 0%">
-                        <div id="monthly-today-date-badge" class="absolute top-[-14px] -translate-x-1/2 px-3 py-1.5 bg-orange-500 text-white text-[9px] font-black uppercase rounded-lg shadow-xl tracking-widest leading-none whitespace-nowrap z-20">--</div>
-                        <div class="absolute bottom-[-6px] -translate-x-1/2 w-2 h-2 rounded-full bg-orange-500 border-2 border-white shadow-sm ring-4 ring-orange-500/10"></div>
+
+                <!-- Métricas transformadas (Cambio 4) -->
+                <section id="monthly-keys-grid" class="grid grid-cols-2 gap-4 animate-fade-in hidden">
+                    <div class="p-5 rounded-[2rem] bg-white/40 border border-slate-100/50 flex flex-col items-center text-center backdrop-blur-sm shadow-sm transition-all duration-300 hover:bg-white/60">
+                        <p class="text-[8px] font-black text-warm-grey/40 uppercase tracking-widest mb-1">TONO DEL CICLO</p>
+                        <p class="text-xs font-bold text-warm-grey" id="monthly-key-intensity">—</p>
                     </div>
-                </div>
-
-                <div class="flex justify-between px-2 pt-2 mb-8">
-                   <div class="text-center">
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest" id="monthly-first-day">--</p>
-                   </div>
-                   <div class="text-center">
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest" id="monthly-last-day">--</p>
-                   </div>
-                </div>
-
-                <!-- LEYENDA FINAL v1.9 [PRE-FREEZE] -->
-                <div class="flex justify-between items-center px-1 pt-6 border-t border-slate-50">
-                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/40 uppercase tracking-widest">
-                        <div class="size-1.5 rounded-full border border-primary/60 bg-white"></div>
-                        <span>Luna Nueva</span>
+                    <div class="p-5 rounded-[2rem] bg-white/40 border border-slate-100/50 flex flex-col items-center text-center backdrop-blur-sm shadow-sm transition-all duration-300 hover:bg-white/60">
+                        <p class="text-[8px] font-black text-warm-grey/40 uppercase tracking-widest mb-1">VERBO GUÍA</p>
+                        <p class="text-xs font-bold text-warm-grey" id="monthly-key-focus">—</p>
                     </div>
-                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/40 uppercase tracking-widest">
-                        <div class="size-1.5 rounded-full bg-primary/30 border border-primary/50"></div>
-                        <span>Luna Llena</span>
-                    </div>
-                    <div class="flex items-center gap-1 text-[8px] font-bold text-orange-600 uppercase tracking-widest">
-                        <div class="size-2 rounded-full bg-orange-500"></div>
-                        <span>Hoy</span>
-                    </div>
-                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/50 uppercase tracking-widest">
-                        <div class="size-2 rounded-full border border-primary/40 border-dashed bg-white"></div>
-                        <span>Tu punto</span>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
-            <!-- [C] EVENTOS DEL MES -->
-            <section class="space-y-6">
-                <div class="flex justify-between items-center px-2">
-                    <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em]">EVENTOS CLAVE DEL MES</p>
-                    <span class="text-[8px] font-black text-warm-grey/40 uppercase tracking-widest" id="monthly-hitos-count">-- EVENTOS</span>
-                </div>
-                <div id="monthly-hitos-grid" class="space-y-4">
-                    <!-- Cards dinámicas -->
-                </div>
-            </section>
-
-            <!-- [C.5] ESCENARIO DEL MES — v650.5.83 D.4.10-C -->
-            <section id="monthly-escenario-container"></section>
-
-            <!-- [D] ESTRATEGIA: CÓMO NAVEGARLO (Accordions) -->
-            <section class="space-y-6">
-                <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] px-2">CÓMO NAVEGAR ESTE CICLO</p>
-                <div class="space-y-3" id="monthly-accordions-container">
-                    <!-- Desplegables dinámicos -->
-                </div>
-            </section>
-
-            <!-- [E] CONEXIÓN CON TU AÑO -->
+            <!-- 2. TU ESCENARIO ACTIVO (Sube de posición - Cambio 2) -->
             <section id="monthly-connection-box" class="p-8 rounded-[3.5rem] bg-warm-grey text-white shadow-2xl shadow-warm-grey/30 relative overflow-hidden hidden">
                 <div class="absolute -top-4 -right-4 size-32 opacity-5 rotate-12">
                     <span class="material-symbols-outlined text-9xl">account_tree</span>
@@ -2855,95 +3130,129 @@ async function renderTabContent(tabId) {
                 </div>
             </section>
 
-            <!-- [F] PRÓXIMAMENTE (PREMIUM) -->
-            <section class="mt-8">
-                <details class="group p-10 rounded-[4rem] border-2 border-dashed border-slate-200 bg-slate-50/30 text-center relative overflow-hidden transition-all duration-700">
-                    <summary class="list-none cursor-pointer outline-none select-none">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-white/50 pointer-events-none"></div>
-                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mb-10 flex items-center justify-center gap-3">
-                            <span class="material-symbols-outlined text-sm group-open:rotate-180 transition-transform">lock</span> PRÓXIMAMENTE PREMIUM
-                        </p>
-                        
-                        <div class="grid grid-cols-1 gap-6 relative z-10">
-                            <div class="flex items-center gap-5 text-left">
-                                <div class="size-10 bg-white rounded-2xl flex items-center justify-center border border-slate-100 text-primary shadow-sm"><span class="material-symbols-outlined text-xl">auto_awesome</span></div>
-                                <div>
-                                    <p class="text-[11px] font-bold text-warm-grey uppercase tracking-wider">Activaciones Natales</p>
-                                    <p class="text-[9px] text-slate-400 font-medium">Días clave de tu configuración personal.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-5 text-left">
-                                <div class="size-10 bg-white rounded-2xl flex items-center justify-center border border-slate-100 text-primary shadow-sm"><span class="material-symbols-outlined text-xl">hub</span></div>
-                                <div>
-                                    <p class="text-[11px] font-bold text-warm-grey uppercase tracking-wider">Tránsitos de Tono</p>
-                                    <p class="text-[9px] text-slate-400 font-medium">Cronografía personalizada del mes.</p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="h-4"></div>
 
-                        <div class="mt-10 px-10 py-4 bg-primary text-white rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-xl hover:scale-105 transition-all inline-block group-open:hidden">
-                            DESCUBRIR MÁS
-                        </div>
-                    </summary>
+            <!-- 3. HITOS DEL CICLO (Renombrado - Cambio 3) -->
+            <section id="monthly-hitos-section" class="space-y-6">
+                <div class="flex justify-between items-center px-2">
+                    <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em]">MOMENTOS DEL PROCESO</p>
+                    <span class="text-[8px] font-black text-warm-grey/40 uppercase tracking-widest" id="monthly-hitos-count">-- HITOS</span>
+                </div>
+                <div id="monthly-hitos-grid" class="space-y-4">
+                    <!-- Cards dinámicas -->
+                </div>
+            </section>
 
-                    <div class="pt-8 text-left space-y-8 relative z-10 pb-4">
-                        <div class="h-px bg-slate-100 w-full mb-8"></div>
-                        
-                        <p class="text-[14px] font-medium leading-relaxed text-warm-grey/90 italic border-l-2 border-primary/20 pl-4 py-1">
-                            "Aquí es donde tu ciclo se vuelve personal. No solo ves el mes; entiendes cuándo actuar y qué se activa en ti."
-                        </p>
+            <div class="h-4"></div>
 
-                        <div class="space-y-6">
-                            <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Ventajas del acceso completo:</p>
-                            
-                            <ul class="space-y-5">
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">auto_awesome</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Activaciones Natales</span>
-                                </li>
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">hub</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Tránsitos de Tono</span>
-                                </li>
-                                <div class="h-px bg-slate-50 w-full my-2"></div>
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">insights</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Momentos clave personalizados</span>
-                                </li>
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">flare</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Activaciones profundas de tu carta</span>
-                                </li>
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">full_stacked_bar_chart</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Lectura avanzada de tus tránsitos</span>
-                                </li>
-                                <li class="flex items-center gap-4 group/item">
-                                    <div class="size-8 rounded-xl bg-primary/5 flex items-center justify-center text-primary transition-colors group-hover/item:bg-primary/10">
-                                        <span class="material-symbols-outlined text-sm">directions_run</span>
-                                    </div>
-                                    <span class="text-[12px] text-warm-grey/70 font-semibold uppercase tracking-wide">Orientación práctica diaria</span>
-                                </li>
-                            </ul>
-                        </div>
+            <!-- 4. ORIENTACIÓN: CÓMO NAVEGAR ESTE CICLO -->
+            <section id="monthly-navigation-section" class="space-y-6">
+                <p class="text-[10px] font-black text-primary uppercase tracking-[0.4em] px-2">CÓMO NAVEGAR ESTE CICLO</p>
+                <div class="space-y-3" id="monthly-accordions-container">
+                    <!-- Desplegables dinámicos -->
+                </div>
+            </section>
 
-                        <div class="pt-6">
-                            <button class="w-full py-5 bg-warm-grey text-white rounded-3xl text-[10px] font-black uppercase tracking-[0.4em] shadow-2xl hover:bg-primary transition-colors">
-                                Desbloquear acceso completo
-                            </button>
-                        </div>
+            <div class="h-4"></div>
+
+            <!-- 5. ONDA DE ENERGÍA -->
+            <section id="monthly-wave-section" class="bg-white p-7 rounded-[3.5rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <p class="text-[9px] font-black text-primary uppercase tracking-[0.3em] flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[14px]">analytics</span> ONDA DE ENERGÍA
+                    </p>
+                    <span class="text-[8px] font-black text-slate-300 uppercase tracking-widest" id="monthly-current-month">--</span>
+                </div>
+                <div class="mb-4 text-center px-4">
+                    <p class="text-[9px] font-black text-warm-grey/30 uppercase tracking-[0.2em] mb-1">Sincronización Mensual</p>
+                    <p id="monthly-graph-explanation" class="text-[11px] text-warm-grey/60 italic font-medium leading-relaxed">"El ciclo del mes toma forma según las fases lunares y los movimientos del periodo."</p>
+                </div>
+                <div class="relative h-48 mb-4 mt-8">
+                    <svg id="monthly-wave-svg" class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100"></svg>
+                    <div id="monthly-today-cursor" class="absolute h-full w-px bg-orange-400/30 transition-all duration-1000 z-10 bottom-0" style="left: 0%">
+                        <div id="monthly-today-date-badge" class="absolute top-[-14px] -translate-x-1/2 px-3 py-1.5 bg-orange-500 text-white text-[9px] font-black uppercase rounded-lg shadow-xl tracking-widest leading-none whitespace-nowrap z-20">--</div>
+                        <div class="absolute bottom-[-6px] -translate-x-1/2 w-2 h-2 rounded-full bg-orange-500 border-2 border-white shadow-sm ring-4 ring-orange-500/10"></div>
                     </div>
-                </details>
+                </div>
+                <div class="flex justify-between px-2 pt-2 mb-8">
+                   <div class="text-center">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest" id="monthly-first-day">--</p>
+                   </div>
+                   <div class="text-center">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest" id="monthly-last-day">--</p>
+                   </div>
+                </div>
+                <div class="flex justify-between items-center px-1 pt-6 border-t border-slate-50">
+                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/40 uppercase tracking-widest">
+                        <div class="size-1.5 rounded-full border border-primary/60 bg-white"></div>
+                        <span>Luna Nueva</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/40 uppercase tracking-widest">
+                        <div class="size-1.5 rounded-full bg-primary/30 border border-primary/50"></div>
+                        <span>Luna Llena</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-[8px] font-bold text-orange-600 uppercase tracking-widest">
+                        <div class="size-2 rounded-full bg-orange-500"></div>
+                        <span>Hoy</span>
+                    </div>
+                    <div class="flex items-center gap-1 text-[8px] font-bold text-warm-grey/50 uppercase tracking-widest">
+                        <div class="size-2 rounded-full border border-primary/40 border-dashed bg-white"></div>
+                        <span>Pico del ciclo</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. ESCENARIO DEL MES (Contexto cósmico) -->
+            <section id="monthly-escenario-container"></section>
+
+            <!-- [F] PREMIUM SHELL — [MES_PREMIUM_v1] IDs añadidos para inyección -->
+            <section id="monthly-premium-shell" class="mt-8 space-y-4">
+
+                        <div id="monthly-premium-activaciones-natales" style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Activaciones Natales</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Qué planetas de tu carta se activan este mes. La capa que convierte el ciclo en algo tuyo.</p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <div id="monthly-premium-transitos-tono" style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Tránsitos de Tono</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Cómo los tránsitos del mes resuenan con tu configuración natal concreta.</p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <div id="monthly-premium-momentos-clave" style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Momentos Clave</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Los días de mayor intensidad personal dentro de este ciclo. No son iguales para todos.</p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <div id="monthly-premium-activaciones-profundas" style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Activaciones Profundas</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">La lectura natal del mes. Lo que se mueve en ti, no solo en el cielo.</p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
+                        <div id="monthly-premium-transitos-avanzados" style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
+                            <div style="text-align:center;padding:4px 0 14px">
+                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Tránsitos Avanzados</p>
+                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">Lectura completa de los tránsitos sobre tu carta a lo largo del mes.</p>
+                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                            </div>
+                        </div>
+
             </section>
         </div>
     `;
@@ -2951,7 +3260,14 @@ async function renderTabContent(tabId) {
     // --- 2. Disparar Motor de Sombra Mensual (Con Caché e Independencia) ---
     const cachedMonthly = checkCache('monthly');
     if (cachedMonthly) {
-        renderMonthlyNarrative(cachedMonthly, state.lang);
+        // Diferir para asegurar que el DOM ya existe
+        setTimeout(() => {
+            if (state.currentTab === 'monthly') {
+                console.log("📄 KAIROS: Restaurando narrativa mensual desde caché...");
+                renderMonthlyNarrative(cachedMonthly, state.lang);
+                renderMonthlyPremiumBlock(cachedMonthly, state.lang); // [MES_PREMIUM_v1]
+            }
+        }, 0);
     } else if (window.KAIROS_FLAGS && window.KAIROS_FLAGS.ENABLE_SHADOW_INTERPRETER && window.interpreter_engine) {
         (async () => {
             const monthlyHotspots = await window.transit_engine.getMonthlyHotspots();
@@ -2967,15 +3283,16 @@ async function renderTabContent(tabId) {
                     next_hotspots: nextMonthHotspots,   // D.4.4-E1
                     current_day: new Date().getDate()
                 },
-                request_context: { 
+                request_context: {
                     view: 'monthly'
                 }
             };
-            
+
             const response = await window.interpreter_engine.processRequest(monthlyShadowContext);
             if (response && response.content) {
                 state.cache.interpretations['monthly'] = response.content;
                 renderMonthlyNarrative(response.content, state.lang);
+                renderMonthlyPremiumBlock(response.content, state.lang); // [MES_PREMIUM_v1]
             }
         })();
     }
@@ -3297,14 +3614,21 @@ async function renderTabContent(tabId) {
   
   if (tabId === 'annual') {
     console.log("🎨 Rendering dashboard zodiac...");
-    setTimeout(() => renderZodiacSelector('dash-zodiac-selector'), 50);
-    
+    // setTimeout(() => renderZodiacSelector('dash-zodiac-selector'), 50);
+
     // [v650v4.2] Restaurar narrativa desde caché tras inyección DOM segura
     const cached = checkCache('annual');
     if (cached) {
         console.log("📄 KAIROS: Restaurando narrativa anual desde caché...");
         renderAnnualNarrative(cached, lang);
     }
+
+    // [AÑO_PREMIUM] Poblar bloque premium tras inyección DOM (restauración de tab)
+    const _lordForPremium = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual?.lordOriginal)
+      ? window.KAIROS_SESSION.annual.lordOriginal
+      : (typeof lordOriginal !== 'undefined' ? lordOriginal : (state.user?.lordOfYear || 'Sol'));
+    const _profForPremium = typeof profection !== 'undefined' ? profection : {};
+    renderAnnualPremiumBlock(_lordForPremium, _profForPremium, lang);
   }
   
   if (tabId === 'matrix') {
@@ -3312,8 +3636,51 @@ async function renderTabContent(tabId) {
     const cached = checkCache('matrix');
     if (cached) {
         console.log("📄 KAIROS: Restaurando narrativa matrix desde caché...");
-        const lordForCache = typeof lordOriginal !== 'undefined' ? lordOriginal : (state.user?.lordOfYear || 'Sol'); // [v650.5.32] lord estaba fuera de scope en esta rama
+        const lordForCache = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.annual?.lordOriginal)
+          ? window.KAIROS_SESSION.annual.lordOriginal
+          : (typeof lordOriginal !== 'undefined' ? lordOriginal : (state.user?.lordOfYear || 'Sol'));
         renderMatrixNarrative(cached, state.lang, lordForCache, null); // premiumData se reconstruirá si aplica
+    }
+  }
+
+  if (tabId === 'weekly') {
+    // --- 2. Motor de Sombra Semanal con FIX de contexto ---
+    const cachedWeekly = checkCache('weekly');
+    if (cachedWeekly) {
+        console.log("📄 KAIROS: Restaurando narrativa semanal desde caché...");
+        renderWeeklyNarrative(cachedWeekly, state.lang);
+    } else if (window.KAIROS_FLAGS && window.KAIROS_FLAGS.ENABLE_SHADOW_INTERPRETER && window.interpreter_engine) {
+        (async () => {
+            try {
+                const ascSign = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.user?.ascendant)
+                  ? window.KAIROS_SESSION.user.ascendant
+                  : (state.user?.asc || 'Aries');
+
+                // [SESSION Fase 2B] Leer secuencia semanal desde SESSION — fallback a cálculo directo
+                const moonSequence = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.sky?.weeklySequence)
+                  ? window.KAIROS_SESSION.sky.weeklySequence
+                  : await window.transit_engine.getWeeklySequence(ascSign);
+
+                // [v650.5.13] Usar el contexto unificado extendido
+                const weeklyShadowContext = {
+                    ...sc,
+                    weekly_context: {
+                        moon_sequence: moonSequence  // Datos reales de los 7 días
+                    },
+                    request_context: { view: 'weekly' }
+                };
+
+                const response = await window.interpreter_engine.processRequest(weeklyShadowContext);
+                if (response && response.content) {
+                    state.cache.interpretations['weekly'] = response.content;
+                    if (state.currentTab === 'weekly') {
+                        renderWeeklyNarrative(response.content, state.lang);
+                    }
+                }
+            } catch (e) {
+                console.error('[KAIROS WEEKLY] Error en motor semanal:', e);
+            }
+        })();
     }
   }
   
@@ -3443,7 +3810,384 @@ async function saveJournalEntry() {
     }
 }
 
+const KAIROS_GUIDE = {
+  annual: {
+    'annual-portal': {
+      title: "Portal del Año",
+      content: "Esta sección describe la atmósfera general de tu año. El 'Eje' es el aprendizaje central que marca tu evolución, mientras que el 'Escenario' señala el ámbito de vida donde esta energía se manifestará con más fuerza.\n\nÚsalo como un recordatorio del propósito de fondo. Cuando te sientas perdido, vuelve aquí para recordar qué estás aprendiendo realmente más allá de los eventos cotidianos."
+    },
+    'annual-life-guide': {
+      title: "Guía de Vida",
+      content: "El Señor del Año es el planeta que lidera tu proceso durante estos 12 meses. Representa una función de tu psique que necesita ser integrada y el 'personaje' interno que toma las riendas para guiarte.\n\nObserva su tono y su petición. No es solo información técnica, sino una invitación a encarnar esa energía específica para navegar el ciclo con mayor conciencia y maestría."
+    },
+    'annual-triplete': {
+      title: "Tres Claves",
+      content: "Aquí desglosamos tu año en tres pilares: Clima (la atmósfera emocional), Dirección (hacia dónde enfocar tu voluntad) y Cuidado (lo que necesitas proteger para no desequilibrarte).\n\nEstas claves son tu brújula estratégica. Consúltalas antes de tomar decisiones importantes para asegurar que tus acciones están alineadas con la corriente natural de tu ciclo actual."
+    },
+    'annual-base-cycle': {
+      title: "Base del Ciclo",
+      content: "Muestra los cimientos técnicos de tu año: la Profección (el signo y la casa que se activan por tiempo) y el Señor del Año. Es la raíz astronómica de donde brota toda tu narrativa anual.\n\nAunque parece información técnica, es el mapa de tu 'terreno' actual. Te permite entender exactamente qué partes de tu carta natal están bajo el foco de atención ahora mismo."
+    },
+    'annual-cycle-route': {
+      title: "Ruta del Ciclo",
+      content: "Es la representación visual de tu camino evolutivo este año. Conecta tu identidad base (Ascendente) con el escenario activado y culmina en la energía del Señor del Año.\n\nEste indicador te ayuda a ver tu año como un proceso dinámico y no como algo estático. Es el puente entre quién eres por naturaleza y quién estás llamado a ser durante este ciclo."
+    },
+    'annual-premium-depth': {
+      title: "Tu año en profundidad",
+      content: "Esta sección profundiza el diseño de tu año a través de cuatro bloques de análisis astrológico y psicológico.\n\nTU SEÑOR NATAL\n\nAquí se muestra cómo actúa tu energía guía desde su posición natal original. El signo y la casa donde vive tu planeta regente describen la forma particular en que enfrentas los procesos importantes del ciclo. No habla de un planeta genérico, sino de cómo funciona tu impulso real dentro de tu propia carta.\n\nLO QUE ACTIVA ESTE AÑO\n\nEste bloque muestra qué parte de tu vida entra en movimiento durante este ciclo anual y cuál es el tono específico del proceso. La casa profectada señala el escenario principal donde se concentra la experiencia del año, mientras que su signo describe cómo se vive emocional y psicológicamente ese movimiento.\n\nCÓMO SE MUEVE AHORA\n\nAquí se traduce el movimiento actual del cielo sobre tu carta natal. Los tránsitos de tu planeta guía muestran qué energía está activa en este momento concreto, qué procesos internos se están moviendo y hacia dónde conviene dirigir la atención ahora.\n\nCUÁNDO PRESTAR MÁS ATENCIÓN\n\nCada planeta tiene ritmos y momentos del año donde su energía se vuelve más visible o intensa. Este bloque ayuda a identificar las etapas donde conviene avanzar, sostener, revisar o simplemente observar con más conciencia el proceso que estás atravesando."
+    }
+  },
+  daily: {
+    'daily-portal': {
+      title: "Portal de Hoy",
+      content: "Esta sección combina la Luna actual con el planeta que rige el día de la semana. Describe el 'tono' emocional inmediato y la frecuencia sobre la que se mueve la jornada.\n\nÚsala para sintonizar con el ritmo colectivo. Te ayuda a entender por qué el ambiente se siente de cierta manera y cómo navegar esa ola sin resistencia."
+    },
+    'daily-scenario': {
+      title: "Guía para hoy",
+      content: "Esta guía combina la Luna de hoy, el planeta del día y tu ciclo anual para orientarte en el momento presente.\n\nNo predice lo que va a pasar. Te ayuda a reconocer qué energía está más activa hoy y cómo moverte dentro de ella con más claridad.\n\nLa casa y el Señor del Año muestran el fondo del ciclo. La Luna y el planeta del día muestran cómo ese fondo se mueve hoy."
+    },
+    'daily-narrative': {
+      title: "Pulso del Momento",
+      content: "Es la síntesis narrativa que une el clima astrológico con tu realidad personal. Traduce los tránsitos complejos a una guía directa y poética para tu conciencia.\n\nLee este mensaje como una brújula para tu estado interno. No busca predecir eventos, sino ofrecerte una perspectiva que te permita habitar el presente con mayor claridad y calma."
+    },
+    'daily-triplet': {
+      title: "Clima · Dirección · Cuidado",
+      content: "Tres ángulos del mismo momento:\n\nClima — el tono emocional activo ahora. Lo que el entorno y tu estado interno están generando. No se controla, se reconoce.\n\nDirección — hacia dónde conviene mover la energía hoy. No es una orden: es una orientación. El tipo de acción que tiene más posibilidad de fluir.\n\nCuidado — lo que puede desregularte o dispersarte hoy. No para evitar la vida, sino para no gastar energía en la dirección equivocada."
+    },
+    'daily-resonance': {
+      title: "Resonancia Personal",
+      content: "Esta es la capa más profunda, donde el cielo de hoy toca directamente tu mapa natal. Describe cómo resuena tu identidad única con la frecuencia del momento.\n\nEs la parte más privada y específica de la guía. Te explica por qué este día puede sentirse diferente para ti que para los demás, basándose en la configuración exacta de tus planetas natales."
+    }
+  },
+  weekly: {
+    'weekly-header-label': {
+      title: "Portal de la Semana",
+      content: "El Portal Semanal establece el tono dominante de estos siete días. El 'Verbo' principal resume la acción necesaria para fluir con el ritmo colectivo actual.\n\nObserva este portal como la puerta de entrada a tu semana. Te ayuda a mentalizarte sobre el tipo de energía que estará disponible para tus proyectos y relaciones."
+    },
+    'weekly-chart-section': {
+      title: "La curva de la semana",
+      content: "La curva muestra cómo se distribuye el peso del arco semanal de lunes a domingo. No hay días buenos ni días malos — hay días con más apertura, días con más densidad, y días de aterrizaje.\n\nEl punto más marcado señala cuándo el ritmo alcanza su máxima resonancia personal. Los días más atenuados ya pasaron."
+    },
+    'weekly-movement-section': {
+      title: "Cómo se mueve la semana",
+      content: "Esta sección divide la semana en tres momentos: Arranque, Centro y Cierre. No son predicciones separadas, sino fases de un mismo movimiento interno.\n\nEl Arranque muestra cómo entra la energía. El Centro señala dónde aparece el giro o la mayor intensidad. El Cierre ayuda a integrar lo vivido antes de pasar al siguiente ciclo."
+    },
+    'weekly-tramo-0': {
+      title: "Arranque Semanal",
+      content: "Representa el pulso con el que entras en la semana. Define el tono inicial y marca el punto de partida desde donde conviene empezar a mover tu energía.\n\nObserva este inicio no como una meta, sino como la sintonía necesaria para que el resto de los días fluyan con coherencia y propósito."
+    },
+    'weekly-tramo-1': {
+      title: "Centro Semanal",
+      content: "Es el punto de mayor movimiento, giro o intensidad de tu semana. Aquí es donde los procesos suelen pedirte más presencia, capacidad de respuesta o un ajuste en la dirección.\n\nPresta atención a los cambios de ritmo en este tramo; es el momento ideal para integrar lo aprendido en el arranque y recalibrar antes de que el ciclo empiece a cerrar."
+    },
+    'weekly-tramo-2': {
+      title: "Cierre Semanal",
+      content: "Describe cómo se integra lo vivido durante el ciclo. Es el espacio para asimilar las experiencias, cosechar los aprendizajes y preparar el terreno para soltar lo que ya no es útil.\n\nHabita este cierre con calma. Te permite vaciar tu espacio interno para quedar listo y receptivo ante el siguiente portal que se abrirá el lunes."
+    },
+    // [v650.5.190] FASE-2B — Capas Contextuales Suaves: signos, casas, chips de tramo
+    'weekly-chip-arranque': {
+      title: "Inicio de semana",
+      content: "El arranque de la semana es el momento de mayor apertura: el movimiento todavía no tiene dirección fija, y esa es exactamente su fuerza. Lo que se pone en marcha en estos días tiende a definir el tono de lo que sigue. No es el momento de estar listo — es el momento de ponerse en movimiento."
+    },
+    'weekly-chip-centro': {
+      title: "Centro de semana",
+      content: "El centro de la semana es donde el movimiento se asienta o se dispersa. Lo que arrancó ya tiene contexto: se puede ajustar, sostener o corregir. No hay urgencia de arrancar ni de cerrar — hay espacio para saber cómo está yendo lo que está en marcha."
+    },
+    'weekly-chip-cierre': {
+      title: "Cierre de semana",
+      content: "El cierre de la semana lleva el peso de lo que se movió. No es el momento de abrir frentes nuevos — es el momento de saber qué queda. Lo que esta semana activó, removió o aclaró puede asentarse aquí antes de que la siguiente empiece a pedir su propia dirección."
+    },
+    'weekly-chip-cambio-lunar': {
+      title: "Cambio de signo lunar",
+      content: "La Luna cambia de signo cada dos o tres días. Cada transición no es un evento externo — es un cambio en el fondo sobre el que todo sucede. Un cambio de temperatura en el clima de la semana."
+    },
+    'weekly-chip-anio': {
+      title: "El Señor del Año",
+      content: "El Señor del Año es el planeta que gobierna el ciclo de doce meses en curso, según la profección natal. No determina los días — da color y gravedad al año completo. Una cualidad de fondo que está presente en todo lo que ocurre durante ese período."
+    },
+    'weekly-sign-aries': {
+      title: "Aries en el cielo",
+      content: "Aries impulsa. Es la energía del primer movimiento: directa, sin rodeos, orientada hacia la salida antes que hacia la reflexión. Aries abre camino. No evalúa el terreno antes de pisar — lo pisa, y desde ahí construye la dirección."
+    },
+    'weekly-sign-tauro': {
+      title: "Tauro en el cielo",
+      content: "Tauro sostiene. Es la energía de la presencia física y el arraigo: hacer, terminar, tocar. Tauro no acelera — consolida. Su fuerza no está en la velocidad sino en la constancia: lo que Tauro sostiene, permanece."
+    },
+    'weekly-sign-geminis': {
+      title: "Géminis en el cielo",
+      content: "Géminis ramifica. Es la energía del intercambio y la multiplicación: comunicación, conexiones rápidas, ideas en movimiento paralelo. Géminis no cierra — circula. Su naturaleza no es la profundidad sino la anchura: conecta lo que de otro modo permanecería separado."
+    },
+    'weekly-sign-cancer': {
+      title: "Cáncer en el cielo",
+      content: "Cáncer interioriza. Es la energía de la receptividad y la memoria: cercanía, cuidado, lo familiar. Cáncer no avanza — protege. Su movimiento es hacia adentro, hacia lo que da seguridad, hacia lo que tiene historia propia."
+    },
+    'weekly-sign-leo': {
+      title: "Leo en el cielo",
+      content: "Leo proyecta. Es la energía de la expresión y la presencia: hacer algo que valga la pena, ocupar espacio, importar. Leo no se oculta — brilla. Su impulso es hacia afuera: crear, mostrar, recibir el reconocimiento de lo que se ha hecho."
+    },
+    'weekly-sign-virgo': {
+      title: "Virgo en el cielo",
+      content: "Virgo afina. Es la energía del criterio y el ajuste: exactitud, revisión, atención al detalle. Virgo no improvisa — discrimina. Su fuerza está en la capacidad de distinguir lo que funciona de lo que no, y de mejorar lo que ya está en marcha."
+    },
+    'weekly-sign-libra': {
+      title: "Libra en el cielo",
+      content: "Libra pondera. Es la energía del equilibrio y el acuerdo: pesar opciones, encontrar el punto justo, relacionar. Libra no decide en solitario — busca el otro. Su movimiento natural es hacia el encuentro, hacia donde dos perspectivas pueden coexistir."
+    },
+    'weekly-sign-escorpio': {
+      title: "Escorpio en el cielo",
+      content: "Escorpio profundiza. Es la energía de la transformación y la concentración: ir al fondo, dejar atrás, hacer espacio para lo nuevo. Escorpio no roza la superficie — la atraviesa. Su impulso es hacia lo que está debajo de lo visible."
+    },
+    'weekly-sign-sagitario': {
+      title: "Sagitario en el cielo",
+      content: "Sagitario expande. Es la energía de la amplitud y el sentido: exploración, visión larga, apertura hacia lo desconocido. Sagitario no se estrecha — se extiende. Su movimiento natural es hacia el horizonte: más lejos, más amplio, más lleno de significado."
+    },
+    'weekly-sign-capricornio': {
+      title: "Capricornio en el cielo",
+      content: "Capricornio estructura. Es la energía de la responsabilidad y la construcción: disciplina, criterio, consecuencias reales. Capricornio no improvisa — construye con intención. Su fuerza está en convertir el tiempo en algo duradero."
+    },
+    'weekly-sign-acuario': {
+      title: "Acuario en el cielo",
+      content: "Acuario desconecta del patrón. Es la energía de la ruptura y la perspectiva: pensamiento libre, originalidad, visión del conjunto. Acuario no reproduce — innova. Su impulso es alejarse lo suficiente del sistema para poder verlo desde afuera."
+    },
+    'weekly-sign-piscis': {
+      title: "Piscis en el cielo",
+      content: "Piscis disuelve los bordes. Es la energía de la porosidad y la intuición: fluir sin forzar, dejar que las formas encuentren su camino. Piscis no controla — permite. Su movimiento es hacia lo que se siente antes de saberse."
+    },
+    'weekly-house-1':  { title: "Casa 1 — El impulso propio",    content: "La Casa 1 es el territorio de la identidad inmediata: el arranque personal, la presencia propia, el primer movimiento hacia el mundo. Es el dominio de cómo uno se sostiene desde dentro y cómo aparece desde afuera." },
+    'weekly-house-2':  { title: "Casa 2 — Los recursos",          content: "La Casa 2 es el territorio de los recursos propios: lo que se tiene, lo que vale, lo que sostiene la vida concreta. Dinero, energía, talentos, tiempo. Es el dominio de lo que se acumula, lo que se cuida y lo que se gasta." },
+    'weekly-house-3':  { title: "Casa 3 — El intercambio cercano", content: "La Casa 3 es el territorio del intercambio cercano: comunicación, entorno inmediato, desplazamientos cortos, relaciones de proximidad. Es el dominio de las ideas que circulan, las palabras que conectan y los vínculos que se mantienen por la frecuencia." },
+    'weekly-house-4':  { title: "Casa 4 — La raíz",               content: "La Casa 4 es el territorio del origen y el refugio: hogar, familia, historia personal, lo íntimo. Es el dominio de lo que da base — el suelo firme desde el que todo lo demás se construye y al que se vuelve cuando lo exterior falla." },
+    'weekly-house-5':  { title: "Casa 5 — La expresión",          content: "La Casa 5 es el territorio de la expresión y el juego: creatividad, placer, lo que se hace por el gusto de hacerlo. Es el dominio de la vitalidad personal — lo que nace del centro de uno mismo sin necesitar justificación." },
+    'weekly-house-6':  { title: "Casa 6 — El servicio y el cuerpo", content: "La Casa 6 es el territorio del trabajo cotidiano y los ritmos de vida: hábitos, salud, los procesos que sostienen el funcionamiento diario. Es el dominio de la atención a lo pequeño — la calidad de lo que se hace cada día, no de lo que se hace una vez." },
+    'weekly-house-7':  { title: "Casa 7 — El vínculo",            content: "La Casa 7 es el territorio de las relaciones significativas: pareja, socios, colaboradores, el otro como espejo. Es el dominio del encuentro real — donde uno negocia, acuerda y descubre lo que solo aparece en presencia del otro." },
+    'weekly-house-8':  { title: "Casa 8 — La transformación",     content: "La Casa 8 es el territorio de la transformación profunda: recursos compartidos, herencias, lo que cambia radicalmente y no vuelve atrás. Es el dominio de lo que se deja atrás — el espacio donde algo termina para que otra cosa tenga sitio." },
+    'weekly-house-9':  { title: "Casa 9 — El horizonte",          content: "La Casa 9 es el territorio de la expansión y el sentido: viajes, filosofía, creencias, estudios que amplían la visión. Es el dominio de la búsqueda — de lo que no cabe en el entorno cotidiano y pide un horizonte más amplio." },
+    'weekly-house-10': { title: "Casa 10 — La dirección pública",  content: "La Casa 10 es el territorio del rol social y la trayectoria: carrera, vocación, lo que se construye en el mundo visible. Es el dominio de la dirección pública — lo que se proyecta hacia afuera y la huella que se deja en el tiempo." },
+    'weekly-house-11': { title: "Casa 11 — La red",               content: "La Casa 11 es el territorio del colectivo y los proyectos compartidos: amigos, grupos, visión de futuro común. Es el dominio de la pertenencia — el lugar que se ocupa dentro de algo más grande que uno mismo." },
+    'weekly-house-12': { title: "Casa 12 — El retiro",            content: "La Casa 12 es el territorio de lo que está fuera del foco ordinario: lo inconsciente, el retiro, lo que se procesa sin palabras. Es el dominio de la quietud — lo que solo se aclara cuando se deja de empujar." }
+  },
+  monthly: {
+    'monthly-portal-container': {
+      title: "Portal del Mes",
+      content: "MES muestra el proceso que se abre durante este período. No habla de una acción inmediata ni de una dirección anual completa: traduce el patrón que está tomando forma ahora.\n\nLéelo como un territorio temporal. El mes muestra qué tema pide atención, qué movimiento interno se repite y qué comprensión puede ayudarte a atravesarlo con más claridad."
+    },
+    'monthly-connection-box': {
+      title: "Escenario Activo",
+      content: "El escenario activo es el corazón del mes. Nombra el clima psicológico principal y la zona donde el proceso se vuelve más evidente.\n\nNo es una predicción. Es una forma de reconocer qué tipo de experiencia está organizando este tramo del año."
+    },
+    'monthly-hitos-section': {
+      title: "Hitos del Ciclo",
+      content: "Los hitos del ciclo muestran cómo se despliega el mes por fases. Cada hito señala una cualidad distinta: apertura, tensión, integración o cierre.\n\nNo tienes que vivirlos como fechas rígidas. Úsalos como señales para entender en qué parte del movimiento mensual estás."
+    },
+    'monthly-navigation-section': {
+      title: "Navegación del Mes",
+      content: "Esta sección te ayuda a orientarte dentro del mes. No añade más información: organiza el recorrido para que puedas leer el proceso con más claridad.\n\nÚsala como una brújula interna. Cuando el mes se sienta disperso, vuelve aquí para recordar qué parte del camino estás atravesando."
+    },
+    'monthly-wave-section': {
+      title: "Onda de Energía",
+      content: "La onda de energía muestra el movimiento emocional del mes. Algunas fases abren, otras tensan, otras piden integración.\n\nNo se trata de controlar el mes, sino de reconocer su ritmo. Cuando entiendes la onda, puedes dejar de pelearte con el proceso y empezar a acompañarlo."
+    }
+  }
+};
+
+window.kairosGuideObserver = null;
+
+window.initKairosGuideDOM = function() {
+  if (document.getElementById('kairos-guide-panel')) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'kairos-guide-overlay';
+  overlay.className = 'fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998] hidden transition-opacity duration-300 opacity-0';
+  overlay.onclick = closeKairosGuide;
+  document.body.appendChild(overlay);
+
+  const panel = document.createElement('div');
+  panel.id = 'kairos-guide-panel';
+  panel.className = 'fixed top-0 right-0 h-full w-[320px] bg-white shadow-2xl z-[9999] transform translate-x-full transition-transform duration-500 ease-out p-8 flex flex-col';
+  panel.innerHTML = `
+    <div class="flex justify-between items-center mb-8">
+      <div class="flex items-center gap-2">
+        <span style="font-size:10px;color:rgba(180,160,120,0.65);">✦</span>
+        <span class="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">Guía KAIROS</span>
+      </div>
+      <button onclick="closeKairosGuide()" class="p-2 hover:bg-slate-50 rounded-full transition-colors">
+        <svg viewBox="0 0 24 24" class="w-4 h-4 text-warm-grey" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></button>
+    </div>
+    <div id="kairos-guide-content" class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+      <h3 id="kairos-guide-title" class="text-2xl font-black text-primary mb-4 tracking-tighter">Tu Guía Anual</h3>
+      <div id="kairos-guide-body" class="text-sm leading-relaxed text-warm-grey/80 space-y-4">
+        Selecciona una sección o desplázate para ver información detallada.
+      </div>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  const btn = document.createElement('button');
+  btn.id = 'kairos-guide-btn';
+  btn.className = 'fixed bottom-[84px] left-[24px] z-50 w-14 h-14 rounded-full bg-white/85 border border-[rgba(180,160,120,0.18)] shadow-[0_8px_24px_rgba(0,0,0,0.08)] flex items-center justify-center overflow-hidden transition-all duration-300 transform hover:scale-105 active:scale-95 hidden';
+  btn.style.opacity = '0.32';
+  btn.style.filter = 'blur(0.35px)';
+  btn.innerHTML = `
+    <img 
+      src="logo_kairos.png" 
+      alt="KAIROS" 
+      class="w-8 h-8 object-contain rounded-full"
+      style="display:block;"
+    />
+  `;
+  btn.onclick = openKairosGuide;
+  btn.onmouseenter = () => {
+    btn.style.opacity = '1';
+    btn.style.filter = 'none';
+  };
+  btn.onmouseleave = () => {
+    const panel = document.getElementById('kairos-guide-panel');
+    if (panel && panel.style.transform === 'translateX(0%)' || panel.style.transform === 'translateX(0px)') return;
+    btn.style.opacity = '0.32';
+    btn.style.filter = 'blur(0.35px)';
+  };
+  document.body.appendChild(btn);
+};
+
+window.openKairosGuide = function() {
+  const panel = document.getElementById('kairos-guide-panel');
+  const overlay = document.getElementById('kairos-guide-overlay');
+  const btn = document.getElementById('kairos-guide-btn');
+  if (panel && overlay) {
+    overlay.classList.remove('hidden');
+    if (btn) {
+      btn.style.opacity = '1';
+      btn.style.filter = 'none';
+    }
+    setTimeout(() => {
+      overlay.style.opacity = '1';
+      panel.style.transform = 'translateX(0)';
+    }, 10);
+  }
+};
+
+window.closeKairosGuide = function() {
+  const panel = document.getElementById('kairos-guide-panel');
+  const overlay = document.getElementById('kairos-guide-overlay');
+  const btn = document.getElementById('kairos-guide-btn');
+  if (panel && overlay) {
+    panel.style.transform = 'translateX(100%)';
+    overlay.style.opacity = '0';
+    if (btn) {
+      btn.style.opacity = '0.32';
+      btn.style.filter = 'blur(0.35px)';
+    }
+    setTimeout(() => overlay.classList.add('hidden'), 500);
+  }
+};
+
+window.updateKairosGuideContent = function(sectionId) {
+  const currentTab = state.currentTab || 'annual';
+  const guideData = KAIROS_GUIDE[currentTab] ? KAIROS_GUIDE[currentTab][sectionId] : null;
+  if (!guideData) return;
+
+  const titleEl = document.getElementById('kairos-guide-title');
+  const bodyEl = document.getElementById('kairos-guide-body');
+  
+  if (titleEl && bodyEl) {
+    // Actualizar título general según tab si es necesario
+    if (currentTab === 'annual') titleEl.innerText = "Tu Guía Anual";
+    else if (currentTab === 'daily') titleEl.innerText = "Tu Guía Diaria";
+    else if (currentTab === 'weekly') titleEl.innerText = "Tu Guía Semanal";
+
+    // Luego poner el título de la sección específica
+    titleEl.innerText = guideData.title;
+
+    // Dividir en párrafos por el doble salto de línea
+    const paragraphs = guideData.content.split('\n\n');
+    bodyEl.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+  }
+
+  highlightKairosGuideSection(sectionId);
+};
+
+// Abre el panel KAIROS y carga el contenido de la sección.
+// Usar SOLO en onclicks explícitos (chips) — nunca en observers automáticos.
+window.openKairosGuideWithContent = function(sectionId) {
+  openKairosGuide();
+  updateKairosGuideContent(sectionId);
+};
+
+window.highlightKairosGuideSection = function(sectionId) {
+  // En SEMANA no se aplica highlight visual sobre ninguna sección
+  if (state.currentTab === 'weekly') return;
+  // Limpiar todos los posibles highlights de cualquier sección de la guía dinámicamente
+  Object.keys(KAIROS_GUIDE).forEach(tabKey => {
+    Object.keys(KAIROS_GUIDE[tabKey]).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.outline = 'none';
+        el.style.boxShadow = 'none';
+        el.classList.remove('ring-1', 'ring-primary/20', 'bg-primary/[0.03]', 'transition-all', 'duration-500');
+      }
+    });
+  });
+
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+
+  el.classList.add('transition-all', 'duration-500');
+  
+  const isDark = el.className.includes('slate') || 
+                 el.className.includes('bg-slate') || 
+                 el.className.includes('bg-[#0') || 
+                 el.className.includes('bg-black') || 
+                 el.className.includes('bg-warm-grey');
+
+  if (isDark) {
+    el.style.outline = '2px solid rgba(247,244,238,0.55)';
+    el.style.boxShadow = '0 0 0 6px rgba(247,244,238,0.10), 0 14px 32px rgba(0,0,0,0.18)';
+  } else {
+    el.style.outline = '2px solid rgba(180,160,120,0.45)';
+    el.style.boxShadow = '0 0 0 6px rgba(180,160,120,0.08), 0 14px 32px rgba(180,160,120,0.05)';
+  }
+};
+
+window.updateKairosGuideVisibility = function() {
+  const btn = document.getElementById('kairos-guide-btn');
+  if (!btn) return;
+
+  if (state.currentTab === 'annual' || state.currentTab === 'daily' || state.currentTab === 'weekly' || state.currentTab === 'monthly') {
+    btn.classList.remove('hidden');
+    initKairosGuideObserver(state.currentTab);
+  } else {
+    btn.classList.add('hidden');
+    if (window.kairosGuideObserver) {
+      window.kairosGuideObserver.disconnect();
+      window.kairosGuideObserver = null;
+    }
+  }
+};
+
+window.initKairosGuideObserver = function(tabId) {
+  if (window.kairosGuideObserver) {
+    window.kairosGuideObserver.disconnect();
+  }
+
+  const sections = Object.keys(KAIROS_GUIDE[tabId] || {});
+  const options = { threshold: 0.5 };
+
+  window.kairosGuideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateKairosGuideContent(entry.target.id);
+      }
+    });
+  }, options);
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) window.kairosGuideObserver.observe(el);
+  });
+};
+
 const KAIROS_ICONS = {
+
   zodiac: {
     'Aries': `<svg viewBox="0 0 100 100" class="size-full" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 30 C 20 10, 45 10, 50 35 C 55 10, 80 10, 80 30 M50 35 V 90" stroke-linecap="round"/><circle cx="50" cy="35" r="3" fill="currentColor"/></svg>`,
     'Tauro': `<svg viewBox="0 0 100 100" class="size-full" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="50" cy="60" r="25"/><path d="M20 20 C 20 40, 50 45, 50 45 C 50 45, 80 40, 80 20" stroke-linecap="round"/></svg>`,
@@ -3540,8 +4284,757 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+// [AÑO_PREMIUM] Bloque premium de profundidad anual
+async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
+    const container = document.getElementById('annual-premium-container');
+    if (!container) return;
+
+    const isInternalUser = window.KAIROS_FLAGS.INTERNAL_AUTH_EMAILS.includes(state.user?.email || '');
+    const isPremiumActive = window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE || isInternalUser || window.KAIROS_FLAGS.KAIROS_PREMIUM_DEBUG;
+
+    const LOCK_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+    const LOCK_SM = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+
+    // Glyphs KAIROS — misma utilidad que renderMonthlyPremiumBlock
+    const _glyphA = (type, key, sz) => {
+        try {
+            if (!window.getKairosSymbol) return '';
+            const path = window.getKairosSymbol(type, key);
+            if (!path) return '';
+            return `<svg viewBox="0 0 100 100" width="${sz||13}" height="${sz||13}" style="display:inline-block;vertical-align:-2px;margin:0 2px 0 1px;opacity:0.7" stroke="currentColor" stroke-width="8" fill="none" aria-hidden="true">${path}</svg>`;
+        } catch(e) { return ''; }
+    };
+    const _pgA = (name, sz) => _glyphA('planets', name, sz);
+    const _sgA = (name, sz) => _glyphA('zodiac', name, sz);
+
+    // Estilos — cada bloque es una tarjeta independiente (patrón MES/HOY/SEMANA)
+    const CARD = `background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15);margin-bottom:12px`;
+    const LBL  = `font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px;text-align:center`;
+    const TXT  = `font-size:13px;color:#4a3f2a;line-height:1.65;margin:0`;
+    const TXT2 = `font-size:13px;color:#4a3f2a;line-height:1.65;margin:6px 0 0`;
+
+    // Estado FREE — 4 tarjetas bloqueadas independientes · layout centrado como HOY/SEMANA
+    // Los datos astrológicos (signo, casa) aparecen solo en estado PREMIUM desbloqueado
+    if (!isPremiumActive) {
+        const _locked = (title, teaser) => `
+            <div style="${CARD};text-align:center">
+                <div style="display:flex;justify-content:center;align-items:center;gap:6px;margin-bottom:10px">
+                    <span style="${LBL};margin:0">${title}</span>
+                    <div style="opacity:0.6;flex-shrink:0">${LOCK_SVG}</div>
+                </div>
+                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:280px">${teaser}</p>
+                <div style="text-align:center">
+                    <button onclick="window._kairosPremiumCTA&&window._kairosPremiumCTA()" style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6">${LOCK_SM} Seguir profundizando</button>
+                </div>
+            </div>`;
+        container.innerHTML =
+            _locked('Tu energía guía',
+                `Cómo opera tu ${lordOriginal} natal desde su configuración específica — qué cualidad define cómo gobierna este ciclo.`) +
+            _locked('Lo que se activa este año',
+                `Qué área de tu vida está bajo el foco de este ciclo y cómo el año la está modulando.`) +
+            _locked('Cómo se mueve ahora',
+                `El movimiento actual de tu ${lordOriginal} y lo que produce en este tramo del año.`) +
+            _locked('Por qué este ciclo te afecta así',
+                `La razón natal concreta — no genérica — por la que este año se expresa así en ti.`);
+        return;
+    }
+
+    // --- PREMIUM: construir las 4 capas ---
+
+    // A — Posición natal del señor
+    const planetKeyMap = {
+        'Sol': ['Sol', 'sol', 'sun', 'Sun'],
+        'Luna': ['Luna', 'luna', 'moon', 'Moon'],
+        'Marte': ['Marte', 'marte', 'mars', 'Mars'],
+        'Mercurio': ['Mercurio', 'mercurio', 'mercury', 'Mercury'],
+        'Júpiter': ['Júpiter', 'jupiter', 'Jupiter', 'júpiter'],
+        'Venus': ['Venus', 'venus'],
+        'Saturno': ['Saturno', 'saturno', 'saturn', 'Saturn']
+    };
+    // Normalizar la clave del señor para buscar en natalPlanets (mayúsculas sin acentos)
+    const lordKey = lordOriginal.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+    const natalLord = state.user?.natalPlanets?.[lordKey];
+    const natalSign = natalLord?.sign || '—';
+    let natalHouseNum = '';
+    if (natalLord?.longitude_raw !== undefined && state.user?.houses?.length) {
+        const lon = natalLord.longitude_raw;
+        const cusps = state.user.houses.map(h => h.longitude);
+        for (let i = 0; i < 11; i++) {
+            const s = cusps[i], e = cusps[i+1];
+            if ((s < e && lon >= s && lon < e) || (s >= e && (lon >= s || lon < e))) { natalHouseNum = i + 1; break; }
+        }
+        if (!natalHouseNum) natalHouseNum = 12;
+    }
+
+    // Dónde vive el señor (área de vida de la casa natal)
+    // [AÑO_PREMIUM v3] CAPA A — Chispa + fusión planeta·signo·casa
+    const HOUSE_CONTEXT = {
+        1:'En Casa 1, esa energía opera directamente sobre ti — cómo te presentas, cómo te percibes, cómo el mundo te reconoce. Es la casa de la presencia más inmediata.',
+        2:'En Casa 2, esa energía vive en los recursos y en lo que valoras — el cuerpo, el dinero, la estabilidad que necesitas para sentirte seguro. Lo material y lo corporal son el territorio.',
+        3:'En Casa 3, esa energía vive en la mente y el entorno próximo — la forma en que piensas, cómo te comunicas, las personas e ideas que conforman tu tribu diaria.',
+        4:'En Casa 4, esa energía vive en tus raíces — la vida interior, la historia familiar, los cimientos más privados de quién eres. Es el territorio más personal que existe.',
+        5:'En Casa 5, esa energía vive en la expresión y el disfrute — la creatividad, el amor, los hijos, todo lo que te hace sentir vivo de verdad.',
+        6:'En Casa 6, esa energía vive en el cuerpo y el trabajo cotidiano — los hábitos que te sostienen, la salud, el servicio que das y recibes día a día.',
+        7:'En Casa 7, esa energía vive en los vínculos más significativos — la pareja, los socios, los espejos que más te revelan de ti mismo.',
+        8:'En Casa 8, esa energía vive en la transformación — lo que se entrega, lo que se recibe, lo que muere y renace. El territorio de las profundidades.',
+        9:'En Casa 9, esa energía vive en la búsqueda de sentido y de horizonte — los viajes, el conocimiento que transforma, las preguntas que cambian la forma de ver el mundo.',
+        10:'En Casa 10, esa energía vive en la vocación y el lugar en el mundo — la dirección pública de tu vida, lo que construyes para ser reconocido y para contribuir.',
+        11:'En Casa 11, esa energía vive en la red y el propósito colectivo — los amigos elegidos, los grupos, el futuro que imaginas y hacia el que trabajas.',
+        12:'En Casa 12, esa energía vive en el interior más profundo — lo que se retira del mundo, el inconsciente, la dimensión espiritual y la integración silenciosa.'
+    };
+
+    // Texto planeta+signo con chispa (sin "Tu" inicial — más directo y narrativo)
+    const LORD_SIGN_SPARK = {
+        'Sol': {
+            'Aries':'El Sol en Aries vive en el impulso. La identidad en ti se construye en la acción, no en la reflexión — el centro no duda, se lanza. Lo más genuino de quien eres aparece cuando decides sin esperar.',
+            'Tauro':'El Sol en Tauro vive en lo tangible. La identidad en ti se construye en lo que puedes sostener — el cuerpo, los recursos, lo que es real y duradero. Lo más genuino de quien eres aparece cuando estás arraigado.',
+            'Géminis':'El Sol en Géminis vive en la conexión. La identidad en ti se construye en el intercambio — entre ideas, entre personas, entre mundos. Lo más genuino de quien eres aparece cuando comunicas.',
+            'Cáncer':'El Sol en Cáncer vive en el sentimiento. La identidad en ti se construye desde dentro hacia afuera — el centro es receptivo, protector, profundamente personal. Lo más genuino de quien eres aparece cuando cuidas.',
+            'Leo':'El Sol en Leo vive en la expresión. La identidad en ti se construye cuando te muestras — no por ego, sino porque es la única forma en que eres completamente tú. Lo más genuino de quien eres aparece cuando das lo mejor de ti.',
+            'Virgo':'El Sol en Virgo vive en el discernimiento. La identidad en ti se construye en la utilidad y la precisión — el centro sabe que el valor está en los detalles. Lo más genuino de quien eres aparece cuando mejoras algo.',
+            'Libra':'El Sol en Libra vive en la relación. La identidad en ti se define en el espejo del otro — el centro busca el equilibrio, la armonía, el punto justo. Lo más genuino de quien eres aparece en el vínculo.',
+            'Escorpio':'El Sol en Escorpio vive en la profundidad. La identidad en ti no se muestra fácilmente — el centro opera desde capas que la mayoría no ve. Lo más genuino de quien eres aparece en la transformación, en los momentos donde algo muere y algo nace.',
+            'Sagitario':'El Sol en Sagitario vive en la búsqueda. La identidad en ti se construye en la expansión — el centro no se asienta, avanza. Lo más genuino de quien eres aparece cuando hay un horizonte hacia el que moverte.',
+            'Capricornio':'El Sol en Capricornio vive en la construcción. La identidad en ti se asienta en lo que edificas — el centro es paciente, responsable, orientado al largo plazo. Lo más genuino de quien eres aparece en lo que sostienes con el tiempo.',
+            'Acuario':'El Sol en Acuario vive en la diferencia. La identidad en ti se construye yendo más allá de lo establecido — el centro es independiente, visionario, mira más allá del consenso. Lo más genuino de quien eres aparece cuando piensas diferente.',
+            'Piscis':'El Sol en Piscis vive en la permeabilidad. La identidad en ti es difusa y profunda a la vez — absorbe lo de los demás sin siempre saber qué es tuyo y qué no. Lo más genuino de quien eres aparece cuando sientes sin resistir, cuando te permites ser tocado.'
+        },
+        'Luna': {
+            'Aries':'La Luna en Aries siente en impulsos. Las emociones en ti son directas y necesitan moverse — la seguridad interior se activa en la acción, no en la espera. Lo que sientes, lo expresas antes de procesarlo.',
+            'Tauro':'La Luna en Tauro siente con el cuerpo. Las emociones en ti son lentas, profundas, buscan estabilidad — la seguridad interior se activa en lo que permanece. Necesitas sentir el suelo bajo los pies para sentirte bien.',
+            'Géminis':'La Luna en Géminis siente a través del pensamiento. Las emociones en ti se procesan hablando, analizando, conectando — la seguridad interior se activa cuando comprendes lo que sientes, no solo cuando lo sientes.',
+            'Cáncer':'La Luna en Cáncer siente todo, profundamente. Las emociones en ti son el centro de la experiencia — la seguridad interior se activa en el vínculo y el hogar. Eres permeable al estado de quienes te rodean.',
+            'Leo':'La Luna en Leo siente a través del reconocimiento. Las emociones en ti necesitan expresarse y ser vistas — la seguridad interior se activa cuando puedes dar y recibir afecto libremente, sin disimulo.',
+            'Virgo':'La Luna en Virgo siente a través del análisis. Las emociones en ti se procesan buscando utilidad y orden — la seguridad interior se activa cuando puedes ser útil y cuando el entorno tiene sentido.',
+            'Libra':'La Luna en Libra siente en relación. Las emociones en ti necesitan armonía y reciprocidad — la seguridad interior se activa cuando los vínculos están en equilibrio. El conflicto abierto desregula.',
+            'Escorpio':'La Luna en Escorpio siente en profundidad y silencio. Las emociones en ti son intensas, protegidas, raramente en la superficie — la seguridad interior se activa en la confianza real, no en la cercanía superficial.',
+            'Sagitario':'La Luna en Sagitario siente a través de la libertad. Las emociones en ti necesitan espacio y significado — la seguridad interior se activa cuando hay horizonte y cuando lo que vives tiene sentido.',
+            'Capricornio':'La Luna en Capricornio siente con contención. Las emociones en ti son profundas pero raramente visibles — la seguridad interior se activa en la estructura y el logro. Lo emocional se procesa, no se desborda.',
+            'Acuario':'La Luna en Acuario siente desde la distancia. Las emociones en ti necesitan ser comprendidas antes de sentirse plenamente — la seguridad interior se activa en la libertad y en sentirte diferente de alguna manera.',
+            'Piscis':'La Luna en Piscis siente todo sin filtro. Las emociones en ti son fluidas y empáticas — disuelven fronteras, absorben el estado de los demás. La seguridad interior se activa en la quietud, en los momentos donde el mundo externo desaparece.'
+        },
+        'Marte': {
+            'Aries':'Marte en Aries actúa sin rodeos. La fuerza en ti es directa y pionera — no espera permiso ni momento ideal. El impulso busca el movimiento inmediato, la acción que nadie ha iniciado todavía.',
+            'Tauro':'Marte en Tauro no irrumpe — persiste. La fuerza en ti es lenta y casi inamovible: una vez en marcha, nada la detiene fácilmente. El impulso construye, no conquista.',
+            'Géminis':'Marte en Géminis actúa a través de la palabra y la mente. La fuerza en ti se despliega en múltiples frentes simultáneos — el impulso busca conexión y velocidad, no el objetivo único.',
+            'Cáncer':'Marte en Cáncer actúa para proteger. La fuerza en ti es defensiva y movilizada por el vínculo más que por la ambición. El impulso no es visible — opera desde dentro, cuando algo que le importa está en juego.',
+            'Leo':'Marte en Leo actúa con presencia. La fuerza en ti necesita ser reconocida — el impulso se activa cuando hay algo que defender con orgullo, algo que brillar con convicción.',
+            'Virgo':'Marte en Virgo actúa con precisión. La fuerza en ti es analítica y meticulosa — el impulso no busca el espectáculo sino el resultado correcto, conseguido de la forma correcta.',
+            'Libra':'Marte en Libra actúa en relación. La fuerza en ti necesita un contexto de sentido compartido para movilizarse — el impulso busca justicia y equilibrio, no dominio.',
+            'Escorpio':'Marte en Escorpio actúa desde las profundidades. La fuerza en ti es estratégica, concentrada, invisible hasta que se necesita — y entonces, implacable. El impulso no se dispersa: se reserva para lo que realmente importa.',
+            'Sagitario':'Marte en Sagitario actúa desde la convicción. La fuerza en ti es expansiva y filosófica — el impulso se enciende cuando hay una causa, una dirección, algo en lo que creer profundamente.',
+            'Capricornio':'Marte en Capricornio actúa con estructura. La fuerza en ti es disciplinada y orientada al largo plazo — el impulso no necesita resultados inmediatos, sabe que construye para lo que dura.',
+            'Acuario':'Marte en Acuario actúa desde la idea. La fuerza en ti es colectiva e innovadora — el impulso se moviliza cuando hay un sistema que transformar, no un adversario que vencer.',
+            'Piscis':'Marte en Piscis no actúa desde el control sino desde la corriente. La fuerza en ti es intuitiva — no irrumpe, fluye. Cuando actúas desde ese Marte, no decides racionalmente: sientes el momento y te mueves cuando algo profundo te lo pide.'
+        },
+        'Venus': {
+            'Aries':'Venus en Aries ama con urgencia. El deseo en ti es directo, apasionado, necesita respuesta — la conexión se activa en el impulso y la novedad. No esperas a que el amor llegue: vas hacia él.',
+            'Tauro':'Venus en Tauro ama con los sentidos. El deseo en ti es profundo, sensorial, leal — la conexión se activa en la continuidad y el placer tangible. Amas lo que puedes tocar, oler, sostener.',
+            'Géminis':'Venus en Géminis ama a través de la mente. El deseo en ti necesita conversación e intercambio — la conexión se activa en la chispa intelectual. Amas lo que te hace pensar.',
+            'Cáncer':'Venus en Cáncer ama con todo el cuerpo emocional. El deseo en ti es profundo y protector, necesita seguridad para abrirse — la conexión se activa en el cuidado mutuo. Amas desde el hogar interior.',
+            'Leo':'Venus en Leo ama con generosidad y expresión. El deseo en ti necesita ser celebrado — la conexión se activa cuando hay reconocimiento y creatividad compartida. Amas siendo visto.',
+            'Virgo':'Venus en Virgo ama a través del servicio. El deseo en ti es discreto y selectivo, se expresa en los detalles precisos — la conexión se activa en el cuidado concreto, no en los grandes gestos.',
+            'Libra':'Venus en Libra ama en armonía. El deseo en ti busca equilibrio y reciprocidad — la conexión se activa cuando todo está en su justo lugar. Amas la belleza del vínculo tanto como a la persona.',
+            'Escorpio':'Venus en Escorpio ama en profundidad absoluta. El deseo en ti es intenso, exclusivo, transformador — la conexión se activa en la entrega total o no se activa. El amor superficial no alimenta.',
+            'Sagitario':'Venus en Sagitario ama en libertad. El deseo en ti necesita espacio y significado compartido — la conexión se activa cuando hay un horizonte común. Amas lo que te expande.',
+            'Capricornio':'Venus en Capricornio ama con responsabilidad. El deseo en ti es serio, comprometido, orientado al largo plazo — la conexión se activa en la lealtad construida con el tiempo. Amas lo que perdura.',
+            'Acuario':'Venus en Acuario ama en la diferencia. El deseo en ti necesita libertad y originalidad — la conexión se activa en la amistad profunda y la visión compartida. Amas lo que te permite ser completamente tú.',
+            'Piscis':'Venus en Piscis ama sin fronteras. El deseo en ti es empático y romántico, disuelve la separación — la conexión se activa en la compasión y el sueño compartido. Amas desde la totalidad, no desde la distancia.'
+        },
+        'Mercurio': {
+            'Aries':'Mercurio en Aries piensa rápido. La mente en ti es directa y decisiva — llega a la conclusión antes que otros alcancen el principio. No necesita certeza para hablar: el pensamiento se activa en el movimiento.',
+            'Tauro':'Mercurio en Tauro piensa despacio, pero profundo. La mente en ti necesita tiempo para procesar — una vez que concluye, es difícil moverla. Piensa a través de lo concreto, lo sensorial, lo que puede comprobarse.',
+            'Géminis':'Mercurio en Géminis piensa en múltiples frentes a la vez. La mente en ti es ágil y curiosa, se mueve entre ideas con facilidad — el pensamiento se activa en la conexión entre cosas aparentemente no relacionadas.',
+            'Cáncer':'Mercurio en Cáncer piensa con la memoria y el sentimiento. La mente en ti procesa a través de lo que ha vivido y de lo que siente — el pensamiento se activa cuando hay seguridad emocional en el entorno.',
+            'Leo':'Mercurio en Leo piensa con narrativa. La mente en ti organiza la experiencia como una historia — el pensamiento se activa cuando puede ser expresado y compartido, cuando tiene una audiencia.',
+            'Virgo':'Mercurio en Virgo piensa con precisión. La mente en ti analiza, discrimina, busca la exactitud — el pensamiento se activa en el detalle. Las ideas sueltas no satisfacen: necesitas que encajen.',
+            'Libra':'Mercurio en Libra piensa en perspectivas. La mente en ti ve todos los ángulos antes de concluir — el pensamiento se activa en el diálogo. Necesitas el contrapunto para llegar a lo que realmente piensas.',
+            'Escorpio':'Mercurio en Escorpio piensa en profundidad. La mente en ti va al fondo de todo, no acepta la superficie — el pensamiento se activa en la investigación y en la búsqueda de lo que se oculta. La verdad importa más que la comodidad.',
+            'Sagitario':'Mercurio en Sagitario piensa en grandes marcos. La mente en ti conecta los datos con el sentido más amplio — el pensamiento se activa en la visión y la filosofía. No te interesan los detalles si no conectan con algo mayor.',
+            'Capricornio':'Mercurio en Capricornio piensa con estructura. La mente en ti es pragmática y organizada — el pensamiento se activa cuando tiene un objetivo concreto. Piensas para construir, no solo para explorar.',
+            'Acuario':'Mercurio en Acuario piensa diferente. La mente en ti es sistémica y original — el pensamiento se activa cuando puede ir más allá del consenso, cuando hay algo establecido que cuestionar o reformular.',
+            'Piscis':'Mercurio en Piscis piensa de forma no lineal. La mente en ti opera con imágenes, sensaciones e intuiciones más que con lógica secuencial — el pensamiento se activa en la evocación. A veces sabes antes de saber por qué.'
+        },
+        'Júpiter': {
+            'Aries':'Júpiter en Aries expande a través de la acción. La confianza en ti se activa cuando te lanzas sin esperar garantías — la abundancia llega en movimiento, no en espera. El exceso de planificación frena lo que podría fluir.',
+            'Tauro':'Júpiter en Tauro expande a través de la materia y la paciencia. La confianza en ti se activa cuando construyes despacio y disfrutas el proceso — la abundancia llega cuando valoras lo que ya tienes antes de pedir más.',
+            'Géminis':'Júpiter en Géminis expande a través del conocimiento y la conexión. La confianza en ti se activa cuando aprendes y compartes — la abundancia llega a través de las ideas y de las personas que traen perspectivas nuevas.',
+            'Cáncer':'Júpiter en Cáncer expande a través del vínculo y el hogar. La confianza en ti se activa cuando hay raíz y pertenencia — la abundancia llega cuando te sientes parte de algo, no cuando estás solo.',
+            'Leo':'Júpiter en Leo expande a través de la expresión. La confianza en ti se activa cuando te muestras plenamente — la abundancia llega cuando eres generoso con lo que tienes para dar, sin retenerlo.',
+            'Virgo':'Júpiter en Virgo expande a través del servicio y la precisión. La confianza en ti se activa cuando eres realmente útil — la abundancia llega cuando aplicas el discernimiento con disciplina.',
+            'Libra':'Júpiter en Libra expande a través de la relación. La confianza en ti se activa en la colaboración y el vínculo equitativo — la abundancia llega a través del otro, no a pesar de él.',
+            'Escorpio':'Júpiter en Escorpio expande a través de la profundidad. La confianza en ti se activa cuando te permites ir al fondo — la abundancia llega en los procesos de transformación, no en la superficie de las cosas.',
+            'Sagitario':'Júpiter en Sagitario expande a través de la visión. La confianza en ti se activa cuando hay un horizonte que inspira — la abundancia llega en la búsqueda, no en la llegada. Necesitas creer en algo.',
+            'Capricornio':'Júpiter en Capricornio expande a través de la estructura. La confianza en ti se activa cuando construyes con método y sostienes el esfuerzo — la abundancia llega en el largo plazo, no en el resultado inmediato.',
+            'Acuario':'Júpiter en Acuario expande a través de lo colectivo. La confianza en ti se activa cuando contribuyes a algo más grande — la abundancia llega cuando las ideas conectan con una red que las amplifica.',
+            'Piscis':'Júpiter en Piscis expande a través de la entrega. La confianza en ti se activa cuando confías en el flujo — la abundancia llega cuando sueltas el control y te permites ser llevado por lo que ya está moviéndose.'
+        },
+        'Saturno': {
+            'Aries':'Saturno en Aries interroga el impulso. La energía de acción existe en ti, pero este planeta le pregunta: ¿actúas porque debes o porque quieres? La madurez llega cuando diriges esa fuerza sin suprimirla.',
+            'Tauro':'Saturno en Tauro interroga la estabilidad. La relación con los recursos en ti no es fácil — este planeta enseña que el valor real no se acumula con prisa sino con constancia y tiempo.',
+            'Géminis':'Saturno en Géminis interroga la coherencia. La mente en ti puede dispersarse — este planeta pide que lo que piensas, lo que dices y lo que haces formen una sola dirección con el tiempo.',
+            'Cáncer':'Saturno en Cáncer interroga la vulnerabilidad. El reto en ti no es suprimirla — es integrarla. La madurez llega cuando el cuidado no se convierte en control, ni la emoción en una fortaleza.',
+            'Leo':'Saturno en Leo interroga la necesidad de aprobación. La expresión en ti existe, pero este planeta pregunta: ¿brillas porque quieres, o porque necesitas que te vean? La madurez llega cuando ya no dependes del aplauso.',
+            'Virgo':'Saturno en Virgo interroga el perfeccionismo. El estándar de excelencia en ti es real — este planeta pide discernir cuándo es suficiente. La madurez llega cuando la exigencia no se convierte en autocastigo.',
+            'Libra':'Saturno en Libra interroga los compromisos. El equilibrio en ti es una búsqueda constante — este planeta pide honestidad en los vínculos, no solo armonía superficial. La madurez llega en la equidad real.',
+            'Escorpio':'Saturno en Escorpio interroga el poder. La intensidad en ti es real — este planeta enseña a integrarla, no a temerla ni a abusar de ella. La madurez llega cuando la profundidad se convierte en sabiduría.',
+            'Sagitario':'Saturno en Sagitario interroga la libertad. El horizonte en ti es necesario — pero este planeta pide que la libertad tenga forma: una visión a la que servir, no solo un horizonte que perseguir sin rumbo.',
+            'Capricornio':'Saturno en Capricornio interroga la construcción. La disciplina en ti es real — este planeta la amplifica hasta el límite. La madurez llega cuando el logro deja de ser la única forma de validarse.',
+            'Acuario':'Saturno en Acuario interroga las ideas. Las visiones en ti son genuinas — pero este planeta pide que dejen de ser rebelión y se conviertan en sistema. La madurez llega cuando la innovación tiene un plan.',
+            'Piscis':'Saturno en Piscis interroga los límites. La compasión en ti es real — pero este planeta enseña que sentir todo no significa cargarlo todo. La madurez llega cuando la empatía no disuelve sino que fortalece.'
+        }
+    };
+
+    // Texto combinado A: spark + casa integrada
+    const sparkText = (LORD_SIGN_SPARK[lordOriginal] || {})[natalSign] || '';
+    const houseString = HOUSE_CONTEXT[natalHouseNum] || '';
+
+    // El dato astrológico (planeta + signo + casa) se integra con glifos en la apertura del texto
+    // No aparece como subtítulo separado — forma parte de la narrativa del cuerpo
+    let finalTextA = '';
+    if (sparkText && natalHouseNum && houseString) {
+        // Prefijo con glifos KAIROS integrados
+        const _lordPfx = ['Sol', 'Luna'].includes(lordOriginal)
+            ? `${lordOriginal === 'Sol' ? 'El Sol' : 'La Luna'} en ${natalSign}`
+            : `${lordOriginal} en ${natalSign}`;
+        const _glyphedPfx = ['Sol', 'Luna'].includes(lordOriginal)
+            ? `${_pgA(lordOriginal)} ${lordOriginal === 'Sol' ? 'Sol' : 'Luna'} en ${_sgA(natalSign)} ${natalSign}`
+            : `${_pgA(lordOriginal)} ${lordOriginal} en ${_sgA(natalSign)} ${natalSign}`;
+
+        let integratedSpark = sparkText;
+        if (integratedSpark.startsWith(_lordPfx)) {
+            integratedSpark = integratedSpark.replace(_lordPfx, `${_glyphedPfx} en Casa ${natalHouseNum}`);
+        }
+        let integratedHouse = houseString.replace(new RegExp(`^En Casa ${natalHouseNum}, `), "Allí, ");
+        finalTextA = `${integratedSpark} ${integratedHouse}`;
+    } else if (sparkText) {
+        finalTextA = `${_pgA(lordOriginal)}${sparkText} ${houseString}`;
+    } else {
+        finalTextA = `${_pgA(lordOriginal)}${lordOriginal} en ${_sgA(natalSign)}${natalSign}${natalHouseNum ? ` en Casa ${natalHouseNum}` : ''} opera desde una naturaleza particular que marca cómo actúa tu guía de ciclo este año. ${houseString}`;
+    }
+
+    const hasNatalSign = natalSign && natalSign !== '—';
+    const labelAText = hasNatalSign
+        ? `${_pgA(lordOriginal)}${lordOriginal} natal — ${_sgA(natalSign)}${natalSign}${natalHouseNum ? ` · Casa ${natalHouseNum}` : ''}`
+        : `${_pgA(lordOriginal)}${lordOriginal} natal`;
+
+    // Label genérico centrado · dato astrológico integrado en apertura del cuerpo con glifos
+    const blockA = `<div id="annual-premium-energia" style="${CARD}">
+        <span style="${LBL}">Tu energía guía</span>
+        <p style="${TXT}">${finalTextA}</p>
+    </div>`;
+
+    // [AÑO_PREMIUM v3] CAPA B — Casa profectada + signo + referencia implícita al señor
+    const casaActiva = profection?.activeHouse || '—';
+    const activeSign = profection?.activeSign || '—';
+
+    const HOUSE_AREA_BRIEF = {
+        1:'la identidad y la presencia', 2:'los recursos y lo que valoras',
+        3:'la mente y el entorno cercano', 4:'las raíces y el hogar interior',
+        5:'la expresión, la creatividad y el placer', 6:'el cuerpo y el trabajo cotidiano',
+        7:'los vínculos más significativos', 8:'la transformación profunda',
+        9:'la expansión y el sentido', 10:'la vocación y el lugar en el mundo',
+        11:'la red y el propósito colectivo', 12:'el interior silencioso y la dimensión espiritual'
+    };
+
+    const SIGN_INTRO = {
+        'Aries':'Aries lo acelera','Tauro':'Tauro lo arraiga','Géminis':'Géminis lo multiplica',
+        'Cáncer':'Cáncer lo hace personal','Leo':'Leo lo expone','Virgo':'Virgo lo afina',
+        'Libra':'Libra lo equilibra','Escorpio':'Escorpio lo profundiza','Sagitario':'Sagitario lo expande',
+        'Capricornio':'Capricornio lo estructura','Acuario':'Acuario lo innova','Piscis':'Piscis lo disuelve'
+    };
+
+    const SIGN_ON_HOUSE = {
+        'Aries':'no espera el momento perfecto — pide acción, decisión, movimiento',
+        'Tauro':'no se apresura — pide construir capa por capa, valorar lo que ya hay antes de pedir más',
+        'Géminis':'no se fija en un solo punto — pide conectar, comunicar, explorar varios frentes a la vez',
+        'Cáncer':'no opera en la superficie — pide cuidado, protección, volver a lo que de verdad importa',
+        'Leo':'no se esconde — pide presencia, expresión, ser completamente visible sin disculpas',
+        'Virgo':'no acepta lo aproximado — pide precisión, discernimiento, mejorar desde dentro',
+        'Libra':'no tolera el desequilibrio — pide reciprocidad real, el punto justo entre dar y recibir',
+        'Escorpio':'no tolera lo superficial — pide ir al fondo de lo que se activa, transformar lo que hace falta',
+        'Sagitario':'no acepta límites — pide expansión, horizonte, un sentido que mueva desde dentro',
+        'Capricornio':'no se dispersa — pide estructura, método, orientación clara al largo plazo',
+        'Acuario':'no repite el guión — pide originalidad, romper el patrón, aportar algo genuinamente nuevo',
+        'Piscis':'no se aferra — pide soltar lo que ya no encaja, confiar en el flujo de lo que viene'
+    };
+
+    const LORD_IMPLICIT = {
+        'Sol':'Esa consciencia de propósito','Luna':'Ese campo emocional',
+        'Marte':'Ese impulso','Venus':'Ese deseo','Mercurio':'Esa mente',
+        'Júpiter':'Esa confianza','Saturno':'Esa disciplina'
+    };
+
+    const houseAreaText = HOUSE_AREA_BRIEF[casaActiva] || `Casa ${casaActiva}`;
+    // Signo activo con glifo KAIROS integrado en el texto
+    const signIntroText = `${_sgA(activeSign)} ${SIGN_INTRO[activeSign] || `${activeSign} lo condiciona`}`;
+    const signOnHouseText = SIGN_ON_HOUSE[activeSign] || 'pide atención y presencia en este proceso';
+    const lordImplicit = LORD_IMPLICIT[lordOriginal] || 'Esa energía';
+
+    // Cierre específico por señor — rompe la plantilla fija y diferencia el tono de cada lord
+    const _lordClosingB = {
+        'Sol':      'Lo que está en juego aquí no es solo lo que ocurre en esa área — sino si lo que haces en ella lleva tu propia firma.',
+        'Luna':     'Lo más importante no es lo que pase afuera sino lo que sientes que está moviéndose dentro mientras eso ocurre.',
+        'Marte':    'La pregunta que este ciclo pone sobre la mesa no es qué hacer — sino desde qué impulso real lo estás haciendo.',
+        'Venus':    'Lo que el año está poniendo a prueba no es el área en sí — sino lo que de verdad valoras dentro de ella.',
+        'Mercurio': 'La clave no es solo lo que ocurre en ese territorio — sino cómo lo estás interpretando y comunicando.',
+        'Júpiter':  'Lo que importa no es cuánto se abre o crece — sino desde qué tipo de confianza real se está moviendo.',
+        'Saturno':  'La pregunta no es cuánto se logra — sino si lo que estás construyendo ahí responde a algo que realmente importa.'
+    };
+
+    let finalTextB = '';
+    if (Number(casaActiva) === 5 && activeSign === 'Escorpio') {
+        finalTextB = `Lo que se activa este año no es la expresión en general — es la expresión que transforma. Casa 5 en ${_sgA('Escorpio')} Escorpio convoca lo que creas desde las capas más hondas, no desde la superficie. Lo que produces este año tiene carga real: no es decorativo, sino que mueve algo en quien lo recibe y en ti mismo al crearlo.`;
+    } else {
+        finalTextB = `Casa ${casaActiva} se activa este año — ${houseAreaText}. ${signIntroText}: ${signOnHouseText}. ${lordImplicit} es quien lleva ese proceso. ${_lordClosingB[lordOriginal] || ''}`;
+    }
+
+    const blockB = `<div id="annual-premium-casa" style="${CARD}">
+        <span style="${LBL}">Lo que se activa este año</span>
+        <p style="${TXT}">${finalTextB}</p>
+    </div>`;
+
+    // C — Cómo se mueve ahora (tránsitos del señor sobre carta natal)
+    let blockC = `<div id="annual-premium-movimiento" style="${CARD}"><span style="${LBL}">Cómo se mueve ahora</span><p style="${TXT}" id="annual-premium-transits">Calculando el movimiento actual...</p></div>`;
+
+    // ── BLOQUE D — Por qué este ciclo te afecta así específicamente a ti ────────
+    // 4 capas: calidad natal señor · puente natal→activa · ritmo temporal · comprensión del ciclo
+
+    // CAPA 1+2 — Patrón vivido del señor en su signo natal (7 × 12)
+    // Voz directa: segunda persona, experiencia observable, sin "opera desde", sin nombre de planeta
+    const _lordNatalQuality = {
+        'Sol': {
+            'Aries':    'Sueles saber quién eres cuando actúas — la indecisión te desgasta más que el propio error.',
+            'Tauro':    'Tu sentido de dirección se asienta cuando hay algo concreto que construir y sostener — sin eso, el propósito se vuelve difuso.',
+            'Géminis':  'Encuentras tu centro en el intercambio — cuando conectas ideas o personas, algo en ti se clarifica.',
+            'Cáncer':   'Tu propósito se aclara cuando protege o sostiene algo que te importa — sin ese vínculo, la dirección pierde fuerza.',
+            'Leo':      'Necesitas mostrarte para saber quién eres — no puedes definirte solo desde dentro, necesitas que el mundo lo confirme.',
+            'Virgo':    'Tu propósito se concreta en la mejora — necesitas ver que lo que haces sirve de algo específico para sentir que tiene sentido.',
+            'Libra':    'Te defines mejor en relación que en soledad — el otro te devuelve una parte de ti que no encuentras sin espejo.',
+            'Escorpio': 'Lo que realmente eres aparece en la transformación — la superficie dice poco; lo que atraviesas dice mucho más.',
+            'Sagitario':'Necesitas horizonte para saber hacia dónde vas — sin movimiento o búsqueda, el sentido de dirección se difumina.',
+            'Capricornio':'Tu propósito se concreta en lo que construyes con esfuerzo real — necesitas ver los resultados para saber que la dirección existe.',
+            'Acuario':  'Tu identidad se afirma cuando vas más allá del guión — la diferencia no es una rebeldía, es lo que te hace ser tú.',
+            'Piscis':   'Tu propósito llega a través de lo que trasciende lo concreto — cuando estás demasiado enfocado en los detalles, el centro se diluye.'
+        },
+        'Luna': {
+            'Aries':    'Tu seguridad interior llega en movimiento — la quietud forzada te genera más ansiedad que la propia acción.',
+            'Tauro':    'Te sientes a salvo cuando hay continuidad — los cambios abruptos activan en ti una inseguridad difícil de nombrar.',
+            'Géminis':  'Tu sistema emocional se regula cuando puedes hablar y conectar — el silencio forzado te genera más ruido interno, no menos.',
+            'Cáncer':   'Lo que sientes aquí tiene raíz profunda — no es reacción pasajera, viene de una capa que tardas en reconocer.',
+            'Leo':      'Tu equilibrio emocional depende de poder expresarte — cuando no hay espacio para eso, la carga se acumula de formas que no siempre ves.',
+            'Virgo':    'Te sientes emocionalmente a salvo cuando tienes algo concreto que cuidar o mejorar — la sensación de inutilidad te genera ansiedad real.',
+            'Libra':    'Tu equilibrio emocional está ligado al estado de tus vínculos — cuando hay tensión en las relaciones, te cuesta encontrar calma interior.',
+            'Escorpio': 'Tu mundo emocional opera en capas que no siempre son visibles — lo que sientes de verdad tarda en llegar a la superficie.',
+            'Sagitario':'Te sientes más estable cuando tienes libertad de movimiento que cuando tienes certeza — el encierro emocional te desorienta.',
+            'Capricornio':'Tu seguridad interior necesita estructura — la incertidumbre sin ningún tipo de orden te genera una carga mayor que el esfuerzo.',
+            'Acuario':  'Necesitas cierta distancia para procesar lo que sientes — no porque no sientas, sino porque el exceso de proximidad emocional te desconecta.',
+            'Piscis':   'Tu sistema emocional no tiene fronteras nítidas — absorbes el estado de quienes te rodean sin siempre darte cuenta de que ocurre.'
+        },
+        'Marte': {
+            'Aries':    'Actúas antes de analizar — tu energía más genuina es la del movimiento directo, sin rodeos ni preparación larga.',
+            'Tauro':    'Tu impulso más fuerte es el que construye en lugar del que destruye — la constancia te da más poder que la velocidad.',
+            'Géminis':  'Tu energía de acción se activa en la palabra y la conexión — necesitas comunicar para poder actuar con verdadera fuerza.',
+            'Cáncer':   'Actúas con más fuerza cuando hay algo que proteger — el impulso en ti es profundamente relacional, no abstracto.',
+            'Leo':      'Tu impulso se activa ante la posibilidad de dejar una marca — actúas con más energía cuando lo que haces puede ser visto.',
+            'Virgo':    'Tu energía más precisa no es la del ímpetu sino la de la corrección — encuentras el poder en perfeccionar, no en lanzarte sin rumbo.',
+            'Libra':    'Actúas más eficazmente cuando el contexto es justo — el impulso solitario sin contexto relacional te desgasta más de lo que te impulsa.',
+            'Escorpio': 'Tu energía más poderosa no se adelanta ni se dispersa — acumulas antes de actuar, y cuando lo haces, el impacto es difícil de ignorar.',
+            'Sagitario':'Te mueve más una causa que un objetivo — sin un sentido que te impulse, la energía se dispersa con rapidez.',
+            'Capricornio':'Tu impulso es paciente pero implacable — no urgente pero tampoco negociable cuando la meta está clara.',
+            'Acuario':  'Tu energía busca transformar un sistema más que ganar una batalla — el impacto colectivo te interesa más que el individual.',
+            'Piscis':   'Tu impulso sigue corrientes que no siempre son visibles — actúas mejor cuando confías en el flujo que cuando fuerzas el resultado.'
+        },
+        'Venus': {
+            'Aries':    'Deseas con urgencia — la lentitud o la ambigüedad en los vínculos te genera una impaciencia que a veces se confunde con frialdad.',
+            'Tauro':    'Valoras lo que dura — no el destello inicial, sino la profundidad que se construye con el tiempo y la presencia.',
+            'Géminis':  'Tu manera de querer necesita conversación — sin intercambio real y variado, los vínculos se vuelven planos para ti.',
+            'Cáncer':   'Te resulta más fácil amar cuando puedes cuidar — el afecto en ti busca proteger tanto como ser protegido.',
+            'Leo':      'Necesitas que el vínculo tenga espacio para la expresión y el disfrute — sin eso, sientes que falta algo esencial.',
+            'Virgo':    'Tu forma de querer se expresa en los detalles y el cuidado concreto — más que palabras, lo tuyo son los gestos precisos.',
+            'Libra':    'Lo que valoras genuinamente es la reciprocidad real — las dinámicas de dar y recibir en desequilibrio te generan un malestar que tarda en resolverse.',
+            'Escorpio': 'No te interesa lo superficial en los vínculos — cuando algo tiene profundidad real, la entrega es total; cuando no, el desapego también.',
+            'Sagitario':'Valoras la libertad dentro del vínculo — la conexión que te exige demasiada restricción pierde atractivo rápidamente.',
+            'Capricornio':'Tu forma de querer es seria y comprometida — la ligereza sin fondo no te genera confianza ni atracción duradera.',
+            'Acuario':  'Valoras la amistad dentro del amor — los vínculos que te permiten ser diferente y original te resultan más sostenibles.',
+            'Piscis':   'Tu manera de conectar disuelve fronteras — con facilidad te fusionas con lo que amas, y a veces olvidar dónde terminas tú.'
+        },
+        'Mercurio': {
+            'Aries':    'Tu mente decide antes de analizar — la velocidad es tu herramienta, aunque a veces te adelanta a conclusiones que luego hay que revisar.',
+            'Tauro':    'Procesas lento pero con profundidad — cuando das una conclusión, es porque ya la has sostenido mucho tiempo internamente.',
+            'Géminis':  'Tu mente necesita variedad para funcionar bien — la repetición y el trabajo monótono la apagan más que el cansancio.',
+            'Cáncer':   'Piensas desde lo que sientes — los datos sin carga emocional te cuesta integrarlos de forma que te resulten reales.',
+            'Leo':      'Tu mente organiza la experiencia como una historia — necesitas que lo que dices tenga audiencia, aunque sea de una sola persona.',
+            'Virgo':    'Tu pensamiento busca la exactitud — preferirías no decir nada antes que decir algo impreciso o a medias.',
+            'Libra':    'Antes de concluir, necesitas ver todos los ángulos — lo que a veces parece indecisión es en realidad un proceso de escucha real.',
+            'Escorpio': 'Tu mente no acepta explicaciones superficiales — preguntas hasta llegar al fondo, aunque el fondo no sea cómodo.',
+            'Sagitario':'Piensas en marcos grandes — los detalles aislados sin contexto mayor te aburren o te dispersan.',
+            'Capricornio':'Tu pensamiento más natural es el pragmático — lo que no puede convertirse en algo concreto te cuesta tomarlo en serio.',
+            'Acuario':  'Tu mente va más allá del consenso por defecto — a veces la idea más valiosa que tienes es la que nadie más se ha atrevido a decir.',
+            'Piscis':   'Tu pensamiento opera con imágenes y sensaciones más que con lógica lineal — a veces sabes algo sin poder explicar exactamente cómo lo sabes.'
+        },
+        'Júpiter': {
+            'Aries':    'Sueles crecer más cuando actúas sin esperar el momento perfecto — el movimiento antes que el plan completo.',
+            'Tauro':    'Tu expansión más genuina llega construyendo capa por capa — el crecimiento que viene del proceso sostenido te dura más que el del impulso.',
+            'Géminis':  'Creces más cuando conectas lo que aprendes con alguien más — el conocimiento compartido te genera más confianza que el acumulado en solitario.',
+            'Cáncer':   'Tu expansión necesita raíz — creces mejor cuando hay pertenencia y cuidado cerca que cuando hay horizontes pero no ancla.',
+            'Leo':      'Creces cuando te permites mostrarte sin disculpas — la confianza más genuina llega de la expresión, no de la preparación.',
+            'Virgo':    'Tu expansión más real llega siendo útil de forma concreta — cuando encuentras el punto exacto donde puedes mejorar algo, algo en ti también crece.',
+            'Libra':    'Creces más en colaboración que en solitario — la reciprocidad real es el terreno donde tu confianza se expande más naturalmente.',
+            'Escorpio': 'Tu crecimiento más profundo llega cuando dejas que algo se transforme — no desde la superficie, sino desde lo que muda internamente.',
+            'Sagitario':'Sueles crecer cuando hay un horizonte que te inspira — sin visión ni sentido de hacia dónde, la energía de expansión se dispersa.',
+            'Capricornio':'Tu expansión más genuina llega cuando construyes con método — el crecimiento que no tiene estructura no te convence aunque sea grande.',
+            'Acuario':  'Sueles crecer cuando lo que construyes tiene sentido más allá de tus propios intereses — cuando hay algo colectivo o nuevo en lo que puedes contribuir.',
+            'Piscis':   'Tu expansión llega cuando confías en el flujo más que en el plan — cuando dejas de empujar, algo se abre.'
+        },
+        'Saturno': {
+            'Aries':    'Tu mayor reto es aprender a actuar con fuerza sin necesitar controlarlo todo — la disciplina más útil en ti dirige el impulso, no lo frena.',
+            'Tauro':    'Tu proceso de madurez pasa por descubrir que el valor genuino no está en lo que acumulas sino en cómo lo usas.',
+            'Géminis':  'La coherencia entre lo que piensas, lo que dices y lo que haces es la estructura más importante que necesitas construir.',
+            'Cáncer':   'Tu camino hacia la madurez pasa por aprender a sostenerte emocionalmente tú mismo — no porque no necesites apoyo, sino porque ese trabajo nadie más puede hacerlo.',
+            'Leo':      'La estructura más importante que necesitas construir es la autoestima que no depende del aplauso — cuando eso está, el resto se asienta.',
+            'Virgo':    'Tu proceso de madurez incluye aprender a saber cuándo es suficiente — la exigencia sin autocompasión es la forma más cara en que pagas la perfección.',
+            'Libra':    'Tu camino hacia la madurez pasa por los compromisos honestos — la armonía superficial te cuesta más de lo que aparenta a largo plazo.',
+            'Escorpio': 'Tu proceso de madurez está ligado a cómo integras la intensidad — ni reprimiéndola ni siendo dominado por ella.',
+            'Sagitario':'Tu forma de madurar incluye convertir la libertad en compromiso real — la visión que no puede aterrizarse en algo concreto se queda en ilusión.',
+            'Capricornio':'Tu camino de madurez es la disciplina sostenida — no el esfuerzo puntual ni la perfección, sino la constancia en lo que importa.',
+            'Acuario':  'Tu proceso de madurez pasa por convertir las ideas en sistemas — la rebeldía que no puede organizarse no transforma nada.',
+            'Piscis':   'Tu camino de madurez incluye aprender a poner límites a la compasión — no para dejar de sentir, sino para no disolverse en lo que sientes.'
+        }
+    };
+
+    // CAPA 3 — Ritmo temporal por señor (cuándo se concentra la activación)
+    const _lordTemporalRhythm = {
+        'Sol':'La segunda mitad del año tiende a intensificar la consciencia de propósito — es cuando lo iniciado empieza a pedir consolidación.',
+        'Luna':'Cada luna nueva abre un umbral pequeño pero real. Los cambios de ciclo mensual concentran más apertura interior — el sistema emocional está más permeable en esos tramos.',
+        'Marte':'El tramo de verano hasta principios de otoño concentra más activación — el impulso pide ser dirigido, no dispersado. Los momentos decisivos no siempre llegan con urgencia visible.',
+        'Venus':'Primavera y otoño abren ventanas de mayor apertura — momentos donde lo relacional y lo creativo tiene más resonancia. La conexión se da cuando el sistema está abierto, no cuando se fuerza.',
+        'Mercurio':'La primavera tardía y el inicio de verano concentran la mayor claridad del ciclo. El otoño abre una segunda ventana, más reflexiva. Los períodos de retrogradación no son para avanzar sino para revisar.',
+        'Júpiter':'El año tiene un arco de apertura que se hace más evidente hacia la segunda mitad. La clave es reconocer cuando la expansión llega sola, sin necesidad de empujarla.',
+        'Saturno':'El primer tramo del ciclo pide claridad de estructura. La segunda mitad pide integrar lo construido sin añadir nuevas capas. La paciencia no es pasividad: es estrategia.'
+    };
+
+    // CAPA 4 — Comprensión del ciclo (señor × casa profectada activa) — 7 × 12
+    const _cycleInsight = {
+        'Sol': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre quién eres internamente y cómo eso se hace visible en el mundo.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre el sentido de propósito y los recursos concretos que lo sostienen.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que piensas de ti mismo y cómo lo comunicas al entorno próximo.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre la identidad personal y las raíces de las que proviene.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre el propósito y el placer — si lo que haces te hace sentir completamente vivo.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre el sentido de dirección y los hábitos cotidianos que lo sustentan o lo debilitan.',
+            7:'Lo que este ciclo parece insistir en mostrar es cómo los vínculos más significativos reflejan algo del propio propósito que aún está por clarificarse.',
+            8:'Lo que este ciclo parece insistir en mostrar es que hay algo por transformar antes de que el propósito pueda expresarse más plenamente.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre la búsqueda de sentido y la capacidad de actuar desde lo que ya se ha encontrado.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre quién eres y lo que construyes para dejar en el mundo.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre el propósito personal y lo que puede aportarse al entorno colectivo.',
+            12:'Lo que este ciclo parece insistir en mostrar es que antes de que el propósito se exprese hacia afuera, necesita tiempo de integración interior.'
+        },
+        'Luna': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre el mundo emocional interior y la forma en que te presentas al exterior.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre la seguridad emocional y la seguridad material — cómo se sostienen mutuamente.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que sientes y la manera en que lo comunicas al entorno próximo.',
+            4:'Lo que este ciclo parece insistir en mostrar es algo que tiene raíz en la historia personal — algo del pasado que necesita ser revisado o integrado.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre el mundo emocional y la capacidad de disfrutar, crear y expresarse libremente.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre el estado emocional y el cuerpo — cómo la energía interna se refleja en la salud y la rutina.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre la necesidad emocional personal y lo que se pide y recibe en los vínculos más importantes.',
+            8:'Lo que este ciclo parece insistir en mostrar es que hay una capa emocional profunda que pide ser vista antes de que algo pueda cambiar realmente.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que sientes y el sentido que le das a la experiencia.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre el mundo emocional privado y lo que se proyecta en la vocación y el lugar público.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre la seguridad interior y los grupos y redes a los que se pertenece.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay algo que integrar en silencio — una corriente emocional que necesita espacio antes de moverse.'
+        },
+        'Marte': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y la imagen que proyectas — si lo que haces coincide con quien eres.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre el impulso de actuar y los recursos concretos que respaldan esa acción.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y la forma en que se comunica — si el impulso tiene salida o se acumula.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y las raíces — de dónde viene el impulso y cómo se sostiene.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y el placer — si lo que se hace con energía también se disfruta.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre el impulso y la sostenibilidad — si la energía puede mantenerse sin agotar el cuerpo.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre el propio impulso y el de quienes están cerca — si generan tensión o se complementan.',
+            8:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y la transformación — si el impulso está siendo usado para cambiar algo real.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre el impulso y el sentido — si la energía tiene una dirección que realmente vale la pena.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre la energía de acción y la vocación — si el impulso está al servicio de algo que construye.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre el impulso personal y el propósito colectivo — si la energía sirve al conjunto o solo al individuo.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay algo que necesita procesarse antes de que el impulso pueda tener dirección clara.'
+        },
+        'Venus': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que valoras de verdad y cómo te presentas — si hay coherencia entre los dos.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que deseas y los recursos con los que cuentas para construirlo.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo y la comunicación — si lo que quieres y lo que dices están alineados.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que valoras y las raíces — qué parte del deseo tiene origen en la historia personal.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo y la expresión — si lo que valoras puede manifestarse con plenitud.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo y la rutina cotidiana — si los hábitos sostienen o limitan lo que realmente importa.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que deseas y lo que los vínculos más importantes reflejan de ese deseo.',
+            8:'Lo que este ciclo parece insistir en mostrar es que la apertura al deseo pasa por soltar algo — un apego, una forma de controlar o de retener.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo y el sentido — si lo que valoras tiene un horizonte que lo orienta.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que amas y lo que construyes públicamente — si los dos van en la misma dirección.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo personal y los lazos que se eligen — si la red que te rodea nutre lo que valoras.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay algo por apreciar en silencio antes de que el deseo pueda expresarse sin ambivalencia.'
+        },
+        'Mercurio': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre cómo piensas sobre ti mismo y cómo eso modela la imagen que proyectas.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y los recursos — si la mente está al servicio de lo que construyes.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y la de comunicar — si hay coherencia o algo se distorsiona en el camino.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre los patrones mentales actuales y los que se formaron en la historia personal.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre la mente y la expresión creativa — si el pensamiento libera o contiene la capacidad de crear.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre los hábitos mentales y los físicos — si la forma de pensar el cuerpo y el trabajo te sostiene o te desgasta.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y los vínculos — si la mente escucha tanto como habla en las relaciones importantes.',
+            8:'Lo que este ciclo parece insistir en mostrar es la relación entre la mente y la transformación — si el pensamiento puede atravesar la incomodidad o tiende a evitarla.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y el sentido — si la mente está al servicio de la comprensión o de la justificación.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y lo que se construye públicamente — si la mente sirve a la vocación.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre la forma de pensar y los grupos a los que se pertenece — si la mente conecta o separa.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay patrones de pensamiento que necesitan tiempo de silencio para reorganizarse.'
+        },
+        'Júpiter': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre lo que crees posible para ti y cómo finalmente decides presentarte al mundo.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre confiar en la abundancia y construir una base material real que la sostenga.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre la amplitud de miras y la precisión de lo que comunicas al entorno próximo.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre el horizonte que buscas y las raíces que necesitas para poder avanzar.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre la abundancia y la capacidad de disfrutar sin necesitar que todo tenga un propósito mayor.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre el deseo de expansión y la disciplina del cuerpo y la rutina cotidiana.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre la apertura personal y lo que los vínculos más significativos pueden devolverle a esa apertura.',
+            8:'Lo que este ciclo parece insistir en mostrar es que el crecimiento real pasa por soltar algo — una seguridad, un control, un modo anterior de funcionar.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre la búsqueda de sentido y lo que ya sabes pero no terminas de integrar en la práctica.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre creer en tus posibilidades y construir algo concreto con esa creencia en el mundo.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre el crecimiento individual y lo que puedes aportar genuinamente al conjunto que te rodea.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay algo que integrar antes de que la expansión pueda ser visible y sostenida al exterior.'
+        },
+        'Saturno': {
+            1:'Lo que este ciclo parece insistir en mostrar es la relación entre la estructura interna y la imagen que proyectas — si lo que construyes coincide con quien realmente eres.',
+            2:'Lo que este ciclo parece insistir en mostrar es la relación entre la disciplina y los recursos — si lo que construyes tiene una base material que lo sostenga a largo plazo.',
+            3:'Lo que este ciclo parece insistir en mostrar es la relación entre la exigencia interior y la forma en que se comunica — si la estructura sirve al entendimiento o lo dificulta.',
+            4:'Lo que este ciclo parece insistir en mostrar es la relación entre las estructuras que llevas construidas y las que heredaste — cuáles sostienen y cuáles limitan.',
+            5:'Lo que este ciclo parece insistir en mostrar es la relación entre la exigencia y el disfrute — si la disciplina deja espacio para la expresión libre o la contiene en exceso.',
+            6:'Lo que este ciclo parece insistir en mostrar es la relación entre la disciplina y el cuerpo — si la estructura que aplicas al trabajo cotidiano te sostiene o te agota.',
+            7:'Lo que este ciclo parece insistir en mostrar es la relación entre la estructura personal y los vínculos — qué nivel de compromiso real está siendo construido o revisado.',
+            8:'Lo que este ciclo parece insistir en mostrar es la relación entre la disciplina y la transformación — si la estructura que mantienes permite el cambio o lo bloquea.',
+            9:'Lo que este ciclo parece insistir en mostrar es la relación entre la estructura y el sentido — si la disciplina que aplicas responde a algo que realmente crees.',
+            10:'Lo que este ciclo parece insistir en mostrar es la relación entre la exigencia propia y lo que construyes públicamente — si la disciplina está al servicio de la vocación.',
+            11:'Lo que este ciclo parece insistir en mostrar es la relación entre la estructura personal y el propósito colectivo — si lo que construyes sirve a algo más que al individuo.',
+            12:'Lo que este ciclo parece insistir en mostrar es que hay algo que estructura en silencio — un patrón que pide tiempo de integración antes de poder modificarse.'
+        }
+    };
+
+    // Ancla astrológica del bloque D — 1 frase por planeta, con glifo KAIROS
+    // Recupera la identidad KAIROS sin repetir el mecanismo natal de bloque A
+    const _lordCharacterization = {
+        'Sol':      `${_pgA('Sol')} Sol en tu carta define la forma en que buscas dirección y propósito propio.`,
+        'Luna':     `${_pgA('Luna')} Luna en tu carta condiciona cómo te mueves emocionalmente y qué necesitas para sentirte a salvo.`,
+        'Marte':    `${_pgA('Marte')} Marte en tu carta determina la forma en que actúas y ejerces tu impulso.`,
+        'Venus':    `${_pgA('Venus')} Venus en tu carta moldea cómo te vinculas y qué buscas cuando conectas con el mundo.`,
+        'Mercurio': `${_pgA('Mercurio')} Mercurio en tu carta define cómo piensas y cómo procesas lo que te rodea.`,
+        'Júpiter':  `${_pgA('Júpiter')} Júpiter en tu carta marca la forma en que creces y en qué tipo de expansión confías.`,
+        'Saturno':  `${_pgA('Saturno')} Saturno en tu carta determina qué tipo de madurez estás construyendo y cómo lo haces.`
+    };
+
+    // Términos implícitos del señor para el puente natal→activa (conecta con la nueva voz directa)
+    const _lordImplicitD = {
+        'Sol':      'Esa forma de encontrar propósito',
+        'Luna':     'Ese patrón emocional',
+        'Marte':    'Ese impulso',
+        'Venus':    'Esa forma de valorar y conectar',
+        'Mercurio': 'Esa forma de procesar y comunicar',
+        'Júpiter':  'Esa forma de crecer',
+        'Saturno':  'Ese proceso de madurez'
+    };
+
+    // Construcción del texto D — sin repetir nombre del planeta (A ya lo nombró)
+    const _qualityD = (_lordNatalQuality[lordOriginal] || {})[natalSign] || '';
+    const _temporalD = _lordTemporalRhythm[lordOriginal] || 'Este año tiene momentos de mayor apertura y momentos de mayor introspección.';
+    const _insightD  = (_cycleInsight[lordOriginal] || {})[parseInt(casaActiva)] || '';
+    const _implicitD = _lordImplicitD[lordOriginal] || 'Esa energía';
+    const _natalAreaD  = HOUSE_AREA_BRIEF[natalHouseNum] || `Casa ${natalHouseNum}`;
+    const _activeAreaD = HOUSE_AREA_BRIEF[casaActiva]    || `Casa ${casaActiva}`;
+
+    const _anchorD = _lordCharacterization[lordOriginal] || '';
+    let windowsTextD = '';
+    if (_qualityD && natalHouseNum && casaActiva && _insightD) {
+        // Ancla astrológica (glifo + planeta) → patrón vivido → puente natal→activa → ritmo → comprensión
+        windowsTextD = `${_anchorD} ${_qualityD} ${_implicitD}, que en tu carta viene de ${_natalAreaD}, este año llega al territorio de ${_activeAreaD}. ${_temporalD} ${_insightD}`;
+    } else if (_qualityD) {
+        windowsTextD = `${_anchorD} ${_qualityD} ${_temporalD} ${_insightD}`;
+    } else {
+        windowsTextD = `${_anchorD} ${_temporalD}`;
+    }
+
+    const blockD = `<div id="annual-premium-ventana" style="${CARD}">
+        <span style="${LBL}">Por qué este ciclo te afecta así</span>
+        <p style="${TXT}">${windowsTextD}</p>
+    </div>`;
+
+    // 4 tarjetas independientes — sin wrapper exterior compartido (patrón MES/HOY/SEMANA)
+    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}`;
+
+    // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
+    const HOUSE_ACTIVATION_NARRATIVE = {
+      'Sol': {
+        1: 'La energía del ciclo ilumina tu presencia — hay impulso hacia ser visto y hacia iniciativas que te representan directamente.',
+        2: 'El foco se orienta hacia los recursos y el valor propio — lo que construyes o consolidas este tramo tiene peso real.',
+        3: 'El movimiento es mental y comunicativo — ideas, intercambios y conexiones próximas toman protagonismo.',
+        4: 'La energía se vuelve hacia lo íntimo y lo raíz — el hogar, el origen y lo que sostiene piden atención.',
+        5: 'Hay apertura hacia la expresión y la creatividad — lo que haces con genuina alegría encuentra su momento.',
+        6: 'El impulso se orienta hacia el trabajo concreto y el cuerpo — la constancia y el orden tienen su recompensa ahora.',
+        7: 'La energía se mueve hacia los vínculos — las relaciones importantes, los acuerdos y lo que compartes con otros.',
+        8: 'El foco va hacia la transformación profunda — lo que debe renovarse, cerrarse o trascenderse está activo.',
+        9: 'El movimiento es expansivo — aprendizaje, horizonte y búsqueda de sentido cobran fuerza.',
+        10: 'La energía apunta hacia lo público y el propósito — lo que construyes hacia el mundo tiene visibilidad.',
+        11: 'El impulso se orienta hacia lo colectivo — proyectos compartidos, ideales y redes de afinidad.',
+        12: 'La energía opera en silencio — procesos internos, elaboración invisible y escucha profunda antes que acción exterior.'
+      },
+      'Luna': {
+        1: 'El ritmo emocional es visible — tu estado interno se refleja directamente en cómo te presentas.',
+        2: 'Las necesidades emocionales se conectan con la seguridad y los recursos — lo que te nutre pide atención.',
+        3: 'El mundo emocional se expresa a través de palabras e intercambios — la comunicación tiene carga afectiva.',
+        4: 'El ritmo emocional vuelve al origen — el hogar, la familia y lo que da base son el centro.',
+        5: 'Las emociones buscan expresión — lo creativo, lo lúdico y el afecto son el canal natural ahora.',
+        6: 'El ritmo emocional se ancla en la rutina y el cuerpo — el bienestar depende de lo cotidiano.',
+        7: 'Las necesidades emocionales se activan en los vínculos — lo que das y recibes en las relaciones pesa.',
+        8: 'El ritmo emocional toca capas profundas — hay movimiento interior que no siempre es visible pero sí real.',
+        9: 'El mundo emocional busca expansión y sentido — el deseo de comprender y trascender lo cotidiano.',
+        10: 'Las emociones se conectan con el propósito y el rol público — lo que sientes sobre tu trayectoria.',
+        11: 'El ritmo emocional se orienta hacia lo colectivo — los ideales compartidos y la pertenencia.',
+        12: 'Las emociones operan en profundidad y en silencio — lo que procesas internamente tiene más peso que lo que expresas.'
+      },
+      'Marte': {
+        1: 'El impulso es directo y personal — hay energía para iniciativas que te representan y que parten desde ti.',
+        2: 'La acción se orienta hacia consolidar recursos y valor propio — construir, producir, sostener.',
+        3: 'La energía es rápida y comunicativa — ideas que se accionan, intercambios que mueven.',
+        4: 'El impulso trabaja en el interior — en el hogar, en los cimientos, en lo que da base.',
+        5: 'La energía busca expresión activa — crear, jugar, arriesgar con genuinas ganas.',
+        6: 'El impulso va hacia el trabajo concreto — eficiencia, mejora, el placer de hacer bien.',
+        7: 'La acción se mueve hacia los vínculos — acuerdos, negociaciones, la energía en lo compartido.',
+        8: 'El impulso toca lo que debe transformarse — lo que requiere valentía para morir o renacer.',
+        9: 'La energía es expansiva y orientada al horizonte — aprender, explorar, ir más allá.',
+        10: 'El impulso apunta al propósito público — construir, liderar, hacerse visible.',
+        11: 'La acción se orienta hacia lo colectivo — proyectos que trascienden lo individual.',
+        12: 'La energía de este ciclo se mueve hacia dentro. No es un momento de acción visible, sino de procesos que necesitan silencio para madurar. Lo que trabajas ahora en privado tiene fuerza real.'
+      },
+      'Venus': {
+        1: 'La atracción y el valor se orientan hacia ti mismo — presencia, imagen y lo que proyectas.',
+        2: 'Venus activa el placer de los recursos y lo sensorial — el disfrute de lo que posees y construyes.',
+        3: 'El vínculo y la belleza se expresan en palabras — conversaciones que nutren, ideas que conectan.',
+        4: 'La armonía busca el hogar y el origen — crear belleza y bienestar en lo íntimo.',
+        5: 'Venus en su elemento — el placer, la creatividad y el amor encuentran expresión natural.',
+        6: 'El vínculo se conecta con el servicio y el cuerpo — el cuidado y el bienestar cotidiano.',
+        7: 'La energía de vínculo y atracción se activa plenamente en las relaciones — los acuerdos y el amor.',
+        8: 'La atracción toca lo profundo — lo que une más allá de lo superficial, la intimidad real.',
+        9: 'Venus busca expansión y belleza en las ideas — el placer del conocimiento y el horizonte.',
+        10: 'El valor y la atracción se orientan al propósito público — lo que construyes tiene magnetismo.',
+        11: 'La conexión se activa en lo colectivo — el placer de pertenecer y de crear con otros.',
+        12: 'Venus opera en silencio — el amor y el valor se elaboran internamente antes de expresarse.'
+      },
+      'Júpiter': {
+        1: 'La expansión es personal y directa — hay oportunidad de crecimiento en lo que emprendes desde ti.',
+        2: 'Júpiter amplifica los recursos — hay potencial de crecimiento material y de valor propio.',
+        3: 'La expansión es mental y comunicativa — el aprendizaje, los contactos y las ideas se multiplican.',
+        4: 'El crecimiento toca el origen y el hogar — ampliar la base, el bienestar íntimo.',
+        5: 'Júpiter potencia la creatividad y el gozo — hay abundancia en la expresión y el disfrute.',
+        6: 'La expansión va al trabajo y al cuerpo — mejoras en salud, eficiencia y proceso cotidiano.',
+        7: 'Júpiter amplifica los vínculos — oportunidades de crecimiento a través de los otros.',
+        8: 'La expansión toca la transformación — lo que debe crecer más allá de sus límites actuales.',
+        9: 'Júpiter en su casa — la expansión, el viaje, el conocimiento y el sentido se multiplican.',
+        10: 'El crecimiento se orienta al propósito público — la trayectoria y el reconocimiento.',
+        11: 'La expansión es colectiva — los proyectos y las redes de afinidad crecen.',
+        12: 'Júpiter amplifica lo que opera en silencio — el crecimiento espiritual, la generosidad invisible.'
+      }
+    };
+
+    const CONJUNCTION_NARRATIVE = {
+      'Sol': { default: 'El tránsito del Sol activa un punto natal — hay iluminación sobre algo que empieza a ser visible.' },
+      'Luna': { default: 'La Luna toca un punto natal — hay resonancia emocional con algo de tu carta que se activa brevemente.' },
+      'Marte': { default: 'Marte en contacto con un punto natal — hay energía concentrada sobre algo que pide movimiento o decisión.' },
+      'Venus': { default: 'Venus en contacto con un punto natal — hay apertura afectiva o de valor sobre algo de tu carta.' },
+      'Júpiter': { default: 'Júpiter amplifica un punto natal — hay oportunidad de expansión en el área que toca.' },
+      'Saturno': { default: 'Saturno en contacto con un punto natal — hay presión que pide estructura, madurez o consolidación.' }
+    };
+
+    const NO_ACTIVATION_TEXT = {
+      'Sol': 'El Sol transita por tu carta sin activaciones directas en este momento. El proceso del año avanza en su propio ritmo.',
+      'Luna': 'La Luna transita sin activaciones directas ahora. El ritmo emocional está en pausa activa.',
+      'Marte': 'Marte no tiene activaciones directas sobre tu carta en este momento. El impulso del año opera de fondo, acumulando.',
+      'Venus': 'Venus transita sin contactos directos ahora. La armonía del ciclo opera de forma sutil.',
+      'Júpiter': 'Júpiter no tiene activaciones directas en este momento. La expansión trabaja a largo plazo.',
+      'Saturno': 'Saturno no tiene activaciones directas ahora. La estructura del ciclo se consolida sin presión puntual.',
+      'Mercurio': 'Mercurio transita sin activaciones directas. La mente del ciclo procesa en quietud.'
+    };
+
+    function translateActivation(activation, lordOriginal) {
+        if (activation.type === 'HOUSE') {
+            const houseNarratives = HOUSE_ACTIVATION_NARRATIVE[activation.transit];
+            if (houseNarratives && houseNarratives[activation.house]) {
+                return houseNarratives[activation.house];
+            }
+        }
+        if (activation.type === 'CONJUNCIÓN' || activation.type === 'OPOSICIÓN') {
+            const conjNarr = CONJUNCTION_NARRATIVE[activation.transit];
+            return conjNarr ? conjNarr.default : null;
+        }
+        return null;
+    }
+
+    const transitsEl = document.getElementById('annual-premium-transits');
+    
+    // Nivel 1: Validación Crítica (Planetas ≥ 7 y Casas == 12)
+    const hasNatalPlanets = state.user?.natalPlanets && Object.keys(state.user.natalPlanets).length >= 7;
+    const _rawHouses = state.user?.houses || state.user?.natalHouses || state.user?.natal_context?.houses || state.user?.chart?.houses || null;
+    let _natalHousesArray = [];
+    if (_rawHouses) {
+        if (Array.isArray(_rawHouses)) {
+            _natalHousesArray = _rawHouses;
+        } else if (typeof _rawHouses === 'object') {
+            _natalHousesArray = Object.values(_rawHouses);
+        }
+    }
+    const hasHouses = _natalHousesArray.length >= 12;
+    const hasCriticalData = hasNatalPlanets && hasHouses;
+
+    // Nivel 2: Validación Suave (Coordenadas de nacimiento)
+    const hasBirthData = state.user?.birthLat !== undefined && state.user?.birthLng !== undefined;
+
+    if (!hasCriticalData) {
+        if (transitsEl) {
+            if (!hasBirthData) {
+                transitsEl.textContent = `Para calcular los tránsitos precisos de ${lordOriginal}, completa tu lugar de nacimiento en tu perfil.`;
+            } else {
+                transitsEl.textContent = `Calculando la resonancia de tu carta...`;
+            }
+        }
+    } else if (window.transit_engine) {
+        try {
+            const t = window.Astronomy.MakeTime(new Date());
+            const activations = await window.transit_engine.getNatalActivations(state.user.natalPlanets, _natalHousesArray, t, lang);
+            
+            const lordActivations = activations.filter(a => a.transit === lordOriginal);
+            const narrativeTexts = lordActivations
+                .map(a => translateActivation(a, lordOriginal))
+                .filter(Boolean);
+
+            const finalText = narrativeTexts.length > 0
+                ? narrativeTexts[0]
+                : (NO_ACTIVATION_TEXT[lordOriginal] || `${lordOriginal} transita por tu carta sin activaciones directas en este momento.`);
+
+            const liveTransitsEl = document.getElementById('annual-premium-transits');
+            if (liveTransitsEl) {
+                liveTransitsEl.textContent = finalText;
+            }
+        } catch(e) {
+            const liveTransitsEl = document.getElementById('annual-premium-transits');
+            if (liveTransitsEl) liveTransitsEl.textContent = `El movimiento de ${lordOriginal} sobre tu carta continúa su curso este año.`;
+        }
+    }
+}
+
 window.renderAnnualNarrative = (content, lang) => {
     if (!content) return;
+
+    // Poblar datos de la guía contextual
+    window.KAIROS_ANNUAL_GUIDE_DATA = {
+        asc: state.user.asc,
+        activeHouse: content.profection ? content.profection.house : '',
+        activeSign: content.profection ? content.profection.sign : '',
+        lord: content.lord ? content.lord.planet : ''
+    };
     const doc = document;
     const update = (id, text) => {
         const el = doc.getElementById(id);
@@ -3549,6 +5042,7 @@ window.renderAnnualNarrative = (content, lang) => {
     };
     
     update('annual-cycle-title', content.header.title);
+    if (content.ano_eje) update('annual-cycle-title-sub', content.ano_eje);
     update('annual-cycle-phrase', `"${content.header.phrase}"`);
     update('annual-scenario-desc', content.scenario.desc);
     update('annual-lord-tone', content.lord.tone.toUpperCase());
@@ -3558,26 +5052,30 @@ window.renderAnnualNarrative = (content, lang) => {
     update('annual-triplete-direccion', content.triplete.direccion);
     update('annual-triplete-cuidado', content.triplete.cuidado);
 
-    // Renderizar Guía Práctica como bullets
-    const practicalContainer = doc.getElementById('annual-practical-key');
-    if (practicalContainer) {
-        if (Array.isArray(content.practical)) {
-            practicalContainer.innerHTML = content.practical.map(bullet => 
-                `<div class="flex items-start gap-4">
-                    <span class="text-primary mt-1 text-sm">•</span>
-                    <p class="text-[13px] font-medium text-warm-grey/70 leading-relaxed">${bullet}</p>
-                </div>`
-            ).join('');
-        } else {
-            practicalContainer.innerHTML = `<p class="text-[13px] font-medium text-warm-grey/70 leading-relaxed text-center italic">"${content.practical}"</p>`;
-        }
-    }
+    // Renderizar Cómo Habitar
+    update('annual-practical-key', content.ano_habitar);
 
     // Bloque Técnico Secundario (Capa de Transparencia)
     if (content.profection) {
-        update('annual-tech-house', `CASA ${content.profection.house}`);
-        update('annual-tech-sign', content.profection.sign.toUpperCase());
-        update('annual-tech-lord', `${content.lord.planet.toUpperCase()} (${content.lord.planet})`);
+        const houseEl = doc.getElementById('annual-tech-house');
+        if (houseEl) houseEl.innerText = `CASA ${content.profection.house}`;
+
+        const signEl = doc.getElementById('annual-tech-sign');
+        if (signEl) {
+            signEl.innerHTML = `<span class="inline-flex items-center justify-center gap-1">
+                <span class="w-4 h-4 opacity-70">${KAIROS_ICONS.zodiac[content.profection.sign] || ''}</span>
+                <span>${content.profection.sign.toUpperCase()}</span>
+            </span>`;
+        }
+
+        const lordEl = doc.getElementById('annual-tech-lord');
+        if (lordEl) {
+            lordEl.innerHTML = `<span class="inline-flex items-center justify-center gap-1">
+                <span class="w-4 h-4 opacity-70">${KAIROS_ICONS.planets[content.lord.planet] || ''}</span>
+                <span>${content.lord.planet.toUpperCase()}</span>
+            </span>`;
+        }
+
         update('annual-profection-expl', `Sincronización basada en Profecciones Anuales (${content.profection.meaning.split('.')[0]}.).`);
     }
 
@@ -3599,9 +5097,6 @@ window.renderAnnualNarrative = (content, lang) => {
 // Validada en producción el 2026-03-19. Baseline estable.
 // Cambios autorizados solo si KAIROS_FLAGS.weekly_locked === false.
 function renderWeeklyNarrative(content, lang) {
-    console.log("%c[KAIROS] SEMANA MODULE LOCKED v0.2", "color: #a78bfa; font-weight: bold;");
-    console.log("%c[KAIROS RENDER] Building Weekly Narrative v0.2...", "color: #00ff00; font-weight: bold;");
-
     const update = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
     const safe   = (v, fallback = '') => (v !== undefined && v !== null) ? v : fallback;
 
@@ -3628,13 +5123,17 @@ function renderWeeklyNarrative(content, lang) {
         const plotW  = W - padX * 2;
         const plotH  = H - padY * 2;
 
-        // Mapeo de color a valor CSS
-        const colorHex = { green: '#34d399', amber: '#fbbf24', rose: '#fb7185' };
+        // Paleta KAIROS — apertura cálida / neutral / densidad contenida — sin semáforo
+        const colorHex = { green: '#C4A46A', amber: '#9DA8B5', rose: '#7C8CA0' };
 
-        // Calcular coordenadas XY para cada día
+        // Calcular coordenadas XY para cada día (normalización relativa)
+        const _vols = days.map(d => d.voltage);
+        const _minV = Math.min(..._vols);
+        const _rangeV = Math.max(Math.max(..._vols) - _minV, 10);
+
         const points = days.map((d, i) => ({
             x: padX + (i / (n - 1)) * plotW,
-            y: padY + plotH - (d.voltage / 100) * plotH,
+            y: padY + plotH - ((d.voltage - _minV) / _rangeV) * plotH,
             ...d
         }));
 
@@ -3652,15 +5151,11 @@ function renderWeeklyNarrative(content, lang) {
         let svgContent = `
             <defs>
                 <linearGradient id="weeklyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
-                    <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                    <stop offset="0%" stop-color="#C4A46A" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#C4A46A" stop-opacity="0"/>
                 </linearGradient>
             </defs>`;
 
-        // Línea de base (neutra)
-        const neutralY = padY + plotH - (50 / 100) * plotH;
-        svgContent += `<line x1="${padX}" y1="${neutralY}" x2="${W - padX}" y2="${neutralY}"
-            stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4,4"/>`;
 
         // Curva de fondo (relleno) — referencia el degradado ya definido
         const fillPath = pathD + ` L ${points[n-1].x} ${H} L ${padX} ${H} Z`;
@@ -3669,25 +5164,27 @@ function renderWeeklyNarrative(content, lang) {
         // Línea de ritmo — stroke más visible (era #cbd5e1 casi invisible)
         svgContent += `<path d="${pathD}" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
 
-        // Puntos de cada día con color real
+        // Puntos de cada día con color real + temporalidad
         points.forEach((p, i) => {
-            const hex    = colorHex[p.color] || '#94a3b8';
-            const radius = p.isProfectionDay ? 7 : 5;
+            const hex     = colorHex[p.color] || '#94a3b8';
+            const radius  = p.isProfectionDay ? 7 : 5;
+            const opacity = p.isPast ? 0.35 : p.isCurrent ? 1.0 : 0.85;
             const strokeAttr = p.isProfectionDay ? 'stroke="white" stroke-width="2"' : `stroke="${hex}" stroke-width="1"`;
 
-            svgContent += `<circle cx="${p.x}" cy="${p.y}" r="${radius}"
-                fill="${hex}" ${strokeAttr}/>` ;
-
-            // Marcas especiales
-            if (p.isMoonIngress) {
-                svgContent += `<text x="${p.x}" y="${p.y - radius - 3}" text-anchor="middle"
-                    font-size="9" fill="#94a3b8">⚡</text>`;
+            // Marcador de día presente — halo suave antes del punto
+            if (p.isCurrent) {
+                svgContent += `<circle cx="${p.x}" cy="${p.y}" r="${radius + 5}"
+                    fill="none" stroke="${hex}" stroke-width="1" opacity="0.22"/>`;
             }
 
-            // Score visible debajo del punto (siempre visible, no solo en hover)
-            svgContent += `<text x="${p.x}" y="${p.y - radius - 5 - (p.isMoonIngress ? 10 : 0)}"
-                text-anchor="middle" font-size="8" fill="${hex}" font-weight="bold"
-                id="wscore-${i}">${p.voltage}</text>`;
+            // Marcador de cambio lunar — anillo exterior sutil (reemplaza ⚡)
+            if (p.isMoonIngress) {
+                svgContent += `<circle cx="${p.x}" cy="${p.y}" r="${radius + 3.5}"
+                    fill="none" stroke="${hex}" stroke-width="0.75" opacity="${opacity * 0.45}"/>`;
+            }
+
+            svgContent += `<circle cx="${p.x}" cy="${p.y}" r="${radius}"
+                fill="${hex}" ${strokeAttr} opacity="${opacity}"/>`;
         });
 
         svg.innerHTML = svgContent;
@@ -3695,10 +5192,9 @@ function renderWeeklyNarrative(content, lang) {
         // Etiquetas de días debajo de la gráfica
         if (labelsEl) {
             labelsEl.innerHTML = points.map(p => `
-                <div class="flex-1 flex flex-col items-center gap-0.5">
+                <div class="flex-1 flex flex-col items-center gap-0.5" style="opacity:${p.isPast ? 0.35 : p.isCurrent ? 1.0 : 0.85}">
                     <span class="text-[8px] font-black text-warm-grey/70">${safe(p.dayShort, 'D')}</span>
                     <span class="text-[7px] text-warm-grey/40">${(p.dateLabel || '').split(' ')[0]}</span>
-                    <span class="text-[9px]">${p.daySymbol || ''}</span>
                 </div>
             `).join('');
         }
@@ -3712,25 +5208,32 @@ function renderWeeklyNarrative(content, lang) {
     const tramosContainer = document.getElementById('weekly-tramos-container');
     if (tramosContainer && content.tramos && content.tramos.length) {
         tramosContainer.innerHTML = content.tramos.map((tramo, idx) => {
+            const tramoKey = idx === 0 ? 'arranque' : idx === 1 ? 'centro' : 'cierre';
+            const signoRaw = safe(tramo.signo, '');
+            const signoId  = signoRaw.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+            const casaNum  = safe(tramo.casa, '');
+
             const hasProfBadge = tramo.hasProfection
-                ? `<span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-primary text-white">Año</span>`
+                ? `<span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-primary text-white cursor-pointer hover:opacity-70 transition-opacity" onclick="window.openKairosGuideWithContent('weekly-chip-anio')">Año</span>`
                 : '';
             const hasIngressBadge = tramo.hasIngress
-                ? `<span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-amber-100 text-amber-700">⚡ Cambio lunar</span>`
+                ? `<span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-amber-100 text-amber-700 cursor-pointer hover:opacity-70 transition-opacity" onclick="window.openKairosGuideWithContent('weekly-chip-cambio-lunar')">⚡ Cambio lunar</span>`
                 : '';
             const tramoLabel = idx === 0 ? 'ARRANQUE' : idx === 1 ? 'CENTRO' : 'CIERRE';
 
+            const tramoId = `weekly-tramo-${idx}`;
+
             return `
-            <div class="p-6 rounded-[2rem] border border-slate-100 bg-white shadow-sm animate-fade-in"
+            <div id="${tramoId}" class="p-6 rounded-[2rem] border border-slate-100 bg-white shadow-sm animate-fade-in"
                  style="animation-delay: ${idx * 0.15}s">
                 <div class="flex justify-between items-start mb-3">
-                    <h4 class="text-[9px] font-black uppercase tracking-[0.3em] text-primary">${tramoLabel}</h4>
+                    <h4 class="text-[9px] font-black uppercase tracking-[0.3em] text-primary cursor-pointer hover:opacity-70 transition-opacity" onclick="window.openKairosGuideWithContent('weekly-chip-${tramoKey}')">${tramoLabel}</h4>
                     <span class="text-[9px] font-bold text-warm-grey/70 px-3 py-1 rounded-full bg-slate-50">${safe(tramo.rango, '')}</span>
                 </div>
                 <p class="text-xs leading-relaxed text-warm-grey/90">${safe(tramo.narrativa, '')}</p>
                 <div class="mt-4 flex flex-wrap gap-2">
-                    <span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-slate-100 text-warm-grey">${safe(tramo.signo, '')}</span>
-                    <span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-slate-100 text-warm-grey">Casa ${safe(tramo.casa, '')}</span>
+                    <span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-slate-100 text-warm-grey cursor-pointer hover:opacity-70 transition-opacity" onclick="window.openKairosGuideWithContent('weekly-sign-${signoId}')">${signoRaw}</span>
+                    <span class="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-md bg-slate-100 text-warm-grey cursor-pointer hover:opacity-70 transition-opacity" onclick="window.openKairosGuideWithContent('weekly-house-${casaNum}')">Casa ${casaNum}</span>
                     ${hasProfBadge}
                     ${hasIngressBadge}
                 </div>
@@ -3757,16 +5260,62 @@ function renderWeeklyNarrative(content, lang) {
         }
     }
 
-    console.log('[KAIROS WEEKLY] ✅ Narrativa Semanal v0.2 renderizada.');
+
 }
 
 window.renderWeeklyNarrative = renderWeeklyNarrative;
+
+// ── KTSE-v1: Kairos Temporal Signature Engine ─────────────────────────────────
+function _buildTemporalSignature(lordKey, natalPlanets) {
+    const lord = natalPlanets[lordKey] || {};
+    const luna = natalPlanets['LUNA'] || {};
+
+    // Normalizar signo: eliminar tildes, minúsculas
+    const signRaw = (lord.sign || '').toLowerCase().trim();
+    const signKey = signRaw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    // Elemento del signo natal → amplitud
+    const _elemMap = {
+        'aries': 1.18, 'leo': 1.18, 'sagitario': 1.18,
+        'cancer': 1.12, 'escorpio': 1.12, 'piscis': 1.12,
+        'geminis': 0.88, 'libra': 0.88, 'acuario': 0.88,
+        'tauro': 0.78, 'virgo': 0.78, 'capricornio': 0.78,
+    };
+    const elemAmp = _elemMap[signKey] || 1.0;
+
+    // Casa natal del lord → offset de base
+    const house = lord.house || 6;
+    const casaOffset = [1, 4, 7, 10].includes(house) ? +0.06
+                     : [2, 5, 8, 11].includes(house) ? +0.02
+                     : -0.03;
+
+    // Grado de Luna natal → microfase
+    const lunaPhase = (luna.longitude || 0) % 30 / 30 * 0.6;
+
+    // Modalidad del signo natal → ritmo (periodo)
+    const _modalMap = {
+        'aries': 'cardinal', 'cancer': 'cardinal',
+        'libra': 'cardinal', 'capricornio': 'cardinal',
+        'tauro': 'fijo', 'leo': 'fijo',
+        'escorpio': 'fijo', 'acuario': 'fijo',
+        'geminis': 'mutable', 'virgo': 'mutable',
+        'sagitario': 'mutable', 'piscis': 'mutable',
+    };
+    const modalidad = _modalMap[signKey] || 'fijo';
+    const periodMod = modalidad === 'cardinal' ? 0.93
+                    : modalidad === 'mutable'  ? 1.00
+                    : 1.07;
+    const isMutable = modalidad === 'mutable';
+
+    return { elemAmp, casaOffset, lunaPhase, periodMod, isMutable };
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Renderizador de Narrativa MENSUAL v1.3 [DETERMINISTIC_PROPORTION].
  */
 function renderMonthlyNarrative(content, lang) {
-    console.log("%c[KAIROS RENDER] Building Monthly Narrative v1.5 [EXPANDABLES]...", "color: #C05C33; font-weight: bold;");
+    /* console.log("%c[KAIROS RENDER] Building Monthly Narrative v1.5 [EXPANDABLES]...", "color: #C05C33; font-weight: bold;"); */
     
     const update = (id, val) => {
         const el = document.getElementById(id);
@@ -3777,37 +5326,57 @@ function renderMonthlyNarrative(content, lang) {
         }
     };
 
-    // [0] Títulos y Conceptos
-    const monthlyConcept = content.mainConcept || content.concept || 'energía';
-    
-    if (content.title) {
-        update('monthly-verb-title', content.title);
-    }
-    if (content.subtitle) {
-        update('monthly-subtitle', content.subtitle);
+    // [0] Títulos y Conceptos Editorial (MES-EDITORIAL-1)
+    const axisTitle = content.eje_mes || content.title || content.verbo || 'ATRAVESAR EL PROCESO';
+    update('monthly-verb-title', axisTitle);
+
+    // Deactivate redundant header subtitle, fallback to static HTML placeholder (sprint visual requirement)
+    // update('monthly-subtitle', content.subtitle || content.proceso_subtitulo);
+
+    // Restore the large, prominent identificativa instance of "Proceso en [Signo]" inside the white island
+    if (content.subtitle || content.proceso_subtitulo) {
+        update('monthly-proceso-destacado', content.subtitle || content.proceso_subtitulo);
     }
 
-    // [A] CLAVES DEL MES
-    if (content.verbo) {
-        update('monthly-key-focus', content.verbo);
+    // [0.1] Isla Interior — [REFINADO]
+    const introText = content.mainConcept || content.concept || content.intro || content.apertura || '';
+    update('monthly-intro-text', introText);
+
+    // [0.2] Firma Dinámica — Casa activa · Señor del Año · Mes
+    const today = new Date();
+    const monthName = today.toLocaleDateString('es-ES', { month: 'long' }).toUpperCase();
+    const activeHouse = content.conexion_anual?.nombre || '';
+    const lord = content.lord || '';
+    
+    let firmaParts = [];
+    if (activeHouse) firmaParts.push(activeHouse);
+    if (lord) firmaParts.push(lord);
+    if (monthName) firmaParts.push(monthName);
+    
+    const firmaFinal = firmaParts.length > 1 ? firmaParts.join(' · ') : '';
+    update('monthly-firma', firmaFinal);
+
+    // [A] CLAVES DEL MES (Métricas transformadas)
+    if (content.verbo || content.eje_mes) {
+        update('monthly-key-focus', content.verbo || content.eje_mes);
         document.getElementById('monthly-keys-grid')?.classList.remove('hidden');
+    if (content.tono_ciclo) {
+        update('monthly-key-intensity', content.tono_ciclo);
+    }
     }
 
     // [B] Timeline y Onda de Energía 
-    const today = new Date();
     const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
     const todayDate = today.getDate();
     
     // Mapeo Determinístico 0-100% v1.5
     const todayProgress = ((todayDate - 1) / (lastDay - 1)) * 100;
 
-    const monthName = today.toLocaleDateString('es-ES', { month: 'long' }).toUpperCase();
     update('monthly-current-month', monthName);
 
     const dateBadge = document.getElementById('monthly-today-date-badge');
     if (dateBadge) {
-        const monthStr = today.toLocaleDateString('es-ES', { month: 'long' }).toUpperCase();
-        dateBadge.innerText = `${todayDate} DE ${monthStr}`;
+        dateBadge.innerText = `${todayDate} DE ${monthName}`;
     }
     const cursor = document.getElementById('monthly-today-cursor');
     if (cursor) {
@@ -3824,24 +5393,62 @@ function renderMonthlyNarrative(content, lang) {
     if (svgLayer) {
         const allHitos = content.hitos || [];
         
-        // 1. ANCLAJES LUNARES (Lógica de Pulso Real)
+        // 1. ANCLAJES LUNARES — timezone-safe
+        const _safeDay = (value) => {
+            if (!value) return 1;
+            if (value instanceof Date) return value.getDate();
+            const str = String(value);
+            const datePart = str.includes('T') ? str.split('T')[0] : str;
+            const parsed = new Date(`${datePart}T12:00:00`);
+            const day = parsed.getDate();
+            return Number.isFinite(day) ? day : 1;
+        };
         const nm = allHitos.find(h => h.label?.toLowerCase().includes('nueva'));
         const lm = allHitos.find(h => h.label?.toLowerCase().includes('llena'));
-        const nmDate = nm ? new Date(nm.date).getDate() : 1;
-        const lmDate = lm ? new Date(lm.date).getDate() : 15;
+        const nmDate = nm ? _safeDay(nm.date) : 1;
+        const lmDate = lm ? _safeDay(lm.date) : 15;
 
-        // 2. MODULACIÓN PERSONAL (v1.9 unificada)
-        const lord = (content.lord || 'SOL').toUpperCase();
-        const personalPurity = (lord === 'SOL' || lord === 'MARTE' || lord === 'JÚPITER') ? 1.15 : 1.0; 
+        // 2. MODULACIÓN SEMÁNTICA por tono_ciclo
+        const tono = (content.tono_ciclo || '').toLowerCase();
+        const tonoOffset   = tono.includes('asimilación')      ? -0.12 : 0.0;
+        const tonoAmplitud = tono.includes('expansión activa') ?  1.05
+                           : tono.includes('tensión creativa')  ?  1.08
+                           : tono.includes('apertura')              ?  0.90
+                           : 1.0;
+
+        // 3. MODULACIÓN ARQUETÍPICA por Señor del Año (MES-GRAFICA-v2)
+        const _lordWaveMap = {
+            'marte':    { base: +0.02, amp: 1.20 },
+            'mercurio': { base:  0.00, amp: 0.90 },
+            'venus':    { base: +0.04, amp: 0.82 },
+            'sol':      { base: +0.06, amp: 0.75 },
+            'luna':     { base:  0.00, amp: 1.25 },
+            'saturno':  { base: -0.03, amp: 0.78 },
+            'júpiter':  { base: +0.07, amp: 0.88 },
+        };
+        const _lw = _lordWaveMap[(content.lord || 'sol').toLowerCase().trim()] || { base: 0, amp: 1.0 };
+        const _lordBase = _lw.base;
+
+        // 4. FIRMA TEMPORAL NATAL (KTSE-v1)
+        const _natalCtx = (window.totalShadowContext && window.totalShadowContext.natal_context) || {};
+        const _natalPlanets = _natalCtx.planets || {};
+        const _lordKeyNatal = (content.lord || '').toUpperCase().trim().replace('Ú', 'U');
+        const _sig = _buildTemporalSignature(_lordKeyNatal, _natalPlanets);
+        const _periodFinal = 14.7 * _sig.periodMod;
+        const _ampFinal = Math.max(0.28, Math.min(0.52, 0.4 * tonoAmplitud * _lw.amp * _sig.elemAmp));
 
         const curvePoints = [];
         for (let d = 0; d <= lastDay; d++) {
             const x = (d / lastDay) * 100;
-            let intensity = 0.5 + 0.4 * Math.sin((d - nmDate) / 14.7 * Math.PI - (Math.PI/2));
-            const dailyHito = allHitos.find(h => new Date(h.date).getDate() === d);
-            if (dailyHito) intensity = (intensity + dailyHito.intensity) / 2;
-            intensity *= personalPurity;
-            const y = 90 - (intensity * 82); 
+            let intensity = (0.5 + tonoOffset + _lordBase + _sig.casaOffset) + _ampFinal * Math.sin((d - nmDate) / _periodFinal * Math.PI - (Math.PI/2) + _sig.lunaPhase);
+            if (_sig.isMutable) intensity += 0.04 * Math.sin((d - nmDate) / (_periodFinal / 2) * Math.PI);
+            if (!Number.isFinite(intensity)) intensity = 0.5;
+            intensity = Math.max(0.05, Math.min(1.0, intensity));
+            const dailyHito = allHitos.find(h => _safeDay(h.date) === d);
+            const _hitoEsDelLord = dailyHito && dailyHito.planet &&
+                dailyHito.planet.toLowerCase().trim() === (content.lord || '').toLowerCase().trim();
+            if (dailyHito) intensity = Math.min(1.0, intensity + dailyHito.intensity * (_hitoEsDelLord ? 0.65 : 0.30));
+            const y = 90 - (intensity * 82);
             curvePoints.push({ x, y, intensity, date: d });
         }
 
@@ -3877,13 +5484,15 @@ function renderMonthlyNarrative(content, lang) {
             // Actualización dinámica de la explicación v1.10
             const explNode = document.getElementById('monthly-graph-explanation');
             if (explNode) {
-                explNode.innerHTML = `"Tu energía este mes se mueve según la Luna y tu ciclo personal. Tu punto clave cae el <span class="font-black text-primary not-italic">${keyDayLabel}</span>: un momento donde todo se intensifica y conviene estar presente."`;
+                const _tonoLabel = { 'apertura': 'Un mes de apertura de ciclo.', 'expansión activa': 'Un mes de expansión y culminación.', 'tensión creativa': 'Un mes de alta activación.', 'asimilación': 'Un mes de integración y cierre.' };
+                const _tonoDesc = _tonoLabel[content.tono_ciclo] || 'El ciclo mensual en curso.';
+                explNode.innerHTML = `"${_tonoDesc} El arco alcanza su punto más alto el <span class="font-black text-primary not-italic">${keyDayLabel}</span>."`;
             }
 
             markers += `
                 <g class="animate-pulse">
                     <circle cx="${keyDay.x}" cy="${keyDay.y}" r="2.5" fill="white" stroke="#C05C33" stroke-width="0.8" stroke-dasharray="1,1" />
-                    <text x="${keyDay.x}" y="${keyDay.y - 6}" text-anchor="middle" font-size="2.6" font-weight="900" fill="#C05C33" opacity="0.8">TU PUNTO (${keyDayLabel})</text>
+                    <text x="${keyDay.x}" y="${keyDay.y - 6}" text-anchor="middle" font-size="2.6" font-weight="900" fill="#C05C33" opacity="0.8">PICO DEL CICLO · ${keyDayLabel}</text>
                 </g>
             `;
         }
@@ -3925,13 +5534,14 @@ function renderMonthlyNarrative(content, lang) {
 
         // G1: solo eventos futuros del mes actual — los pasados no se muestran
         const futureHitos = rawHitos.filter(hito => new Date(hito.date) >= todayStart);
-        update('monthly-hitos-count', `${futureHitos.length} EVENTOS`);
+        update('monthly-hitos-count', `${futureHitos.length} HITOS`);
 
         if (futureHitos.length === 0) {
             hitosGrid.innerHTML = `
-                <div class="col-span-full p-12 text-center bg-slate-50 rounded-[2.5rem] border border-dashed border-slate-200">
-                    <span class="material-symbols-outlined text-slate-300 text-4xl mb-4 block">event_busy</span>
-                    <p class="text-[13px] font-medium text-warm-grey/60 tracking-tight">No quedan eventos destacados este mes.</p>
+                <div class="col-span-full py-8 text-center">
+                    <div class="w-12 h-px bg-slate-200 mx-auto mb-5"></div>
+                    <p class="text-[13px] text-warm-grey/50 italic tracking-tight leading-relaxed">El proceso del mes continúa sin tensiones destacadas.</p>
+                    <p class="text-[11px] text-warm-grey/35 mt-1.5 tracking-tight">La energía permanece estable.</p>
                 </div>
             `;
         } else {
@@ -4031,7 +5641,7 @@ function renderMonthlyNarrative(content, lang) {
         if (_scenProximo) {
             const _scenFecha = _fmtProse(_scenProximo.date);
             const _tensionMap = {
-                'LUNA_NUEVA': `La Luna Nueva del ${_scenFecha} abre una ventana de inicio — lo que pongas en movimiento ahora tiene tracción.`,
+                'LUNA_NUEVA': `La Luna Nueva del ${_scenFecha} abre un momento de inicio — hay apertura natural para lo que ya está madurando.`,
                 'LUNA_LLENA': `La Luna Llena del ${_scenFecha} trae un punto de máxima presión — algo llega a su tope y pide resolución.`,
                 'INGRESO':    `${_scenProximo.planet} cambia de signo el ${_scenFecha} — el contexto se mueve y con él la forma de actuar.`,
                 'SOLAR':      `El ingreso solar del ${_scenFecha} marca un giro colectivo que coincide con tu proceso.`
@@ -4041,13 +5651,13 @@ function renderMonthlyNarrative(content, lang) {
 
         // Frase 3 — actitud concreta del señor del año (sin mencionar área)
         const _actitudMap = {
-            'Marte':    'La actitud que funciona: decidir antes de lanzarte, ir a fondo cuando lo hagas.',
-            'Venus':    'La actitud que funciona: cultivar antes de pedir, dar antes de esperar.',
-            'Saturno':  'La actitud que funciona: una cosa a la vez, sin dispersión.',
-            'Júpiter':  'La actitud que funciona: apostar por lo que ya tiene impulso, no forzar lo que no.',
-            'Mercurio': 'La actitud que funciona: revisar antes de avanzar, ajustar antes de comprometerte.',
-            'Sol':      'La actitud que funciona: exponerte desde lo que realmente tienes, sin aparentar.',
-            'Luna':     'La actitud que funciona: escuchar tu ritmo interno antes de responder al externo.'
+            'Marte':    'La actitud que sostiene el proceso: atravesar la intensidad como terreno, no como obstáculo.',
+            'Venus':    'La actitud que sostiene el proceso: dejar que la conexión madure sin forzar el intercambio.',
+            'Saturno':  'La actitud que sostiene el proceso: mantener la dirección sin exigir resultados inmediatos.',
+            'Júpiter':  'La actitud que sostiene el proceso: acompañar lo que se abre, sin necesidad de acelerar la expansión.',
+            'Mercurio': 'La actitud que sostiene el proceso: integrar antes de abrir el siguiente ciclo — la claridad aparece cuando el proceso asienta.',
+            'Sol':      'La actitud que sostiene el proceso: reconocer la aportación sin necesidad de demostrarla.',
+            'Luna':     'La actitud que sostiene el proceso: seguir el pulso interior cuando el exterior pide más de lo que corresponde.'
         };
         _scenText += ' ' + (_actitudMap[_scenLord] || `La actitud: ${(content.verbo || 'navegar').toLowerCase()} con conciencia del ciclo.`);
 
@@ -4161,6 +5771,427 @@ function renderMonthlyNarrative(content, lang) {
 
 window.renderMonthlyNarrative = renderMonthlyNarrative;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// [MES_PREMIUM_v1] renderMonthlyPremiumBlock
+// Activa los 5 bloques premium de MES para usuarios con suscripción activa.
+// Patrón: mismo que renderAnnualPremiumBlock — todo en engine, no toca interpreter.
+// Datos: state.user.natalPlanets, window.totalShadowContext, content del interpreter.
+// ─────────────────────────────────────────────────────────────────────────────
+function renderMonthlyPremiumBlock(content, lang) {
+    const shell = document.getElementById('monthly-premium-shell');
+    if (!shell) return;
+
+    const isInternalUser = window.KAIROS_FLAGS.INTERNAL_AUTH_EMAILS.includes(state.user?.email || '');
+    const isPremiumActive = window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE || isInternalUser || window.KAIROS_FLAGS.KAIROS_PREMIUM_DEBUG;
+
+    if (!isPremiumActive) return; // Shell estático ya visible para FREE
+
+    // --- Datos base ---
+    const natalPlanets = state.user?.natalPlanets || {};
+    const sc = window.totalShadowContext || {};
+    const lord = content.lord || sc.annual_context?.lord_of_year || 'Sol';
+    const profHouse = sc.annual_context?.profection_house || content.conexion_anual?.casa || 1;
+    const hitos = content.hitos || [];
+
+    // --- Helpers ---
+    const _normKey = (name) => (name || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
+    const _getNatal = (planetName) => {
+        const key = _normKey(planetName);
+        return natalPlanets[key] || natalPlanets[key.toLowerCase()] || null;
+    };
+    const _fmtDate = (iso) => {
+        try { return new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' }); } catch(e) { return ''; }
+    };
+    const _stripEnd = (s) => (s || '').replace(/[.!?]+$/, '').trim();
+
+    // --- Glifos inline (usa window.KAIROS_GLYPHS de chart_650_v1.js — motor congelado) ---
+    // Renderiza el glifo SVG de un planeta o signo inline en el texto
+    const _glyph = (type, key, sz) => {
+        try {
+            if (!window.getKairosSymbol) return '';
+            const path = window.getKairosSymbol(type, key);
+            if (!path) return '';
+            return `<svg viewBox="0 0 100 100" width="${sz||13}" height="${sz||13}" style="display:inline-block;vertical-align:-2px;margin:0 2px 0 1px;opacity:0.7" stroke="currentColor" stroke-width="8" fill="none" aria-hidden="true">${path}</svg>`;
+        } catch(e) { return ''; }
+    };
+    const _pg = (name, sz) => _glyph('planets', name, sz); // glifo de planeta
+    const _sg = (name, sz) => _glyph('zodiac', name, sz);  // glifo de signo
+
+    // --- Significado humano de cada signo (2-3 palabras) ---
+    const _signMeaning = {
+        'Aries':'instinto e impulso', 'Tauro':'calma y arraigo', 'Géminis':'agilidad y conexión',
+        'Cáncer':'cuidado e intuición', 'Leo':'expresión y protagonismo', 'Virgo':'análisis y ajuste',
+        'Libra':'vínculo y equilibrio', 'Escorpio':'profundidad e intensidad', 'Sagitario':'amplitud y sentido',
+        'Capricornio':'estructura y logro', 'Acuario':'perspectiva y distancia', 'Piscis':'permeabilidad y apertura'
+    };
+
+    // --- Dominio humano de cada planeta (qué rige en tu vida) ---
+    const _planetMeaning = {
+        SOL:'tu sentido de dirección y propósito personal', LUNA:'tu respuesta emocional y necesidad de seguridad',
+        MERCURIO:'tu forma de pensar y comunicarte', VENUS:'tus vínculos y lo que valoras',
+        MARTE:'tu impulso y energía de acción', JUPITER:'tu capacidad de apertura y expansión',
+        SATURNO:'tu sentido de estructura y compromiso'
+    };
+
+    // --- Señor del año natal ---
+    const lordNatal = _getNatal(lord);
+    const lordNatalSign = lordNatal?.sign || null;
+    const lordNatalHouse = lordNatal?.house || null;
+    const lordIsRetro = lordNatal?.isRetrograde || false;
+
+    // --- Estilos bloque activo ---
+    const BLOCK_ACTIVE = 'background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)';
+    const LBL = 'font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 10px;display:block';
+    const TXT = 'font-size:13px;color:#4a3f2a;line-height:1.65;margin:0';
+    const TXT2 = 'font-size:13px;color:rgba(74,63,42,0.65);line-height:1.6;margin:10px 0 0';
+
+    // ── BLOQUE 1 — Activaciones Natales ──────────────────────────────────────
+    // Pregunta: ¿Qué planeta o zona natal se activa este mes y qué significa para ti?
+    const lunations = hitos.filter(h => h.tipo === 'LUNA_NUEVA' || h.tipo === 'LUNA_LLENA');
+    const personalPlanets = ['SOL','LUNA','MERCURIO','VENUS','MARTE','JUPITER','SATURNO'];
+    const _displayName = { SOL:'Sol', LUNA:'Luna', MERCURIO:'Mercurio', VENUS:'Venus', MARTE:'Marte', JUPITER:'Júpiter', SATURNO:'Saturno' };
+
+    // Qué activa una Luna Nueva sobre ese planeta natal (semilla, inicio de ciclo)
+    const _lunaNewEffect = {
+        SOL:'algo en ti quiere arrancar — no como reacción, sino como dirección propia',
+        LUNA:'tu mundo emocional pide ser escuchado antes de que actúes. Es el momento de sentir, no de resolver',
+        MERCURIO:'hay una idea, conversación o decisión que está pidiendo apertura. La mente puede dar un salto claro',
+        VENUS:'algo en tus vínculos o en lo que valoras quiere comenzar o renovarse. Presta atención a lo que llega',
+        MARTE:'hay energía disponible para moverse, iniciar o marcar una posición que has estado postergando',
+        JUPITER:'el ciclo se abre hacia algo más grande. Una oportunidad real — no hay que esperarla, hay que activarla',
+        SATURNO:'lo que empieza aquí viene para quedarse. Este inicio pide seriedad, no urgencia'
+    };
+    // Qué activa una Luna Llena sobre ese planeta natal (cosecha, visibilidad, cierre)
+    const _lunaFullEffect = {
+        SOL:'algo que iniciaste en este ciclo sale a la luz y puede ser evaluado. Es momento de ver qué creaste',
+        LUNA:'tu mundo emocional alcanza su punto más visible e intenso. Lo que sentías en silencio ahora emerge',
+        MERCURIO:'una idea, conversación o decisión llega a su punto de resultado. El ciclo cierra ese hilo abierto',
+        VENUS:'lo que construiste en vínculos o en lo que valoras se hace visible y concreto este mes',
+        MARTE:'lo que impulsaste llega a su expresión. La energía acumulada necesita salir y mostrarse',
+        JUPITER:'lo que expandiste llega a su punto de resultado. ¿El crecimiento fue real o fue ilusión?',
+        SATURNO:'lo que construiste con esfuerzo llega a su momento de evaluación. El trabajo se muestra tal como es'
+    };
+
+    const b1Lines = [];
+    lunations.forEach(l => {
+        const lSign = l.sign || '';
+        const isNew = l.tipo === 'LUNA_NUEVA';
+        const lDate = _fmtDate(l.date);
+        const activados = [];
+        Object.entries(natalPlanets).forEach(([pKey, pData]) => {
+            if (!pData || !pData.sign) return;
+            if (!personalPlanets.includes(_normKey(pKey))) return;
+            if (pData.sign === lSign) activados.push(_normKey(pKey));
+        });
+        if (activados.length > 0) {
+            activados.forEach(k => {
+                const efectoMap = isNew ? _lunaNewEffect : _lunaFullEffect;
+                const efecto = efectoMap[k] || (isNew ? 'se activa algo propio tuyo en este ciclo' : 'lo que gestabas llega a la luz');
+                const dname = _displayName[k] || k;
+                b1Lines.push(`La ${_pg('Luna')}Luna ${isNew ? 'Nueva' : 'Llena'} del ${lDate || 'este mes'} cae en ${_sg(lSign)}${lSign}, donde tienes tu ${_pg(dname)}${dname} natal: ${efecto}.`);
+            });
+        } else if (lordNatalSign && _normKey(lSign) === _normKey(lordNatalSign)) {
+            b1Lines.push(`La ${_pg('Luna')}Luna ${isNew ? 'Nueva' : 'Llena'} del ${lDate || 'este mes'} activa ${_sg(lSign)}${lSign}, el signo donde vive tu ${_pg(lord)}${lord} natal — tu guía anual recibe una señal directa del ciclo lunar.`);
+        } else {
+            const smLun = _signMeaning[lSign] || '';
+            // Fallback diferenciado: Luna Nueva ≠ Luna Llena — no repetir la misma frase de cierre
+            const noActFallback = isNew
+                ? `La ${_pg('Luna')}Luna Nueva del ${lDate || 'este mes'} recorre ${_sg(lSign)}${lSign}${smLun ? ' — ' + smLun : ''} sin tocar planetas natales propios. No hay un planeta tuyo que reciba este inicio — el ciclo arranca en terreno colectivo.`
+                : `La ${_pg('Luna')}Luna Llena del ${lDate || 'este mes'} recorre ${_sg(lSign)}${lSign}${smLun ? ' — ' + smLun : ''} sin tocar planetas natales propios. La culminación del ciclo es colectiva — nada en tu carta se hace especialmente visible en este punto.`;
+            b1Lines.push(noActFallback);
+        }
+    });
+    if (lordNatalSign) {
+        const hStr = lordNatalHouse ? `, Casa ${lordNatalHouse}` : '';
+        const rStr = lordIsRetro ? ' — en retrogradación: su influencia se dirige hacia adentro antes de expresarse afuera' : '';
+        const smLord = _signMeaning[lordNatalSign] || '';
+        b1Lines.push(`Tu ${_pg(lord)}${lord} natal está en ${_sg(lordNatalSign)}${lordNatalSign}${hStr}${rStr}${smLord ? ' — ' + smLord : ''}. Como Señor del Año, es el filtro a través del cual este mes aterriza en ti.`);
+    }
+    if (b1Lines.length === 0) b1Lines.push(`Este mes no hay lunaciones que caigan sobre planetas natales personales. El ciclo lunar avanza en terreno colectivo — un momento de observar más que de responder.`);
+
+    const el1 = document.getElementById('monthly-premium-activaciones-natales');
+    if (el1) {
+        el1.style.cssText = BLOCK_ACTIVE;
+        el1.innerHTML = `<span style="${LBL}">Activaciones Natales</span>${b1Lines.map((l,i)=>`<p style="${i===0?TXT:TXT2}">${l}</p>`).join('')}`;
+    }
+
+    // ── BLOQUE 2 — Tránsitos de Tono ─────────────────────────────────────────
+    // Pregunta: ¿Qué planeta en tránsito cambia el tono del mes y cómo se nota en ti?
+    const fastIngresses = hitos.filter(h => h.tipo === 'INGRESO' && ['Mercurio','Venus','Marte'].includes(h.planet));
+    const conexion = content.conexion_anual || {};
+    const areaAnual = conexion.area || conexion.nombre || '';
+    // Qué rige cada planeta rápido (para el caso retorno y para el genérico sin natal)
+    const _planetDomainShort = { Mercurio:'tu pensamiento y comunicación', Venus:'tus vínculos y lo que valoras', Marte:'tu impulso y energía de acción' };
+    // Frase de cambio de registro diferenciada por planeta — no repetir la misma estructura
+    // Cada planeta describe CONCRETAMENTE qué cambia para el usuario en ese modo distinto
+    const _planetChangePhrase = {
+        Mercurio: 'Este mes, tu manera de pensar, hablar y decidir necesita traducirse con más cuidado antes de salir hacia fuera.',
+        Venus:    'Este mes, tus vínculos y tus elecciones de valor piden más presencia, más expresión y menos automatismo.',
+        Marte:    'Este mes, tu forma de actuar cambia de ritmo: menos impulso disperso y más dirección consciente.',
+        Sol:      'Este mes, tu forma de tomar dirección busca una expresión más clara y menos forzada.',
+        Luna:     'Este mes, tu respuesta emocional cambia de registro: necesitas escucharte antes de reaccionar.',
+        Júpiter:  'Este mes, tu forma de abrirte a nuevas posibilidades necesita distinguir expansión real de exceso.',
+        Saturno:  'Este mes, tu forma de sostener responsabilidades pide más estructura y menos carga innecesaria.'
+    };
+    const _planetChangeFallback = 'Este mes, esa parte de tu carta se expresa en un registro distinto al habitual — vale la pena prestarle atención consciente.';
+
+    const b2Lines = [];
+    fastIngresses.forEach(ing => {
+        const natalData = _getNatal(ing.planet);
+        const lDate = _fmtDate(ing.date);
+        const pGlyph = _pg(ing.planet);
+        const sGlyph = _sg(ing.sign);
+        const domain = _planetDomainShort[ing.planet] || ing.planet;
+        const smTransit = _signMeaning[ing.sign] || '';
+        if (natalData?.sign) {
+            const smNatal = _signMeaning[natalData.sign] || '';
+            const nGlyph = _sg(natalData.sign);
+            if (natalData.sign === ing.sign) {
+                // Retorno planetario — el planeta vuelve a su signo natal
+                b2Lines.push(`${pGlyph}${ing.planet} entra en ${sGlyph}${ing.sign}${lDate ? ' el ' + lDate : ''} — el mismo signo donde vive en tu carta. Un retorno: ${domain} opera este mes desde su terreno propio${smTransit ? ', con su registro natural de ' + smTransit : ''}.`);
+            } else {
+                // El planeta transita un signo distinto al natal — cambio de registro
+                // Frase de cambio diferenciada por planeta para evitar repetición de estructura
+                const changePhrase = _planetChangePhrase[ing.planet] || _planetChangeFallback;
+                b2Lines.push(`${pGlyph}${ing.planet} entra en ${sGlyph}${ing.sign}${lDate ? ' el ' + lDate : ''}${smTransit ? ' — ' + smTransit : ''}. Tu ${ing.planet} natal está en ${nGlyph}${natalData.sign}${smNatal ? ' — ' + smNatal : ''}. ${changePhrase}`);
+            }
+        } else {
+            b2Lines.push(`${pGlyph}${ing.planet} entra en ${sGlyph}${ing.sign}${lDate ? ' el ' + lDate : ''}${smTransit ? ' — ' + smTransit : ''}. Su tono define ${domain} durante este tramo del mes.`);
+        }
+    });
+    if (b2Lines.length === 0) b2Lines.push(`Este mes, ${_pg('Mercurio')}Mercurio, ${_pg('Venus')}Venus y ${_pg('Marte')}Marte no protagonizan cruces con tu carta natal. Sus ingresos llegan sin amplificación personal — el tono exterior opera en terreno neutral para ti.`);
+
+    const el2 = document.getElementById('monthly-premium-transitos-tono');
+    if (el2) {
+        el2.style.cssText = BLOCK_ACTIVE;
+        el2.innerHTML = `<span style="${LBL}">Tránsitos de Tono</span>${b2Lines.map((l,i)=>`<p style="${i===0?TXT:TXT2}">${l}</p>`).join('')}`;
+    }
+
+    // ── BLOQUE 3 — Momentos Clave ─────────────────────────────────────────────
+    const scoredHitos = hitos.filter(h => !h.esPasado).map(h => {
+        let nScore = 0;
+        const nd = _getNatal(h.planet);
+        if (nd) { nScore += 0.4; if (nd.sign === h.sign) nScore += 0.4; }
+        if (_normKey(h.planet) === _normKey(lord)) nScore += 0.3;
+        return { ...h, pScore: (h.intensity || 0.5) + nScore };
+    }).sort((a, b) => b.pScore - a.pScore).slice(0, 3);
+
+    // Pregunta B3: ¿Qué fecha importa, qué planeta/signo participa y por qué ese día es personal?
+    // ── Mapas de descripción diferenciada por planeta natal activado ──────────
+    // Caso A — resonancia directa (tránsito en mismo signo que el natal)
+    // Cada planeta recibe la señal "en su terreno propio" — distinto para cada uno
+    // Variantes por planeta (3 por caso) — garantía mecánica de no-repetición cuando el mismo planeta natal se activa más de una vez
+    // Caso A — resonancia directa (tránsito en mismo signo que el natal)
+    const _b3DirectPhraseVariants = {
+        SOL:      [
+            'Tu sentido de dirección recibe la señal en su propio terreno — algo se aclara sobre lo que realmente quieres.',
+            'Este momento habla directamente a tu propósito. No hace falta interpretar: lo que se ilumina es tuyo.',
+            'La activación llega en el mismo idioma que tu Sol natal. Lo que sientes como claridad aquí es orientación real.'
+        ],
+        LUNA:     [
+            'Tu respuesta emocional actúa desde su modo más natural. Lo que sientes aquí es señal directa, no ruido.',
+            'La activación toca tu mundo emocional en su propio terreno. Lo que emerge ahora tiene raíz, no es reacción pasajera.',
+            'Este hito mueve tu Luna en su registro nativo. Prestarle atención es más útil que gestionarlo.'
+        ],
+        MERCURIO: [
+            'La mente recibe la señal en su frecuencia propia: algo se ordena, una idea se aclara o una conversación encuentra apertura.',
+            'Este momento activa tu forma de pensar desde dentro. Una conexión que no encontrabas puede aparecer ahora.',
+            'La activación llega a tu Mercurio natal en su propio signo. Es un momento útil para comunicar lo que estabas postergando.'
+        ],
+        VENUS:    [
+            'Tus vínculos y lo que valoras reciben la señal sin filtros — lo que importa se hace visible y concreto.',
+            'Este hito activa tu Venus en su propio registro. Lo que sientes en torno a vínculos o elecciones de valor tiene peso real.',
+            'La activación llega directa a tu forma de querer y valorar. No requiere análisis: requiere atención a lo que ya sientes.'
+        ],
+        MARTE:    [
+            'Tu energía de acción recibe la señal en su terreno propio. Hay claridad sobre qué hacer y hacia dónde moverse.',
+            'Este momento activa tu Marte desde dentro. La iniciativa que surja aquí tiene dirección, no solo impulso.',
+            'La activación llega a tu capacidad de actuar en su propio idioma. Lo que decides mover ahora tiene más tracción que en otros momentos.'
+        ],
+        JUPITER:  [
+            'Tu capacidad de apertura se activa sin obstáculos — algo se amplifica y una posibilidad se vuelve concreta.',
+            'Este hito toca tu Júpiter en su propio terreno. La expansión que percibes aquí tiene base, no es solo optimismo.',
+            'La activación llega a tu sentido de posibilidad desde dentro. Vale identificar qué oportunidad concreta se está abriendo.'
+        ],
+        SATURNO:  [
+            'Tu sentido de estructura y compromiso recibe una señal de alineación — lo que construyes con esfuerzo encuentra solidez.',
+            'Este momento activa tu Saturno en su propio registro. Lo que exige más disciplina ahora también ofrece más resultado.',
+            'La activación llega a tu forma de sostener lo que importa. Es un momento de mayor claridad sobre qué vale la pena seguir construyendo.'
+        ]
+    };
+    // Caso B — activación indirecta (tránsito desde signo distinto al natal)
+    const _b3CrossPhraseVariants = {
+        SOL:      [
+            'Tu dirección personal recibe una presión distinta a la habitual. Antes de actuar, conviene aclarar qué decisión nace de ti y cuál nace de la presión externa.',
+            'Este hito toca tu forma de afirmarte desde un ángulo menos familiar. Puede mostrar dónde necesitas más claridad sin forzar una respuesta inmediata.',
+            'La activación roza tu sentido de propósito desde fuera de tu terreno. No pide demostrar nada: pide revisar desde dónde estás tomando dirección.'
+        ],
+        LUNA:     [
+            'Tu mundo emocional responde, pero desde un terreno menos habitual. Conviene escuchar primero qué emoción aparece y después decidir.',
+            'La activación toca tu manera de buscar seguridad desde otro registro. No exige reacción inmediata: pide reconocer qué necesidad interna está hablando.',
+            'Este hito mueve una zona sensible de tu carta desde fuera de su signo. La clave no es actuar rápido, sino distinguir entre emoción presente y costumbre antigua.'
+        ],
+        MERCURIO: [
+            'Tu forma de pensar recibe un estímulo desde otro registro. Puede ayudarte a ordenar conversaciones pendientes sin resolverlas deprisa.',
+            'Este hito mueve tu manera de comunicar desde un terreno distinto. Conviene escuchar mejor antes de explicar demasiado.',
+            'La activación llega a tu mente práctica desde fuera de su frecuencia. No todo necesita respuesta inmediata, pero sí más claridad antes de hablar.'
+        ],
+        VENUS:    [
+            'Tu forma de valorar y vincularte se mueve desde un registro menos automático. Observa qué eliges por deseo real y qué por costumbre.',
+            'Este hito toca tu sensibilidad afectiva desde otro terreno. Puede mostrar dónde necesitas más honestidad en lo que das y recibes.',
+            'La activación mueve tus vínculos o tu manera de disfrutar desde fuera de tu signo natal. No fuerza una decisión, pero sí revela qué tiene valor real.'
+        ],
+        MARTE:    [
+            'Tu impulso se activa desde un terreno distinto. Antes de actuar, conviene revisar si la energía tiene dirección o solo urgencia.',
+            'Este hito toca tu forma de moverte y poner límites desde otro registro. Puede ayudarte a actuar con más precisión y menos desgaste.',
+            'La activación mueve tu iniciativa desde fuera de su modo habitual. No se trata de hacer más, sino de usar mejor la energía disponible.'
+        ],
+        JUPITER:  [
+            'Tu manera de abrir posibilidades se activa desde otro registro. Conviene distinguir crecimiento real de exceso antes de comprometerte.',
+            'Este hito toca tu confianza y tu visión de futuro desde un ángulo poco familiar. Puede ampliar perspectiva, pero pide medida.',
+            'La activación mueve tu deseo de expansión desde fuera de tu terreno. El punto no es crecer por crecer, sino reconocer qué sí tiene sentido abrir.'
+        ],
+        SATURNO:  [
+            'Tu forma de sostener responsabilidades se activa desde otro terreno. Puede mostrar dónde necesitas más estructura y menos carga innecesaria.',
+            'Este hito toca tus límites y tu manera de ordenar lo que importa desde un registro distinto. No pide dureza: pide claridad sobre qué sí vale sostener.',
+            'La activación mueve una zona de exigencia desde fuera de su signo natal. La clave es separar responsabilidad real de peso que ya no corresponde cargar.'
+        ]
+    };
+    const _b3DirectFallback  = 'Lo que se activa aquí es tuyo: el tránsito y el natal hablan el mismo idioma.';
+    const _b3CrossFallback   = 'Lo que se activa aquí es tuyo, pero en un registro que no reconoces de inmediato. Vale prestarle atención consciente.';
+
+    const b3Lines = [];
+    const usedPlanetCounts = {}; // contador de variante por planeta — garantiza rotación mecánica cuando el mismo natal se activa varias veces
+    if (scoredHitos.length > 0) {
+        scoredHitos.forEach(h => {
+            const lDate = _fmtDate(h.date);
+            const nd = _getNatal(h.planet);
+            const hPlanetGlyph = h.planet ? _pg(h.planet) : '';
+            const hSignGlyph = h.sign ? _sg(h.sign) : '';
+            const hPlanetKey = _normKey(h.planet);
+            // índice de variante para este planeta (se incrementa en cada uso)
+            const _varIdx = usedPlanetCounts[hPlanetKey] || 0;
+            usedPlanetCounts[hPlanetKey] = _varIdx + 1;
+            let why = '';
+            if (nd?.sign === h.sign) {
+                // Resonancia directa — el natal y el tránsito coinciden en signo
+                const ndGlyph = _sg(nd.sign);
+                const _dv = _b3DirectPhraseVariants[hPlanetKey];
+                const _dp = _dv ? _dv[_varIdx % _dv.length] : _b3DirectFallback;
+                why = `Tu ${hPlanetGlyph}${h.planet} natal también está en ${ndGlyph}${nd.sign}. ${_dp}`;
+            } else if (nd?.sign) {
+                // Activación indirecta — el natal existe pero en signo distinto
+                const ndGlyph = _sg(nd.sign);
+                const _cv = _b3CrossPhraseVariants[hPlanetKey];
+                const _cp = _cv ? _cv[_varIdx % _cv.length] : _b3CrossFallback;
+                why = `Tu ${hPlanetGlyph}${h.planet} natal está en ${ndGlyph}${nd.sign}. ${_cp}`;
+            } else if (hPlanetKey === _normKey(lord)) {
+                why = `${hPlanetGlyph}${h.planet} es tu Señor del Año. Cada vez que se mueve, lo que estás viviendo en el ciclo completo se intensifica.`;
+            } else {
+                why = `Este momento destaca por intensidad colectiva. Sin cruce natal directo, es un punto de peso real en el arco del mes.`;
+            }
+            const headerLabel = `${hPlanetGlyph}${h.label}${h.sign ? ' · ' + hSignGlyph + h.sign : ''}`;
+            b3Lines.push(`<strong style="font-size:10px;font-weight:700;color:#b8a070;display:block;margin:0 0 2px">${lDate || 'Próximamente'}</strong>${headerLabel} — ${why}`);
+        });
+    } else {
+        b3Lines.push(`Los hitos de mayor intensidad de este mes ya han ocurrido. Lo que pusieron en movimiento está en fase de integración: el foco cambia de actuar a asimilar.`);
+    }
+
+    const el3 = document.getElementById('monthly-premium-momentos-clave');
+    if (el3) {
+        el3.style.cssText = BLOCK_ACTIVE;
+        el3.innerHTML = `<span style="${LBL}">Momentos Clave</span>${scoredHitos.length > 0 ? b3Lines.map((l,i)=>`<p style="${i===0?TXT:TXT2}">${l}</p>`).join('') : `<p style="${TXT}">${b3Lines[0]}</p>`}`;
+    }
+
+    // ── BLOQUE 4 — Activaciones Profundas ────────────────────────────────────
+    const psicofrase = content.psicologico_frase || conexion.psicologico || '';
+    const b4Lines = [];
+
+    if (psicofrase) {
+        const p = psicofrase.charAt(0).toUpperCase() + psicofrase.slice(1);
+        b4Lines.push(p + (p.endsWith('.') ? '' : '.'));
+    }
+
+    if (lordNatalSign) {
+        const hStr = lordNatalHouse ? `, Casa ${lordNatalHouse}` : '';
+        const rStr = lordIsRetro ? ' — en retrogradación: tiende a actuar hacia adentro antes de expresarse afuera' : '';
+        const smLS = _signMeaning[lordNatalSign] || '';
+        b4Lines.push(`Tu ${_pg(lord)}${lord} natal vive en ${_sg(lordNatalSign)}${lordNatalSign}${hStr}${rStr}${smLS ? ' — ' + smLS : ''}. Como Señor del Año, no guía el ciclo de forma abstracta: lo filtra a través de esa configuración natal tuya. Lo que el mes activa llega ya marcado por ese sello.`);
+    } else {
+        b4Lines.push(`${_pg(lord)}${lord} marca el territorio de este mes desde lo colectivo. No hay datos natales directos de su posición en tu carta — lo que rige este ciclo te llega desde la energía arquetípica del planeta, sin el filtro personal de su signo natal.`);
+    }
+
+    // Tono del ciclo — qué tipo de movimiento predomina este mes
+    const tonoMap = {
+        'apertura': 'El tono del ciclo es de apertura: algo quiere comenzar, y lo que pide no es urgencia — es espacio para arrancar bien.',
+        'expansión activa': 'El tono del ciclo es de expansión activa: hay impulso real disponible, pero dispersarse es el riesgo. Elige dónde va esa energía.',
+        'tensión creativa': 'El tono del ciclo es de tensión creativa: dos fuerzas que no encajan a la primera — y por eso producen algo que ninguna podría crear sola.',
+        'asimilación': 'El tono del ciclo es de asimilación: el movimiento es hacia adentro antes de que sea hacia afuera. No es falta de energía — es que la energía trabaja en lo invisible.'
+    };
+    if (tonoMap[content.tono_ciclo]) b4Lines.push(tonoMap[content.tono_ciclo]);
+
+    const el4 = document.getElementById('monthly-premium-activaciones-profundas');
+    if (el4) {
+        el4.style.cssText = BLOCK_ACTIVE;
+        el4.innerHTML = `<span style="${LBL}">Activaciones Profundas</span>${b4Lines.map((l,i)=>`<p style="${i===0?TXT:TXT2}">${l}</p>`).join('')}`;
+    }
+
+    // ── BLOQUE 5 — Tránsitos Avanzados ───────────────────────────────────────
+    const sorted = hitos.slice().sort((a,b) => new Date(a.date)-new Date(b.date));
+    const firstH = sorted[0];
+    const midH = sorted[Math.floor(sorted.length/2)];
+    const lastFutureH = sorted.filter(h=>!h.esPasado).slice(-1)[0];
+    const b5Lines = [];
+
+    // Tono de apertura — cómo arranca el mes según tono_ciclo
+    const _tonoApertura = {
+        'apertura': 'El ciclo arranca con espacio: algo está disponible para comenzar.',
+        'expansión activa': 'El ciclo arranca con impulso: la energía está disponible, pero pide dirección.',
+        'tensión creativa': 'El ciclo arranca con fricción: dos fuerzas activas que necesitan coexistir antes de resolverse.',
+        'asimilación': 'El ciclo arranca hacia adentro: el movimiento real es interior antes de volverse visible.'
+    };
+    const tonoAperturaPhrase = _tonoApertura[content.tono_ciclo] || '';
+
+    if (firstH) {
+        const lDate = _fmtDate(firstH.date);
+        const pastNote = firstH.esPasado ? ' — ya ocurrido' : '';
+        const fPGlyph = firstH.planet ? _pg(firstH.planet) : '';
+        const fSGlyph = firstH.sign ? _sg(firstH.sign) : '';
+        b5Lines.push(`El mes abre con ${fPGlyph}${firstH.label}${firstH.sign ? ' en ' + fSGlyph + firstH.sign : ''}${lDate ? ' (' + lDate + pastNote + ')' : ''}. ${tonoAperturaPhrase}`);
+    }
+    if (midH && midH !== firstH && midH !== lastFutureH) {
+        const lDate = _fmtDate(midH.date);
+        const ndMid = _getNatal(midH.planet);
+        const mPGlyph = midH.planet ? _pg(midH.planet) : '';
+        const mSGlyph = midH.sign ? _sg(midH.sign) : '';
+        const midNote = ndMid?.sign
+            ? ` Tu ${_pg(midH.planet)}${midH.planet} natal, en ${_sg(ndMid.sign)}${ndMid.sign}, entra en contacto directo con este punto — no es solo un evento colectivo: es un hito tuyo.`
+            : ` Es el punto de mayor densidad en el arco colectivo del mes.`;
+        b5Lines.push(`En el centro, ${mPGlyph}${midH.label}${midH.sign ? ' en ' + mSGlyph + midH.sign : ''}${lDate ? ' (' + lDate + ')' : ''} marca el momento donde el ciclo alcanza su mayor tensión o claridad.${midNote}`);
+    }
+    if (lastFutureH && lastFutureH !== firstH) {
+        const lDate = _fmtDate(lastFutureH.date);
+        const ndLast = _getNatal(lastFutureH.planet);
+        const lPGlyph = lastFutureH.planet ? _pg(lastFutureH.planet) : '';
+        const lSGlyph = lastFutureH.sign ? _sg(lastFutureH.sign) : '';
+        const lastNote = ndLast?.sign
+            ? ` Tu ${_pg(lastFutureH.planet)}${lastFutureH.planet} natal, en ${_sg(ndLast.sign)}${ndLast.sign}, recibe este cierre: lo que el ciclo activó en esa parte de ti llega a su punto de síntesis.`
+            : ` Con eso, el mes cierra el arco que abrió al inicio.`;
+        b5Lines.push(`El cierre llega con ${lPGlyph}${lastFutureH.label}${lastFutureH.sign ? ' en ' + lSGlyph + lastFutureH.sign : ''}${lDate ? ' (' + lDate + ')' : ''}.${lastNote}`);
+    } else if (sorted.every(h=>h.esPasado)) {
+        b5Lines.push(`Los tránsitos del mes ya han ocurrido. El ciclo está en integración: lo que se activó no desaparece, se asienta. Ahora toca observar qué dejó.`);
+    }
+    if (b5Lines.length === 0) b5Lines.push(`Este mes el cielo avanza sin tránsitos de alta resonancia sobre tu carta. Sin presión exterior, el ciclo ofrece estabilidad — un momento útil para consolidar lo que ya está en movimiento.`);
+
+    const el5 = document.getElementById('monthly-premium-transitos-avanzados');
+    if (el5) {
+        el5.style.cssText = BLOCK_ACTIVE;
+        el5.innerHTML = `<span style="${LBL}">Tránsitos Avanzados</span>${b5Lines.map((l,i)=>`<p style="${i===0?TXT:TXT2}">${l}</p>`).join('')}`;
+    }
+}
+
+window.renderMonthlyPremiumBlock = renderMonthlyPremiumBlock;
+
 /**
  * Renderizador de Narrativa DIARIA.
  */
@@ -4173,13 +6204,32 @@ function renderDailyNarrative(content) {
     };
     
     update('daily-header-title', content.title);
-    update('daily-area-activada', content.area_activada); // Ya no es uppercase forzado para mayor naturalidad
-    update('daily-narrativa', `"${content.narrativa}"`);
+    update('daily-area-activada', content.area_activada);
+    
+    // HOY-2C — Inyección de Firma Astrológica
+    update('daily-pulso-activo', content.pulso_activo);
+
+    // HOY-2B — Conectar apertura
+    const aperturaEl = doc.getElementById('daily-apertura');
+    if (aperturaEl) {
+        if (content.apertura) {
+            aperturaEl.textContent = content.apertura;
+            aperturaEl.parentElement.style.display = '';
+        } else {
+            aperturaEl.parentElement.style.display = 'none';
+        }
+    }
+
+    // HOY-2C — Narrativa sin comillas forzadas (vienen del banco si se desea, o se dejan limpias)
+    const narrativaEl = doc.getElementById('daily-narrativa');
+    if (narrativaEl) narrativaEl.innerText = content.narrativa;
+
     if (content.sun_sign) update('daily-sun-context', `SOL EN ${content.sun_sign.toUpperCase()}`);
     if (content.reflection) update('daily-pregunta', `"${content.reflection}"`);
     update('daily-triplete-clima', content.triplete.clima);
     update('daily-triplete-direccion', content.triplete.direccion);
     update('daily-triplete-cuidado', content.triplete.cuidado);
+
     update('daily-matiz-dia', content.matiz);
     
     // Nueva resonancia personal
@@ -4229,7 +6279,7 @@ function renderDailyNarrative(content) {
     const dailyRegContainer = doc.getElementById('daily-regulatory-close');
     if (dailyRegContainer && content.regulatory_close) {
         dailyRegContainer.innerText = content.regulatory_close;
-        dailyRegContainer.classList.remove('hidden');
+        dailyRegContainer.classList.add('hidden'); // Editorial pendiente — oculto hasta contextualización
     }
     
     console.log("🎨 KAIROS: Narrativa Diaria Renderizada.");
@@ -4238,7 +6288,56 @@ function renderDailyNarrative(content) {
 /**
  * Renderizador de Card individual con Tuteo e Instrucciones Limpias.
  */
-function renderMatrixCard(label, practice) {
+// [MATRIX_RENDER_2.5] Toggle helper para guía expandible
+window._kairosToggleGuia = function(cardId) {
+    const el = document.getElementById(cardId);
+    const btn = document.getElementById('btn-' + cardId);
+    if (!el || !btn) return;
+    const isOpen = el.style.display !== 'none';
+    el.style.display = isOpen ? 'none' : 'block';
+    btn.innerHTML = isOpen
+        ? 'Ver guía <span style="font-size:9px;opacity:0.6">▾</span>'
+        : 'Cerrar guía <span style="font-size:9px;opacity:0.6">▲</span>';
+};
+
+// [MATRIX_RENDER_2.6] Toggle helper para panel de info astrológico
+window._kairosToggleInfo = function() {
+    const el = document.getElementById('matrix-info-panel');
+    if (!el) return;
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+};
+
+// [MATRIX_RENDER_2.6] Mapa tags_estado → línea de reconocimiento emocional (vocabulario preciso por pilar)
+const ESTADO_RECONOCIMIENTO = {
+    'hiperactivacion':  'Tu cuerpo lleva demasiado tiempo sosteniendo una tensión que aún no ha podido descargar.',
+    'alarma':           'Hay una activación de alerta en el cuerpo que todavía no ha podido bajar.',
+    'panico':           'El sistema está en un nivel de desbordamiento que pide una parada real ahora.',
+    'sobrecarga':       'Llevas demasiada carga encima y el cuerpo necesita un momento para soltar peso.',
+    'tension_fisica':   'Tu cuerpo acumula tensión física que la mente sola no puede liberar.',
+    'impulso':          'Hay una energía activa que necesita dirección y una salida concreta.',
+    'bloqueo':          'La energía no fluye — el sistema necesita un pequeño reset para moverse.',
+    'agotamiento':      'El cuerpo y la mente han llegado a su límite y piden parar para recuperar.',
+    'rumia':            'El pensamiento lleva demasiadas horas girando sobre lo mismo sin encontrar salida.',
+    'dispersion':       'La atención está repartida en demasiados lugares a la vez y necesita recogerse.',
+    'confusion':        'Falta claridad sobre por dónde seguir — la mente necesita un punto de referencia.',
+    'oscilacion':       'El estado interior sube y baja sin estabilizarse y necesita un ancla.',
+    'cierre_pendiente': 'Un vínculo o situación sin cerrar sigue ocupando espacio emocional interior.',
+    'expansion_activa': 'Hay energía disponible y el sistema quiere canalizarla hacia algo concreto.',
+    'foco_necesario':   'La mente necesita concentrarse en un solo punto antes de seguir avanzando.'
+};
+
+// [MATRIX_RENDER_2.6] Intro terapéutica por subserie — mostrada SOLO dentro de "Ver guía"
+const GUIA_INTRO_SUBSERIE = {
+    '810': 'El cuerpo responde al contacto y al movimiento antes de que la mente pueda procesar. No necesitas prepararte — solo darte permiso para parar.',
+    '820': 'La mente recupera presencia cuando deja de intentar controlar. Este ejercicio hace el trabajo por ti — tú solo tienes que seguirlo.',
+    '830': 'Dar salida a lo que llevas dentro libera espacio emocional sin que tengas que resolver nada. Solo dejar que salga.',
+    '840': 'Reconocer lo que está pendiente en tus vínculos ayuda al sistema a procesar lo que sigue ocupando espacio interior.',
+    '850': 'Redirigir la energía disponible hacia dentro equilibra el estado. Poca acción externa, mucho efecto interno.',
+    '860': 'Cuando la mente para, el sistema reorganiza solo. La quietud activa más claridad que el esfuerzo.',
+    '870': 'La respiración es el acceso más directo a la regulación. Dos o tres minutos cambian el estado del cuerpo.'
+};
+
+function renderMatrixCard(label, practice, precomputedRec) {
     if (!practice) return `<p class="text-sm text-slate-300 italic">No disponible</p>`;
     
     if (typeof practice === 'string') {
@@ -4362,8 +6461,78 @@ function renderMatrixCard(label, practice) {
     const benefitRaw = cleanBenefit(practice.efecto).toLowerCase();
     const benefit = clarify(benefitRaw);
 
+    // Duración solo dentro del desplegable, formato "de X a Y minutos"
+    let durationGuia = (practice.duracion || "unos minutos")
+        .replace(/(\d+)\s*-\s*(\d+)/g, '$1 a $2')
+        .replace(/(\d+)\s*s\b/g, '$1 segundos')
+        .replace(/(\d+)\s*min\b/g, '$1 minutos');
+    if (/^\d/.test(durationGuia)) durationGuia = 'de ' + durationGuia;
+
+    // [MATRIX_RENDER_2.6] Cara limpia: reconocimiento + texto_kairos + Ver guía
+    const textoKairos = practice.texto_kairos ? practice.texto_kairos.trim() : null;
+    const nombre = practice.nombre ? practice.nombre.trim() : null;
+
+    if (textoKairos) {
+        // Reconocimiento pre-calculado (anti-redundancia) o fallback desde tags_estado
+        const estados = practice.tags_estado || [];
+        const reconocimiento = precomputedRec !== undefined ? precomputedRec :
+            estados.reduce((found, e) => found || ESTADO_RECONOCIMIENTO[e] || null, null);
+
+        // ID único por tarjeta según label (CUERPO / MENTE / ENERGÍA)
+        const cardId = 'guia-' + label.toLowerCase()
+            .replace(/í/g,'i').replace(/é/g,'e').replace(/á/g,'a').replace(/[^a-z]/g,'');
+
+        // Color de acento por pilar — solo dentro del desplegable
+        const accentColor = label === 'Cuerpo'  ? 'rgba(212,175,55,0.5)' :
+                            label === 'Mente'    ? 'rgba(180,190,255,0.5)' :
+                                                   'rgba(200,160,255,0.5)';
+
+        // Intro terapéutica desde subserie — dentro del desplegable
+        const subserie = practice.subserie ? String(practice.subserie).substring(0, 3) : null;
+        const guiaIntro = subserie && GUIA_INTRO_SUBSERIE[subserie] ? GUIA_INTRO_SUBSERIE[subserie] : null;
+
+        // Pasos desde campo accion (split por ;)
+        const accionRaw = practice.accion ? practice.accion.trim() : null;
+        const parseSteps = (text) => {
+            if (!text) return [];
+            const bySemi = text.split(/;/).map(s => s.trim().replace(/^[,\s]+/, '')).filter(s => s.length > 8);
+            if (bySemi.length > 1) return bySemi.slice(0, 4).map(s => s.charAt(0).toUpperCase() + s.slice(1));
+            return [text.charAt(0).toUpperCase() + text.slice(1)];
+        };
+        const steps = parseSteps(accionRaw);
+        const stepsHtml = steps.map((step) =>
+            `<li style="display:flex;gap:10px;margin-bottom:12px;align-items:flex-start">
+                <span style="color:rgba(212,175,55,0.35);font-size:8px;flex-shrink:0;padding-top:4px;line-height:1">·</span>
+                <span style="color:rgba(255,255,255,0.62);font-size:12px;line-height:1.6">${step}</span>
+            </li>`
+        ).join('');
+
+        const guiaHtml = accionRaw ? `
+            <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08)">
+                <button
+                    id="btn-${cardId}"
+                    onclick="_kairosToggleGuia('${cardId}')"
+                    style="display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;padding:0;color:rgba(255,255,255,0.28);font-size:11px;font-weight:500;letter-spacing:0.02em"
+                    onmouseover="this.style.color='rgba(255,255,255,0.55)'"
+                    onmouseout="this.style.color='rgba(255,255,255,0.28)'"
+                >Ver guía <span style="font-size:9px;opacity:0.5">▾</span></button>
+                <div id="${cardId}" style="display:none;margin-top:14px">
+                    ${nombre ? `<p style="font-size:10px;color:${accentColor};font-weight:600;letter-spacing:0.08em;margin-bottom:14px;text-transform:uppercase">${nombre} · ${durationGuia}</p>` : ''}
+                    <ul style="list-style:none;margin:0;padding:0;margin-bottom:${guiaIntro ? '14px' : '0'}">${stepsHtml}</ul>
+                    ${guiaIntro ? `<p style="font-size:12px;color:rgba(255,255,255,0.30);line-height:1.65;font-style:italic;margin-top:4px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)">${guiaIntro}</p>` : ''}
+                </div>
+            </div>` : '';
+
+        return `
+            ${reconocimiento ? `<p style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.55;margin-bottom:8px">${reconocimiento}</p>` : ''}
+            <p style="font-size:15px;color:rgba(255,248,235,0.93);font-weight:500;line-height:1.5;font-style:italic;margin-bottom:0">${textoKairos}</p>
+            ${guiaHtml}
+        `;
+    }
+
+    // Fallback legacy: si no hay texto_kairos, construir desde accion + efecto
     return `<p class="text-sm text-white font-medium leading-relaxed">
-        ${action} durante ${duration} para ${benefit}.
+        ${action} durante ${durationGuia} para ${benefit}.
     </p>`;
 }
 
@@ -4371,7 +6540,6 @@ function renderMatrixCard(label, practice) {
  * Renderizador de Narrativa MATRIX (Integración Total).
  */
 function renderMatrixNarrative(content, lang = 'es', lord = 'Sol', premiumData = null) {
-    console.log("%c[KAIROS RENDER] Building Matrix Human UI...", "color: #00ffff;");
     const container = document.getElementById('matrix-container');
     
     const update = (id, val) => {
@@ -4397,29 +6565,68 @@ function renderMatrixNarrative(content, lang = 'es', lord = 'Sol', premiumData =
     const isDebugProfile = state.user?.debug_mode || userName.includes('Test');
     const fullName = (userName && !/^(invitado|tester|explora|test debug)$/i.test(userName) && !isDebugProfile) ? userName : "";
     
-    const headerText = lord ? 
-        `HOY ${lord.toUpperCase()} MARCA EL RITMO.` : 
-        "LO QUE TU MOMENTO NECESITA";
-    
-    update('matrix-mastery-title', headerText);
-    
-    const need = content.target_need || 'calmar'; 
-    const humanSubtitles = {
-        'calmar': "Hoy te ayuda bajar el ritmo y soltar tensión.",
-        'activar': "Hoy necesitas activar tu energía y ponerte en movimiento.",
-        'enfocar': "Tu momento pide claridad y una acción concreta.",
-        'expandir': "Hoy es un buen momento para expandirte con confianza.",
-        'descargar': "Tu cuerpo necesita liberar la tensión acumulada.",
-        'descansar': "Hoy es momento de parar y recuperar energía."
+    // [MATRIX_RENDER_2.6] Header "Un espacio para regular" + botón i + panel info
+    const infoNeedsLabels = {
+        'calmar':   'descarga física, claridad mental y recuperación emocional',
+        'activar':  'activación corporal, foco mental y canalización de energía',
+        'enfocar':  'claridad mental, presencia física y orientación interna',
+        'expandir': 'expansión energética, apertura mental y regulación corporal',
+        'descargar':'descarga física, vaciado mental y liberación emocional',
+        'descansar':'recuperación física, calma mental y restauración energética'
     };
-    update('matrix-directive-val', `"${humanSubtitles[need] || adjustCopy(content.directive)}"`);
-    update('matrix-intro-val', adjustCopy(content.micro_intro || "Analizando lo que necesitas hoy..."));
+    const need = content.target_need || 'calmar';
+    const infoNeeds = infoNeedsLabels[need] || 'regulación física, mental y emocional';
+
+    const headerHtml = `
+        <p style="font-size:clamp(1.3rem,5.5vw,1.9rem);color:rgba(255,248,230,0.93);line-height:1.28;font-weight:700;text-transform:uppercase;margin:0 auto;padding-top:8px;max-width:280px;letter-spacing:0.04em">
+            A veces el cuerpo habla antes que la mente pueda entenderlo.
+        </p>
+        <p style="margin-top:22px;font-size:0.92rem;color:rgba(255,248,230,0.72);line-height:1.7;font-weight:300;text-transform:none;max-width:240px;margin-left:auto;margin-right:auto;letter-spacing:0.01em">
+            <span style="color:rgba(215,193,136,0.90);letter-spacing:0.10em;font-weight:500;font-style:italic">MATRIX</span> traduce ese clima en algo que puedes empezar a escuchar.
+        </p>
+        <div style="margin-top:18px;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.92rem;font-weight:400;color:rgba(255,255,255,0.74);letter-spacing:0.03em;text-transform:none"
+            >Un espacio para regularte</span>
+            <button
+                onclick="_kairosToggleInfo()"
+                style="width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:none;cursor:pointer;color:rgba(255,255,255,0.3);font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1"
+                title="¿Cómo se eligen estas prácticas?"
+            >i</button>
+        </div>
+        <div id="matrix-info-panel" style="display:none;margin-top:14px;padding:14px 16px;background:rgba(255,255,255,0.04);border-radius:12px;border:0.5px solid rgba(255,255,255,0.08);text-align:left;text-transform:none">
+            <p style="font-size:12px;color:rgba(255,255,255,0.68);line-height:1.7;margin:0 0 8px;text-transform:none;font-weight:300;font-style:normal;letter-spacing:0.01em">Estas prácticas cambian según el momento emocional y simbólico que atraviesas.</p>
+            <p style="font-size:12px;color:rgba(255,255,255,0.68);line-height:1.7;margin:0 0 8px;text-transform:none;font-weight:300;font-style:normal;letter-spacing:0.01em">La selección tiene en cuenta ciclos personales, ritmos lunares y dinámicas temporales para proponer recursos de regulación física, mental y emocional.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;margin:0;text-transform:none;font-weight:300;font-style:normal;letter-spacing:0.01em">Hoy el sistema detecta necesidad de ${infoNeeds}.</p>
+        </div>
+    `;
+    update('matrix-mastery-title', headerHtml);
+    update('matrix-directive-val', '');
+    update('matrix-intro-val', '');
     update('matrix-context-label', content.profection_context);
 
-    // 2. Toolkit (3 Pilares)
-    update('matrix-body-val', renderMatrixCard('CUERPO', content.body_obj || content.body));
-    update('matrix-mind-val', renderMatrixCard('MENTE', content.mind_obj || content.mind));
-    update('matrix-energy-val', renderMatrixCard('ENERGÍA', content.spirit_obj || content.spirit));
+    // 2. Toolkit (3 Pilares) con anti-redundancia entre reconocimientos
+    const bodyPractice  = content.body_obj   || content.body;
+    const mindPractice  = content.mind_obj   || content.mind;
+    const energyPractice = content.spirit_obj || content.spirit;
+
+    // Anti-redundancia: si dos pilares producen el mismo reconocimiento, el segundo usa siguiente tag disponible
+    const _getRec = (practice, usedTexts) => {
+        if (!practice || typeof practice === 'string') return null;
+        const estados = practice.tags_estado || [];
+        for (const e of estados) {
+            const txt = ESTADO_RECONOCIMIENTO[e];
+            if (txt && !usedTexts.has(txt)) { usedTexts.add(txt); return txt; }
+        }
+        return null;
+    };
+    const usedRecs = new Set();
+    const recBody   = _getRec(bodyPractice, usedRecs);
+    const recMind   = _getRec(mindPractice, usedRecs);
+    const recEnergy = _getRec(energyPractice, usedRecs);
+
+    update('matrix-body-val',   renderMatrixCard('Cuerpo',  bodyPractice,   recBody));
+    update('matrix-mind-val',   renderMatrixCard('Mente',   mindPractice,   recMind));
+    update('matrix-energy-val', renderMatrixCard('Energía', energyPractice, recEnergy));
 
     // Indicadores de Intensidad
     const renderIntensity = (id, val) => {
@@ -4473,18 +6680,14 @@ function renderMatrixNarrative(content, lang = 'es', lord = 'Sol', premiumData =
     const isPremiumActive = window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE || isInternalUser || window.KAIROS_FLAGS.KAIROS_PREMIUM_DEBUG;
 
     let premiumBlock = `
-        <section id="matrix-premium-block" class="mt-4 mb-4 select-none animate-fade-in">
-            <div class="bg-white/5 p-10 rounded-[3rem] border border-white/5 text-center relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-50"></div>
-                <h3 class="text-[9px] font-black uppercase tracking-[0.4em] text-primary mb-6 opacity-60">ANÁLISIS PROFUNDO KAIROS</h3>
-                <div class="space-y-3 mb-8 relative z-10 text-[11px] text-white/60 font-medium">
-                    <p>• Entender mejor lo que te está pasando en cada momento</p>
-                    <p>• Tener más herramientas para regularte en tu día a día</p>
-                </div>
-                <button class="relative z-10 bg-white/5 border border-white/10 hover:bg-white/10 px-8 py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-primary/70">
-                    CONOCE KAIROS PREMIUM
-                </button>
+        <section id="matrix-premium-block" style="margin-top:32px;margin-bottom:16px">
+            <div style="border-top:0.5px solid #d7c188;margin-bottom:24px;opacity:0.18"></div>
+            <div style="text-align:center;margin-bottom:16px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;margin-bottom:10px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <p style="font-size:10px;font-weight:700;letter-spacing:0.12em;color:#d7c188;text-transform:uppercase;margin-bottom:10px">Análisis integrado Premium</p>
+                <p style="font-size:12px;color:rgba(255,255,255,0.38);line-height:1.65;margin-bottom:20px;padding:0 8px">Accede a una lectura más profunda que integra tu carta natal, tránsitos actuales y ciclo anual en una sola visión práctica.</p>
             </div>
+            <button onclick="window._kairosPremiumCTA&&window._kairosPremiumCTA()" style="background:transparent;border:0.5px solid #d7c188;border-radius:12px;padding:14px 20px;color:#d7c188;font-size:12px;letter-spacing:0.05em;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
         </section>
     `;
 
@@ -4742,15 +6945,7 @@ const KAIROS_PREMIUM_ENGINE = {
             const ascSigno = shadowCtx.natal_context?.ascendant || 'Aries';
             const seniorNombre = shadowCtx.annual_context?.lord_of_year || 'Sol';
 
-            // Log de Verificación Tarea 3.B
-            console.log('[KAIROS MATRIX PREMIUM — DATOS REALES]', {
-              currentMoon: lunaSigno,
-              lunaNatal: lunaNatalSigno,
-              moonPhase: lunaFase,
-              ascendant: ascSigno,
-              lordOfYear: seniorNombre,
-              fuenteActual: transitPlanets.Luna ? 'High-Precision Transits' : 'Temporal Context'
-            });
+
 
             // Normalización de Hotspots (Tarea 4)
             const rawHotspots = shadowCtx.monthly_context?.hotspots;
@@ -4823,7 +7018,6 @@ const KAIROS_PREMIUM_ENGINE = {
             // Determinar la necesidad principal basada en el contexto
             const intensity = activeMatrixContent?.intensity_score || 50;
             const need = intensity > 70 ? 'body' : (intensity > 40 ? 'mind' : 'spirit');
-            console.log(`[KAIROS MATRIX PREMIUM — NECESIDAD: ${need.toUpperCase()}]`);
 
             // Filtrar Serie 800 (Simulado con lógica de compatibilidad)
             const resources = activeMatrixContent ? [
@@ -4831,7 +7025,7 @@ const KAIROS_PREMIUM_ENGINE = {
                 { id: '820.' + (intensity % 100), title: (activeMatrixContent.mind_obj?.nombre || 'Práctica Cognitiva'), reason: analysisResults.lo_que_necesitas_ordenar }
             ] : [];
             
-            console.log("[KAIROS MATRIX PREMIUM — RECURSOS FILTRADOS]", resources);
+
 
             const finalData = {
                 ...analysisResults,
@@ -4839,31 +7033,27 @@ const KAIROS_PREMIUM_ENGINE = {
                 is_internal: shadowCtx.natal_context?.is_real || false
             };
 
-            console.log("%c[KAIROS PREMIUM: MATRIX PROCESSED]", "color: #00ffff; font-weight: bold;", finalData);
+
             return finalData;
         }
     },
     hoy: {
         processDailyAnalysis: function(context) {
-            if (!window.KAIROS_FLAGS?.KAIROS_PREMIUM_ACTIVE) console.log("[KAIROS PREMIUM: HOY READY]");
             return { status: "Shadow Mode Active" };
         }
     },
     semana: {
         processWeeklyAnalysis: function(context) {
-            if (!window.KAIROS_FLAGS?.KAIROS_PREMIUM_ACTIVE) console.log("[KAIROS PREMIUM: SEMANA READY]");
             return { status: "Shadow Mode Active" };
         }
     },
     mes: {
         processMonthlyAnalysis: function(context) {
-            if (!window.KAIROS_FLAGS?.KAIROS_PREMIUM_ACTIVE) console.log("[KAIROS PREMIUM: MES READY]");
             return { status: "Shadow Mode Active" };
         }
     },
     anual: {
         processAnnualAnalysis: function(context) {
-            if (!window.KAIROS_FLAGS?.KAIROS_PREMIUM_ACTIVE) console.log("[KAIROS PREMIUM: ANUAL READY]");
             return { status: "Shadow Mode Active" };
         }
     }
