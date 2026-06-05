@@ -718,6 +718,43 @@ const interpreter_engine = {
             const lord = context.annual_context?.lord_of_year || 'Sol';
             const house = String(context.annual_context?.profection_house || 1);
             const asc = context.natal_context?.ascendant || 'Aries';
+            const birthDay = Number(context.annual_context?.birth_day || 0);
+            const birthMonth = Number(context.annual_context?.birth_month || 0);
+            const birthYear = Number(context.annual_context?.birth_year || 0);
+
+            let monthsInCycle = null;
+            let cycleStageText = '';
+            if (birthDay && birthMonth && birthYear) {
+                const today = new Date();
+                let cycleStartYear = today.getFullYear();
+                const beforeBirthday =
+                    (today.getMonth() + 1) < birthMonth ||
+                    ((today.getMonth() + 1) === birthMonth && today.getDate() < birthDay);
+                if (beforeBirthday) cycleStartYear -= 1;
+
+                const cycleStart = new Date(cycleStartYear, birthMonth - 1, birthDay);
+                monthsInCycle =
+                    ((today.getFullYear() - cycleStart.getFullYear()) * 12) +
+                    (today.getMonth() - cycleStart.getMonth()) + 1;
+
+                if (monthsInCycle >= 1 && monthsInCycle <= 5) {
+                    cycleStageText = lang === 'es'
+                        ? 'El ciclo todavía está abriendo su dirección principal. No todo necesita estar definido aún: esta primera parte del año sirve para reconocer hacia dónde empieza a moverse tu energía.'
+                        : 'Cycle opening: the year is still unfolding its main direction.';
+                } else if (monthsInCycle === 6) {
+                    cycleStageText = lang === 'es'
+                        ? 'El ciclo llega a un punto medio. Lo importante ahora no es abrir más frentes, sino revisar qué parte del año ya mostró su dirección y qué necesita ser ajustado con más conciencia.'
+                        : 'Cycle recalibration: the year reaches its midpoint and asks for conscious adjustment.';
+                } else if (monthsInCycle >= 9 && monthsInCycle <= 10) {
+                    cycleStageText = lang === 'es'
+                        ? 'El año entra en una fase de concentración. Lo vivido empieza a mostrar su aprendizaje central y conviene observar qué patrones se consolidan antes de cerrar el ciclo.'
+                        : 'Cycle closure: the year enters its final phase and begins to concentrate its learning.';
+                } else if (monthsInCycle >= 11 && monthsInCycle <= 12) {
+                    cycleStageText = lang === 'es'
+                        ? 'El ciclo empieza a preparar su transición. Algo de lo vivido ya no pide expansión, sino integración, y una parte de ti empieza a orientarse hacia el próximo movimiento.'
+                        : 'Next-cycle preparation: something in you begins to orient toward what comes next.';
+                }
+            }
 
             const houseData = docs['304_casa_activada_por_profeccion']?.contenido?.casas?.[house] || // [D.0.1]
                              docs['220_significado_casas']?.contenido?.catalogo?.[house] || {};
@@ -772,6 +809,8 @@ const interpreter_engine = {
                     sign: context.annual_context?.profection_sign || '---',
                     meaning: docs['260_profeccion_anual']?.contenido?.resumen || ""
                 },
+                months_in_cycle: monthsInCycle,
+                cycle_stage_text: cycleStageText,
                 technical_audit: { latency, status: "OK", lord_active: lord }
             };
 
