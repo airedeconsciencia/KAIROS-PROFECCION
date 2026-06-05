@@ -969,19 +969,65 @@ const interpreter_engine = {
         const getFromSerie = (docId, key) => {
             const doc = docs[docId];
             if (!doc || !doc.contenido) return { data: null, source: `FALLBACK (Doc nulo: ${docId})` };
-            const found = doc.contenido[key] || doc.contenido.catalogo?.[key] || doc.contenido.planetas?.[key.toLowerCase()];
+            
+            // Búsqueda expandida (Fix 2 & 3: soporte para .dias y .fases)
+            const found = doc.contenido[key] || 
+                          doc.contenido.catalogo?.[key] || 
+                          doc.contenido.planetas?.[key.toLowerCase()] ||
+                          doc.contenido.dias?.[key] ||
+                          doc.contenido.fases?.[key];
+
             if (found) return { data: found, source: `FIRESTORE (${docId})` };
             return { data: null, source: `FALLBACK (Llave '${key}' faltante en ${docId})` };
         };
 
-        const lunaInfo = getFromSerie('305_luna_en_transito_por_signo', lunaSign);
-        const planetaInfo = getFromSerie('250_planeta_del_dia', planetaDia);
+        // FIX 1: Lookup tolerante para Luna (305)
+        let lunaDataRaw = null;
+        const signVariants = [
+            lunaSign, 
+            lunaSign.toLowerCase(), 
+            lunaSign.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        ];
+        for (const sv of signVariants) {
+            const info = getFromSerie('305_luna_en_transito_por_signo', sv);
+            if (info.data) {
+                lunaDataRaw = info;
+                break;
+            }
+        }
+        const lunaInfo = lunaDataRaw || getFromSerie('305_luna_en_transito_por_signo', lunaSign);
+
+        // FIX 2: Planeta a Día (250)
+        const PLANETA_A_DIA = {
+            'Sol': 'DOMINGO',
+            'Luna': 'LUNES',
+            'Marte': 'MARTES',
+            'Mercurio': 'MIERCOLES',
+            'Júpiter': 'JUEVES',
+            'Jupiter': 'JUEVES',
+            'Venus': 'VIERNES',
+            'Saturno': 'SABADO'
+        };
+        const diaKey = PLANETA_A_DIA[planetaDia] || planetaDia;
+        const planetaInfo = getFromSerie('250_planeta_del_dia', diaKey);
+
         const lordInfo = getFromSerie('303_senor_del_ano_por_planeta', lord);
         
         // Cambio de jerarquía C.1: casaProfectada es el escenario principal
         const houseInfo     = getFromSerie('220_significado_casas', String(casaProfectada));
         const moonHouseInfo = getFromSerie('220_significado_casas', String(moonHouse));
-        const faseInfo = getFromSerie('230_fases_lunares', faseLunar);
+
+        // FIX 3: Fases Lunares (230)
+        const FASE_A_KEY = {
+            'Nueva': 'LUNA_NUEVA',
+            'Llena': 'LUNA_LLENA',
+            'Creciente': 'CUARTO_CRECIENTE',
+            'Menguante': 'CUARTO_MENGUANTE',
+            'Cuarto Creciente': 'CUARTO_CRECIENTE',
+            'Cuarto Menguante': 'CUARTO_MENGUANTE'
+        };
+        const faseKey = FASE_A_KEY[faseLunar] || faseLunar;
+        const faseInfo = getFromSerie('230_fases_lunares', faseKey);
 
         console.log("2. FUENTE POR BLOQUE:");
         console.log(`   🔸 PULSO (Luna en ${lunaSign}):`, lunaInfo.source);
@@ -1071,8 +1117,13 @@ const interpreter_engine = {
             const art = ['Hogar','Éxito','Trabajo','Servicio','Cuerpo'].includes(areaAnual) ? 'el' : 'la';
             const fraseAnual = `Tu año gira en torno a ${art} ${areaAnual}, bajo la guía de ${lord}, quien activa tu ${areaAnual}.`;
             
-            // Capa 2: Condición natal (Experiencial + Sujeto Tú)
-            const fraseNatal = lordNatalSign ? ` Con ${lord} natal en ${lordNatalSign} (Casa ${lordNatalHouse}), percibes este impulso como ${cleanString(lordData.tono)}.` : '';
+            // Capa 2: Condición natal (Experiencial + Sujeto Tú) - FIX HOY-1 (Frase rota)
+            const tonoLord = lordData.tono || lordData.clima_psicologico || lordData.potencial || '';
+            const fraseNatal = lordNatalSign 
+                ? (tonoLord 
+                    ? ` Con ${lord} natal en ${lordNatalSign} (Casa ${lordNatalHouse}), percibes este impulso como ${cleanString(tonoLord)}.`
+                    : ` Con ${lord} natal en ${lordNatalSign} (Casa ${lordNatalHouse}), percibes este impulso como una llamada a ordenar tu energía con más claridad.`)
+                : '';
             
             // Capa 3: Modulador lunar (Directo)
             const fraseHoy = ` Hoy la Luna en ${lunaSign} moviliza tu ${areaLunar}.`;
