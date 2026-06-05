@@ -9,7 +9,32 @@
             "intensidad": "alta",
             "momento": "Durante un pico agudo de estrés o hiperactivación física",
             "efecto": "Descenso inmediato de las pulsaciones y freno del estado de alarma corporal",
-            "necesidad": "Estimular el nervio vago y disminuir la frecuencia cardíaca acelerada"
+            "necesidad": "Estimular el nervio vago y disminuir la frecuencia cardíaca acelerada",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion"
+            ],
+            "tags_momento": [
+                "pico",
+                "crisis",
+                "urgente"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "810.002",
@@ -20,7 +45,30 @@
             "intensidad": "suave",
             "momento": "Al sentir el pecho contraído, opresión o respiración corta",
             "efecto": "Liberación de la tensión en la fascia del corazón y sensación de contención",
-            "necesidad": "Romper patrones de tensión y promover la relajación parasimpática"
+            "necesidad": "Romper patrones de tensión y promover la relajación parasimpática",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.003",
@@ -31,7 +79,31 @@
             "intensidad": "suave",
             "momento": "Al experimentar desbordamiento, vulnerabilidad o agitación",
             "efecto": "Reducción de los niveles de cortisol y regulación del sistema nervioso",
-            "necesidad": "Calmar el sistema límbico y generar una sensación física de seguridad"
+            "necesidad": "Calmar el sistema límbico y generar una sensación física de seguridad",
+            "tags_estado": [
+                "tension_fisica",
+                "oscilacion",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "crisis",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.004",
@@ -42,7 +114,34 @@
             "intensidad": "media",
             "momento": "Tras un momento de alta tensión, susto o tras estar inactivo mucho tiempo",
             "efecto": "Liberación del exceso de adrenalina y retorno al equilibrio corporal",
-            "necesidad": "Descargar la energía de alerta y liberar la rigidez muscular acumulada"
+            "necesidad": "Descargar la energía de alerta y liberar la rigidez muscular acumulada",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "tension_fisica",
+                "impulso"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "marte",
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "810.005",
@@ -53,7 +152,29 @@
             "intensidad": "suave",
             "momento": "Al sentir un \"nudo\", pesadez o nervios acumulados en el estómago",
             "efecto": "Relajación del sistema digestivo y aumento de la consciencia corporal interna",
-            "necesidad": "Desbloquear la tensión visceral y movilizar energía estancada en el tronco"
+            "necesidad": "Desbloquear la tensión visceral y movilizar energía estancada en el tronco",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.006",
@@ -64,7 +185,30 @@
             "intensidad": "suave",
             "momento": "Al sentir un bloqueo en la garganta o tensión maxilar",
             "efecto": "Resonancia interna calmante que disminuye la rigidez craneofacial y torácica",
-            "necesidad": "Relajar la musculatura interna del cuello y estimular el tono vagal"
+            "necesidad": "Relajar la musculatura interna del cuello y estimular el tono vagal",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.008",
@@ -75,7 +219,30 @@
             "intensidad": "suave",
             "momento": "Antes de dormir o para aliviar dolor en la espalda baja",
             "efecto": "Descompresión de la columna lumbar y efecto arrullador que induce al descanso",
-            "necesidad": "Relajar la zona lumbar y apaciguar el sistema nervioso central"
+            "necesidad": "Relajar la zona lumbar y apaciguar el sistema nervioso central",
+            "tags_estado": [
+                "agotamiento",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.009",
@@ -86,7 +253,33 @@
             "intensidad": "suave",
             "momento": "Por la mañana al despertar o tras horas en postura sedentaria",
             "efecto": "Lubricación intervertebral, mejora postural y alivio de pesadez en la espalda",
-            "necesidad": "Dar movilidad a la columna vertebral y aliviar la rigidez dorsal"
+            "necesidad": "Dar movilidad a la columna vertebral y aliviar la rigidez dorsal",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.010",
@@ -97,7 +290,31 @@
             "intensidad": "suave",
             "momento": "Al sentir sobrecarga postural, fatiga física o estrés",
             "efecto": "Relajación profunda de la cadena posterior y descanso de la cintura escapular",
-            "necesidad": "Estirar pasivamente la musculatura de la espalda y hombros"
+            "necesidad": "Estirar pasivamente la musculatura de la espalda y hombros",
+            "tags_estado": [
+                "agotamiento",
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.014",
@@ -108,7 +325,32 @@
             "intensidad": "suave",
             "momento": "Como calentamiento al iniciar el día o durante pausas activas",
             "efecto": "Reducción de la rigidez articular periférica y mejora del retorno circulatorio",
-            "necesidad": "Drenar las articulaciones periféricas y activar la circulación"
+            "necesidad": "Drenar las articulaciones periféricas y activar la circulación",
+            "tags_estado": [
+                "tension_fisica",
+                "impulso"
+            ],
+            "tags_momento": [
+                "descanso",
+                "transicion",
+                "activo"
+            ],
+            "tags_energia": [
+                "marte",
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.018",
@@ -119,7 +361,30 @@
             "intensidad": "media",
             "momento": "Como trabajo compensatorio al sedentarismo",
             "efecto": "Apertura pélvica profunda y elongación de la zona lumbar y aductores",
-            "necesidad": "Flexibilizar al máximo la cadera, rodillas y tobillos"
+            "necesidad": "Flexibilizar al máximo la cadera, rodillas y tobillos",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "marte"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.020",
@@ -130,7 +395,29 @@
             "intensidad": "suave",
             "momento": "Como calentamiento articular o para destrabar lumbares rígidas",
             "efecto": "Lubricación de la articulación coxofemoral y soltura en la pelvis",
-            "necesidad": "Dar movilidad de rotación interna y externa a las caderas"
+            "necesidad": "Dar movilidad de rotación interna y externa a las caderas",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.021",
@@ -141,7 +428,30 @@
             "intensidad": "media",
             "momento": "Para revertir la postura encorvada de hombros caídos",
             "efecto": "Fortalecimiento de la zona lumbar, glúteos y apertura del pecho",
-            "necesidad": "Activar la cadena posterior y abrir la cara anterior del torso"
+            "necesidad": "Activar la cadena posterior y abrir la cara anterior del torso",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "marte",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.023",
@@ -152,7 +462,32 @@
             "intensidad": "media",
             "momento": "Para descargar la tensión acumulada directamente entre las escápulas",
             "efecto": "Expansión profunda y alivio de contracturas en la parte superior de la espalda",
-            "necesidad": "Estirar la musculatura profunda de la espalda alta (romboides)"
+            "necesidad": "Estirar la musculatura profunda de la espalda alta (romboides)",
+            "tags_estado": [
+                "tension_fisica",
+                "impulso",
+                "expansion_activa"
+            ],
+            "tags_momento": [
+                "transicion",
+                "activo"
+            ],
+            "tags_energia": [
+                "marte",
+                "jupiter"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.025",
@@ -163,7 +498,31 @@
             "intensidad": "suave",
             "momento": "Al percibir los hombros encogidos hacia el cuello involuntariamente",
             "efecto": "Desactivación inmediata del trapecio superior y relajación del cuello",
-            "necesidad": "Liberar la tensión de defensa crónica en la cintura escapular"
+            "necesidad": "Liberar la tensión de defensa crónica en la cintura escapular",
+            "tags_estado": [
+                "tension_fisica",
+                "expansion_activa"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "jupiter"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.026",
@@ -174,7 +533,33 @@
             "intensidad": "media",
             "momento": "Al inicio del día o tras un momento de dificultad para expresarse",
             "efecto": "Tonificación del nervio vago y activación física del estado de reposo",
-            "necesidad": "Estimular la musculatura profunda de la garganta"
+            "necesidad": "Estimular la musculatura profunda de la garganta",
+            "tags_estado": [
+                "expansion_activa",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "jupiter"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "810.028",
@@ -185,7 +570,30 @@
             "intensidad": "media",
             "momento": "Para reactivar la circulación si se pasa mucho tiempo de pie o sentado",
             "efecto": "Activación de gemelos y tibiales, y mejora de la propiocepción podal",
-            "necesidad": "Fortalecer la musculatura plantar y estabilizar las articulaciones del pie"
+            "necesidad": "Fortalecer la musculatura plantar y estabilizar las articulaciones del pie",
+            "tags_estado": [
+                "impulso",
+                "hiperactivacion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "marte",
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "810.029",
@@ -196,7 +604,29 @@
             "intensidad": "suave",
             "momento": "Al notar que se aprietan los dientes de forma inconsciente (bruxismo)",
             "efecto": "Descompresión de la mandíbula y alivio físico de la frustración contenida",
-            "necesidad": "Liberar la tensión de la articulación temporomandibular"
+            "necesidad": "Liberar la tensión de la articulación temporomandibular",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         },
         {
             "id": "810.030",
@@ -207,7 +637,29 @@
             "intensidad": "suave",
             "momento": "Tras usar prolongadamente el teléfono móvil o el ordenador",
             "efecto": "Estiramiento profundo de la musculatura anterior del cuello y garganta",
-            "necesidad": "Contrarrestar el acortamiento muscular por la flexión constante hacia pantallas"
+            "necesidad": "Contrarrestar el acortamiento muscular por la flexión constante hacia pantallas",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La tensión del cuerpo empieza a aflojarse."
         }
     ],
     "820": [
@@ -220,7 +672,35 @@
             "intensidad": "media",
             "momento": "Al inicio del día o antes de dormir cuando la mente está bloqueada",
             "efecto": "Claridad mental, mente despejada y reducción de ruido interno",
-            "necesidad": "Liberar la memoria de trabajo y reducir el sobrepensamiento"
+            "necesidad": "Liberar la memoria de trabajo y reducir el sobrepensamiento",
+            "tags_estado": [
+                "rumia",
+                "bloqueo",
+                "agotamiento",
+                "confusion"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La cabeza empieza a bajar de velocidad."
         },
         {
             "id": "820.003",
@@ -231,7 +711,33 @@
             "intensidad": "suave",
             "momento": "La noche anterior, antes de dormir",
             "efecto": "Despertar con dirección clara y empezar el día ejecutando sin perder tiempo decidiendo",
-            "necesidad": "Evitar la fatiga de decisión matutina y el caos organizativo"
+            "necesidad": "Evitar la fatiga de decisión matutina y el caos organizativo",
+            "tags_estado": [
+                "agotamiento",
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.005",
@@ -242,7 +748,30 @@
             "intensidad": "suave",
             "momento": "Al sentirse atrapado en la frustración o perdiendo el tiempo",
             "efecto": "Corte de la distracción y retorno consciente a la tarea principal",
-            "necesidad": "Retomar el dominio de la atención cuando ha sido secuestrada por la rumiación"
+            "necesidad": "Retomar el dominio de la atención cuando ha sido secuestrada por la rumiación",
+            "tags_estado": [
+                "rumia",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La cabeza empieza a bajar de velocidad."
         },
         {
             "id": "820.006",
@@ -253,7 +782,30 @@
             "intensidad": "alta",
             "momento": "Ante episodios de sobrepensamiento o pensamientos en bucle",
             "efecto": "Disolución de la identificación con la mente y freno del ruido interno",
-            "necesidad": "Desidentificarse del ruido mental y recuperar la perspectiva"
+            "necesidad": "Desidentificarse del ruido mental y recuperar la perspectiva",
+            "tags_estado": [
+                "rumia",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La cabeza empieza a bajar de velocidad."
         },
         {
             "id": "820.008",
@@ -264,7 +816,31 @@
             "intensidad": "suave",
             "momento": "Cuando el cerebro va demasiado deprisa o se pierde el foco de la realidad",
             "efecto": "Reducción del sobrepensamiento y reconexión inmediata con el entorno físico",
-            "necesidad": "Centrar la mente hiperactiva y aterrizarla en el momento presente"
+            "necesidad": "Centrar la mente hiperactiva y aterrizarla en el momento presente",
+            "tags_estado": [
+                "hiperactivacion",
+                "rumia",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La cabeza empieza a bajar de velocidad."
         },
         {
             "id": "820.009",
@@ -275,7 +851,31 @@
             "intensidad": "media",
             "momento": "Inmediatamente después de despertar",
             "efecto": "Mente proactiva, enfocada y libre de la saturación de información externa",
-            "necesidad": "Proteger la atención de la reactividad externa y la neblina mental"
+            "necesidad": "Proteger la atención de la reactividad externa y la neblina mental",
+            "tags_estado": [
+                "expansion_activa",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu mente recupera orden sin forzarse."
         },
         {
             "id": "820.010",
@@ -286,7 +886,31 @@
             "intensidad": "alta",
             "momento": "Durante el trabajo profundo",
             "efecto": "Eliminación de microdistracciones y recuperación de la concentración sostenida",
-            "necesidad": "Proteger el enfoque eliminando disparadores de distracción"
+            "necesidad": "Proteger el enfoque eliminando disparadores de distracción",
+            "tags_estado": [
+                "foco_necesario",
+                "dispersion"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.011",
@@ -297,7 +921,32 @@
             "intensidad": "alta",
             "momento": "Al notar parálisis por análisis o resistencia mental para comenzar algo",
             "efecto": "Interrupción del bucle de duda y arranque inmediato de la acción",
-            "necesidad": "Cortar la racionalización mental y forzar la ejecución de una tarea"
+            "necesidad": "Cortar la racionalización mental y forzar la ejecución de una tarea",
+            "tags_estado": [
+                "bloqueo",
+                "confusion"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "apertura"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empieza a aclararse lo que antes estaba mezclado."
         },
         {
             "id": "820.013",
@@ -308,7 +957,32 @@
             "intensidad": "media",
             "momento": "Al enfrentar tareas largas o monótonas que facilitan la dispersión",
             "efecto": "Mantenimiento de la agudeza mental a lo largo de las horas sin llegar al agotamiento",
-            "necesidad": "Sostener la atención ininterrumpida evitando la fatiga cognitiva"
+            "necesidad": "Sostener la atención ininterrumpida evitando la fatiga cognitiva",
+            "tags_estado": [
+                "dispersion",
+                "agotamiento",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.014",
@@ -319,7 +993,31 @@
             "intensidad": "suave",
             "momento": "Al sentir sobrecarga mental, confusión o desorientación frente a un proyecto",
             "efecto": "Desaparición del agobio mental y facilidad para iniciar la inercia de trabajo",
-            "necesidad": "Simplificar el procesamiento cognitivo para reducir el bloqueo ante tareas complejas"
+            "necesidad": "Simplificar el procesamiento cognitivo para reducir el bloqueo ante tareas complejas",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "confusion",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empieza a aclararse lo que antes estaba mezclado."
         },
         {
             "id": "820.015",
@@ -330,7 +1028,30 @@
             "intensidad": "media",
             "momento": "Al planificar el día o la semana laboral",
             "efecto": "Claridad absoluta sobre el objetivo esencial y eliminación del trabajo de relleno",
-            "necesidad": "Limpiar la mente de tareas irrelevantes que generan ruido y falsa ocupación"
+            "necesidad": "Limpiar la mente de tareas irrelevantes que generan ruido y falsa ocupación",
+            "tags_estado": [
+                "confusion",
+                "cierre_pendiente",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.016",
@@ -341,7 +1062,30 @@
             "intensidad": "media",
             "momento": "Antes de terminar la jornada laboral",
             "efecto": "Sensación de orden, liberación de espacio mental y reducción del estrés acumulado",
-            "necesidad": "Evitar que las tareas incompletas sigan drenando atención en segundo plano"
+            "necesidad": "Evitar que las tareas incompletas sigan drenando atención en segundo plano",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo pendiente pierde peso dentro de tu cabeza."
         },
         {
             "id": "820.018",
@@ -352,7 +1096,29 @@
             "intensidad": "suave",
             "momento": "Justo antes de iniciar un bloque de concentración profunda",
             "efecto": "Reducción del caos mental reflejado en el entorno y mejora de la retención de la atención",
-            "necesidad": "Fomentar el enfoque suprimiendo estímulos visuales periféricos"
+            "necesidad": "Fomentar el enfoque suprimiendo estímulos visuales periféricos",
+            "tags_estado": [
+                "foco_necesario",
+                "dispersion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.019",
@@ -363,7 +1129,31 @@
             "intensidad": "suave",
             "momento": "En el instante previo a comenzar un bloque de trabajo, evento o reunión",
             "efecto": "Mente calibrada, proactiva y orientada a soluciones en lugar de reaccionar a los estímulos",
-            "necesidad": "Dirigir el enfoque y la interpretación antes de que la mente se disperse"
+            "necesidad": "Dirigir el enfoque y la interpretación antes de que la mente se disperse",
+            "tags_estado": [
+                "confusion",
+                "expansion_activa"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empieza a aclararse lo que antes estaba mezclado."
         },
         {
             "id": "820.022",
@@ -374,7 +1164,30 @@
             "intensidad": "media",
             "momento": "Ante una fuerte resistencia mental o pereza para iniciar a trabajar",
             "efecto": "Creación de un flujo de atención que usualmente engaña al cerebro para continuar la tarea",
-            "necesidad": "Vencer la parálisis analítica y ganar tracción en el enfoque"
+            "necesidad": "Vencer la parálisis analítica y ganar tracción en el enfoque",
+            "tags_estado": [
+                "bloqueo",
+                "confusion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empieza a aclararse lo que antes estaba mezclado."
         },
         {
             "id": "820.023",
@@ -385,7 +1198,29 @@
             "intensidad": "media",
             "momento": "Inmediatamente tras un diálogo interno limitante o absolutista",
             "efecto": "Apertura mental hacia nuevas posibilidades y reducción del bloqueo cognitivo",
-            "necesidad": "Desbloquear el pensamiento rígido que nubla la búsqueda de opciones"
+            "necesidad": "Desbloquear el pensamiento rígido que nubla la búsqueda de opciones",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.024",
@@ -396,7 +1231,30 @@
             "intensidad": "suave",
             "momento": "Al entrar a un estado de trabajo profundo o en entornos compartidos ruidosos",
             "efecto": "Disminución de interrupciones sonoras y mantenimiento de una burbuja acústica de enfoque",
-            "necesidad": "Bloquear el ruido ambiental caótico que fragmenta la concentración"
+            "necesidad": "Bloquear el ruido ambiental caótico que fragmenta la concentración",
+            "tags_estado": [
+                "dispersion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna",
+                "venus"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.025",
@@ -407,7 +1265,29 @@
             "intensidad": "media",
             "momento": "Al sentirse atrapado en la mente, agobiado o en un bucle caótico",
             "efecto": "El cerebro registra que hay un progreso controlable en el entorno, reduciendo la pesadez mental y trayendo orden al pensamiento",
-            "necesidad": "Mitigar la confusión mental añadiendo orden externo inmediato"
+            "necesidad": "Mitigar la confusión mental añadiendo orden externo inmediato",
+            "tags_estado": [
+                "tension_fisica",
+                "confusion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empieza a aclararse lo que antes estaba mezclado."
         },
         {
             "id": "820.028",
@@ -418,7 +1298,31 @@
             "intensidad": "suave",
             "momento": "Al organizar la tarea más importante del día",
             "efecto": "Recordatorio periférico constante que reconduce la atención de forma sutil cuando el pensamiento empieza a divagar",
-            "necesidad": "Mantener la mente anclada en una prioridad mediante recordatorios pasivos"
+            "necesidad": "Mantener la mente anclada en una prioridad mediante recordatorios pasivos",
+            "tags_estado": [
+                "confusion",
+                "cierre_pendiente",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.029",
@@ -429,7 +1333,31 @@
             "intensidad": "media",
             "momento": "Al sentarse a comer tras un periodo de mucha actividad mental",
             "efecto": "Reducción del ruido cognitivo por la concentración absoluta en el aquí y el ahora",
-            "necesidad": "Cortar la agitación mental enfocando la mente en un solo proceso sensorial"
+            "necesidad": "Cortar la agitación mental enfocando la mente en un solo proceso sensorial",
+            "tags_estado": [
+                "oscilacion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "820.030",
@@ -440,7 +1368,31 @@
             "intensidad": "media",
             "momento": "En la fracción de segundo previa a abrir una red social o evadir el trabajo",
             "efecto": "Interrupción de la inercia mental, permitiendo recuperar el control consciente del enfoque",
-            "necesidad": "Llevar el impulso de distracción del piloto automático a la mente racional"
+            "necesidad": "Llevar el impulso de distracción del piloto automático a la mente racional",
+            "tags_estado": [
+                "rumia",
+                "impulso"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La cabeza empieza a bajar de velocidad."
         }
     ],
     "830": [
@@ -453,7 +1405,31 @@
             "intensidad": "media",
             "momento": "Al sentir un nudo emocional o pesadez interna inespecífica",
             "efecto": "Liberación de la carga emocional y autoaceptación",
-            "necesidad": "Acoger emociones reprimidas sin resistencia"
+            "necesidad": "Acoger emociones reprimidas sin resistencia",
+            "tags_estado": [
+                "tension_fisica",
+                "cierre_pendiente",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "venus"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "830.002",
@@ -464,7 +1440,31 @@
             "intensidad": "alta",
             "momento": "Cuando se sienta un nudo en la garganta o saturación de estrés",
             "efecto": "Reequilibrio del sistema nervioso y alivio profundo",
-            "necesidad": "Descargar la tensión de la tristeza o la frustración"
+            "necesidad": "Descargar la tensión de la tristeza o la frustración",
+            "tags_estado": [
+                "tension_fisica",
+                "impulso",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente"
+            ],
+            "tags_energia": [
+                "marte"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo acumulado encuentra una salida clara."
         },
         {
             "id": "830.003",
@@ -475,7 +1475,33 @@
             "intensidad": "suave",
             "momento": "Ante picos de ansiedad, miedo o inseguridad aguda",
             "efecto": "Descenso de los niveles de cortisol y sensación de seguridad interna",
-            "necesidad": "Reducir la ansiedad mediante la creación de un espacio mental de calma"
+            "necesidad": "Reducir la ansiedad mediante la creación de un espacio mental de calma",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "oscilacion",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "pico",
+                "crisis",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "830.004",
@@ -486,7 +1512,33 @@
             "intensidad": "alta",
             "momento": "Tras un conflicto o durante periodos de alta carga emocional",
             "efecto": "Claridad emocional y reducción del ruido mental obsesivo",
-            "necesidad": "Externalizar el dolor o la rabia para evitar la somatización"
+            "necesidad": "Externalizar el dolor o la rabia para evitar la somatización",
+            "tags_estado": [
+                "rumia",
+                "tension_fisica",
+                "impulso",
+                "confusion"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descenso"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Lo acumulado encuentra una salida clara."
         },
         {
             "id": "830.006",
@@ -497,7 +1549,30 @@
             "intensidad": "suave",
             "momento": "Al sentir irritabilidad extrema o ruido mental excesivo",
             "efecto": "Relajación profunda del sistema nervioso y centro emocional",
-            "necesidad": "Calmar la mente agitada y las emociones de ira o irritabilidad"
+            "necesidad": "Calmar la mente agitada y las emociones de ira o irritabilidad",
+            "tags_estado": [
+                "rumia",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "830.007",
@@ -508,7 +1583,32 @@
             "intensidad": "media",
             "momento": "Después de una situación estresante o al sentir el cuerpo rígido emocionalmente",
             "efecto": "Descarga de la energía de \"lucha o huida\" y retorno a la calma",
-            "necesidad": "Soltar la energía de estrés o trauma acumulada en el cuerpo"
+            "necesidad": "Soltar la energía de estrés o trauma acumulada en el cuerpo",
+            "tags_estado": [
+                "impulso",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "marte",
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "830.008",
@@ -519,7 +1619,30 @@
             "intensidad": "media",
             "momento": "Cuando se siente una emoción \"atascada\" que necesita salir",
             "efecto": "Movilización emocional y alivio por resonancia",
-            "necesidad": "Facilitar la expresión de una emoción que está bloqueada"
+            "necesidad": "Facilitar la expresión de una emoción que está bloqueada",
+            "tags_estado": [
+                "bloqueo",
+                "confusion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "venus"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu interior empieza a ordenarse con menos ruido."
         },
         {
             "id": "830.009",
@@ -530,7 +1653,29 @@
             "intensidad": "suave",
             "momento": "En momentos de vulnerabilidad, tristeza o soledad profunda",
             "efecto": "Sensación de auto-maternaje y calma corporal inmediata",
-            "necesidad": "Brindarse seguridad física ante el sentimiento de soledad o desamparo"
+            "necesidad": "Brindarse seguridad física ante el sentimiento de soledad o desamparo",
+            "tags_estado": [
+                "oscilacion",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         },
         {
             "id": "830.010",
@@ -541,7 +1686,30 @@
             "intensidad": "media",
             "momento": "Cuando la emoción parece abrumadora o abstracta",
             "efecto": "Reducción de la intensidad dramática y reconexión con la realidad física",
-            "necesidad": "Desidentificarse de la emoción \"mental\" y aterrizarla en el cuerpo"
+            "necesidad": "Desidentificarse de la emoción \"mental\" y aterrizarla en el cuerpo",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Sientes cómo el cuerpo frena por dentro."
         },
         {
             "id": "830.011",
@@ -552,7 +1720,33 @@
             "intensidad": "suave",
             "momento": "Ante sentimientos de agobio, túnel mental o estrés agudo",
             "efecto": "Activación del sistema parasimpático y enfriamiento de la reactividad emocional",
-            "necesidad": "Cambiar el estado de alerta emocional bajando la tensión visual"
+            "necesidad": "Cambiar el estado de alerta emocional bajando la tensión visual",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "pico",
+                "crisis",
+                "urgente",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "830.012",
@@ -563,7 +1757,34 @@
             "intensidad": "suave",
             "momento": "Al inicio de un ataque de pánico o agitación ansiosa",
             "efecto": "Interrupción del bucle de miedo y anclaje en la realidad presente",
-            "necesidad": "Cortar la espiral de pensamientos catastróficos o ansiedad futura"
+            "necesidad": "Cortar la espiral de pensamientos catastróficos o ansiedad futura",
+            "tags_estado": [
+                "panico",
+                "alarma",
+                "hiperactivacion",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "crisis",
+                "apertura",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "830.015",
@@ -574,7 +1795,32 @@
             "intensidad": "media",
             "momento": "Durante periodos de alta incertidumbre o preocupaciones recurrentes",
             "efecto": "Contención de la ansiedad y recuperación del control sobre el foco emocional",
-            "necesidad": "Evitar que la ansiedad emocional consuma todo el día"
+            "necesidad": "Evitar que la ansiedad emocional consuma todo el día",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "cierre_pendiente",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "830.018",
@@ -585,7 +1831,30 @@
             "intensidad": "suave",
             "momento": "Al sentirse saturado por el entorno social o el estrés laboral",
             "efecto": "Descomprensión emocional y retorno al centro",
-            "necesidad": "Bajar la intensidad emocional mediante la exposición a la naturaleza o el entorno"
+            "necesidad": "Bajar la intensidad emocional mediante la exposición a la naturaleza o el entorno",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "830.019",
@@ -596,7 +1865,32 @@
             "intensidad": "alta",
             "momento": "En el punto máximo de una lucha interna por \"no querer sentirse así\"",
             "efecto": "Alivio inmediato de la tensión por resistencia y paz residual",
-            "necesidad": "Dejar de luchar contra lo que ya se está sintiendo"
+            "necesidad": "Dejar de luchar contra lo que ya se está sintiendo",
+            "tags_estado": [
+                "tension_fisica",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente"
+            ],
+            "tags_energia": [
+                "luna",
+                "venus"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "830.020",
@@ -607,7 +1901,34 @@
             "intensidad": "alta",
             "momento": "En estados de crisis emocional, llanto inconsolable o rabia ciega",
             "efecto": "Interrupción del secuestro amigdalino y recuperación de la calma básica",
-            "necesidad": "Cortar un bucle de desbordamiento emocional intenso mediante estímulo físico"
+            "necesidad": "Cortar un bucle de desbordamiento emocional intenso mediante estímulo físico",
+            "tags_estado": [
+                "oscilacion",
+                "foco_necesario",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "pico",
+                "crisis",
+                "urgente"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente",
+                "menguante"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         },
         {
             "id": "830.022",
@@ -618,7 +1939,30 @@
             "intensidad": "media",
             "momento": "Tras un día de contenerse, callar verdades o sentir opresión en el pecho",
             "efecto": "Apertura del canal de expresión y relajación laríngea",
-            "necesidad": "Liberar la presión acumulada en la garganta y el pecho"
+            "necesidad": "Liberar la presión acumulada en la garganta y el pecho",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Sientes cómo el cuerpo frena por dentro."
         },
         {
             "id": "830.023",
@@ -629,7 +1973,31 @@
             "intensidad": "media",
             "momento": "Antes de una situación que genere inseguridad, miedo o timidez",
             "efecto": "Aumento de la testosterona, descenso del cortisol y mayor confianza sentida",
-            "necesidad": "Cambiar la química emocional a través de la fisiología"
+            "necesidad": "Cambiar la química emocional a través de la fisiología",
+            "tags_estado": [
+                "oscilacion",
+                "expansion_activa"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "jupiter"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         }
     ],
     "840": [
@@ -642,7 +2010,32 @@
             "intensidad": "suave",
             "momento": "La noche anterior, antes de ir a dormir",
             "efecto": "Facilidad automática para actuar al despertar, convirtiendo la acción en el camino de menor resistencia espacial",
-            "necesidad": "Reducir la fricción ambiental para facilitar la acción física"
+            "necesidad": "Reducir la fricción ambiental para facilitar la acción física",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.002",
@@ -653,7 +2046,31 @@
             "intensidad": "suave",
             "momento": "Al arreglar la habitación por la mañana",
             "efecto": "Anclaje visual directo que invita a la lectura nocturna en lugar de encender una pantalla",
-            "necesidad": "Modificar el espacio físico para inducir un hábito sin esfuerzo mental"
+            "necesidad": "Modificar el espacio físico para inducir un hábito sin esfuerzo mental",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.003",
@@ -664,7 +2081,32 @@
             "intensidad": "suave",
             "momento": "Al terminar la jornada laboral previa",
             "efecto": "Enfoque inmediato al sentarse a trabajar, sin necesidad de ordenar antes de empezar",
-            "necesidad": "Eliminar el caos visual y mental al inicio de la jornada laboral"
+            "necesidad": "Eliminar el caos visual y mental al inicio de la jornada laboral",
+            "tags_estado": [
+                "cierre_pendiente",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.006",
@@ -675,7 +2117,33 @@
             "intensidad": "suave",
             "momento": "En las transiciones entre trabajo y descanso",
             "efecto": "Sincronización del ritmo circadiano y facilitación de la calma o la alerta según convenga",
-            "necesidad": "Informar al sistema biológico sobre el tipo de actividad a realizar"
+            "necesidad": "Informar al sistema biológico sobre el tipo de actividad a realizar",
+            "tags_estado": [
+                "hiperactivacion",
+                "alarma"
+            ],
+            "tags_momento": [
+                "descanso",
+                "transicion",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "840.007",
@@ -686,7 +2154,31 @@
             "intensidad": "media",
             "momento": "Al final del día o ante una sensación de agobio mental",
             "efecto": "Paz visual inmediata y reducción del ruido mental proyectado en el espacio",
-            "necesidad": "Detener la sensación de caos personal recuperando el control sobre el entorno"
+            "necesidad": "Detener la sensación de caos personal recuperando el control sobre el entorno",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "rumia"
+            ],
+            "tags_momento": [
+                "crisis",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "venus"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "840.008",
@@ -697,7 +2189,33 @@
             "intensidad": "alta",
             "momento": "Durante comidas, horas de lectura o trabajo profundo",
             "efecto": "Aumento masivo de la presencia y reducción de la ansiedad por hiperconexión",
-            "necesidad": "Romper la inercia de la distracción digital por proximidad"
+            "necesidad": "Romper la inercia de la distracción digital por proximidad",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo empieza a salir del estado de alarma."
         },
         {
             "id": "840.009",
@@ -708,7 +2226,33 @@
             "intensidad": "suave",
             "momento": "En los primeros 30 minutos tras despertar",
             "efecto": "Despertar biológico efectivo, mejor humor y mayor facilidad para dormir por la noche",
-            "necesidad": "Regular el reloj interno y mejorar el estado de ánimo matutino"
+            "necesidad": "Regular el reloj interno y mejorar el estado de ánimo matutino",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.013",
@@ -719,7 +2263,30 @@
             "intensidad": "media",
             "momento": "Una vez, como medida de higiene mental duradera",
             "efecto": "Recuperación del dominio sobre la propia atención y reducción de la reactividad",
-            "necesidad": "Eliminar las micro-rupturas de atención constantes"
+            "necesidad": "Eliminar las micro-rupturas de atención constantes",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "venus"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.015",
@@ -730,7 +2297,30 @@
             "intensidad": "suave",
             "momento": "Al acostarse o al iniciar el trabajo",
             "efecto": "Hidratación automática por facilidad de acceso y recordatorio visual",
-            "necesidad": "Asegurar la hidratación básica mediante un anclaje de proximidad"
+            "necesidad": "Asegurar la hidratación básica mediante un anclaje de proximidad",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.016",
@@ -741,7 +2331,29 @@
             "intensidad": "suave",
             "momento": "Al sentir la mente embotada, cansancio o aire cargado",
             "efecto": "Claridad mental renovada y oxigenación real del espacio de trabajo",
-            "necesidad": "Renovar el aire y el \"clima\" de la estancia para despejar la mente"
+            "necesidad": "Renovar el aire y el \"clima\" de la estancia para despejar la mente",
+            "tags_estado": [
+                "agotamiento",
+                "confusion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo encuentra un descanso que sí se nota."
         },
         {
             "id": "840.018",
@@ -752,7 +2364,31 @@
             "intensidad": "suave",
             "momento": "Tras una reunión difícil o antes de un momento de descanso",
             "efecto": "Limpieza simbólica de la carga previa y apertura de un nuevo espacio mental",
-            "necesidad": "Marcar una frontera psicológica entre tareas o estados"
+            "necesidad": "Marcar una frontera psicológica entre tareas o estados",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.021",
@@ -763,7 +2399,31 @@
             "intensidad": "alta",
             "momento": "Cuando se nota una dependencia excesiva del scroll infinito",
             "efecto": "Descenso inmediato del tiempo de uso del móvil por pérdida del estímulo visual",
-            "necesidad": "Reducir la adicción visual y el secuestro dopaminérgico del móvil"
+            "necesidad": "Reducir la adicción visual y el secuestro dopaminérgico del móvil",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente"
+            ],
+            "tags_energia": [
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.022",
@@ -774,7 +2434,29 @@
             "intensidad": "suave",
             "momento": "Al cambiar de proyecto o terminar la jornada",
             "efecto": "Mente más despejada al evitar el \"ruido de tareas pendientes\" visualizado en las pestañas",
-            "necesidad": "Reducir la sobrecarga cognitiva visual en el navegador"
+            "necesidad": "Reducir la sobrecarga cognitiva visual en el navegador",
+            "tags_estado": [
+                "cierre_pendiente",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.023",
@@ -785,7 +2467,31 @@
             "intensidad": "suave",
             "momento": "Nada más entrar en el hogar",
             "efecto": "Separación psicológica clara entre el ámbito público/esfuerzo y el privado/descanso",
-            "necesidad": "Simbolizar el fin del día exterior y el inicio del descanso interior"
+            "necesidad": "Simbolizar el fin del día exterior y el inicio del descanso interior",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         },
         {
             "id": "840.027",
@@ -796,7 +2502,30 @@
             "intensidad": "suave",
             "momento": "Al terminar el día",
             "efecto": "Sensación de capacidad y despeje que permite \"respirar\" al entorno",
-            "necesidad": "Mantener un espacio libre de \"trastos\" para proyectar orden interno"
+            "necesidad": "Mantener un espacio libre de \"trastos\" para proyectar orden interno",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "cuerpo",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu cuerpo vuelve a sentirse más habitable."
         }
     ],
     "850": [
@@ -809,7 +2538,33 @@
             "intensidad": "suave",
             "momento": "Al comenzar a instalar cualquier rutina o cambio nuevo",
             "efecto": "Asegurar la ejecución diaria al eliminar el miedo al esfuerzo, creando una base sólida para la constancia",
-            "necesidad": "Construir constancia sin depender de la motivación"
+            "necesidad": "Construir constancia sin depender de la motivación",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "transicion"
+            ],
+            "tags_energia": [
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente",
+                "menguante"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.002",
@@ -820,7 +2575,33 @@
             "intensidad": "suave",
             "momento": "Ligado a rutinas fijas matutinas, de tarde o de noche",
             "efecto": "El hábito nuevo se vuelve parte de la cadena de acciones diarias sin requerir fuerza de voluntad extra",
-            "necesidad": "Automatizar una nueva conducta vinculándola a una rutina existente"
+            "necesidad": "Automatizar una nueva conducta vinculándola a una rutina existente",
+            "tags_estado": [
+                "expansion_activa",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna",
+                "saturno",
+                "jupiter"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.003",
@@ -831,7 +2612,32 @@
             "intensidad": "suave",
             "momento": "En cualquier momento del día ante tareas pendientes o resistencia al cambio",
             "efecto": "Romper la inercia de la inacción y facilitar el comienzo de tareas complejas",
-            "necesidad": "Vencer la pereza inicial y la procrastinación"
+            "necesidad": "Vencer la pereza inicial y la procrastinación",
+            "tags_estado": [
+                "bloqueo",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "transicion",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente",
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Das un primer paso sin pelearte contigo."
         },
         {
             "id": "850.004",
@@ -842,7 +2648,32 @@
             "intensidad": "suave",
             "momento": "Al despertar o antes de realizar el hábito nuevo",
             "efecto": "Alineación mental con el nuevo comportamiento, reduciendo la fricción interna para actuar",
-            "necesidad": "Reforzar el cambio de comportamiento desde el autoconcepto"
+            "necesidad": "Reforzar el cambio de comportamiento desde el autoconcepto",
+            "tags_estado": [
+                "expansion_activa",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente",
+                "menguante"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.005",
@@ -853,7 +2684,31 @@
             "intensidad": "suave",
             "momento": "Al finalizar el día o inmediatamente después de cumplir el hábito",
             "efecto": "Sensación de logro visual acumulado que incentiva la repetición del comportamiento",
-            "necesidad": "Mantener la motivación mediante la visualización del progreso"
+            "necesidad": "Mantener la motivación mediante la visualización del progreso",
+            "tags_estado": [
+                "expansion_activa",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.007",
@@ -864,7 +2719,29 @@
             "intensidad": "suave",
             "momento": "Justo al terminar la ejecución del hábito",
             "efecto": "Asociación del hábito con una emoción positiva, facilitando su repetición futura",
-            "necesidad": "Reforzar el circuito de recompensa del cerebro tras una acción positiva"
+            "necesidad": "Reforzar el circuito de recompensa del cerebro tras una acción positiva",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo pendiente pierde peso dentro de tu cabeza."
         },
         {
             "id": "850.008",
@@ -875,7 +2752,32 @@
             "intensidad": "suave",
             "momento": "La noche anterior",
             "efecto": "Reducción drástica de la fricción para actuar al eliminar pasos intermedios de preparación",
-            "necesidad": "Hacer que el hábito correcto sea la opción más fácil"
+            "necesidad": "Hacer que el hábito correcto sea la opción más fácil",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.010",
@@ -886,7 +2788,34 @@
             "intensidad": "suave",
             "momento": "Al planificar un nuevo hábito o cambio de rutina",
             "efecto": "Programación mental de la respuesta automática, aumentando la probabilidad de ejecución real",
-            "necesidad": "Eliminar la duda sobre cuándo y dónde actuar"
+            "necesidad": "Eliminar la duda sobre cuándo y dónde actuar",
+            "tags_estado": [
+                "foco_necesario",
+                "dispersion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "transicion",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente",
+                "menguante"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.011",
@@ -897,7 +2826,33 @@
             "intensidad": "suave",
             "momento": "Justo antes de acostarse",
             "efecto": "Sensación de orden, reducción del estrés nocturno y despertar con dirección clara",
-            "necesidad": "Preparar la mente para el éxito del día siguiente"
+            "necesidad": "Preparar la mente para el éxito del día siguiente",
+            "tags_estado": [
+                "foco_necesario",
+                "dispersion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.012",
@@ -908,7 +2863,33 @@
             "intensidad": "suave",
             "momento": "Inmediatamente después de despertar",
             "efecto": "Inicio del día con propósito y mayor consciencia sobre las propias acciones",
-            "necesidad": "Sintonizar la energía del día con el cambio deseado"
+            "necesidad": "Sintonizar la energía del día con el cambio deseado",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente",
+                "menguante"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.017",
@@ -919,7 +2900,32 @@
             "intensidad": "suave",
             "momento": "Al cambiar de trabajo a descanso, o de una reunión a otra",
             "efecto": "Mente más fresca y presente en cada actividad, evitando el arrastre de estrés",
-            "necesidad": "Cortar la inercia negativa entre diferentes actividades del día"
+            "necesidad": "Cortar la inercia negativa entre diferentes actividades del día",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.027",
@@ -930,7 +2936,29 @@
             "intensidad": "suave",
             "momento": "Al iniciar la jornada",
             "efecto": "Sensación de avance constante y eliminación del sentimiento de días perdidos",
-            "necesidad": "Garantizar un éxito diario tangible, por pequeño que sea"
+            "necesidad": "Garantizar un éxito diario tangible, por pequeño que sea",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         },
         {
             "id": "850.028",
@@ -941,7 +2969,31 @@
             "intensidad": "media",
             "momento": "En el momento exacto de sentir resistencia a la acción",
             "efecto": "Cambio de actitud mental, transformando la carga en un acto de amor propio y cuidado",
-            "necesidad": "Cambiar la percepción del sacrificio por la de inversión personal"
+            "necesidad": "Cambiar la percepción del sacrificio por la de inversión personal",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente",
+                "cualquier"
+            ],
+            "pilar": "mente",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu atención vuelve a juntarse en una dirección."
         }
     ],
     "860": [
@@ -954,7 +3006,31 @@
             "intensidad": "suave",
             "momento": "Una hora antes de ir a la cama",
             "efecto": "Reducción del estado de alerta artificial y aparición de la somnolencia natural",
-            "necesidad": "Evitar la inhibición de la melatonina y preparar el cerebro para el sueño"
+            "necesidad": "Evitar la inhibición de la melatonina y preparar el cerebro para el sueño",
+            "tags_estado": [
+                "hiperactivacion",
+                "alarma"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "860.002",
@@ -965,7 +3041,32 @@
             "intensidad": "suave",
             "momento": "Antes de acostarse",
             "efecto": "Cierre de ciclos mentales y tranquilidad para poder conciliar el sueño",
-            "necesidad": "Evitar el insomnio provocado por el sobrepensamiento y las tareas pendientes"
+            "necesidad": "Evitar el insomnio provocado por el sobrepensamiento y las tareas pendientes",
+            "tags_estado": [
+                "rumia",
+                "agotamiento",
+                "cierre_pendiente",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "860.003",
@@ -976,7 +3077,31 @@
             "intensidad": "suave",
             "momento": "Justo antes de apagar la luz para dormir",
             "efecto": "Desconexión del estrés diario y facilitación de la entrada en las fases iniciales del sueño",
-            "necesidad": "Inducir un estado de calma mental y cansar la vista de forma natural"
+            "necesidad": "Inducir un estado de calma mental y cansar la vista de forma natural",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.004",
@@ -987,7 +3112,34 @@
             "intensidad": "alta",
             "momento": "Al prepararse para dormir",
             "efecto": "Sueño más reparador, menos interrupciones nocturnas y despertar con más energía",
-            "necesidad": "Maximizar la producción de melatonina y la profundidad del sueño"
+            "necesidad": "Maximizar la producción de melatonina y la profundidad del sueño",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna",
+                "saturno",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.005",
@@ -998,7 +3150,31 @@
             "intensidad": "suave",
             "momento": "Antes de meterse en la cama",
             "efecto": "Sensación de ligereza corporal y preparación muscular para el descanso prolongado",
-            "necesidad": "Liberar la tensión física acumulada y relajar el sistema nervioso"
+            "necesidad": "Liberar la tensión física acumulada y relajar el sistema nervioso",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.006",
@@ -1009,7 +3185,29 @@
             "intensidad": "suave",
             "momento": "Una vez acostado, para conciliar el sueño",
             "efecto": "Eliminación de la tensión física residual y entrada en un estado de relajación profunda",
-            "necesidad": "Desconectar conscientemente cada grupo muscular para inducir el sueño"
+            "necesidad": "Desconectar conscientemente cada grupo muscular para inducir el sueño",
+            "tags_estado": [
+                "agotamiento",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.007",
@@ -1020,7 +3218,30 @@
             "intensidad": "suave",
             "momento": "90 minutos antes de acostarse",
             "efecto": "Activación de los mecanismos naturales de sueño del cuerpo por regulación térmica",
-            "necesidad": "Provocar un descenso térmico corporal que induzca la somnolencia"
+            "necesidad": "Provocar un descenso térmico corporal que induzca la somnolencia",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.008",
@@ -1031,7 +3252,30 @@
             "intensidad": "media",
             "momento": "Inmediatamente después de levantarse",
             "efecto": "Mayor alerta diurna y una liberación más adecuada de melatonina al llegar la noche",
-            "necesidad": "Sincronizar el ritmo circadiano y mejorar la calidad del sueño posterior"
+            "necesidad": "Sincronizar el ritmo circadiano y mejorar la calidad del sueño posterior",
+            "tags_estado": [
+                "hiperactivacion",
+                "alarma"
+            ],
+            "tags_momento": [
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "sol"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "860.009",
@@ -1042,7 +3286,33 @@
             "intensidad": "alta",
             "momento": "Durante la tarde y noche",
             "efecto": "Facilidad para sentir el cansancio natural y una mejor arquitectura del sueño",
-            "necesidad": "Evitar que sustancias externas bloqueen los receptores de cansancio"
+            "necesidad": "Evitar que sustancias externas bloqueen los receptores de cansancio",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.010",
@@ -1053,7 +3323,32 @@
             "intensidad": "media",
             "momento": "Al final de la tarde o inicio de la noche",
             "efecto": "Digestión completa antes de dormir y sueño más ininterrumpido y ligero",
-            "necesidad": "Evitar que la digestión pesada interfiera con el descanso nocturno"
+            "necesidad": "Evitar que la digestión pesada interfiera con el descanso nocturno",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.011",
@@ -1064,7 +3359,30 @@
             "intensidad": "media",
             "momento": "Al preparar la habitación para el descanso",
             "efecto": "Optimización de las fases de sueño profundo y Rem al evitar el calor excesivo",
-            "necesidad": "Facilitar la termorregulación necesaria para un sueño profundo"
+            "necesidad": "Facilitar la termorregulación necesaria para un sueño profundo",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.012",
@@ -1075,7 +3393,31 @@
             "intensidad": "suave",
             "momento": "Justo antes de cerrar los ojos para dormir",
             "efecto": "Relajación profunda instantánea y cese de la agitación mental nocturna",
-            "necesidad": "Calmar el sistema nervioso simpático y reducir la frecuencia cardíaca"
+            "necesidad": "Calmar el sistema nervioso simpático y reducir la frecuencia cardíaca",
+            "tags_estado": [
+                "oscilacion",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         },
         {
             "id": "860.013",
@@ -1086,7 +3428,31 @@
             "intensidad": "suave",
             "momento": "Entre las 13:00 y las 15:00 horas",
             "efecto": "Mejora del estado de alerta y humor sin la pesadez de una siesta larga",
-            "necesidad": "Recuperar vitalidad sin interferir en el sueño nocturno"
+            "necesidad": "Recuperar vitalidad sin interferir en el sueño nocturno",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "descanso",
+                "transicion"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "860.014",
@@ -1097,7 +3463,32 @@
             "intensidad": "suave",
             "momento": "A mitad de la jornada laboral o tras el almuerzo",
             "efecto": "Reducción del estrés acumulado y mayor claridad para el resto del día",
-            "necesidad": "Dar al cerebro un respiro del procesamiento constante de información"
+            "necesidad": "Dar al cerebro un respiro del procesamiento constante de información",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.015",
@@ -1108,7 +3499,31 @@
             "intensidad": "media",
             "momento": "Durante la comida principal del día",
             "efecto": "Digestión más consciente y un descanso mental real en medio de la jornada",
-            "necesidad": "Recuperar la presencia y mejorar la absorción de nutrientes y paz"
+            "necesidad": "Recuperar la presencia y mejorar la absorción de nutrientes y paz",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Tu interior empieza a ordenarse con menos ruido."
         },
         {
             "id": "860.016",
@@ -1119,7 +3534,31 @@
             "intensidad": "suave",
             "momento": "Tras terminar el trabajo o a última hora de la tarde",
             "efecto": "Relajación profunda y cambio de frecuencia mental hacia la calma",
-            "necesidad": "Descomprimir la mente y reducir los niveles de cortisol"
+            "necesidad": "Descomprimir la mente y reducir los niveles de cortisol",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         },
         {
             "id": "860.017",
@@ -1130,7 +3569,30 @@
             "intensidad": "suave",
             "momento": "En ambientes ruidosos o tras mucha actividad social",
             "efecto": "Recuperación de la paz interna y reducción de la fatiga sensorial",
-            "necesidad": "Proteger el sistema nervioso de la sobreestimulación sonora"
+            "necesidad": "Proteger el sistema nervioso de la sobreestimulación sonora",
+            "tags_estado": [
+                "dispersion",
+                "agotamiento"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "nervioso",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.018",
@@ -1141,7 +3603,34 @@
             "intensidad": "suave",
             "momento": "En momentos de estrés agudo o antes de dormir",
             "efecto": "Reducción inmediata de la ansiedad y estado de bienestar inducido",
-            "necesidad": "Calmar la mente mediante imágenes mentales de paz absoluta"
+            "necesidad": "Calmar la mente mediante imágenes mentales de paz absoluta",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "agotamiento",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descanso"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "llena"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "860.021",
@@ -1152,7 +3641,31 @@
             "intensidad": "suave",
             "momento": "30 a 60 minutos antes de acostarse",
             "efecto": "Relajación muscular sutil y preparación psicológica para el descanso",
-            "necesidad": "Inducir calma física y calidez interna"
+            "necesidad": "Inducir calma física y calidez interna",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "muscular",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.022",
@@ -1163,7 +3676,29 @@
             "intensidad": "suave",
             "momento": "Antes de meterse en la cama",
             "efecto": "Descompresión de la fatiga del día y sensación de cuidado personal",
-            "necesidad": "Relajar los puntos de tensión y aterrizar la energía en el cuerpo"
+            "necesidad": "Relajar los puntos de tensión y aterrizar la energía en el cuerpo",
+            "tags_estado": [
+                "agotamiento",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.024",
@@ -1174,7 +3709,31 @@
             "intensidad": "media",
             "momento": "Al programar el despertador por la noche",
             "efecto": "Despertar más fresco y menos aturdido, respetando los ritmos naturales",
-            "necesidad": "Despertar en el momento óptimo de menor inercia de sueño"
+            "necesidad": "Despertar en el momento óptimo de menor inercia de sueño",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.026",
@@ -1185,7 +3744,32 @@
             "intensidad": "suave",
             "momento": "Al irse a la cama",
             "efecto": "Reducción del estrés por \"contar horas\" y facilidad para volver a dormirse",
-            "necesidad": "Evitar la ansiedad por el tiempo durante despertares nocturnos"
+            "necesidad": "Evitar la ansiedad por el tiempo durante despertares nocturnos",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "860.027",
@@ -1196,7 +3780,33 @@
             "intensidad": "suave",
             "momento": "Al iniciar la rutina nocturna de aseo",
             "efecto": "Cambio de estado psicológico de \"acción\" a \"reposo\" automático",
-            "necesidad": "Señalar al cuerpo el inicio oficial del tiempo de descanso"
+            "necesidad": "Señalar al cuerpo el inicio oficial del tiempo de descanso",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "mercurio",
+                "luna",
+                "saturno"
+            ],
+            "tags_sistema": [
+                "mental",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.028",
@@ -1207,7 +3817,31 @@
             "intensidad": "suave",
             "momento": "Al apagar la luz para dormir",
             "efecto": "Ambiente sonoro estable y relajante que protege la continuidad del sueño",
-            "necesidad": "Enmascarar ruidos molestos y calmar el sistema auditivo"
+            "necesidad": "Enmascarar ruidos molestos y calmar el sistema auditivo",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "emocional",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "860.029",
@@ -1218,7 +3852,33 @@
             "intensidad": "suave",
             "momento": "Al llegar a casa tras la jornada laboral",
             "efecto": "Transición efectiva hacia un estado de relax y fin de la alerta laboral",
-            "necesidad": "Oxigenar el cuerpo y soltar el estrés de la tarde"
+            "necesidad": "Oxigenar el cuerpo y soltar el estrés de la tarde",
+            "tags_estado": [
+                "hiperactivacion",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         }
     ],
     "870": [
@@ -1231,7 +3891,33 @@
             "intensidad": "suave",
             "momento": "Al sentir agitación ansiosa, estrés agudo o para calmar el ritmo cardíaco",
             "efecto": "Descenso inmediato de las pulsaciones y relajación del sistema nervioso",
-            "necesidad": "Disminuir la activación simpática y promover la coherencia cardíaca"
+            "necesidad": "Disminuir la activación simpática y promover la coherencia cardíaca",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descanso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "870.002",
@@ -1242,7 +3928,33 @@
             "intensidad": "suave",
             "momento": "En episodios de angustia, agobio emocional o falta de aire por ansiedad",
             "efecto": "Apertura instantánea de los alvéolos pulmonares y reducción de la tensión torácica",
-            "necesidad": "Reducir la presión en el pecho y la sensación de falta de aire"
+            "necesidad": "Reducir la presión en el pecho y la sensación de falta de aire",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "tension_fisica",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "crisis",
+                "descanso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "emocional"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "870.005",
@@ -1253,7 +3965,32 @@
             "intensidad": "media",
             "momento": "Antes de una situación de alto rendimiento o para frenar el estrés de golpe",
             "efecto": "Control total sobre el estado de alerta y equilibrio del sistema nervioso",
-            "necesidad": "Estabilizar el ritmo cardíaco y calmar la mente de forma controlada"
+            "necesidad": "Estabilizar el ritmo cardíaco y calmar la mente de forma controlada",
+            "tags_estado": [
+                "hiperactivacion",
+                "alarma"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "870.006",
@@ -1264,7 +4001,33 @@
             "intensidad": "suave",
             "momento": "Cuando el corazón va demasiado deprisa o hay agitación física",
             "efecto": "Descenso rápido de las pulsaciones y sensación de alivio inmediato",
-            "necesidad": "Prolongar la salida del aire para bajar la frecuencia cardíaca"
+            "necesidad": "Prolongar la salida del aire para bajar la frecuencia cardíaca",
+            "tags_estado": [
+                "alarma",
+                "hiperactivacion",
+                "impulso",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo que te desborda empieza a bajar."
         },
         {
             "id": "870.007",
@@ -1275,7 +4038,33 @@
             "intensidad": "suave",
             "momento": "Al despertar, antes de dormir o en momentos de tensión en el plexo solar",
             "efecto": "Relajación profunda del núcleo del cuerpo y calma digestiva",
-            "necesidad": "Activar el nervio vago y promover la relajación abdominal"
+            "necesidad": "Activar el nervio vago y promover la relajación abdominal",
+            "tags_estado": [
+                "agotamiento",
+                "tension_fisica"
+            ],
+            "tags_momento": [
+                "apertura",
+                "descanso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.008",
@@ -1286,7 +4075,32 @@
             "intensidad": "media",
             "momento": "Para despertar el sistema y ganar vigor interno",
             "efecto": "Sensación de plenitud interna y mayor resistencia física",
-            "necesidad": "Aumentar la resiliencia al estrés y oxigenar la sangre"
+            "necesidad": "Aumentar la resiliencia al estrés y oxigenar la sangre",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "apertura",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "mercurio"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "nueva",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Sientes cómo el cuerpo frena por dentro."
         },
         {
             "id": "870.009",
@@ -1297,7 +4111,32 @@
             "intensidad": "alta",
             "momento": "Tras un periodo de respiración superficial o ambiente cargado",
             "efecto": "Sensación de limpieza interna y frescura en la respiración",
-            "necesidad": "Expulsar el aire residual cargado de toxinas y renovar el oxígeno"
+            "necesidad": "Expulsar el aire residual cargado de toxinas y renovar el oxígeno",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo acumulado encuentra una salida clara."
         },
         {
             "id": "870.010",
@@ -1308,7 +4147,31 @@
             "intensidad": "alta",
             "momento": "Ante sentimientos de frustración, ira contenida o cara tensa",
             "efecto": "Descarga de tensión facial y liberación emocional instantánea",
-            "necesidad": "Liberar la tensión acumulada en el rostro, mandíbula y garganta"
+            "necesidad": "Liberar la tensión acumulada en el rostro, mandíbula y garganta",
+            "tags_estado": [
+                "tension_fisica",
+                "impulso"
+            ],
+            "tags_momento": [
+                "pico",
+                "urgente"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "llena",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Lo acumulado encuentra una salida clara."
         },
         {
             "id": "870.011",
@@ -1319,7 +4182,31 @@
             "intensidad": "suave",
             "momento": "Al terminar una tarea difícil o recibir una noticia estresante",
             "efecto": "Alivio inmediato de la presión en el pecho y cuello",
-            "necesidad": "Soltar la carga de estrés del momento de forma rápida"
+            "necesidad": "Soltar la carga de estrés del momento de forma rápida",
+            "tags_estado": [
+                "tension_fisica",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "muscular"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "870.013",
@@ -1330,7 +4217,30 @@
             "intensidad": "suave",
             "momento": "Tras una sesión de ejercicio o para relajación consciente",
             "efecto": "Sensación de unidad corporal y flujo de energía equilibrado",
-            "necesidad": "Unificar la consciencia del cuerpo con el flujo del aire"
+            "necesidad": "Unificar la consciencia del cuerpo con el flujo del aire",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.014",
@@ -1341,7 +4251,31 @@
             "intensidad": "media",
             "momento": "Al caminar hacia el trabajo o dar un paseo diario",
             "efecto": "Mayor resistencia física y una mente centrada en el movimiento",
-            "necesidad": "Sincronizar el movimiento con el ritmo vital para caminar sin fatiga"
+            "necesidad": "Sincronizar el movimiento con el ritmo vital para caminar sin fatiga",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "marte"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.015",
@@ -1352,7 +4286,31 @@
             "intensidad": "media",
             "momento": "Para profundizar en la meditación o silenciar el ego",
             "efecto": "Experiencia de paz absoluta y vacío mental fértil",
-            "necesidad": "Acceder al silencio interno donde no hay pensamiento"
+            "necesidad": "Acceder al silencio interno donde no hay pensamiento",
+            "tags_estado": [
+                "cierre_pendiente",
+                "oscilacion"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "creciente"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Empiezas a sostener mejor lo que sientes."
         },
         {
             "id": "870.017",
@@ -1363,7 +4321,30 @@
             "intensidad": "suave",
             "momento": "En días de mucho calor o ante sentimientos de enfado \"caliente\"",
             "efecto": "Descenso de la temperatura interna y calma mental fría",
-            "necesidad": "Enfriar el cuerpo y calmar el sistema digestivo o la ira"
+            "necesidad": "Enfriar el cuerpo y calmar el sistema digestivo o la ira",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.018",
@@ -1374,7 +4355,31 @@
             "intensidad": "media",
             "momento": "Antes de dormir o para reeducar la respiración",
             "efecto": "Mayor eficiencia respiratoria y relajación profunda garantizada",
-            "necesidad": "Fortalecer el diafragma y profundizar la relajación física"
+            "necesidad": "Fortalecer el diafragma y profundizar la relajación física",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "activo"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": false,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.021",
@@ -1385,7 +4390,31 @@
             "intensidad": "suave",
             "momento": "Tras una jornada de mucha presión o autocontrol rígido",
             "efecto": "Apertura del pecho y sensación de libertad interna",
-            "necesidad": "Soltar el control excesivo y las tensiones profundas del pecho"
+            "necesidad": "Soltar el control excesivo y las tensiones profundas del pecho",
+            "tags_estado": [
+                "tension_fisica",
+                "cierre_pendiente"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Eso que seguía dentro empieza a soltarse."
         },
         {
             "id": "870.023",
@@ -1396,7 +4425,30 @@
             "intensidad": "suave",
             "momento": "En momentos de agotamiento físico o mental a media jornada",
             "efecto": "Renovación de la vitalidad y mejora del tono energético",
-            "necesidad": "Capturar la vitalidad del entorno para combatir el cansancio"
+            "necesidad": "Capturar la vitalidad del entorno para combatir el cansancio",
+            "tags_estado": [
+                "agotamiento",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "nervioso"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         },
         {
             "id": "870.026",
@@ -1407,7 +4459,31 @@
             "intensidad": "media",
             "momento": "Ante somnolencia repentina o falta de atención",
             "efecto": "Despertar de la agudeza mental y energía inmediata",
-            "necesidad": "Activar el cerebro y despertar los sentidos rápidamente"
+            "necesidad": "Activar el cerebro y despertar los sentidos rápidamente",
+            "tags_estado": [
+                "confusion",
+                "foco_necesario"
+            ],
+            "tags_momento": [
+                "activo",
+                "cualquier"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna",
+                "sol"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "cualquier"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "Sientes cómo el cuerpo frena por dentro."
         },
         {
             "id": "870.030",
@@ -1418,7 +4494,31 @@
             "intensidad": "suave",
             "momento": "Como descanso final del día o tras gran esfuerzo",
             "efecto": "Reparación profunda del organismo y paz inalterable",
-            "necesidad": "Abandonar toda tensión y permitir que el cuerpo respire solo"
+            "necesidad": "Abandonar toda tensión y permitir que el cuerpo respire solo",
+            "tags_estado": [
+                "tension_fisica",
+                "sobrecarga"
+            ],
+            "tags_momento": [
+                "descanso",
+                "descenso"
+            ],
+            "tags_energia": [
+                "saturno",
+                "luna"
+            ],
+            "tags_sistema": [
+                "respiratorio",
+                "mental"
+            ],
+            "tags_fase": [
+                "menguante",
+                "nueva"
+            ],
+            "pilar": "energia",
+            "premium": false,
+            "libre_de_materiales": true,
+            "texto_kairos": "La quietud empieza a llegar por dentro."
         }
     ]
 }
