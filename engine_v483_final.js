@@ -4356,6 +4356,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     const natalLord = state.user?.natalPlanets?.[lordKey];
     const natalSign = natalLord?.sign || '—';
     let natalHouseNum = '';
+    // Intento 1: calcular desde longitude_raw + cúspides de casas
     if (natalLord?.longitude_raw !== undefined && state.user?.houses?.length) {
         const lon = natalLord.longitude_raw;
         const cusps = state.user.houses.map(h => h.longitude);
@@ -4364,6 +4365,16 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
             if ((s < e && lon >= s && lon < e) || (s >= e && (lon >= s || lon < e))) { natalHouseNum = i + 1; break; }
         }
         if (!natalHouseNum) natalHouseNum = 12;
+    }
+    // Intento 2: campo .house directo en el planeta natal
+    if (!natalHouseNum && natalLord?.house) {
+        natalHouseNum = parseInt(natalLord.house) || '';
+    }
+    // Intento 3: buscar en natal_context del shadow context
+    if (!natalHouseNum) {
+        const _scNatal = window.totalShadowContext?.natal_context?.planets || {};
+        const _scLord = _scNatal[lordKey] || _scNatal[lordOriginal] || {};
+        if (_scLord.house) natalHouseNum = parseInt(_scLord.house) || '';
     }
 
     // Dónde vive el señor (área de vida de la casa natal)
@@ -4609,15 +4620,34 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         finalTextB = `<strong>Casa ${casaActiva}</strong> se activa este año — <strong>${houseAreaText}</strong>. ${signIntroText}: ${signOnHouseText}. ${lordImplicit} es quien lleva ese proceso. ${_lordClosingB[lordOriginal] || ''}`;
     }
 
-    // Puente natal→profectada: de dónde viene la energía y a dónde llega este año
+    // Puente natal→profectada con relación entre casas (v3.4-A)
     const _bridgeB = () => {
         if (!natalHouseNum || !casaActiva || casaActiva === '—') return '';
-        const natalArea = HOUSE_AREA_BRIEF[natalHouseNum] || `Casa ${natalHouseNum}`;
-        const profArea  = HOUSE_AREA_BRIEF[casaActiva]    || `Casa ${casaActiva}`;
-        if (String(natalHouseNum) === String(casaActiva)) {
-            return `${_pgA(lordOriginal)}${lordOriginal} natal vive en esta misma casa — <strong>Casa ${natalHouseNum}</strong>. El señor del año opera en su territorio más familiar: la activación de este ciclo no es extraña, es una profundización de algo que ya forma parte de tu naturaleza.`;
+        const h1 = parseInt(natalHouseNum), h2 = parseInt(casaActiva);
+        const natalArea = HOUSE_AREA_BRIEF[h1] || `Casa ${h1}`;
+        const profArea  = HOUSE_AREA_BRIEF[h2] || `Casa ${h2}`;
+
+        // Relación entre las dos casas
+        const diff = Math.abs(h1 - h2);
+        const normDiff = diff > 6 ? 12 - diff : diff;
+
+        let _relText = '';
+        if (h1 === h2) {
+            _relText = `${_pgA(lordOriginal)}${lordOriginal} natal vive en esta misma casa — <strong>Casa ${h1}</strong>. El señor del año opera en su territorio más familiar. La activación de este ciclo no es extraña: es una profundización de algo que ya forma parte de tu naturaleza. Lo que el año pide no es cambiar de dirección — es ir más adentro en la que ya llevas.`;
+        } else if (normDiff === 4 || normDiff === 8) {
+            // Trígono — flujo natural entre casas del mismo elemento
+            _relText = `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${h1}</strong> — ${natalArea}. Este año esa energía llega a <strong>Casa ${h2}</strong> — ${profArea}. La relación entre ambas casas es de flujo natural: lo que en ti viene de ${natalArea} encuentra este año un canal afín en ${profArea}. El movimiento no genera resistencia — genera forma.`;
+        } else if (normDiff === 3 || normDiff === 9) {
+            // Cuadratura — tensión productiva
+            _relText = `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${h1}</strong> — ${natalArea}. Este año esa energía llega a <strong>Casa ${h2}</strong> — ${profArea}. La relación entre ambas casas genera tensión productiva: lo que en ti viene de ${natalArea} no encaja de forma automática en ${profArea}. Ese roce es parte del proceso — el año pide que resuelvas esa tensión, no que la evites.`;
+        } else if (normDiff === 6) {
+            // Oposición — espejo
+            _relText = `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${h1}</strong> — ${natalArea}. Este año esa energía se activa en <strong>Casa ${h2}</strong> — ${profArea}. Estas casas se enfrentan como espejos: lo que en ti viene de ${natalArea} este año se ve reflejado en ${profArea}. El ciclo pide que integres ambos territorios — no que elijas uno.`;
+        } else {
+            // Cruce de territorios
+            _relText = `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${h1}</strong> — ${natalArea}. Este año lo lleva hasta <strong>Casa ${h2}</strong> — ${profArea}. La energía que en ti viene de ${natalArea} tiene que expresarse ahora a través de ${profArea}. No son el mismo territorio — y esa distancia es precisamente lo que el ciclo pone en movimiento.`;
         }
-        return `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${natalHouseNum}</strong> — ${natalArea}. Este año lo lleva hasta <strong>Casa ${casaActiva}</strong> — ${profArea}. La energía que en ti viene de ${natalArea} tiene que expresarse ahora a través de ${profArea}. No son territorios opuestos: son dos capas del mismo proceso que este ciclo pone en movimiento.`;
+        return _relText;
     };
     const _bridgeTextB = _bridgeB();
 
@@ -4660,6 +4690,24 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         else if (_monthsInCycle >= 11)
             _cycleStageText = 'El ciclo prepara su transición. Algo de lo vivido ya no pide expansión, sino integración.';
     }
+    // Modulación por Ascendente — cómo cada ascendente procesa este momento del ciclo (v3.4-A)
+    const _ascModulation = {
+        'Aries':       'Para Aries ascendente, este momento del ciclo pide acción antes que reflexión — el cuerpo sabe antes que la mente.',
+        'Tauro':       'Para Tauro ascendente, este momento del ciclo pide paciencia real — lo que madura lento tiene más raíz.',
+        'Géminis':     'Para Géminis ascendente, este momento del ciclo activa la mente — las conexiones que hagas ahora tienen más peso del que parecen.',
+        'Cáncer':      'Para Cáncer ascendente, este momento del ciclo se procesa desde dentro — el mundo interior precede siempre a la expresión exterior.',
+        'Leo':         'Para Leo ascendente, este momento del ciclo necesita expresión — lo que no se nombra ni muestra todavía no puede ser reconocido.',
+        'Virgo':       'Para Virgo ascendente, este momento del ciclo pide discernimiento — la mejora concreta vale más que la expansión sin orden.',
+        'Libra':       'Para Libra ascendente, este momento del ciclo pide equilibrio entre lo que das y lo que recibes — la reciprocidad es la condición, no el extra.',
+        'Escorpio':    'Para Escorpio ascendente, este momento del ciclo activa capas que no siempre son visibles — lo más importante puede estar ocurriendo en silencio.',
+        'Sagitario':   'Para Sagitario ascendente, este momento del ciclo pide dirección antes que movimiento — saber hacia dónde antes de actuar.',
+        'Capricornio': 'Para Capricornio ascendente, este momento del ciclo pide estructura real — lo que no tiene forma concreta todavía no puede crecer.',
+        'Acuario':     'Para Acuario ascendente, este momento del ciclo activa la perspectiva — ver el sistema desde afuera tiene más valor que seguir sus instrucciones.',
+        'Piscis':      'Para Piscis ascendente, este momento del ciclo pide apertura antes que control — confiar en el flujo produce resultados que forzar la forma no alcanza.'
+    };
+    const _userAsc = state.user?.asc || '';
+    const _ascText = _ascModulation[_userAsc] || '';
+
     const _cStageHTML = _cycleStageText
         ? `<p style="${TXT}">${_monthsInCycle ? `<strong>Mes ${_monthsInCycle} de 12.</strong> ` : ''}${_cycleStageText}</p>` : '';
     let blockC = `<div id="annual-premium-movimiento" style="${CARD}">
@@ -4667,6 +4715,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         ${_cStageHTML}
         <p style="${_cStageHTML ? TXT2 : TXT}" id="annual-premium-transits">Calculando el movimiento actual...</p>
         ${_rhythmTextC ? `<p style="${TXT2}">${_rhythmTextC}</p>` : ''}
+        ${_ascText ? `<p style="${TXT2}">${_ascText}</p>` : ''}
     </div>`;
 
     // ── BLOQUE D — Por qué este ciclo te afecta así específicamente a ti ────────
@@ -4930,6 +4979,23 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         windowsTextD = `${_anchorD} ${_temporalD}`;
     }
 
+    // Síntesis del aprendizaje por relación de casas natal→profectada (v3.4-A)
+    const _yearLearning = () => {
+        if (!natalHouseNum || !casaActiva || casaActiva === '—') return '';
+        const h1 = parseInt(natalHouseNum), h2 = parseInt(casaActiva);
+        const natalArea = HOUSE_AREA_BRIEF[h1] || `Casa ${h1}`;
+        const profArea  = HOUSE_AREA_BRIEF[h2] || `Casa ${h2}`;
+        const diff = Math.abs(h1 - h2);
+        const normDiff = diff > 6 ? 12 - diff : diff;
+
+        if (h1 === h2) return `La razón profunda por la que este ciclo te afecta así: el señor del año opera en su propio territorio natal. El año no pide expansión hacia lo desconocido — pide ir más adentro en lo que ya conoces. Eso es más difícil de lo que parece.`;
+        if (normDiff === 4 || normDiff === 8) return `La razón profunda por la que este ciclo te afecta así: ${natalArea} y ${profArea} forman un canal natural en tu carta. La energía se mueve sin resistencia entre ellas — y eso significa que lo que hagas este año tiene la posibilidad de construirse con más fluidez de la habitual. El riesgo es no aprovechar esa ventana.`;
+        if (normDiff === 3 || normDiff === 9) return `La razón profunda por la que este ciclo te afecta así: ${natalArea} y ${profArea} generan tensión en tu carta. El año no es cómodo — y no debería serlo. Esa incomodidad es la señal de que algo real está siendo movido. El aprendizaje no está en resolver la tensión sino en trabajar con ella.`;
+        if (normDiff === 6) return `La razón profunda por la que este ciclo te afecta así: ${natalArea} y ${profArea} se enfrentan como espejos en tu carta. Lo que en ti viene de ${natalArea} este año necesita ser visto desde el ángulo opuesto. El ciclo pide integración — no elección entre uno y otro.`;
+        return `La razón profunda por la que este ciclo te afecta así: ${natalArea} y ${profArea} son territorios distintos en tu carta. La energía que en ti viene de ${natalArea} tiene que aprender este año a operar en ${profArea}. Ese desplazamiento no es casualidad — es la mecánica exacta de cómo crece lo que el señor del año representa en ti.`;
+    };
+    const _yearLearningText = _yearLearning();
+
     // Tercera capa D — actitud que favorece el ciclo (por señor)
     const _lordAttitudeD = {
         'Sol':      'La actitud que favorece este ciclo no es el esfuerzo constante sino el reconocimiento. Saber cuándo lo que haces te representa realmente y cuándo estás actuando desde la inercia.',
@@ -4962,6 +5028,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         <p style="${TXT}">${_partD1}</p>
         ${_partD2 ? `<p style="${TXT2}">${_partD2}</p>` : ''}
         ${_partD3 ? `<p style="${TXT2}">${_partD3}</p>` : ''}
+        ${_yearLearningText ? `<p style="${TXT2}">${_yearLearningText}</p>` : ''}
     </div>`;
 
     // 4 tarjetas independientes — sin wrapper exterior compartido (patrón MES/HOY/SEMANA)
