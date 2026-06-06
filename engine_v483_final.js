@@ -4308,10 +4308,10 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     const _sgA = (name, sz) => _glyphA('zodiac', name, sz);
 
     // Estilos — cada bloque es una tarjeta independiente (patrón MES/HOY/SEMANA)
-    const CARD = `background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15);margin-bottom:12px`;
-    const LBL  = `font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px;text-align:center`;
+    const CARD = `background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px`;
+    const LBL  = `font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px`;
     const TXT  = `font-size:13px;color:#4a3f2a;line-height:1.65;margin:0`;
-    const TXT2 = `font-size:13px;color:#4a3f2a;line-height:1.65;margin:6px 0 0`;
+    const TXT2 = `font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0`;
 
     // Estado FREE — 4 tarjetas bloqueadas independientes · layout centrado como HOY/SEMANA
     // Los datos astrológicos (signo, casa) aparecen solo en estado PREMIUM desbloqueado
@@ -4518,10 +4518,17 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         ? `${_pgA(lordOriginal)}${lordOriginal} natal — ${_sgA(natalSign)}${natalSign}${natalHouseNum ? ` · Casa ${natalHouseNum}` : ''}`
         : `${_pgA(lordOriginal)}${lordOriginal} natal`;
 
-    // Label genérico centrado · dato astrológico integrado en apertura del cuerpo con glifos
+    // Label alineado izquierda · dato natal como sublabel · retrogradación si aplica
+    const _sublabelA = hasNatalSign
+        ? `<p style="${TXT2};margin:0 0 10px">${labelAText}</p>` : '';
+    const _lordIsRetro = Boolean(natalLord?.isRetro || natalLord?.retrograde || natalLord?.is_retro);
+    const _retroNote = _lordIsRetro
+        ? `<p style="${TXT2}">En retrogradación: su influencia se dirige hacia adentro antes de expresarse afuera — el proceso de este año pide revisión antes que expansión.</p>` : '';
     const blockA = `<div id="annual-premium-energia" style="${CARD}">
         <span style="${LBL}">Tu energía guía</span>
+        ${_sublabelA}
         <p style="${TXT}">${finalTextA}</p>
+        ${_retroNote}
     </div>`;
 
     // [AÑO_PREMIUM v3] CAPA B — Casa profectada + signo + referencia implícita al señor
@@ -4586,7 +4593,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     if (Number(casaActiva) === 5 && activeSign === 'Escorpio') {
         finalTextB = `Lo que se activa este año no es la expresión en general — es la expresión que transforma. Casa 5 en ${_sgA('Escorpio')} Escorpio convoca lo que creas desde las capas más hondas, no desde la superficie. Lo que produces este año tiene carga real: no es decorativo, sino que mueve algo en quien lo recibe y en ti mismo al crearlo.`;
     } else {
-        finalTextB = `Casa ${casaActiva} se activa este año — ${houseAreaText}. ${signIntroText}: ${signOnHouseText}. ${lordImplicit} es quien lleva ese proceso. ${_lordClosingB[lordOriginal] || ''}`;
+        finalTextB = `<strong>Casa ${casaActiva}</strong> se activa este año — <strong>${houseAreaText}</strong>. ${signIntroText}: ${signOnHouseText}. ${lordImplicit} es quien lleva ese proceso. ${_lordClosingB[lordOriginal] || ''}`;
     }
 
     const blockB = `<div id="annual-premium-casa" style="${CARD}">
@@ -4594,8 +4601,34 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         <p style="${TXT}">${finalTextB}</p>
     </div>`;
 
-    // C — Cómo se mueve ahora (tránsitos del señor sobre carta natal)
-    let blockC = `<div id="annual-premium-movimiento" style="${CARD}"><span style="${LBL}">Cómo se mueve ahora</span><p style="${TXT}" id="annual-premium-transits">Calculando el movimiento actual...</p></div>`;
+    // C — Cómo se mueve ahora: momento del ciclo + tránsitos del señor
+    const _scC = window.totalShadowContext || {};
+    const _bDayC = Number(_scC.annual_context?.birth_day || 0);
+    const _bMonC = Number(_scC.annual_context?.birth_month || 0);
+    const _bYrC  = Number(_scC.annual_context?.birth_year || 0);
+    let _monthsInCycle = null, _cycleStageText = '';
+    if (_bDayC && _bMonC && _bYrC) {
+        const _todayC = new Date();
+        let _csYear = _todayC.getFullYear();
+        if ((_todayC.getMonth()+1) < _bMonC || ((_todayC.getMonth()+1) === _bMonC && _todayC.getDate() < _bDayC)) _csYear -= 1;
+        const _cs = new Date(_csYear, _bMonC - 1, _bDayC);
+        _monthsInCycle = ((_todayC.getFullYear() - _cs.getFullYear()) * 12) + (_todayC.getMonth() - _cs.getMonth()) + 1;
+        if (_monthsInCycle >= 1 && _monthsInCycle <= 5)
+            _cycleStageText = 'El ciclo todavía está abriendo su dirección principal. Esta primera parte del año sirve para reconocer hacia dónde empieza a moverse tu energía.';
+        else if (_monthsInCycle === 6)
+            _cycleStageText = 'El ciclo llega a su punto medio. Lo importante ahora no es abrir más frentes, sino revisar qué parte del año ya mostró su dirección.';
+        else if (_monthsInCycle >= 9 && _monthsInCycle <= 10)
+            _cycleStageText = 'El año entra en fase de concentración. Lo vivido empieza a mostrar su aprendizaje central.';
+        else if (_monthsInCycle >= 11)
+            _cycleStageText = 'El ciclo prepara su transición. Algo de lo vivido ya no pide expansión, sino integración.';
+    }
+    const _cStageHTML = _cycleStageText
+        ? `<p style="${TXT}">${_monthsInCycle ? `<strong>Mes ${_monthsInCycle} de 12.</strong> ` : ''}${_cycleStageText}</p>` : '';
+    let blockC = `<div id="annual-premium-movimiento" style="${CARD}">
+        <span style="${LBL}">Cómo se mueve ahora</span>
+        ${_cStageHTML}
+        <p style="${_cStageHTML ? TXT2 : TXT}" id="annual-premium-transits">Calculando el movimiento actual...</p>
+    </div>`;
 
     // ── BLOQUE D — Por qué este ciclo te afecta así específicamente a ti ────────
     // 4 capas: calidad natal señor · puente natal→activa · ritmo temporal · comprensión del ciclo
@@ -4858,9 +4891,22 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         windowsTextD = `${_anchorD} ${_temporalD}`;
     }
 
+    // Bloque D dividido en dos párrafos: patrón natal (TXT) + puente y ritmo (TXT2)
+    let _partD1 = '', _partD2 = '';
+    if (_qualityD && natalHouseNum && casaActiva && _insightD) {
+        _partD1 = `${_anchorD} <strong>${_qualityD}</strong>`;
+        _partD2 = `${_implicitD}, que en tu carta viene de ${_natalAreaD}, este año llega al territorio de <strong>${_activeAreaD}</strong>. ${_temporalD} ${_insightD}`;
+    } else if (_qualityD) {
+        _partD1 = `${_anchorD} <strong>${_qualityD}</strong>`;
+        _partD2 = `${_temporalD}`;
+    } else {
+        _partD1 = `${_anchorD}`;
+        _partD2 = `${_temporalD}`;
+    }
     const blockD = `<div id="annual-premium-ventana" style="${CARD}">
         <span style="${LBL}">Por qué este ciclo te afecta así</span>
-        <p style="${TXT}">${windowsTextD}</p>
+        <p style="${TXT}">${_partD1}</p>
+        ${_partD2 ? `<p style="${TXT2}">${_partD2}</p>` : ''}
     </div>`;
 
     // 4 tarjetas independientes — sin wrapper exterior compartido (patrón MES/HOY/SEMANA)
