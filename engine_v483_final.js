@@ -4518,6 +4518,18 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         ? `${_pgA(lordOriginal)}${lordOriginal} natal — ${_sgA(natalSign)}${natalSign}${natalHouseNum ? ` · Casa ${natalHouseNum}` : ''}`
         : `${_pgA(lordOriginal)}${lordOriginal} natal`;
 
+    // Cómo opera cada planeta como Señor del Año — segunda capa de A
+    const _lordAnnualRole = {
+        'Sol':      'Como Señor del Año, esa búsqueda de propósito y dirección se convierte en el marco del ciclo completo. El año te pide construir desde lo que realmente eres — no desde lo que crees que deberías ser. Cada decisión importante de este ciclo está siendo filtrada por esa pregunta: ¿esto me representa?',
+        'Luna':     'Como Señora del Año, ese ritmo emocional se convierte en el pulso del ciclo. El año avanza cuando escuchas lo que sientes antes de decidir lo que haces. Las señales más importantes de este ciclo llegarán a través de lo que tu sistema emocional percibe antes de que la mente lo procese.',
+        'Mercurio': 'Como Señor del Año, esa forma de procesar y comunicar se convierte en el motor del ciclo. El año avanza cuando hay claridad de pensamiento y se detiene cuando la mente se dispersa o se acelera demasiado. La palabra y la conexión son las herramientas del ciclo.',
+        'Venus':    'Como Señora del Año, ese patrón de vinculación y valor se convierte en la guía del ciclo. El año te pide definir qué merece tu energía y qué no. Las decisiones más importantes de este ciclo tienen que ver con lo que eliges sostener, atraer o soltar.',
+        'Marte':    'Como Señor del Año, ese impulso y esa forma de actuar se convierten en el motor del ciclo. El año avanza cuando actúas desde tu propio centro y se atasca cuando actúas desde la reacción o el agotamiento. La dirección importa más que la velocidad.',
+        'Júpiter':  'Como Señor del Año, esa forma de crecer y confiar se convierte en el filtro de todo el ciclo. El año no te pide que fuerces la expansión — te pide que reconozcas cuándo llega sola. La confianza genuina, no el optimismo forzado, es la llave del ciclo.',
+        'Saturno':  'Como Señor del Año, esa capacidad de construir y madurar se convierte en el eje del ciclo. El año no premia la velocidad — premia la consistencia. Lo que construyas este ciclo con paciencia real tendrá más peso que lo que intentes acelerar.'
+    };
+    const _roleTextA = _lordAnnualRole[lordOriginal] || '';
+
     // Label alineado izquierda · dato natal como sublabel · retrogradación si aplica
     const _sublabelA = hasNatalSign
         ? `<p style="${TXT2};margin:0 0 10px">${labelAText}</p>` : '';
@@ -4528,6 +4540,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         <span style="${LBL}">Tu energía guía</span>
         ${_sublabelA}
         <p style="${TXT}">${finalTextA}</p>
+        ${_roleTextA ? `<p style="${TXT2}">${_roleTextA}</p>` : ''}
         ${_retroNote}
     </div>`;
 
@@ -4596,16 +4609,41 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         finalTextB = `<strong>Casa ${casaActiva}</strong> se activa este año — <strong>${houseAreaText}</strong>. ${signIntroText}: ${signOnHouseText}. ${lordImplicit} es quien lleva ese proceso. ${_lordClosingB[lordOriginal] || ''}`;
     }
 
+    // Puente natal→profectada: de dónde viene la energía y a dónde llega este año
+    const _bridgeB = () => {
+        if (!natalHouseNum || !casaActiva || casaActiva === '—') return '';
+        const natalArea = HOUSE_AREA_BRIEF[natalHouseNum] || `Casa ${natalHouseNum}`;
+        const profArea  = HOUSE_AREA_BRIEF[casaActiva]    || `Casa ${casaActiva}`;
+        if (String(natalHouseNum) === String(casaActiva)) {
+            return `${_pgA(lordOriginal)}${lordOriginal} natal vive en esta misma casa — <strong>Casa ${natalHouseNum}</strong>. El señor del año opera en su territorio más familiar: la activación de este ciclo no es extraña, es una profundización de algo que ya forma parte de tu naturaleza.`;
+        }
+        return `${_pgA(lordOriginal)}${lordOriginal} natal vive en <strong>Casa ${natalHouseNum}</strong> — ${natalArea}. Este año lo lleva hasta <strong>Casa ${casaActiva}</strong> — ${profArea}. La energía que en ti viene de ${natalArea} tiene que expresarse ahora a través de ${profArea}. No son territorios opuestos: son dos capas del mismo proceso que este ciclo pone en movimiento.`;
+    };
+    const _bridgeTextB = _bridgeB();
+
     const blockB = `<div id="annual-premium-casa" style="${CARD}">
         <span style="${LBL}">Lo que se activa este año</span>
         <p style="${TXT}">${finalTextB}</p>
+        ${_bridgeTextB ? `<p style="${TXT2}">${_bridgeTextB}</p>` : ''}
     </div>`;
+
+    // Ritmo propio de cada señor durante el ciclo anual — texto de fondo siempre presente en C
+    const _lordRhythmC = {
+        'Sol':      'Los ciclos del Sol son largos y estables — la dirección del año se asienta de forma gradual, no en destellos puntuales. Lo que parece lento es, en realidad, consolidación real.',
+        'Luna':     'La Luna tiene ciclos cortos dentro del año largo — hay momentos de mayor apertura emocional y momentos de mayor repliegue. Ambos son parte del mismo movimiento.',
+        'Mercurio': 'Mercurio trabaja en sprints — períodos de gran claridad mental seguidos de momentos de revisión. La mente del ciclo necesita pausa para ordenar lo que procesa.',
+        'Venus':    'Venus opera por atracción, no por esfuerzo — este ciclo avanza cuando te permites recibir además de dar. La energía forzada no produce los mismos resultados que la energía invitada.',
+        'Marte':    'Marte trabaja en ráfagas — hay momentos de impulso intenso y momentos necesarios de recarga. Reconocer el ritmo propio del ciclo es tan importante como actuar.',
+        'Júpiter':  'Júpiter trabaja en horizontes largos — la expansión de este ciclo no se mide en semanas sino en el arco completo del año. Lo que siembras ahora puede no mostrarse hasta la segunda mitad.',
+        'Saturno':  'Saturno trabaja capa por capa — lo que construyes este año es la base de lo que vendrá después, aunque ahora no lo veas todavía. El resultado es invisible mientras el proceso ocurre.'
+    };
+    const _rhythmTextC = _lordRhythmC[lordOriginal] || '';
 
     // C — Cómo se mueve ahora: momento del ciclo + tránsitos del señor
     const _scC = window.totalShadowContext || {};
-    const _bDayC = Number(_scC.annual_context?.birth_day || 0);
-    const _bMonC = Number(_scC.annual_context?.birth_month || 0);
-    const _bYrC  = Number(_scC.annual_context?.birth_year || 0);
+    const _bDayC = Number(_scC.annual_context?.birth_day || state.user?.birthDay || state.user?.birth_day || 0);
+    const _bMonC = Number(_scC.annual_context?.birth_month || state.user?.birthMonth || state.user?.birth_month || 0);
+    const _bYrC  = Number(_scC.annual_context?.birth_year || state.user?.birthYear || state.user?.birth_year || 0);
     let _monthsInCycle = null, _cycleStageText = '';
     if (_bDayC && _bMonC && _bYrC) {
         const _todayC = new Date();
@@ -4628,6 +4666,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         <span style="${LBL}">Cómo se mueve ahora</span>
         ${_cStageHTML}
         <p style="${_cStageHTML ? TXT2 : TXT}" id="annual-premium-transits">Calculando el movimiento actual...</p>
+        ${_rhythmTextC ? `<p style="${TXT2}">${_rhythmTextC}</p>` : ''}
     </div>`;
 
     // ── BLOQUE D — Por qué este ciclo te afecta así específicamente a ti ────────
@@ -4891,22 +4930,38 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         windowsTextD = `${_anchorD} ${_temporalD}`;
     }
 
-    // Bloque D dividido en dos párrafos: patrón natal (TXT) + puente y ritmo (TXT2)
-    let _partD1 = '', _partD2 = '';
+    // Tercera capa D — actitud que favorece el ciclo (por señor)
+    const _lordAttitudeD = {
+        'Sol':      'La actitud que favorece este ciclo no es el esfuerzo constante sino el reconocimiento. Saber cuándo lo que haces te representa realmente y cuándo estás actuando desde la inercia.',
+        'Luna':     'La actitud que favorece este ciclo es la escucha antes que la acción. Cuando el ruido externo aumenta, el ciclo pide volver al centro emocional antes de responder.',
+        'Mercurio': 'La actitud que favorece este ciclo es la precisión antes que la velocidad. Pensar antes de hablar, escribir antes de enviar, revisar antes de concluir.',
+        'Venus':    'La actitud que favorece este ciclo es la receptividad. No la pasividad — sino la apertura a recibir lo que llega sin forzar lo que no llega todavía.',
+        'Marte':    'La actitud que favorece este ciclo es la dirección clara antes del movimiento. No cualquier acción vale — la que viene del centro propio tiene más impacto que diez movimientos reactivos.',
+        'Júpiter':  'La actitud que favorece este ciclo es la apertura sin agenda. Confiar en que lo que tiene que expandirse se expandirá — no necesita ser empujado, necesita ser reconocido cuando llega.',
+        'Saturno':  'La actitud que favorece este ciclo es la paciencia con el proceso. Lo que construyes ahora puede no mostrarse todavía — pero cada paso hecho con intención real suma.'
+    };
+    const _attitudeD = _lordAttitudeD[lordOriginal] || '';
+
+    // Bloque D dividido en tres párrafos: patrón natal · puente y ritmo · actitud del ciclo
+    let _partD1 = '', _partD2 = '', _partD3 = '';
     if (_qualityD && natalHouseNum && casaActiva && _insightD) {
         _partD1 = `${_anchorD} <strong>${_qualityD}</strong>`;
         _partD2 = `${_implicitD}, que en tu carta viene de ${_natalAreaD}, este año llega al territorio de <strong>${_activeAreaD}</strong>. ${_temporalD} ${_insightD}`;
+        _partD3 = _attitudeD;
     } else if (_qualityD) {
         _partD1 = `${_anchorD} <strong>${_qualityD}</strong>`;
         _partD2 = `${_temporalD}`;
+        _partD3 = _attitudeD;
     } else {
         _partD1 = `${_anchorD}`;
         _partD2 = `${_temporalD}`;
+        _partD3 = _attitudeD;
     }
     const blockD = `<div id="annual-premium-ventana" style="${CARD}">
         <span style="${LBL}">Por qué este ciclo te afecta así</span>
         <p style="${TXT}">${_partD1}</p>
         ${_partD2 ? `<p style="${TXT2}">${_partD2}</p>` : ''}
+        ${_partD3 ? `<p style="${TXT2}">${_partD3}</p>` : ''}
     </div>`;
 
     // 4 tarjetas independientes — sin wrapper exterior compartido (patrón MES/HOY/SEMANA)
