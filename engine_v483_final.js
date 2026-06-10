@@ -5031,8 +5031,493 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         ${_yearLearningText ? `<p style="${TXT2}">${_yearLearningText}</p>` : ''}
     </div>`;
 
-    // 4 tarjetas independientes — sin wrapper exterior compartido (patrón MES/HOY/SEMANA)
-    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}`;
+    // ── ACTIVACIONES NATALES DEL AÑO v1 ──────────────────────────────────────
+    // Qué partes de la carta natal están siendo llamadas por el ciclo anual.
+    // v1: Priority 0 (señor natal) + Priority 1 (planetas en casa profectada).
+    // v2 añadirá: getNatalActivations() filtrado por Júpiter/Saturno en tránsito.
+
+    const _pKeysNA = ['SOL','LUNA','VENUS','MARTE','MERCURIO','JUPITER','SATURNO'];
+    const _pDisplayNA = {
+        'SOL':'Sol','LUNA':'Luna','VENUS':'Venus','MARTE':'Marte',
+        'MERCURIO':'Mercurio','JUPITER':'Júpiter','SATURNO':'Saturno'
+    };
+    // v1.1 — 4 capas narrativas: C1 (quién) · C2 (cómo) · C3 (cuándo) · C4 (qué emerge)
+    const _pTextNA = {
+        'SOL': {
+            c1: 'Tu sentido de dirección y la parte de ti que necesita ser reconocida y expresar quién eres.',
+            c2: 'Este año esa parte tiene más visibilidad — lo que haces te representa con más claridad de lo habitual.',
+            c3: 'Aparece cuando tienes que tomar decisiones que afectan tu identidad o cuando alguien te pide que te posiciones.',
+            c4: 'El año puede darte claridad sobre qué quieres construir y quién eres realmente en este momento de tu vida.'
+        },
+        'LUNA': {
+            c1: 'Tu mundo emocional, los patrones que vienen de lejos y lo que necesitas para sentirte seguro/a.',
+            c2: 'Este año esa capa está más activa — las señales internas llegan con más intensidad que en otros ciclos.',
+            c3: 'Aparece cuando el entorno cambia rápido, cuando los vínculos cercanos atraviesan ajustes, o cuando el cuerpo pide un ritmo distinto.',
+            c4: 'El año puede darte acceso a patrones emocionales que necesitaban ser vistos y revisados.'
+        },
+        'VENUS': {
+            c1: 'Lo que valoras, cómo te vinculas y qué tipo de intercambio te nutre realmente.',
+            c2: 'Este año esa capacidad está siendo calibrada — lo que merece tu energía y lo que no tiene más definición.',
+            c3: 'Aparece en las relaciones, en las decisiones sobre recursos, y en momentos donde tienes que elegir entre lo cómodo y lo verdadero.',
+            c4: 'El año puede traer mayor claridad sobre qué tipo de vínculos y valores quieres sostener.'
+        },
+        'MARTE': {
+            c1: 'Tu impulso, la energía que usas para actuar y la forma en que te defiendes o avanzas.',
+            c2: 'Este año esa fuerza está en movimiento — con más visibilidad e impacto que en ciclos anteriores.',
+            c3: 'Aparece cuando hay que tomar iniciativa, cuando surge conflicto, o cuando el ritmo del entorno no encaja con el tuyo.',
+            c4: 'El año puede mostrarte dónde actúas desde la reacción y dónde desde una dirección real.'
+        },
+        'MERCURIO': {
+            c1: 'Tu forma de pensar, procesar información y comunicarte con el entorno.',
+            c2: 'Este año esa capacidad tiene más peso — las conversaciones, decisiones y conexiones que hagas dejan huella.',
+            c3: 'Aparece en intercambios importantes, en momentos donde tienes que articular lo que piensas, o cuando el contexto pide claridad.',
+            c4: 'El año puede darte más precisión sobre cómo comunicas y qué tipo de intercambios quieres construir.'
+        },
+        'JUPITER': {
+            c1: 'Tu capacidad de crecer, confiar y encontrar sentido en lo que vives.',
+            c2: 'Este año descubrirás con más claridad dónde confías de verdad y dónde todavía intentas controlar el resultado.',
+            c3: 'Las situaciones que aparezcan tenderán a mostrarte la diferencia entre crecer desde la confianza o crecer desde la necesidad de tenerlo todo bajo control.',
+            c4: 'El año puede traer una apertura real si aceptas soltar lo que ya no cabe.'
+        },
+        'SATURNO': {
+            c1: 'Tu capacidad de construir estructuras que duran, de madurar y de asumir responsabilidad real.',
+            c2: 'Este año esa capacidad está siendo exigida — lo que construyes con intención tiene más peso que en otros ciclos.',
+            c3: 'Aparece cuando hay que comprometerse con algo a largo plazo, cuando el trabajo requiere consistencia, o cuando el entorno pide más de ti.',
+            c4: 'El año puede traer madurez concreta si aceptas trabajar con lo que hay.'
+        }
+    };
+
+    const _activationsNA = [];
+    const _usedNA = new Set();
+
+    // Priority 0 — el señor del año natal es siempre el primero
+    if (natalLord && natalSign !== '—') {
+        const _txt0 = _pTextNA[lordKey];
+        if (_txt0) {
+            const _hStr0 = natalHouseNum ? ` · Casa ${natalHouseNum}` : '';
+            _activationsNA.push({
+                key: lordKey,
+                display: _pDisplayNA[lordKey] || lordOriginal,
+                sign: natalSign,
+                houseStr: _hStr0,
+                role: 'lord',
+                c1: _txt0.c1,
+                c2: _txt0.c2,
+                c3: _txt0.c3,
+                c4: _txt0.c4
+            });
+            _usedNA.add(lordKey);
+        }
+    }
+
+    // Priority 1 — planetas natales que viven en la casa profectada (están "en escena" este año)
+    if (casaActiva && casaActiva !== '—') {
+        for (const _pk of _pKeysNA) {
+            if (_usedNA.has(_pk) || _activationsNA.length >= 3) break;
+            const _pd = state.user?.natalPlanets?.[_pk];
+            if (!_pd) continue;
+            const _ph = _pd.house ? parseInt(_pd.house) : null;
+            if (!_ph || String(_ph) !== String(casaActiva)) continue;
+            const _txt1 = _pTextNA[_pk];
+            if (!_txt1) continue;
+            const _hStr1 = ` · Casa ${_ph}`;
+            _activationsNA.push({
+                key: _pk,
+                display: _pDisplayNA[_pk] || _pk,
+                sign: _pd.sign || '—',
+                houseStr: _hStr1,
+                role: 'scene',
+                c1: _txt1.c1,
+                c2: _txt1.c2,
+                c3: _txt1.c3,
+                c4: _txt1.c4
+            });
+            _usedNA.add(_pk);
+        }
+    }
+
+    let blockActivaciones = '';
+    if (_activationsNA.length > 0) {
+        const _apertureNA = 'Este año, el ciclo llama a partes concretas de tu carta natal. Lo que está activo no es genérico — es específico a tu configuración.';
+        const _items = _activationsNA.map(a => {
+            const _signGlyph = a.sign && a.sign !== '—' ? `${_sgA(a.sign)}${a.sign}` : '';
+            const _signLine = _signGlyph ? ` en ${_signGlyph}${a.houseStr}` : a.houseStr;
+            const _roleTag = a.role === 'lord'
+                ? `<span style="font-size:10px;color:rgba(180,140,60,0.75);text-transform:uppercase;letter-spacing:0.04em;margin-left:6px">Señor del año</span>`
+                : `<span style="font-size:10px;color:rgba(120,100,70,0.60);text-transform:uppercase;letter-spacing:0.04em;margin-left:6px">En escena</span>`;
+            return `<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:0.5px solid rgba(180,160,120,0.12)">
+                <p style="${TXT}"><strong>${_pgA(a.display)}${a.display} natal${_signLine}</strong>${_roleTag}</p>
+                <p style="${TXT};margin-top:8px">${a.c1}</p>
+                <p style="${TXT2};margin-top:4px">${a.c2}</p>
+                ${a.c3 ? `<p style="${TXT2};margin-top:4px">${a.c3}</p>` : ''}
+                ${a.c4 ? `<p style="${TXT2};margin-top:4px;font-style:italic">${a.c4}</p>` : ''}
+            </div>`;
+        }).join('');
+        blockActivaciones = `<div id="annual-premium-activaciones" style="${CARD}">
+            <span style="${LBL}">Lo que el año despierta en tu carta</span>
+            <p style="${TXT}">${_apertureNA}</p>
+            <div style="margin-top:14px">${_items}</div>
+        </div>`;
+    }
+
+    // ── ECLIPSES DEL AÑO v1.3 ─────────────────────────────────────────────────
+    // Tabla estática 2026–2036. Fuente: NASA/GSFC Fred Espenak + Jean Meeus Algorithms.
+    // Script offline reproducible: scripts/eclipse_table_generator.js — NO usar en runtime.
+    // NO tocar astronomy.js. Campos: yr,mo,dy · t='S'|'L' · st='T'|'A'|'H'|'P' · lon,si,deg,oi,mag
+    const _ET = [
+        {yr:2026,mo:2,dy:17,t:'S',st:'A',lon:328.84,si:10,deg:28,oi:4,mag:0.963},
+        {yr:2026,mo:3,dy:3,t:'L',st:'T',lon:162.90,si:5,deg:12,oi:11,mag:1.151},
+        {yr:2026,mo:8,dy:12,t:'S',st:'T',lon:140.04,si:4,deg:20,oi:10,mag:1.039},
+        {yr:2026,mo:8,dy:28,t:'L',st:'P',lon:334.90,si:11,deg:4,oi:5,mag:0.930},
+        {yr:2027,mo:2,dy:6,t:'S',st:'A',lon:317.63,si:10,deg:17,oi:4,mag:0.928},
+        {yr:2027,mo:8,dy:2,t:'S',st:'T',lon:129.92,si:4,deg:9,oi:10,mag:1.079},
+        {yr:2028,mo:1,dy:26,t:'S',st:'A',lon:306.18,si:10,deg:6,oi:4,mag:0.921},
+        {yr:2028,mo:7,dy:6,t:'L',st:'P',lon:285.20,si:9,deg:15,oi:3,mag:0.389},
+        {yr:2028,mo:7,dy:22,t:'S',st:'T',lon:119.85,si:3,deg:29,oi:9,mag:1.056},
+        {yr:2028,mo:12,dy:31,t:'L',st:'T',lon:100.55,si:3,deg:10,oi:9,mag:1.246},
+        {yr:2029,mo:6,dy:26,t:'L',st:'T',lon:274.84,si:9,deg:4,oi:3,mag:1.844},
+        {yr:2029,mo:12,dy:20,t:'L',st:'T',lon:89.34,si:2,deg:29,oi:8,mag:1.117},
+        {yr:2030,mo:6,dy:1,t:'S',st:'A',lon:70.84,si:2,deg:10,oi:8,mag:0.944},
+        {yr:2030,mo:6,dy:15,t:'L',st:'P',lon:264.71,si:8,deg:24,oi:2,mag:0.503},
+        {yr:2030,mo:11,dy:25,t:'S',st:'T',lon:243.04,si:8,deg:3,oi:2,mag:1.047},
+        {yr:2031,mo:5,dy:21,t:'S',st:'A',lon:60.07,si:2,deg:0,oi:8,mag:0.959},
+        {yr:2031,mo:11,dy:14,t:'S',st:'H',lon:232.30,si:7,deg:22,oi:1,mag:1.011},
+        {yr:2032,mo:4,dy:25,t:'L',st:'T',lon:215.97,si:7,deg:5,oi:1,mag:1.191},
+        {yr:2032,mo:5,dy:9,t:'S',st:'A',lon:49.48,si:1,deg:19,oi:7,mag:0.996},
+        {yr:2032,mo:10,dy:18,t:'L',st:'T',lon:25.96,si:0,deg:25,oi:6,mag:1.103},
+        {yr:2033,mo:3,dy:30,t:'S',st:'T',lon:10.35,si:0,deg:10,oi:6,mag:1.046},
+        {yr:2033,mo:4,dy:14,t:'L',st:'T',lon:205.15,si:6,deg:25,oi:0,mag:1.094},
+        {yr:2033,mo:10,dy:8,t:'L',st:'T',lon:15.48,si:0,deg:15,oi:6,mag:1.350},
+        {yr:2034,mo:3,dy:20,t:'S',st:'T',lon:359.88,si:11,deg:29,oi:5,mag:1.046},
+        {yr:2034,mo:9,dy:12,t:'S',st:'A',lon:169.98,si:5,deg:19,oi:11,mag:0.974},
+        {yr:2035,mo:3,dy:9,t:'S',st:'A',lon:349.20,si:11,deg:19,oi:5,mag:0.992},
+        {yr:2035,mo:8,dy:19,t:'L',st:'P',lon:325.93,si:10,deg:25,oi:4,mag:0.104},
+        {yr:2035,mo:9,dy:2,t:'S',st:'T',lon:159.46,si:5,deg:9,oi:11,mag:1.032},
+        {yr:2036,mo:2,dy:11,t:'L',st:'T',lon:142.76,si:4,deg:22,oi:10,mag:1.300},
+        {yr:2036,mo:8,dy:7,t:'L',st:'T',lon:315.20,si:10,deg:15,oi:4,mag:1.454},
+    ];
+    const _ECLSL = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+
+    // Ventanas temporales — revelación progresiva según cercanía del eclipse
+    const _eclToday = new Date();
+    const _eclDias  = (e) => Math.floor((new Date(e.yr, e.mo - 1, e.dy) - _eclToday) / 86400000);
+    const _eclVent  = (d) => d < 0 ? 'PASADO' : d <= 14 ? 'INMINENTE' : d <= 30 ? 'CERCANO' : d <= 60 ? 'PROXIMO' : 'LEJANO';
+    const _eclEtiq  = (d) => d < 0 ? `Hace ${Math.abs(d)} días`
+                           : d === 0 ? 'Hoy' : d === 1 ? 'Mañana'
+                           : d <= 30 ? `En ${d} días` : `En ${Math.round(d/7)} semanas`;
+
+    // Territorios natales por casa (lenguaje humano, sin tecnicismos)
+    const _TERR = {
+        1:'tu presencia y la forma en que te muestras al mundo',
+        2:'tus recursos y lo que sostienes materialmente',
+        3:'tu entorno cercano y tus intercambios cotidianos',
+        4:'tus raíces y tu mundo privado',
+        5:'tu expresión creativa y los vínculos de placer',
+        6:'tu trabajo cotidiano y tu salud',
+        7:'tus vínculos más significativos y compromisos',
+        8:'la transformación y los recursos compartidos',
+        9:'tus creencias y lo que te expande',
+        10:'lo que construyes en público y tu reputación',
+        11:'tus proyectos colectivos y las redes que te sostienen',
+        12:'los procesos que ocurren fuera de tu vista consciente'
+    };
+
+    // ── Narrativas BASE por casa × tipo — v1.3.1 ─────────────────────────────
+    // Estructura: qué se abrió/cerró · qué se integra · qué observar ahora
+    // Lenguaje de proceso, no de acontecimiento. Sin tecnicismos.
+    const _TERR_S = {
+        1: 'Este eclipse abrió un ciclo relacionado con tu presencia y la manera en que te construyes hacia afuera. Puede haber señalado el inicio de un cambio en cómo te percibes o en cómo quieres ser reconocido — un proceso que a veces no se hace visible de inmediato, pero que va redefiniendo algo esencial. Observa si hay algo en tu forma de presentarte al mundo que ha empezado a cambiar desde entonces, aunque todavía no tenga nombre claro.',
+        2: 'Este eclipse abrió una revisión sobre tu relación con los recursos y el valor personal. Puede haber señalado el inicio de un proceso donde te preguntas qué merece realmente tu energía y qué ya no estás dispuesto a sostener — más allá de lo económico, una pregunta sobre lo que realmente vale. Observa si tu relación con la seguridad material o con lo que valoras ha empezado a tomar una forma más clara.',
+        3: 'Este eclipse abrió un ciclo relacionado con tus intercambios cotidianos, conversaciones importantes o tu entorno más inmediato. Puede haber señalado el inicio de nuevas formas de comunicar, de procesar lo que te rodea o de relacionarte con lo cercano. Observa si hay conversaciones, decisiones o conexiones del día a día que se han ido transformando desde entonces.',
+        4: 'Este eclipse abrió un ciclo relacionado con tu hogar, tus raíces o los fundamentos desde los que te sostienes. Puede haber señalado el inicio de un movimiento interno profundo, o de transformaciones en tu vida doméstica o familiar que tardan en hacerse plenamente visibles. Observa si hay algo en tu base — tu espacio, tu familia o tu mundo interior — que está tomando una forma nueva.',
+        5: 'Este eclipse abrió un ciclo relacionado con tu expresión creativa, el placer o los vínculos que te dan vida. Puede haber señalado el inicio de proyectos, conexiones o momentos en los que te sentiste más cercano a lo que realmente quieres crear o experimentar. Observa si hay algo en tu vida relacionado con el disfrute, la creatividad o el juego que está tomando más espacio desde entonces.',
+        6: 'Este eclipse abrió un ciclo relacionado con tu trabajo cotidiano, tu salud o la manera en que organizas tu energía. Puede haber señalado el inicio de nuevos hábitos, cambios en tu entorno laboral o una toma de conciencia sobre cómo estás distribuyendo tus recursos internos. Observa si hay algo en tu rutina, en tu cuerpo o en tu relación con el trabajo que ha empezado a reorganizarse.',
+        7: 'Este eclipse abrió un ciclo relacionado con tus vínculos más significativos, asociaciones o compromisos con otros. Puede haber señalado el inicio de una transformación en la manera de relacionarte o en lo que buscas en el otro — no necesariamente un cambio externo visible, sino un proceso interno sobre lo que quieres construir con alguien. Observa si hay algo en tus vínculos más importantes que está evolucionando hacia una forma más auténtica.',
+        8: 'Este eclipse abrió un ciclo de transformación profunda. Puede haber activado procesos relacionados con la intimidad, las herencias emocionales, los recursos compartidos o la necesidad de dejar ir algo para que algo nuevo pueda entrar. Este tipo de movimiento suele ocurrir por dentro antes de hacerse visible en lo externo. Observa si hay algo que estás soltando gradualmente o algo que está ganando profundidad desde entonces.',
+        9: 'Este eclipse abrió un ciclo relacionado con tus creencias, tu visión del mundo o lo que te da sentido. Puede haber señalado el inicio de una expansión — a través del estudio, los viajes o una revisión profunda sobre qué es lo que realmente crees y por qué. Observa si hay algo en tu manera de dar sentido a lo que vives que está tomando una dirección más clara o más amplia.',
+        10: 'Este eclipse abrió un ciclo relacionado con tu carrera, tu reputación o tu proyección en el mundo. Puede haber señalado el inicio de un nuevo rol, una visibilidad distinta o una toma de conciencia sobre lo que estás construyendo y hacia dónde quieres dirigirlo. Observa si hay algo en tu trayectoria o en la manera en que te posicionas hacia afuera que ha empezado a tomar una dirección más definida.',
+        11: 'Este eclipse abrió un ciclo relacionado con tus proyectos colectivos, tus redes de apoyo o los grupos a los que perteneces. Puede haber señalado el inicio de nuevas alianzas o una revisión de con quién quieres construir y qué compartes realmente con los demás. Observa si hay algo en tus redes, proyectos compartidos o vínculos de comunidad que está tomando una forma más auténtica.',
+        12: 'Este eclipse abrió un ciclo de trabajo interno. No necesariamente en lo externo, sino en lo que se mueve por dentro antes de hacerse visible: necesidades de retiro, patrones que empiezan a aflojarse o intuiciones que señalan algo que todavía no sabes nombrar del todo. Observa en las semanas siguientes qué necesita más silencio, más espacio o más descanso — a veces la integración de estos procesos ocurre antes de que podamos verla.'
+    };
+    const _TERR_L = {
+        1: 'Este eclipse cerró un capítulo relacionado con tu imagen o tu identidad. Algo en la manera en que te veías o la forma en que querías proyectarte llegó a su punto de madurez, dejando una comprensión más clara de lo que eres y lo que ya no necesitas sostener. Observa si hay una versión más definida de ti mismo que ha empezado a asentarse desde entonces.',
+        2: 'Este eclipse cerró un ciclo relacionado con tus recursos o tu seguridad. Algo en la manera de gestionar lo material o de percibir tu propio valor llegó a su punto de resolución, ya fuera a través de una decisión concreta o de un cambio gradual en lo que consideras prioritario. Observa si hay una mayor claridad sobre qué estás dispuesto a invertir y qué ya no.',
+        3: 'Este eclipse cerró un capítulo relacionado con tus intercambios cotidianos, conversaciones o la manera en que te relacionas con tu entorno cercano. Algo que estaba abierto en ese espacio encontró su punto de resolución, aunque es posible que todavía estés comprendiendo todo lo que aquello significó. Observa si hay algo en tu manera de comunicarte o de relacionarte con lo cercano que ha tomado una dirección más definida.',
+        4: 'Este eclipse cerró un capítulo relacionado con el hogar, la familia o tu mundo interior más privado. Algo que estaba pendiente en ese espacio encontró su punto de cierre o de transformación, aunque lo que aprendiste en ese proceso puede seguir asentándose. Observa si hay algo en tu manera de sentirte en casa — en el espacio físico o en ti mismo — que ha cambiado desde entonces.',
+        5: 'Este eclipse cerró un capítulo relacionado con la expresión personal, el placer o los vínculos que te nutren. Puede haber traído mayor claridad sobre qué te da vida y qué ya no, sobre proyectos que encontraron su punto de madurez o sobre formas de disfrutar que están cambiando. Observa si hay algo en tu manera de expresarte o de conectar con lo que te alegra que está redefiniendo su forma.',
+        6: 'Este eclipse cerró un capítulo relacionado con tu trabajo cotidiano, tu salud o los compromisos que has estado sosteniendo. Algo que requería esfuerzo mantener llegó a su punto de resolución o de transformación, ya fuera una etapa laboral, un hábito o una manera de relacionarte con el servicio. Observa si hay algo en tu forma de usar tu energía cotidiana que está encontrando un ritmo más sostenible.',
+        7: 'Este eclipse cerró un capítulo relacionado con tus vínculos más significativos. Puede haber traído mayor claridad sobre una relación, un compromiso o una forma de vincularte que estaba llegando a su punto de cambio. Observa si hay algo en la manera en que te relacionas con los demás — o en lo que esperas de esas relaciones — que ha ganado mayor claridad desde entonces.',
+        8: 'Este eclipse cerró un proceso de transformación. Puede haber traído mayor claridad sobre temas de intimidad, dependencia, herencias emocionales o recursos compartidos. No siempre lo que se movió fue visible desde fuera, pero algo en tu relación con lo profundo, con lo que no controlas del todo, encontró su punto de resolución. Observa si hay algo que llevabas cargando que ha empezado a sentirse más liviano desde entonces.',
+        9: 'Este eclipse cerró un capítulo relacionado con tus creencias, tu búsqueda de sentido o la manera en que entiendes el mundo. Algo que has estado explorando o cuestionando llegó a un punto de resolución, dejando una comprensión más asentada de lo que te guía. Observa si hay ideas o creencias que han perdido su fuerza desde entonces, dejando espacio para algo más auténtico.',
+        10: 'Este eclipse cerró un capítulo relacionado con tu carrera, tu rol público o la manera en que construyes tu lugar en el mundo. Algo en ese espacio llegó a su punto de resolución o de transformación, dejando más claro qué dirección tiene sentido y cuál ya no. Observa si hay algo en tu trayectoria o en tu proyección hacia afuera que está encontrando una forma más auténtica.',
+        11: 'Este eclipse cerró un capítulo relacionado con tus proyectos compartidos, tus redes o los grupos que te sostenían. Puede haber traído mayor claridad sobre quién realmente forma parte de tu mundo y quién no, sobre proyectos colectivos que encontraron su punto de madurez o sobre formas de colaborar que están cambiando. Observa si hay algo en tus vínculos colectivos que está ganando mayor claridad o coherencia desde entonces.',
+        12: 'Este eclipse cerró un proceso que ocurrió, en gran parte, fuera de tu vista consciente. Puede haber marcado el cierre de un periodo de cansancio acumulado, la resolución de algo que llevabas cargando sin saberlo del todo, o el inicio de una limpieza emocional que todavía se está integrando. Observa si hay algo que has dejado de necesitar sostener activamente, aunque todavía no tengas palabras del todo claras para describir qué fue.'
+    };
+
+    // Textos cuerpo por planeta × tipo (S=solar, L=lunar) — sin orbes, sin tecnicismos
+    const _ECL_CB = {
+        SOL:      { S:'Lo que este año representa para ti —quién estás siendo y cómo te posicionas— pasa por un umbral de claridad. El antes y el después de esta fecha suelen ser visibles en retrospectiva.',
+                    L:'Algo que has estado construyendo en ese plano llega a un punto de resultado, con o sin decisión consciente.' },
+        LUNA:     { S:'Algo en tu vida interior está listo para moverse. No necesariamente de forma dramática, pero sí con dirección.',
+                    L:'Patrones emocionales que has estado procesando encuentran un punto de completitud o de relevo.' },
+        VENUS:    { S:'Lo que empieces, reencuadres o decidas en ese territorio durante las semanas cercanas tiene más peso del habitual.',
+                    L:'Lo que has sostenido en ese plano muestra su resultado. Lo que ya no tiene lugar se hace más visible.' },
+        MARTE:    { S:'La forma en que tomas iniciativa o diriges tu energía puede encontrar un nuevo cauce a partir de aquí.',
+                    L:'La energía que has invertido en ese territorio encuentra su punto de resultado o de liberación.' },
+        MERCURIO: { S:'Las conversaciones, decisiones e intercambios que ocurran en ese territorio durante este periodo tienen más peso y más permanencia.',
+                    L:'Lo que has articulado o negociado en ese plano llega a su punto de resolución natural.' },
+        JUPITER:  { S:'Un nuevo territorio de crecimiento se hace visible. La pregunta es si confías en lo que se abre.',
+                    L:'Lo que has buscado comprender o expandir muestra hasta dónde ha llegado realmente.' },
+        SATURNO:  { S:'Los compromisos y estructuras que establezcas en ese territorio durante este periodo tienen vocación de permanencia.',
+                    L:'Lo que has sostenido con esfuerzo y disciplina llega a un punto de madurez — o de revisión de lo que merece seguir.' }
+    };
+
+    // Señor del Año — derivado de lordOriginal (ya calculado en el scope)
+    const _eclLordKey = (lordOriginal || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+
+    // Casa natal del Señor del Año — ya calculada en el scope como natalHouseNum
+    const _lordNatalHouse = natalHouseNum ? (parseInt(natalHouseNum) || null) : null;
+
+    // Profección activa
+    const _profH    = profection?.activeHouse || null;
+    const _profS    = profection?.activeSign  || '';
+    const _profSIdx = _ECLSL.indexOf(_profS);
+    const _profSOpp = _profSIdx >= 0 ? _ECLSL[(_profSIdx + 6) % 12] : '';
+
+    // Calcular en qué casa natal cae un eclipse
+    // state.user.houses es {1:{sign,degree}, 2:...} — SIN .longitude (no se guarda en Firestore)
+    // Se calcula longitude desde sign+degree usando el mismo índice que _ECLSL
+    const _eclHouseOf = (lon) => {
+        const rawH = state.user?.houses
+                  || state.user?.natalHouses
+                  || state.user?.natal_context?.houses
+                  || window.totalShadowContext?.natal_context?.houses
+                  || null;
+        if (!rawH) return null;
+        let housesArr = [];
+        if (Array.isArray(rawH)) {
+            housesArr = rawH;
+        } else if (typeof rawH === 'object') {
+            housesArr = Object.keys(rawH).sort((a, b) => parseInt(a) - parseInt(b)).map(k => rawH[k]);
+        }
+        if (housesArr.length < 12) return null;
+        // Longitud: usar .longitude si existe, sino calcular desde signo+grado
+        const _SI = {'Aries':0,'Tauro':1,'Géminis':2,'Cáncer':3,'Leo':4,'Virgo':5,'Libra':6,'Escorpio':7,'Sagitario':8,'Capricornio':9,'Acuario':10,'Piscis':11};
+        const cusps = housesArr.map(h => {
+            if (h.longitude !== undefined && !isNaN(Number(h.longitude))) return Number(h.longitude);
+            const si = _SI[h.sign];
+            return (si !== undefined && h.degree !== undefined) ? si * 30 + (Number(h.degree) || 0) : null;
+        });
+        if (cusps.some(c => c === null || isNaN(c))) return null;
+        for (let i = 0; i < 11; i++) {
+            const s = cusps[i], nx = cusps[i + 1];
+            if ((s < nx && lon >= s && lon < nx) || (s >= nx && (lon >= s || lon < nx))) return i + 1;
+        }
+        return 12;
+    };
+
+    // Orbe interno (no visible al usuario)
+    const _eclOrb = (a, b) => { const d = Math.abs(a - b) % 360; return d > 180 ? 360 - d : d; };
+    const _ECL_PKS = ['SOL','LUNA','VENUS','MARTE','MERCURIO','JUPITER','SATURNO'];
+
+    // Construir datos enriquecidos — ahora incluye eclHouse
+    const _eclYear = new Date().getFullYear();
+    const _yearEcl = _ET.filter(e => e.yr === _eclYear);
+    const _eclItems = _yearEcl.map(e => {
+        const dias = _eclDias(e);
+        const vent = _eclVent(dias);
+        const etiq = _eclEtiq(dias);
+        const eclHouse = _eclHouseOf(e.lon);
+        const acts = [];
+        if (vent !== 'LEJANO' && vent !== 'PROXIMO') {
+            for (const pk of _ECL_PKS) {
+                const pd = state.user?.natalPlanets?.[pk];
+                if (!pd) continue;
+                const pLon = pd.longitude_raw !== undefined ? pd.longitude_raw
+                           : pd.lon !== undefined ? pd.lon : pd.longitude;
+                if (pLon === undefined || pLon === null || isNaN(Number(pLon))) continue;
+                if (_eclOrb(e.lon, Number(pLon)) <= 5) {
+                    acts.push({ key:pk, house:parseInt(pd.house)||null, sign:pd.sign||'—' });
+                }
+            }
+        }
+        return { ...e, dias, vent, etiq, eclHouse, acts };
+    });
+
+    const _eclTL = {T:'Total',A:'Anular',H:'Híbrido',P:'Parcial'};
+    const _eclNB  = {
+        ST:'Los eclipses solares totales abren ciclos con claridad — el antes y el después de esta fecha suelen ser visibles en retrospectiva.',
+        SA:'Un eclipse anular señala una apertura de ciclo. Lo que empieza no es menor, aunque su forma pueda tardar en definirse.',
+        SH:'El eclipse híbrido es un umbral doble — apertura y cierre en el mismo punto. Lo que aquí empieza ya lleva algo del pasado.',
+        SP:'Un eclipse parcial marca una inflexión — no todo el ciclo cambia, pero algo en esta área empieza a moverse.',
+        LT:'Los eclipses lunares totales cierran ciclos con intensidad. Lo que ha estado en proceso encuentra su punto de resolución, con o sin decisión consciente.',
+        LP:'Un eclipse lunar parcial señala un cierre gradual. Algo que has estado sosteniendo llega a su punto de inflexión natural.'
+    };
+    const _MTHS = ['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const _ECL_DN = {SOL:'Sol',LUNA:'Luna',VENUS:'Venus',MARTE:'Marte',MERCURIO:'Mercurio',JUPITER:'Júpiter',SATURNO:'Saturno'};
+
+    let blockEclipses = '';
+    if (_eclItems.length > 0) {
+        const _apertura = 'Los eclipses marcan los puntos de bisagra del año — momentos donde algo abre, cierra o se transforma de forma estructural. Algunos te tocan directamente; otros pasan lejos de tu carta.';
+
+        const _eclHtml = _eclItems.map((e, idx) => {
+            const isSolar  = e.t === 'S';
+            const sl       = _ECLSL[e.si] || '—';
+            const ol       = _ECLSL[e.oi] || '—';
+            const tLabel   = (isSolar ? 'Solar ' : 'Lunar ') + (_eclTL[e.st] || '');
+            const narrBase = _eclNB[e.t + e.st] || (isSolar ? _eclNB['SA'] : _eclNB['LP']);
+            const hasActs  = e.acts.length > 0;
+            const isLast   = idx === _eclItems.length - 1;
+            const terr     = e.eclHouse && _TERR[e.eclHouse] ? _TERR[e.eclHouse] : null;
+
+            // Relevancia especial
+            const isCentral  = !!(e.eclHouse && _profH && e.eclHouse === _profH);
+            const isLordCasa = !!(e.eclHouse && _lordNatalHouse && e.eclHouse === _lordNatalHouse && !isCentral);
+
+            // Etiqueta de tiempo + relevancia + activaciones
+            let etiqStr = e.etiq;
+            if (isCentral  && e.vent !== 'LEJANO') etiqStr += ' · Casa activa este año';
+            else if (isLordCasa && e.vent !== 'LEJANO') etiqStr += ` · Casa de ${lordOriginal}`;
+            if (hasActs) {
+                const pStr = e.acts.map(a => _ECL_DN[a.key] || a.key).join(', ');
+                etiqStr += ` · Activa ${pStr}`;
+            }
+            const etiqHtml = `<span style="font-size:10px;color:rgba(140,110,60,0.70);letter-spacing:0.04em;margin-left:8px">${etiqStr}</span>`;
+
+            // ── Cuerpo según ventana ──────────────────────────────────────────
+            let cuerpo = '';
+
+            if (e.vent === 'LEJANO') {
+                // Mínimo: signo + casa si está disponible
+                const casaHint = e.eclHouse ? ` · Casa ${e.eclHouse}` : '';
+                cuerpo = `<p style="${TXT2};margin-top:8px">Punto de bisagra en ${sl}${casaHint}. Por ahora basta con observar esta área de tu vida. A medida que se acerque la fecha, aparecerán más claves sobre cómo este eclipse se relaciona con tu proceso de este año.</p>`;
+
+            } else if (e.vent === 'PROXIMO') {
+                // Añadir casa + territorio si disponible
+                if (terr) {
+                    cuerpo = `<p style="${TXT};margin-top:8px">Este eclipse caerá en tu Casa ${e.eclHouse} — ${terr}.</p>`;
+                    cuerpo += `<p style="${TXT};margin-top:6px">${narrBase}</p>`;
+                } else {
+                    cuerpo = `<p style="${TXT};margin-top:8px">${narrBase}</p>`;
+                }
+                if (hasActs) {
+                    cuerpo += `<p style="${TXT2};margin-top:6px">El detalle de su impacto sobre tu carta se despliega en los próximos días.</p>`;
+                }
+
+            } else {
+                // CERCANO / INMINENTE / PASADO — interpretación completa
+                const verbAb  = isSolar ? 'abre'  : 'cierra';
+                const verbPas = isSolar ? 'abrió' : 'cerró';
+
+                // Capa 0 — casa natal del eclipse (siempre, si hay datos de casas)
+                if (terr) {
+                    const casaFrase = e.vent === 'PASADO'
+                        ? `Este eclipse cayó en tu Casa ${e.eclHouse} — ${terr}.`
+                        : `Este eclipse cae en tu Casa ${e.eclHouse} — ${terr}.`;
+                    cuerpo = `<p style="${TXT};margin-top:8px">${casaFrase}</p>`;
+                } else {
+                    // Sin datos de casas — comportamiento anterior
+                    cuerpo = e.vent === 'PASADO'
+                        ? `<p style="${TXT};margin-top:8px">Este eclipse ${verbPas} un ciclo en ${sl}. Lo que comenzó entonces sigue desplegándose.</p>`
+                        : `<p style="${TXT};margin-top:8px">${narrBase}</p>`;
+                }
+
+                // Párrafo de relevancia (depende de CENTRAL / LORD_CASA / BASE)
+                if (terr) {
+                    let relevTxt = '';
+
+                    if (isCentral) {
+                        const centralCuerpo = e.vent === 'PASADO'
+                            ? `Esta casa es el territorio central de tu año. Lo que se activó aquí entonces tiene resonancia para todo el ciclo.`
+                            : `Esta casa es el territorio central de tu año. Un eclipse que ocurre aquí coincide con el foco principal del ciclo que estás viviendo. Lo que se mueva en esta área alrededor de esta fecha tiene resonancia para el año completo.`;
+                        relevTxt = narrBase + ' ' + centralCuerpo;
+                    } else if (isLordCasa) {
+                        relevTxt = narrBase + ` Esta casa aloja a ${lordOriginal} en tu carta natal — el planeta que está conduciendo tu ciclo este año. Un eclipse que pasa por su territorio puede amplificar los temas que ya estás trabajando.`;
+                    } else if (!hasActs) {
+                        // BASE sin activación natal — narrativa específica por casa (v1.3.1)
+                        if (e.vent === 'PASADO') {
+                            relevTxt = isSolar
+                                ? (_TERR_S[e.eclHouse] || `Este eclipse abrió un proceso en ese territorio. Lo que ocurrió en torno a esa fecha puede seguir desplegándose.`)
+                                : (_TERR_L[e.eclHouse] || `Este eclipse cerró un proceso en ese territorio. Lo que llegó a su resolución entonces todavía está integrándose.`);
+                        } else {
+                            relevTxt = narrBase + ` No hace falta que active un planeta exacto para que este territorio tenga significado dentro de tu año.`;
+                        }
+                    }
+                    // Si hay activación natal sin CENTRAL/LORD_CASA:
+                    // la relevancia la aportan los bloques de activación — no añadir texto aquí
+
+                    if (relevTxt) {
+                        cuerpo += `<p style="${TXT};margin-top:8px">${relevTxt}</p>`;
+                    }
+                }
+
+                // Bloques de activación natal
+                if (hasActs) {
+                    const actBlocks = e.acts.map(a => {
+                        const actTerr   = a.house && _TERR[a.house] ? _TERR[a.house] : null;
+                        const cTxt      = _ECL_CB[a.key] ? _ECL_CB[a.key][e.t] : null;
+                        const sameHouse = a.house && e.eclHouse && a.house === e.eclHouse;
+
+                        // Si el planeta vive en la misma casa que el eclipse: no repetir territorio
+                        let actTxt = '';
+                        if (!sameHouse && actTerr) {
+                            actTxt = e.vent === 'PASADO'
+                                ? `Este eclipse atravesó un umbral en el área de tu carta donde ${actTerr}.`
+                                : `Este eclipse ${verbAb} un ciclo en el área de tu carta donde ${actTerr}.`;
+                        }
+                        if (cTxt) actTxt += (actTxt ? ' ' : '') + cTxt;
+                        if (e.vent === 'PASADO' && actTxt) {
+                            actTxt += ' Lo que se activó entonces todavía está en proceso.';
+                        }
+
+                        // Fusión con profección (casos A, B, C, D — sin cambios respecto v1.2)
+                        let profTxt = '';
+                        const isLord        = a.key === _eclLordKey;
+                        const isInProfH     = _profH && a.house === _profH;
+                        const eclInProfSign = sl === _profS;
+                        const eclInOppSign  = _profSOpp && sl === _profSOpp;
+
+                        if (isLord) {
+                            profTxt = `Este año, ${_ECL_DN[a.key]||a.key} está conduciendo tu ciclo anual. Un eclipse que lo activa directamente toca el centro del año — lo que se mueva aquí tiene resonancia estructural para todo el ciclo.`;
+                        } else if (isInProfH) {
+                            profTxt = `El área donde vive este planeta natal es exactamente el territorio donde tu profección está trabajando este año. Este eclipse y tu ciclo anual están hablando del mismo tema.`;
+                        } else if (eclInProfSign) {
+                            profTxt = `Este eclipse cae en ${_profS}, el territorio central de tu año. Su impacto coincide con el eje donde ${lordOriginal} está conduciendo el ciclo.`;
+                        } else if (eclInOppSign) {
+                            profTxt = `Este eclipse activa el eje ${_profS}–${_profSOpp}, tocando tanto tu casa activa como su polo contrario. Lo que se mueve aquí afecta al ciclo central del año desde los dos extremos.`;
+                        }
+
+                        const anclaje = e.vent === 'INMINENTE'
+                            ? `<p style="${TXT2};margin-top:6px">Durante los días cercanos a esta fecha, lo que ocurra en ese territorio tiene más peso del habitual.</p>`
+                            : '';
+
+                        if (!actTxt && !profTxt && !anclaje) return '';
+                        return `<div style="margin-top:12px;padding-top:12px;border-top:0.5px solid rgba(180,160,120,0.10)">
+                            ${actTxt ? `<p style="${TXT}">${actTxt}</p>` : ''}
+                            ${profTxt ? `<p style="${TXT2};margin-top:6px">${profTxt}</p>` : ''}
+                            ${anclaje}
+                        </div>`;
+                    }).join('');
+                    cuerpo += actBlocks;
+                }
+            }
+
+            return `<div style="margin-bottom:16px;padding-bottom:${isLast?'0':'16px'};${isLast?'':'border-bottom:0.5px solid rgba(180,160,120,0.12)'}">
+                <p style="${TXT}"><strong>Eclipse ${tLabel} · ${e.dy} ${_MTHS[e.mo]}</strong>${etiqHtml}</p>
+                <p style="${TXT2};margin-top:4px">${_sgA(sl)}${sl} ${e.deg}° · Eje ${sl}–${ol}</p>
+                ${cuerpo}
+            </div>`;
+        }).join('');
+
+        blockEclipses = `<div id="annual-premium-eclipses" style="${CARD}">
+            <span style="${LBL}">Los puntos de bisagra del año</span>
+            <p style="${TXT}">${_apertura}</p>
+            <div style="margin-top:14px">${_eclHtml}</div>
+        </div>`;
+    }
+
+    // A/B/C/D + Activaciones Natales + Eclipses del Año v1.3
+    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}`;
 
     // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
     const HOUSE_ACTIVATION_NARRATIVE = {
