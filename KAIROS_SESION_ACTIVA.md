@@ -7,35 +7,37 @@
 **AÑO Premium v3.4-B** — Bloque A definitivo (Señor + Signo + Casa natal + Casa profectada + Ascendente en relato único)
 
 ## ÚLTIMO BLOQUE COMPLETADO
-**Eclipses del Año v1.3** ✅ CERRADO (código)
-- Capa 0: todo eclipse siempre muestra casa natal + territorio
-- LEJANO: añade "· Casa [X]" al pie
-- PRÓXIMO: añade "Este eclipse caerá en tu Casa [X] — [territorio]"
-- CERCANO/INMINENTE/PASADO: CENTRAL / LORD_CASA / BASE logic
-- BASE text aprobado por GPT: "No hace fasto que active un planeta exacto..."
-- Activation blocks: sin repetir territorio cuando `a.house === e.eclHouse`
-- `node --check` ✅
-- Pendiente: staging acumulado (Activaciones v1.1 + Eclipses v1.3)
+**Eclipses del Año v1.3.1** ✅ PRODUCCIÓN — v650.5.217 · commit 7bf1b64
+- v1.3: casa natal del eclipse siempre visible. Fix crítico: state.user.houses es objeto {sign,degree}, no array — longitude calculada desde sign+degree.
+- v1.3.1: narrativas BASE específicas por casa (12×Solar+12×Lunar). 4 capas: qué área · qué abrió/cerró · qué integra · qué observar. Texto LEJANO humanizado.
+- node --check ✅ · staging ✅ · producción ✅
+
+**Activaciones Natales v1.1** ✅ PRODUCCIÓN — v650.5.217 · commit 7bf1b64
+- Narrativa 4 capas (c1/c2/c3/c4). Fix: "si aceptas" en lugar de "dispuesto/a" (Júpiter+Saturno).
 
 ## PRÓXIMA TAREA
-**Tránsitos Maestros** — siguiente tarjeta AÑO Premium (después de staging + validación Eclipses v1.3).
+**AÑO Premium v3.4-B — Bloque A definitivo**
+Integrar Señor + Signo + Casa natal + Casa profectada + Ascendente en un relato único.
+(Sprint editorial — tabla _lordFromHouse 84 entradas)
 
 ## ESTADO DE ENTORNOS
-- **Producción:** v650.5.216 — https://kairos-eng.web.app ⛔ NO TOCAR
-- **Staging:** https://kairos-eng--staging-4gvzelgx.web.app — sin deploy aún (acumular cambios)
-- **Estrategia:** un solo staging + commit cuando Eclipses + Tránsitos estén listos
+- **Producción:** v650.5.217 — https://kairos-eng.web.app ⛔ NO TOCAR
+- **Staging:** https://kairos-eng--staging-4gvzelgx.web.app (expira 16 jun 2026)
 
 ## MÓDULOS ABIERTOS
 | Módulo | Estado |
 |--------|--------|
-| Activaciones Natales v1.1 | ✅ Código cerrado, pendiente staging acumulado |
-| Eclipses del Año v1.3 | ✅ Implementado + node --check limpio, pendiente staging |
-| Tránsitos Maestros | 🔴 Siguiente |
-| AÑO v3.4-B Bloque A | ⏳ Pausado (retomar tras tarjetas) |
+| AÑO v3.4-B Bloque A | 🔜 PRÓXIMO SPRINT |
+| Tránsitos Maestros | ⏳ Después de v3.4-B |
 
 ## MÓDULOS CERRADOS ⛔
 - SEMANA (v650.5.199)
+- Activaciones Natales v1.1 (v650.5.217) ✅
+- Eclipses del Año v1.3.1 (v650.5.217) ✅
 - Motores astronómicos (planetary_engine, ascendant_engine, projection_engine, astronomy, chart_650_v1)
 
+## ⚠️ PENDIENTE REVISAR
+- `SERIE_550_v2_Arquitectura_Motor_KAIROS.md` aparece como eliminado en working directory (git status) pero existe en el último commit. Verificar si fue borrado intencionalmente. Es ACTIVO según NORMAS (Núcleo semántico #1).
+
 ---
-*Actualizado: 2026-06-09 — Eclipses del Año v1.3 implementados*
+*Actualizado: 2026-06-10 — Eclipses v1.3.1 + Activaciones v1.1 en PRODUCCIÓN*
