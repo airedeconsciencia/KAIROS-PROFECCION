@@ -5652,8 +5652,98 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         </div>`;
     }
 
-    // A/B/C/D + Activaciones Natales + Eclipses del Año v1.3
-    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}`;
+    // ── TRÁNSITOS MAESTROS v1.0 ───────────────────────────────────────────────
+    // Júpiter y Saturno en tránsito × casa natal whole-sign.
+    // v1.0: casa del tránsito + relación con profectada + relación con señor del año.
+    // v1.1 pendiente: cruce con planetas natales (longitude_raw del tránsito, aspectos ±3°-5°).
+    const _ZODIAC_TM = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+    const _tmHouse = (transitSign, ascSign) => {
+        const t = _ZODIAC_TM.indexOf(transitSign), a = _ZODIAC_TM.indexOf(ascSign);
+        return (t === -1 || a === -1) ? null : (t - a + 12) % 12 + 1;
+    };
+    const _tmAsc    = state.user?.asc || null;
+    const _tmJupSign = window.CURRENT_TRANSITS?.['Júpiter'] || window.CURRENT_TRANSITS?.['Jupiter'] || null;
+    const _tmSatSign = window.CURRENT_TRANSITS?.['Saturno'] || window.CURRENT_TRANSITS?.['Saturn'] || null;
+    const _tmJupHouse = (_tmJupSign && _tmAsc) ? _tmHouse(_tmJupSign, _tmAsc) : null;
+    const _tmSatHouse = (_tmSatSign && _tmAsc) ? _tmHouse(_tmSatSign, _tmAsc) : null;
+
+    const _tmJupText = {
+        1: 'Júpiter está recorriendo el territorio de la presencia y la identidad. Su expansión aquí opera desde adentro hacia afuera — no a través de logros externos, sino a través de una mayor disponibilidad para ocupar el propio espacio. Las oportunidades que llegan en este tránsito suelen aparecer cuando hay menos adaptación al entorno y más expresión desde el centro propio.',
+        2: 'Júpiter está recorriendo el territorio de los recursos y el valor personal. El tránsito no garantiza abundancia — amplía la capacidad de recibir y de reconocer lo que vale la pena sostener. Lo que se genere, se gestione o se valore en este período tiene más margen para crecer que en otros ciclos.',
+        3: 'Júpiter está recorriendo el territorio de los intercambios, la mente y el entorno cercano. Las conversaciones, conexiones y aprendizajes de este período tienen más alcance de lo habitual. Lo que se comunica llega más lejos; lo que se aprende se integra con más facilidad.',
+        4: 'Júpiter está recorriendo el territorio de las raíces y el mundo privado. Su expansión aquí va hacia adentro: el espacio interior se ensancha, lo familiar gana más profundidad. Lo que se trabaje en el hogar o en los fundamentos más íntimos tiene condiciones para crecer con solidez.',
+        5: 'Júpiter está recorriendo el territorio de la expresión, la creatividad y el placer. El tránsito amplía lo que se crea, se juega y se comparte. Lo que nace desde la autenticidad — proyectos, vínculos de placer, expresión personal — encuentra más eco del habitual.',
+        6: 'Júpiter está recorriendo el territorio del trabajo cotidiano y el cuerpo. Su expansión aquí no es espectacular — opera en los sistemas y los hábitos. Las mejoras que se hagan en ese plano durante este tránsito tienen más alcance y más permanencia que las que se hacen en otros momentos.',
+        7: 'Júpiter está recorriendo el territorio de los vínculos más significativos. El tránsito abre posibilidades en los encuentros, los compromisos y las alianzas. Lo que se establezca o profundice en el plano de los vínculos importantes durante este ciclo tiende a tener mayor resonancia.',
+        8: 'Júpiter está recorriendo el territorio de la transformación y los recursos compartidos. Su expansión aquí va hacia la profundidad — lo que se comparte económica o emocionalmente gana más espacio. El tránsito puede traer apertura donde antes había cierre o estancamiento.',
+        9: 'Júpiter está en su territorio natural — el de la expansión, la búsqueda de sentido y la apertura de horizontes. Cuando Júpiter transita su propia casa, lo que se aprende, se explora o se cree tiene una disponibilidad especial. El período favorece todo lo que amplía la perspectiva.',
+        10: 'Júpiter está recorriendo el territorio de la vocación y el lugar público. Las oportunidades en este tránsito tienden a aparecer a través de la visibilidad, el reconocimiento y las conexiones en el plano profesional. Lo que se construye en público durante este ciclo tiene más capacidad de crecer.',
+        11: 'Júpiter está recorriendo el territorio de las redes, los proyectos colectivos y el propósito compartido. El tránsito amplía los círculos y las alianzas. Lo que se hace junto a otros — proyectos colectivos, comunidades, causas compartidas — tiene más margen para expandirse.',
+        12: 'Júpiter está recorriendo el territorio del interior silencioso y la dimensión no visible. Su expansión aquí ocurre hacia adentro: los procesos internos, la integración y el descanso tienen más espacio. No todo crecimiento es visible — el de este tránsito se acumula en lo que no se muestra.'
+    };
+    const _tmSatText = {
+        1: 'Saturno está recorriendo el territorio de la presencia y la identidad. El tránsito no facilita la imagen — demanda que lo que se muestra al mundo tenga consistencia real. Lo que se construya en ese plano desde la autenticidad tiene condiciones para durar; lo que dependa de la adaptación constante al entorno, pide revisión.',
+        2: 'Saturno está recorriendo el territorio de los recursos y el valor personal. El período no trae abundancia fácil — exige claridad sobre lo que realmente se puede sostener y sobre lo que merece la energía. Lo que se construya con rigor en ese plano durante este ciclo tiene condiciones para perdurar.',
+        3: 'Saturno está recorriendo el territorio de los intercambios y la mente. Las conversaciones y decisiones de este período tienen más peso que lo habitual — lo que se comunica debe poder sostenerse. El tránsito favorece la precisión por encima de la velocidad.',
+        4: 'Saturno está recorriendo el territorio de las raíces y el hogar interior. Algo en los cimientos — en el espacio privado, en la familia, en lo más interno — pide consolidación o revisión honesta. Lo que se trabaje desde ahí con conciencia tiene una solidez particular.',
+        5: 'Saturno está recorriendo el territorio de la expresión y la creatividad. La creación que nace de este tránsito no es espontánea — es trabajada, construida con forma y compromiso visible. El período no favorece la improvisación, pero lo que se produce con estructura tiene más peso.',
+        6: 'Saturno está recorriendo el territorio del trabajo cotidiano y el cuerpo. Los hábitos, los ritmos y los sistemas piden rigor. Lo que se consolide en ese plano — en la manera de trabajar, en la relación con el cuerpo — durante este ciclo tiende a establecerse de forma duradera.',
+        7: 'Saturno está recorriendo el territorio de los vínculos más significativos. Los compromisos importantes se prueban durante este tránsito — los que tienen estructura real se consolidan; los que no, piden ser revisados con honestidad. El período exige claridad sobre los términos reales de las relaciones más importantes.',
+        8: 'Saturno está recorriendo el territorio de la transformación y los recursos compartidos. Lo que se comparte — económica o emocionalmente — pide claridad sobre los límites y las responsabilidades reales. El tránsito no evita la profundidad: la exige con rigor.',
+        9: 'Saturno está recorriendo el territorio de la expansión y las creencias. El período puede estrechar el horizonte — no para cerrarlo, sino para clarificar qué tipo de sentido se persigue realmente. Lo que se sostenga bajo esa presión es lo que tiene raíces genuinas.',
+        10: 'Saturno está recorriendo el territorio de la vocación y el lugar público. El tránsito no suaviza lo que se construye en público — lo pone a prueba. Lo que se consolide aquí durante este ciclo tiene condiciones para perdurar; lo que se mantenga sin estructura real, difícilmente sobreviva el paso de Saturno por ese territorio.',
+        11: 'Saturno está recorriendo el territorio de las redes y el propósito colectivo. El período exige selectividad sobre dónde se pone realmente la energía colectiva. Los círculos y alianzas que sobrevivan este tránsito tienen consistencia real; los que no, piden ser revisados sin apego.',
+        12: 'Saturno está recorriendo el territorio del interior silencioso. El tránsito trae a la superficie procesos internos que se han pospuesto — límites no resueltos, integración pendiente. No es el período más cómodo, pero lo que se trabaje desde ahí tiene un peso específico que no tiene ningún otro tránsito.'
+    };
+
+    // Párrafo 2 — relación dinámica con el ciclo del usuario (v1.0.1 — lenguaje humano)
+    const _tmRelacion = (planet, house) => {
+        const isCasaActiva = house && casaActiva && String(house) === String(casaActiva);
+        const isLord = (planet === 'Júpiter' && lordOriginal === 'Júpiter') ||
+                       (planet === 'Saturno' && lordOriginal === 'Saturno');
+        const _profArea  = _houseAreaBriefA[Number(casaActiva)] || null;
+        const _tranArea  = _houseAreaBriefA[house] || `Casa ${house}`;
+        const _natalArea = _houseAreaBriefA[natalHouseNum] || (natalHouseNum ? `Casa ${natalHouseNum}` : null);
+        if (isCasaActiva && isLord) {
+            return `Tu ${planet} natal gobierna el año desde adentro. El ${planet} en tránsito también está recorriendo ahora ${_tranArea} — que es exactamente el territorio que el año tiene activo. Los tres factores apuntan al mismo lugar: el ciclo de profecciones, tu natal y el cielo actual. Cuando eso ocurre, lo que se trabaje en ese territorio tiene condiciones que pocas veces se producen.`;
+        }
+        if (isCasaActiva) {
+            return `Este año tu atención está puesta sobre ${_tranArea} — y ${planet} también está recorriendo ese mismo territorio ahora. Cuando el ciclo interno y el contexto externo apuntan al mismo lugar, lo que ocurre ahí tiene más peso del que tendría en otro momento.`;
+        }
+        if (isLord) {
+            const _na = _natalArea || (natalHouseNum ? `Casa ${natalHouseNum}` : 'su posición natal');
+            return `Tu ${planet} natal opera desde ${_na} — ese es el motor interno de este año. El ${planet} que transita el cielo ahora está en otro territorio: ${_tranArea}. El mismo principio aparece en dos planos a la vez: uno desde dentro, el otro como contexto externo.`;
+        }
+        if (_profArea) {
+            return `Este año tu atención está puesta sobre ${_profArea}. ${planet}, sin embargo, está actuando en otro territorio: ${_tranArea}. Son dos capas distintas del mismo momento: una habla de lo que el año te pide vivir; la otra, del contexto en el que eso ocurre.`;
+        }
+        return `${planet} está actuando en ${_tranArea} mientras el año trabaja en otro plano.`;
+    };
+
+    const _tmSection = (planet, sign, house, textMap) => {
+        if (!sign || !house || !textMap[house]) return '';
+        const _p2 = _tmRelacion(planet, house);
+        const _tag = `<span style="font-size:10px;color:rgba(100,120,150,0.60);text-transform:uppercase;letter-spacing:0.04em;margin-left:8px">En tránsito</span>`;
+        return `<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid rgba(180,160,120,0.12)">
+            <p style="${TXT}"><strong>${_pgA(planet)}${planet} en ${_sgA(sign)}${sign} · Casa ${house}</strong>${_tag}</p>
+            <p style="${TXT2};margin-top:8px">${textMap[house]}</p>
+            ${_p2 ? `<p style="${TXT2};margin-top:6px">${_p2}</p>` : ''}
+        </div>`;
+    };
+
+    let blockTransitos = '';
+    const _tmJupSec = _tmSection('Júpiter', _tmJupSign, _tmJupHouse, _tmJupText);
+    const _tmSatSec = _tmSection('Saturno', _tmSatSign, _tmSatHouse, _tmSatText);
+    if (_tmJupSec || _tmSatSec) {
+        blockTransitos = `<div id="annual-premium-transitos" style="${CARD}">
+            <span style="${LBL}">Las fuerzas de fondo este año</span>
+            <p style="${TXT}">El ciclo del año tiene su motor interno. Júpiter y Saturno operan en paralelo — no como protagonistas de tu ciclo, sino como el clima en el que ese motor trabaja.</p>
+            <div style="margin-top:14px">${_tmJupSec}${_tmSatSec}</div>
+        </div>`;
+    }
+
+    // A/B/C/D + Activaciones Natales + Eclipses del Año v1.3 + Tránsitos Maestros v1.0
+    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}${blockTransitos}`;
 
     // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
     const HOUSE_ACTIVATION_NARRATIVE = {
