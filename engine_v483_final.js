@@ -5972,9 +5972,19 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     const blockEspejo = window._espejoHTML || '';
     delete window._espejoHTML;
 
+    // Cierre del bloque AÑO Premium — remate visual después del Espejo Temporal
+    const blockCierre = `<div id="annual-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:32px 24px 8px;gap:12px">
+        <span style="font-size:18px;color:rgba(215,193,136,0.5);letter-spacing:4px">✦</span>
+        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.3);letter-spacing:1px;text-align:center;font-style:italic">Este año sigue desplegándose.</p>
+        <button onclick="document.querySelector('#annual-premium-cronos')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 16px;opacity:0.35;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='0.35'">
+            <span style="font-size:14px;color:#f5f0e8">↑</span>
+            <span style="font-size:10px;color:#f5f0e8;letter-spacing:1.5px;text-transform:uppercase;font-weight:600">Volver al inicio del año</span>
+        </button>
+    </div>`;
+
     // Gadgets intercalados — Cronoesfera (apertura) · Mapa (intermedio) · Espejo (cierre)
     // Regla: cada gadget en el punto donde mejor ayuda a leer el módulo.
-    container.innerHTML = `${blockCronos}${blockA}${blockB}${blockC}${blockD}${blockMapa}${blockActivaciones}${blockEclipses}${blockTransitos}${blockEspejo}`;
+    container.innerHTML = `${blockCronos}${blockA}${blockB}${blockC}${blockD}${blockMapa}${blockActivaciones}${blockEclipses}${blockTransitos}${blockEspejo}${blockCierre}`;
 
     // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
     const HOUSE_ACTIVATION_NARRATIVE = {
