@@ -5342,6 +5342,71 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
                            : d === 0 ? 'Hoy' : d === 1 ? 'Mañana'
                            : d <= 30 ? `En ${d} días` : `En ${Math.round(d/7)} semanas`;
 
+    // ── CRONOESFERA ANUAL v1.0 ────────────────────────────────────────────────
+    // Gadget de orientación temporal — solo visualiza datos existentes, sin interpretación nueva.
+    // Posición: primera tarjeta de AÑO Premium (antes de "Tu energía guía").
+    // Regla de gadgets: cada gadget se coloca donde mejor ayuda a leer el módulo, no al final.
+
+    // Mes del ciclo — base: fecha de cumpleaños como año cero de la profección
+    const _crBDay = state.user?.birthDay, _crBMon = state.user?.birthMonth;
+    const _crToday = new Date();
+    const _crHasBirthdate = _crBDay && _crBMon;
+    let _crCycleMonth = null, _crCyclePct = null;
+    if (_crHasBirthdate) {
+        const _crThisYearBday = new Date(_crToday.getFullYear(), _crBMon - 1, _crBDay);
+        const _crCycleStart = _crToday >= _crThisYearBday
+            ? _crThisYearBday
+            : new Date(_crToday.getFullYear() - 1, _crBMon - 1, _crBDay);
+        const _crDaysSince = Math.floor((_crToday - _crCycleStart) / 86400000);
+        _crCycleMonth = Math.min(12, Math.floor(_crDaysSince / 30.44) + 1);
+        _crCyclePct   = Math.min(100, Math.round(_crDaysSince / 365 * 100));
+    }
+
+    // Próximo eclipse — reutiliza _ET y _eclDias ya definidos
+    const _crNextEcl = _ET.find(e => _eclDias(e) > 0) || null;
+    const _crNextEclDays = _crNextEcl ? _eclDias(_crNextEcl) : null;
+    const _crNextEclTxt  = _crNextEclDays === 1 ? 'mañana'
+                         : _crNextEclDays !== null ? `en ${_crNextEclDays} días`
+                         : null;
+
+    // Júpiter y Saturno por casa — cálculo inline (no toca Tránsitos Maestros)
+    const _ZODIAC_CR = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+    const _crCalcHouse = (tr, asc) => { const t = _ZODIAC_CR.indexOf(tr), a = _ZODIAC_CR.indexOf(asc); return (t === -1 || a === -1) ? null : (t - a + 12) % 12 + 1; };
+    const _crAsc   = state.user?.asc || null;
+    const _crJupSg = window.CURRENT_TRANSITS?.['Júpiter'] || window.CURRENT_TRANSITS?.['Jupiter'] || null;
+    const _crSatSg = window.CURRENT_TRANSITS?.['Saturno'] || window.CURRENT_TRANSITS?.['Saturn'] || null;
+    const _crJupH  = (_crJupSg && _crAsc) ? _crCalcHouse(_crJupSg, _crAsc) : null;
+    const _crSatH  = (_crSatSg && _crAsc) ? _crCalcHouse(_crSatSg, _crAsc) : null;
+
+    // HTML del gadget
+    const blockCronos = `<div id="annual-premium-cronos" style="${CARD}">
+        <span style="${LBL}">Orientación temporal</span>
+        <p style="font-size:15px;font-weight:700;color:#4a3f2a;margin:0 0 14px">Año de ${lordOriginal} · Casa ${casaActiva}</p>
+        ${_crHasBirthdate ? `
+        <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                <span style="font-size:11px;color:rgba(74,63,42,0.55)">Mes ${_crCycleMonth} de 12</span>
+                <span style="font-size:11px;color:rgba(74,63,42,0.40)">${_crCyclePct}%</span>
+            </div>
+            <div style="height:4px;background:rgba(180,160,120,0.15);border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:${_crCyclePct}%;background:rgba(184,160,112,0.50);border-radius:2px"></div>
+            </div>
+        </div>` : ''}
+        <div style="display:flex;flex-direction:column;gap:6px">
+            ${_crNextEclTxt ? `
+            <div style="display:flex;align-items:center;gap:8px">
+                <span style="font-size:10px;font-weight:700;color:rgba(184,160,112,0.80);letter-spacing:0.10em;text-transform:uppercase">Eclipse</span>
+                <span style="font-size:12px;color:rgba(74,63,42,0.65)">${_crNextEclTxt}</span>
+            </div>` : ''}
+            ${(_crJupH || _crSatH) ? `
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                ${_crJupH ? `<span style="font-size:12px;color:rgba(74,63,42,0.55)">Júpiter · Casa ${_crJupH}</span>` : ''}
+                ${(_crJupH && _crSatH) ? `<span style="color:rgba(74,63,42,0.25)">·</span>` : ''}
+                ${_crSatH ? `<span style="font-size:12px;color:rgba(74,63,42,0.55)">Saturno · Casa ${_crSatH}</span>` : ''}
+            </div>` : ''}
+        </div>
+    </div>`;
+
     // Territorios natales por casa (lenguaje humano, sin tecnicismos)
     const _TERR = {
         1:'tu presencia y la forma en que te muestras al mundo',
@@ -5742,8 +5807,10 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         </div>`;
     }
 
-    // A/B/C/D + Activaciones Natales + Eclipses del Año v1.3 + Tránsitos Maestros v1.0
-    container.innerHTML = `${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}${blockTransitos}`;
+    // Cronoesfera (orientación temporal) + A/B/C/D + Activaciones Natales + Eclipses del Año v1.3 + Tránsitos Maestros v1.0
+    // Regla de gadgets: cada gadget se coloca donde mejor ayuda a leer el módulo.
+    // Cronoesfera va primero — responde ¿dónde estoy en mi año? antes de cualquier contenido.
+    container.innerHTML = `${blockCronos}${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}${blockTransitos}`;
 
     // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
     const HOUSE_ACTIVATION_NARRATIVE = {
@@ -5931,8 +5998,11 @@ window.renderAnnualNarrative = (content, lang) => {
     update('annual-triplete-direccion', content.triplete.direccion);
     update('annual-triplete-cuidado', content.triplete.cuidado);
 
-    // Renderizar Cómo Habitar
-    update('annual-practical-key', content.ano_habitar);
+    // Renderizar Cómo Habitar — BUG-001: content.ano_habitar no existe, el campo real es content.practical
+    const _practicalText = Array.isArray(content.practical)
+        ? content.practical.map(p => typeof p === 'string' ? p : (p.text || p.label || p.content || p.desc || '')).join(' ')
+        : (content.practical || '');
+    update('annual-practical-key', _practicalText);
 
     // Bloque Técnico Secundario (Capa de Transparencia)
     if (content.profection) {
