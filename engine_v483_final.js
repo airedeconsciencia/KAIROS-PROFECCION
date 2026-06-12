@@ -3832,6 +3832,51 @@ const KAIROS_GUIDE = {
       title: "Ruta del Ciclo",
       content: "Es la representación visual de tu camino evolutivo este año. Conecta tu identidad base (Ascendente) con el escenario activado y culmina en la energía del Señor del Año.\n\nEste indicador te ayuda a ver tu año como un proceso dinámico y no como algo estático. Es el puente entre quién eres por naturaleza y quién estás llamado a ser durante este ciclo."
     },
+    // Guía KAIROS — AÑO Premium v1.0 (2026-06-12)
+    'annual-intro': {
+      title: "Tu año",
+      content: "Esta sección no intenta predecir lo que ocurrirá. Su propósito es ayudarte a comprender el momento que estás viviendo, qué temas tienen más peso este año y cómo se relacionan con tu proceso personal."
+    },
+    'annual-premium-cronos': {
+      title: "Cronoesfera",
+      content: "La Cronoesfera muestra dónde te encuentras dentro de tu ciclo actual. Te ayuda a visualizar cuánto año ha transcurrido y qué momentos relevantes se acercan. Úsala para orientarte en el tiempo antes de leer el resto."
+    },
+    'annual-premium-energia': {
+      title: "Tu energía guía",
+      content: "Describe el planeta que lidera tu proceso este año y cómo actúa desde su posición en tu carta natal. Conocer su tono te ayuda a entender qué tipo de energía tienes más disponible y qué procesos internos piden más atención. No define lo que pasará, sino cómo funciona tu impulso natural este ciclo."
+    },
+    'annual-premium-casa': {
+      title: "Lo que se activa este año",
+      content: "Muestra qué área de tu vida entra en movimiento durante estos 12 meses. No todas las áreas tienen el mismo peso en todos los momentos — esta señala el escenario principal donde se concentra la experiencia del año. Úsala para saber dónde merece la pena poner más atención."
+    },
+    'annual-premium-movimiento': {
+      title: "Cómo se mueve ahora",
+      content: "Muestra qué está activo en este momento concreto dentro del ciclo, más allá del fondo general del año. Te ayuda a distinguir entre lo que lleva todo el año en marcha y lo que está especialmente vivo ahora. Úsala para afinar el foco en el presente."
+    },
+    'annual-premium-ventana': {
+      title: "Por qué este ciclo te afecta así",
+      content: "Explica la razón de fondo por la que este año tiene el tono que tiene para ti en particular. No es genérico — parte de la relación específica entre tu energía guía y el área de vida que está activa. Te ayuda a entender la lógica del momento, no solo su superficie."
+    },
+    'annual-premium-mapa': {
+      title: "Mapa de Territorios",
+      content: "El mapa muestra qué áreas de tu vida tienen más actividad este año. El segmento dorado es el territorio principal del ciclo; los segmentos claros señalan zonas donde también hay movimiento relevante. Úsalo para tener una visión de conjunto antes de entrar en los detalles."
+    },
+    'annual-premium-activaciones': {
+      title: "Activaciones del año",
+      content: "Muestra qué partes de tu carta natal están siendo llamadas por el ciclo actual. No describe lo que ocurrirá, sino qué aspectos de ti tienen más resonancia con el momento. Te ayuda a conectar lo que estás viviendo con tu estructura personal."
+    },
+    'annual-premium-eclipses': {
+      title: "Eclipses del año",
+      content: "Los eclipses son momentos del año donde los cambios tienden a acelerarse o hacerse más visibles. Esta sección muestra los más cercanos y qué área de tu vida pueden tocar. Úsalos como referencias temporales para estar más atento, no como predicciones."
+    },
+    'annual-premium-transitos': {
+      title: "Las fuerzas de fondo",
+      content: "Muestra qué fuerzas de fondo acompañan tu ciclo actual. Te ayuda a entender el contexto exterior en el que se desarrolla tu año y qué energías están más activas ahora. No cambia lo que vives — te ayuda a leerlo con más claridad."
+    },
+    'annual-premium-espejo': {
+      title: "El momento actual",
+      content: "El Espejo muestra tu posición en el tiempo: cuánto has recorrido desde que empezó tu ciclo y cuánto queda por delante. El marcador señala el próximo evento relevante que se aproxima. Úsalo para situar el presente dentro del arco completo del año."
+    },
     'annual-premium-depth': {
       title: "Tu año en profundidad",
       content: "Esta sección profundiza el diseño de tu año a través de cuatro bloques de análisis astrológico y psicológico.\n\nTU SEÑOR NATAL\n\nAquí se muestra cómo actúa tu energía guía desde su posición natal original. El signo y la casa donde vive tu planeta regente describen la forma particular en que enfrentas los procesos importantes del ciclo. No habla de un planeta genérico, sino de cómo funciona tu impulso real dentro de tu propia carta.\n\nLO QUE ACTIVA ESTE AÑO\n\nEste bloque muestra qué parte de tu vida entra en movimiento durante este ciclo anual y cuál es el tono específico del proceso. La casa profectada señala el escenario principal donde se concentra la experiencia del año, mientras que su signo describe cómo se vive emocional y psicológicamente ese movimiento.\n\nCÓMO SE MUEVE AHORA\n\nAquí se traduce el movimiento actual del cielo sobre tu carta natal. Los tránsitos de tu planeta guía muestran qué energía está activa en este momento concreto, qué procesos internos se están moviendo y hacia dónde conviene dirigir la atención ahora.\n\nCUÁNDO PRESTAR MÁS ATENCIÓN\n\nCada planeta tiene ritmos y momentos del año donde su energía se vuelve más visible o intensa. Este bloque ayuda a identificar las etapas donde conviene avanzar, sostener, revisar o simplemente observar con más conciencia el proceso que estás atravesando."
@@ -4058,6 +4103,11 @@ window.openKairosGuide = function() {
     if (btn) {
       btn.style.opacity = '1';
       btn.style.filter = 'none';
+    }
+    // Si estamos en AÑO y el panel aún muestra el placeholder, cargar intro
+    const body = document.getElementById('kairos-guide-body');
+    if (state.currentTab === 'annual' && body && body.textContent.trim() === 'Selecciona una sección o desplázate para ver información detallada.') {
+      updateKairosGuideContent('annual-intro');
     }
     setTimeout(() => {
       overlay.style.opacity = '1';
