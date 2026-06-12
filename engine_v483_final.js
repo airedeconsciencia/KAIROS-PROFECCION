@@ -5955,6 +5955,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
             ? `Llevas <strong>${_crDaysSince} días</strong> en tu año de <strong>${lordOriginal}</strong>. ${_diasRestantes !== null ? `Faltan ${_diasRestantes} días para el próximo ciclo.` : ''}`
             : `Año de <strong>${lordOriginal}</strong>`;
         window._espejoHTML = `<div id="annual-premium-espejo" style="background:#0d1b2a;border-radius:24px;padding:24px;margin-bottom:12px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1);display:flex;flex-direction:column;align-items:center;box-sizing:border-box">
+            <p style="margin:0 0 16px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);text-align:center">EL MOMENTO ACTUAL DEL CICLO</p>
             <svg viewBox="0 0 320 120" width="100%" style="overflow:visible">
                 <defs><filter id="espejo-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs>
                 <line x1="20" y1="60" x2="300" y2="60" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round"/>
@@ -5975,7 +5976,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     // Cierre del bloque AÑO Premium — remate visual después del Espejo Temporal
     const blockCierre = `<div id="annual-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 16px;gap:14px">
         <span style="font-size:20px;color:rgba(215,193,136,0.75);letter-spacing:4px">✦</span>
-        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.55);letter-spacing:1px;text-align:center;font-style:italic">Este año sigue desplegándose.</p>
+        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.55);letter-spacing:1px;text-align:center;font-style:italic">Tu ciclo continúa.</p>
         <button onclick="document.querySelector('#annual-premium-cronos')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 20px;opacity:0.65;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.65'">
             <span style="font-size:16px;color:#d7c188">↑</span>
             <span style="font-size:10px;color:#d7c188;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Volver al inicio del año</span>
