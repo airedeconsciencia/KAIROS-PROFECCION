@@ -5973,12 +5973,12 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     delete window._espejoHTML;
 
     // Cierre del bloque AÑO Premium — remate visual después del Espejo Temporal
-    const blockCierre = `<div id="annual-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:32px 24px 8px;gap:12px">
-        <span style="font-size:18px;color:rgba(215,193,136,0.5);letter-spacing:4px">✦</span>
-        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.3);letter-spacing:1px;text-align:center;font-style:italic">Este año sigue desplegándose.</p>
-        <button onclick="document.querySelector('#annual-premium-cronos')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 16px;opacity:0.35;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='0.35'">
-            <span style="font-size:14px;color:#f5f0e8">↑</span>
-            <span style="font-size:10px;color:#f5f0e8;letter-spacing:1.5px;text-transform:uppercase;font-weight:600">Volver al inicio del año</span>
+    const blockCierre = `<div id="annual-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 16px;gap:14px">
+        <span style="font-size:20px;color:rgba(215,193,136,0.75);letter-spacing:4px">✦</span>
+        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.55);letter-spacing:1px;text-align:center;font-style:italic">Este año sigue desplegándose.</p>
+        <button onclick="document.querySelector('#annual-premium-cronos')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 20px;opacity:0.65;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.65'">
+            <span style="font-size:16px;color:#d7c188">↑</span>
+            <span style="font-size:10px;color:#d7c188;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Volver al inicio del año</span>
         </button>
     </div>`;
 
