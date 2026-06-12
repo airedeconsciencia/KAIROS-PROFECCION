@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Firebase local/cache
+.firebase/
+.firebase
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Temporary / local scripts
+tmp/
+temp/
+.cache/

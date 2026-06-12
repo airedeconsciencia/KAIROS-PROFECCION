@@ -2761,43 +2761,164 @@ async function renderTabContent(tabId) {
                         </p>
                     </div>
 
-                    <!-- HOY-2B: Bloques avanzados bloqueados — tokens idénticos a AÑO -->
-                    <section class="mt-2 space-y-4">
+                    <!-- HOY Premium v1.0 — gadgets + 6 tarjetas -->
+                    <section class="mt-2 space-y-4" id="hoy-premium-v1-section">
 
-                        <!-- SEÑAL OCULTA -->
-                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
-                            <div style="text-align:center;padding:4px 0 14px">
-                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Señal Oculta</p>
-                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
-                                    Qué está siendo activado hoy en tu carta natal. La capa que explica por qué este día se siente diferente para ti.
-                                </p>
-                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                        <!-- Gadget A: Barómetro del Día -->
+                        <div id="daily-gadget-barometro" style="background:rgba(247,244,238,0.6);border-radius:24px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);display:flex;flex-direction:column;align-items:center"></div>
+
+                        <div id="daily-premium-senal-oculta" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">SEÑAL OCULTA</p>
+                            <div id="hoy-senal-oculta-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Sincronizando activaciones...</p>
                             </div>
                         </div>
 
-                        <!-- BRÚJULA KAIROS -->
-                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
-                            <div style="text-align:center;padding:4px 0 14px">
-                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">Brújula Kairos</p>
-                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
-                                    Tu orientación personalizada para hoy. Qué expandir, qué sostener, qué iniciar y qué soltar — según tu carta natal y el momento actual.
-                                </p>
-                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                        <div id="daily-premium-luna-carta" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">LUNA EN TU CARTA</p>
+                            <div id="hoy-luna-carta-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Calculando...</p>
                             </div>
                         </div>
 
-                        <!-- EL ORIGEN DEL DÍA -->
-                        <div style="background:#F7F4EE;border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.15)">
-                            <div style="text-align:center;padding:4px 0 14px">
-                                <div style="margin-bottom:10px;opacity:0.7"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                                <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 8px">El Origen del Día</p>
-                                <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:260px">
-                                    Por qué este día te afecta exactamente así a ti. La razón natal concreta detrás de lo que estás sintiendo.
-                                </p>
-                                <button disabled style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Seguir profundizando</button>
+                        <div id="daily-premium-planetas-escena" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">PLANETAS EN ESCENA</p>
+                            <div id="hoy-planetas-escena-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Calculando...</p>
                             </div>
+                        </div>
+
+                        <!-- Gadget B: Planetas Activos HOY -->
+                        <div id="daily-gadget-reloj" style="background:rgba(247,244,238,0.6);border-radius:24px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)"></div>
+
+                        <div id="daily-premium-origen-dia" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">EL ORIGEN DEL DÍA</p>
+                            <div id="hoy-origen-dia-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Calculando...</p>
+                            </div>
+                        </div>
+
+                        <div id="daily-premium-brujula" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">BRÚJULA KAIROS</p>
+                            <div id="hoy-brujula-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Calculando...</p>
+                            </div>
+                        </div>
+
+                        <div id="daily-premium-punto-atencion" style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)">
+                            <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">PUNTO DE ATENCIÓN</p>
+                            <div id="hoy-punto-atencion-body" style="display:flex;flex-direction:column;gap:10px">
+                                <p style="font-size:13px;color:rgba(80,65,40,0.4);font-style:italic;line-height:1.6;margin:0">Calculando...</p>
+                            </div>
+                        </div>
+
+                        <!-- Gadget C: Pulso del Día -->
+                        <div id="daily-gadget-pulso" style="background:rgba(247,244,238,0.6);border-radius:24px;padding:20px;border:0.5px solid rgba(180,160,120,0.20)"></div>
+
+                        <!-- Cierre HOY Premium -->
+                        <div id="hoy-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 16px;gap:14px">
+                            <span style="font-size:20px;color:rgba(215,193,136,0.75);letter-spacing:4px">✦</span>
+                            <p style="margin:0;font-size:12px;color:rgba(80,65,40,0.45);letter-spacing:1px;text-align:center;font-style:italic">El día ya está en marcha.</p>
+                            <button onclick="document.querySelector('#hoy-premium-v1-section')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 20px;opacity:0.65;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.65'">
+                                <span style="font-size:16px;color:#b8a070">↑</span>
+                                <span style="font-size:10px;color:#b8a070;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Volver al inicio de HOY</span>
+                            </button>
+                        </div>
+
+                        <!-- Guía KAIROS HOY — toggle -->
+                        <div style="text-align:center;padding:0 24px 28px">
+                            <button id="hoy-guia-toggle" onclick="(function(){const g=document.getElementById('hoy-guia-kairos');const open=g.style.display!=='none';g.style.display=open?'none':'block';document.getElementById('hoy-guia-chevron').style.transform=open?'rotate(0deg)':'rotate(180deg)';document.getElementById('hoy-guia-toggle').style.opacity=open?'0.5':'0.85';})();" style="background:none;border:0.5px solid rgba(180,160,120,0.3);border-radius:20px;padding:7px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;opacity:0.5;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="if(document.getElementById('hoy-guia-kairos').style.display==='none')this.style.opacity='0.5'">
+                                <span style="font-size:10px;color:#b8a070;letter-spacing:1.2px;text-transform:uppercase;font-weight:700">¿Qué es cada módulo?</span>
+                                <span id="hoy-guia-chevron" style="font-size:10px;color:#b8a070;display:inline-block;transition:transform 0.25s">▾</span>
+                            </button>
+                        </div>
+
+                        <!-- Guía KAIROS HOY — contenido -->
+                        <div id="hoy-guia-kairos" style="display:none;padding:0 20px 40px">
+
+                            <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;text-align:center;margin:0 0 20px">Guía KAIROS · HOY Premium</p>
+                            <p style="font-size:12px;color:rgba(80,65,40,0.55);line-height:1.7;margin:0 0 24px;text-align:center">Cada módulo de HOY Premium lee una capa distinta de tu día. Esta guía explica qué muestra cada uno y cómo leerlo.</p>
+
+                            <!-- Separador: Gadgets -->
+                            <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
+                                <span style="font-size:9px;color:#b8a070;letter-spacing:0.12em;font-weight:700;text-transform:uppercase">Los 3 gadgets</span>
+                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
+                            </div>
+
+                            <!-- Gadget 1: Barómetro -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Barómetro del Día</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Indica el estado energético del momento: si el día está orientado a la acción (IMPULSAR), al mantenimiento de lo que ya avanza (SOSTENER) o a la observación y la espera (OBSERVAR). Combina tránsitos planetarios, posición lunar y tu carta natal.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No es una instrucción de lo que debes hacer — es una lectura del terreno. Hay días con mucha presión y claridad para avanzar, días donde lo valioso es sostener sin forzar, y días donde la señal más inteligente es esperar antes de comprometerse.</p>
+                            </div>
+
+                            <!-- Gadget 2: Planetas Activos -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Planetas Activos Hoy</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Los tres planetas que más influyen en el día, ordenados por relevancia: el protagonista (planeta del día según la tradición de horas planetarias), el modulador emocional (Luna y su posición en tu carta), y el tono de fondo activo en tránsito.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cada uno aparece con su signo actual y una barra de intensidad relativa. El planeta en la cima es el que más colorea las decisiones, encuentros y estados internos de ese día. No todos los planetas están igualmente activos todos los días.</p>
+                            </div>
+
+                            <!-- Gadget 3: Pulso -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:24px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Pulso del Día</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Una curva visual que muestra cómo se distribuye la energía del día en tres franjas: mañana, tarde y noche. El punto dorado marca el momento presente dentro de esa curva.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">La altura de la curva indica intensidad relativa — no valor ni calidad. Los momentos altos suelen favorecer la acción externa y la visibilidad; los bajos, la integración y el trabajo interno. Conocer el pulso ayuda a situar las tareas del día donde tienen más respaldo energético.</p>
+                            </div>
+
+                            <!-- Separador: Tarjetas -->
+                            <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
+                                <span style="font-size:9px;color:#b8a070;letter-spacing:0.12em;font-weight:700;text-transform:uppercase">Las 6 tarjetas</span>
+                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
+                            </div>
+
+                            <!-- Tarjeta 1: Señal Oculta -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Señal Oculta</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">La capa más personal de HOY. Detecta qué planetas o puntos de tu carta natal están siendo activados por los tránsitos del día — conjunciones, oposiciones, activaciones de casas — y los nombra directamente.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Es información que no existe sin tu carta natal: si Marte transita tu Casa 7, si Venus contacta tu Sol, si el Señor del Año está siendo aspectado. La "señal" es lo que el cielo de hoy le dice específicamente a tu mapa — no al mundo en general.</p>
+                            </div>
+
+                            <!-- Tarjeta 2: Luna en tu Carta -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Luna en tu Carta</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Muestra en qué casa de tu carta natal transita la Luna hoy y qué zona de tu experiencia activa esa posición. La Luna se mueve rápido — cambia de casa cada dos o tres días.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cada vez que la Luna atraviesa una casa natal, esa área de tu vida se vuelve más sensible y receptiva. La casa donde cae hoy indica dónde el registro emocional tiene más peso e información disponible, y dónde puede ser más productivo dirigir la atención interna.</p>
+                            </div>
+
+                            <!-- Tarjeta 3: Planetas en Escena -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Planetas en Escena</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Un análisis de los planetas protagonistas del día: cómo operan en su signo actual, qué tono traen a la experiencia, y su función en tu carta natal específica — casa donde están colocados, rol en tu configuración.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No describe lo que va a ocurrir. Describe el idioma en el que tenderán a expresarse los encuentros, decisiones y estados internos del día. Cuando sabes qué planeta está en primer plano y en qué registro opera, puedes leer la experiencia con más precisión y menos fricción.</p>
+                            </div>
+
+                            <!-- Tarjeta 4: El Origen del Día -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">El Origen del Día</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Conecta el planeta del día con tu ciclo anual: cómo se relacionan el planeta que rige este día y el Señor de tu Año — el planeta que gobierna tu ciclo desde tu último cumpleaños hasta el próximo.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cuando trabajan desde el mismo registro, hay coherencia entre la urgencia del día y la dirección del año. Cuando trabajan desde registros distintos aparece un diálogo — a veces productivo, a veces tenso — entre lo inmediato y lo que tu ciclo anual está desplegando. Leer esa relación da profundidad a por qué ciertos días resuenan más que otros.</p>
+                            </div>
+
+                            <!-- Tarjeta 5: Brújula KAIROS -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Brújula KAIROS</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Una orientación sobre la postura que permite navegar mejor este día concreto, calculada a partir de la combinación del estado energético del momento (radar) y el planeta del día. Hay 28 lecturas distintas — una para cada combinación posible de 7 planetas × 4 estados del radar.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No predice ni prescribe. Ofrece un ángulo de lectura desde el que el terreno tiende a ser más navegable. La brújula no dice qué hacer — señala en qué dirección el día tiene más tracción natural. Usarla o no es siempre una elección.</p>
+                            </div>
+
+                            <!-- Tarjeta 6: Punto de Atención -->
+                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
+                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Punto de Atención</span>
+                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Aparece cuando hay una fricción activa entre los tránsitos del día y puntos importantes de tu carta natal — especialmente oposiciones o tensiones angulares que conviene tener en el radar. Si no hay fricciones activas ese día, el módulo lo indica.</p>
+                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Las fricciones no son señales de alarma. Son zonas donde la energía pide más conciencia. Una oposición activa significa que dos fuerzas están operando en simultáneo y que la tensión entre ellas tiene información valiosa — no necesariamente que algo vaya a salir mal.</p>
+                            </div>
+
+                            <!-- Cierre guía -->
+                            <p style="font-size:11px;color:rgba(80,65,40,0.35);text-align:center;margin:16px 0 0;line-height:1.65;letter-spacing:0.02em">Todos los módulos leen tu carta natal específica.<br>Lo que ves no es astrología genérica — es tu día.</p>
+
                         </div>
 
                     </section>
@@ -3684,8 +3805,12 @@ async function renderTabContent(tabId) {
     }
   }
   
-  if (tabId === 'daily' && (state.subscription?.level ?? 0) > 0 && state.user?.natalPlanets) {
-      renderPremiumActivations();
+  const _isPremiumHoy = window.KAIROS_FLAGS.KAIROS_PREMIUM_ACTIVE ||
+      (Array.isArray(window.KAIROS_FLAGS.INTERNAL_AUTH_EMAILS) && window.KAIROS_FLAGS.INTERNAL_AUTH_EMAILS.includes(state.user?.email || '')) ||
+      window.KAIROS_FLAGS.KAIROS_PREMIUM_DEBUG ||
+      (state.subscription?.level ?? 0) > 0;
+  if (tabId === 'daily' && _isPremiumHoy && state.user?.natalPlanets) {
+      renderHoyPremium();
   }
   
   if (tabId === 'contact') {
@@ -3745,26 +3870,703 @@ async function loadSyncHistory() {
     }
 }
 
-async function renderPremiumActivations() {
-    const container = document.getElementById('natal-activations-container');
-    if (!container) return;
-    
-    try {
-        const activations = await transit_engine.getNatalActivations(state.user.natalPlanets, state.user.natalHouses, window.Astronomy.MakeTime(new Date()), state.lang);
-        if (activations.length === 0) {
-            container.innerHTML = `<p class="text-[11px] italic opacity-80">No hay activaciones mayores hoy. El cielo está en calma sobre tu mapa natal.</p>`;
-            return;
-        }
-        
-        container.innerHTML = activations.map(a => `
-            <div class="flex items-center gap-4 bg-white/10 p-4 rounded-2xl border border-white/5">
-                <span class="text-xs">${a.type === 'HOUSE' ? '🏠' : '✨'}</span>
-                <p class="text-[11px] font-medium leading-relaxed">${a.desc}</p>
-            </div>
-        `).join('');
-    } catch (e) {
-        console.error("Premium activations error:", e);
+// ─────────────────────────────────────────────────────────────────────
+// HOY Premium v1.0 — Motor completo de 6 tarjetas
+// Ref: HOY_PREMIUM_MAESTRO_v1.md · Sprint: 2026-06-12
+// ─────────────────────────────────────────────────────────────────────
+
+async function renderHoyPremium() {
+    // Estilos — patrón idéntico a AÑO Premium (TXT + TXT2 + item card)
+    const _cs  = 'background:rgba(215,193,136,0.1);border-radius:12px;padding:14px 16px;border:0.5px solid rgba(215,193,136,0.25)';
+    const _ts  = 'font-size:13px;color:#4a3f2a;line-height:1.65;margin:0';
+    const _ts2 = 'font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0';
+    const _qs  = 'font-size:13px;font-style:italic;color:rgba(80,65,40,0.65);line-height:1.7;margin:12px 0 0;padding-top:10px;border-top:0.5px solid rgba(180,160,120,0.2)';
+
+    const _transits = window.CURRENT_TRANSITS || {};
+    const _planetDay = (window.KAIROS_SESSION?.ready && window.KAIROS_SESSION?.sky?.planetOfDay)
+        ? window.KAIROS_SESSION.sky.planetOfDay
+        : (window.transit_engine?.getDayPlanet ? window.transit_engine.getDayPlanet(new Date()) : 'Sol');
+    const _lord = state.content?.lord?.planet || null;
+    const _radarStatus = state.momentRadar?.status || 'neutral';
+    const _asc = state.user?.asc || null;
+    const _natalPlanets = state.user?.natalPlanets || null;
+    const _housesRaw = state.user?.natalHouses || null;
+    const _houses = Array.isArray(_housesRaw) ? _housesRaw
+        : (_housesRaw && typeof _housesRaw === 'object') ? Object.values(_housesRaw) : [];
+
+    // Activaciones natales — compartidas por Señal Oculta + Punto de Atención
+    let _activations = [];
+    if (_natalPlanets && _houses.length > 0) {
+        try {
+            _activations = await transit_engine.getNatalActivations(
+                _natalPlanets, _houses, window.Astronomy.MakeTime(new Date()), state.lang
+            );
+        } catch (e) { console.warn('[KAIROS HOY Premium] activations error:', e); }
     }
+
+    // Casa lunar
+    let _moonHouse = null;
+    if (_asc && window.transit_engine?.getMoonHouse) {
+        try { _moonHouse = await window.transit_engine.getMoonHouse(_asc); } catch (e) {}
+    }
+
+    renderDailyBarometro(_radarStatus);
+    _hoyRenderSenalOculta(_activations, _lord, _cs, _ts, _ts2, _qs);
+    _hoyRenderLunaEnTuCarta(_moonHouse, _transits['Luna'], _cs, _ts, _ts2);
+    _hoyRenderPlanetasEnEscena(_planetDay, _transits, _moonHouse, _cs, _ts, _ts2);
+    renderRelojPlanetario(_planetDay, _transits, _moonHouse);
+    _hoyRenderOrigenDelDia(_lord, _planetDay, _cs, _ts, _ts2);
+    _hoyRenderBrujulaKairos(_radarStatus, _planetDay, _cs, _ts, _ts2);
+    _hoyRenderPuntoDeAtencion(_activations, _radarStatus, _cs, _ts, _ts2);
+    renderPulsoDelDia(_radarStatus);
+}
+
+// ── Gadget C: PULSO DEL DÍA ──────────────────────────────────────────
+// Helper: glifo SVG de KAIROS para planetas y signos zodiacales
+function _kIcon(name, sz, col) {
+    if (typeof KAIROS_ICONS === 'undefined') return '';
+    const svg = (KAIROS_ICONS.planets && KAIROS_ICONS.planets[name]) ||
+                (KAIROS_ICONS.zodiac  && KAIROS_ICONS.zodiac[name]) || '';
+    if (!svg) return '';
+    return `<span style="color:${col};display:inline-flex;align-items:center;flex-shrink:0;line-height:1">${
+        svg.replace('class="size-full"', `style="width:${sz}px;height:${sz}px"`)
+    }</span>`;
+}
+
+function renderPulsoDelDia(radarStatus) {
+    const el = document.getElementById('daily-gadget-pulso');
+    if (!el) return;
+
+    const hora = new Date().getHours();
+    let franja = 'noche', xAhora = 265;
+    if (hora >= 6 && hora < 13)  { franja = 'manana'; xAhora = 55;  }
+    else if (hora >= 13 && hora < 20) { franja = 'tarde';  xAhora = 160; }
+    else { xAhora = hora >= 20 ? 250 : 280; }
+
+    // Alturas Y en SVG (Y bajo = intensidad alta, Y alto = intensidad baja)
+    let yM = 50, yT = 50, yN = 50;
+    if (radarStatus === 'peak') {
+        yM = franja === 'manana' ? 20 : 65;
+        yT = franja === 'tarde'  ? 20 : 65;
+        yN = franja === 'noche'  ? 20 : 65;
+    } else if (radarStatus === 'integration') {
+        yM = 42; yT = 45; yN = 43;
+    } else if (radarStatus === 'low') {
+        yM = franja === 'manana' ? 75 : 55;
+        yT = franja === 'tarde'  ? 75 : 55;
+        yN = franja === 'noche'  ? 75 : 55;
+    }
+
+    const yAhora = xAhora <= 105 ? yM : xAhora <= 215 ? yT : yN;
+    const pathD  = `M 20,${(yM+60)/2} C 55,${yM} 55,${yM} 105,${(yM+yT)/2} C 160,${yT} 160,${yT} 215,${(yT+yN)/2} C 265,${yN} 265,${yN} 300,${(yN+80)/2}`;
+
+    const opM = franja === 'manana' ? '1' : hora < 6  ? '0.7' : '0.35';
+    const opT = franja === 'tarde'  ? '1' : franja === 'manana' ? '0.7' : '0.35';
+    const opN = franja === 'noche'  ? '1' : '0.7';
+
+    // Aplicar tema oscuro al contenedor
+    el.style.background    = '#0d1b2a';
+    el.style.boxShadow     = '0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1)';
+    el.style.border        = 'none';
+    el.style.borderRadius  = '24px';
+
+    el.innerHTML = `
+        <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">PULSO DEL DÍA</p>
+        <style>
+            @keyframes pulso-draw{to{stroke-dashoffset:0}}
+            @keyframes pulso-now{0%,100%{r:5;opacity:.35}50%{r:10;opacity:.8}}
+        </style>
+        <svg viewBox="0 0 320 120" width="100%" style="overflow:visible;display:block;margin:0 auto">
+            <defs>
+                <filter id="pulso-glow">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+            </defs>
+            <!-- Línea base -->
+            <line x1="20" y1="95" x2="300" y2="95" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+            <!-- Curva principal -->
+            <path d="${pathD}" fill="none" stroke="#C4A46A" stroke-width="3.5" stroke-linecap="round"
+                stroke-dasharray="1000" stroke-dashoffset="1000"
+                style="animation:pulso-draw 2s cubic-bezier(0.4,0,0.2,1) forwards"/>
+            <!-- Punto AHORA -->
+            <g transform="translate(${xAhora},${yAhora})">
+                <circle cx="0" cy="0" r="5" fill="#C4A46A" opacity="0.3" style="animation:pulso-now 2.5s infinite ease-in-out"/>
+                <circle cx="0" cy="0" r="5" fill="#C4A46A" stroke="#0d1b2a" stroke-width="2" filter="url(#pulso-glow)"/>
+            </g>
+            <!-- Etiquetas de franja -->
+            <text x="55"  y="114" text-anchor="middle" fill="rgba(255,255,255,${opM})" style="font-size:8.5px;font-weight:${franja==='manana'?700:400};letter-spacing:0.12em">MAÑANA</text>
+            <text x="160" y="114" text-anchor="middle" fill="rgba(255,255,255,${opT})" style="font-size:8.5px;font-weight:${franja==='tarde'?700:400};letter-spacing:0.12em">TARDE</text>
+            <text x="265" y="114" text-anchor="middle" fill="rgba(255,255,255,${opN})" style="font-size:8.5px;font-weight:${franja==='noche'?700:400};letter-spacing:0.12em">NOCHE</text>
+        </svg>
+        <p style="font-size:11px;color:rgba(255,255,255,0.38);text-align:center;margin:10px 0 0;line-height:1.55;letter-spacing:0.01em">La curva muestra cómo se distribuye la intensidad a lo largo del día. El punto dorado marca el momento presente.</p>
+    `;
+}
+
+// ── Gadget B: PLANETAS ACTIVOS HOY ───────────────────────────────────
+function renderRelojPlanetario(planetDay, transits, moonHouse) {
+    const el = document.getElementById('daily-gadget-reloj');
+    if (!el) return;
+
+    const _glyphs = {
+        'Sol':'☉','Luna':'☽','Marte':'♂','Mercurio':'☿','Venus':'♀','Júpiter':'♃','Saturno':'♄'
+    };
+    const _roles = {
+        'Sol':'domina el foco y la presencia',
+        'Luna':'domina el registro emocional',
+        'Marte':'domina el impulso y la acción',
+        'Mercurio':'domina el intercambio y el análisis',
+        'Júpiter':'domina la apertura y el significado',
+        'Venus':'domina el vínculo y la armonía',
+        'Saturno':'domina la estructura y la paciencia',
+    };
+    const _signTone = {
+        'Aries':'impulso directo','Tauro':'arraigo y cuerpo','Géminis':'intercambio rápido',
+        'Cáncer':'cuidado y memoria','Leo':'expresión y presencia','Virgo':'precisión y detalle',
+        'Libra':'equilibrio y relación','Escorpio':'profundidad e intensidad','Sagitario':'expansión y horizonte',
+        'Capricornio':'estructura y dirección','Acuario':'innovación y distancia','Piscis':'sensibilidad y fluidez',
+    };
+
+    // Nivel 1: planeta del día — barra 100%
+    const _p1sign = transits[planetDay] || '';
+    const _p1tone = _signTone[_p1sign] || _p1sign;
+
+    // Nivel 2: Luna (modulador emocional) — si no es el planeta del día
+    const _lunaSign = (planetDay !== 'Luna') ? (transits['Luna'] || '') : '';
+    const _casaLabel = moonHouse ? ` · Casa ${moonHouse}` : '';
+
+    // Nivel 3: planeta rápido de contexto (el primero disponible que no sea el día ni Luna)
+    let _p3name = '', _p3sign = '';
+    for (const p of ['Mercurio','Venus','Marte','Sol']) {
+        if (p === planetDay || p === 'Luna') continue;
+        if (transits[p]) { _p3name = p; _p3sign = transits[p]; break; }
+    }
+
+    // Estilos de fila
+    const _row = (glyph, name, role, sign, tone, barW, opacity, isMain) => `
+        <div style="display:flex;align-items:center;gap:12px;padding:${isMain?'14px 16px':'10px 16px'};border-radius:12px;background:${isMain?'rgba(196,164,106,0.1)':'rgba(255,255,255,0.04)'};">
+            <div style="width:32px;height:32px;border-radius:50%;background:${isMain?'rgba(196,164,106,0.2)':'rgba(255,255,255,0.07)'};border:1px solid ${isMain?'rgba(196,164,106,0.5)':'rgba(255,255,255,0.1)'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                ${_kIcon(name, isMain?20:16, isMain?'#C4A46A':'rgba(255,255,255,0.55)') || `<span style="font-size:${isMain?'16px':'13px'};color:${isMain?'#C4A46A':'rgba(255,255,255,0.55)'}">${glyph}</span>`}
+            </div>
+            <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:5px;margin-bottom:3px">
+                    <span style="font-size:${isMain?'13px':'11px'};font-weight:700;color:${isMain?'#C4A46A':'rgba(255,255,255,0.75)'};letter-spacing:0.05em">${name.toUpperCase()}</span>
+                    ${sign?`<span style="display:inline-flex;align-items:center;gap:2px;font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:0.06em">${_kIcon(sign,10,'rgba(255,255,255,0.35)')}${sign.toUpperCase()}</span>`:''}
+                </div>
+                <div style="font-size:10px;color:rgba(255,255,255,${isMain?'0.55':'0.35'});line-height:1.4">${isMain?role:tone||role}</div>
+                <div style="margin-top:5px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px">
+                    <div style="height:2px;width:${barW}%;background:${isMain?'#C4A46A':'rgba(255,255,255,0.25)'};border-radius:2px"></div>
+                </div>
+            </div>
+        </div>`;
+
+    let _rows = _row(_glyphs[planetDay]||'☉', planetDay, _roles[planetDay]||'', _p1sign, _p1tone, 100, 1, true);
+
+    if (_lunaSign) {
+        _rows += _row('☽', 'Luna', `modulador emocional${_casaLabel}`, _lunaSign, _signTone[_lunaSign]||'', 55, 0.7, false);
+    }
+    if (_p3name && _p3sign) {
+        _rows += _row(_glyphs[_p3name]||'', _p3name, 'influencia de contexto', _p3sign, _signTone[_p3sign]||'', 30, 0.5, false);
+    }
+
+    el.style.background   = '#0d1b2a';
+    el.style.boxShadow    = '0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1)';
+    el.style.border       = 'none';
+    el.style.borderRadius = '24px';
+    el.innerHTML = `
+        <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px">PLANETAS ACTIVOS HOY</p>
+        <div style="display:flex;flex-direction:column;gap:6px">${_rows}</div>
+    `;
+}
+
+// ── Gadget A: BARÓMETRO DEL DÍA ──────────────────────────────────────
+function renderDailyBarometro(radarStatus) {
+    const el = document.getElementById('daily-gadget-barometro');
+    if (!el) return;
+
+    const _cfg = {
+        'peak':        { etiqueta:'IMPULSAR', angulo:-45,
+                         frase:'La energía del momento está alta. Funciona bien canalizar el impulso hacia lo que ya está decidido.' },
+        'integration': { etiqueta:'SOSTENER', angulo:0,
+                         frase:'Ritmo de integración. Lo que está en marcha tiene tracción propia — sostener es la postura más efectiva.' },
+        'neutral':     { etiqueta:'SOSTENER', angulo:0,
+                         frase:'Ritmo estable. Sin apertura especial ni tensión — el contexto acompaña lo que ya está en marcha.' },
+        'low':         { etiqueta:'OBSERVAR', angulo:45,
+                         frase:'Momento de pausa. Observar sin forzar da más información ahora que cualquier empuje.' },
+    };
+
+    const _c  = _cfg[radarStatus] || _cfg['neutral'];
+    const _ip = radarStatus === 'peak';
+    const _is = radarStatus === 'integration' || radarStatus === 'neutral';
+    const _io = radarStatus === 'low';
+
+    // Colores sobre fondo oscuro
+    const _arcImpulsar  = _ip ? '#C4A46A' : 'rgba(196,164,106,0.18)';
+    const _arcSostener  = _is ? '#9DA8B5' : 'rgba(157,168,181,0.18)';
+    const _arcObservar  = _io ? '#7C8CA0' : 'rgba(124,140,160,0.18)';
+    const _lblImpulsar  = _ip ? '#C4A46A' : 'rgba(255,255,255,0.25)';
+    const _lblSostener  = _is ? '#9DA8B5' : 'rgba(255,255,255,0.25)';
+    const _lblObservar  = _io ? '#9DA8B5' : 'rgba(255,255,255,0.25)';
+
+    // Aplicar tema oscuro al contenedor
+    el.style.background    = '#0d1b2a';
+    el.style.boxShadow     = '0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1)';
+    el.style.border        = 'none';
+    el.style.borderRadius  = '24px';
+    el.style.alignItems    = 'center';
+
+    el.innerHTML = `
+        <p style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#b8a070;margin:0 0 14px;align-self:flex-start">BARÓMETRO DEL DÍA</p>
+        <svg viewBox="0 0 240 115" width="100%" style="max-width:240px;overflow:visible">
+            <defs>
+                <filter id="baro-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+            </defs>
+            <!-- Arco IMPULSAR -->
+            <path d="M 43 85 A 80 80 0 0 1 90 28" fill="none"
+                stroke="${_arcImpulsar}" stroke-width="${_ip?9:5}" stroke-linecap="round"
+                ${_ip?'filter="url(#baro-glow)"':''}/>
+            <!-- Arco SOSTENER -->
+            <path d="M 103 24 A 80 80 0 0 1 137 24" fill="none"
+                stroke="${_arcSostener}" stroke-width="${_is?9:5}" stroke-linecap="round"
+                ${_is?'filter="url(#baro-glow)"':''}/>
+            <!-- Arco OBSERVAR -->
+            <path d="M 150 28 A 80 80 0 0 1 197 85" fill="none"
+                stroke="${_arcObservar}" stroke-width="${_io?9:5}" stroke-linecap="round"
+                ${_io?'filter="url(#baro-glow)"':''}/>
+            <!-- Separadores -->
+            <circle cx="96.5" cy="25" r="1.5" fill="rgba(255,255,255,0.15)"/>
+            <circle cx="143.5" cy="25" r="1.5" fill="rgba(255,255,255,0.15)"/>
+            <!-- Etiquetas -->
+            <text x="46" y="102" text-anchor="middle" fill="${_lblImpulsar}" style="font-size:8px;font-weight:${_ip?700:400};letter-spacing:0.1em">IMPULSAR</text>
+            <text x="120" y="18"  text-anchor="middle" fill="${_lblSostener}" style="font-size:8px;font-weight:${_is?700:400};letter-spacing:0.1em">SOSTENER</text>
+            <text x="194" y="102" text-anchor="middle" fill="${_lblObservar}" style="font-size:8px;font-weight:${_io?700:400};letter-spacing:0.1em">OBSERVAR</text>
+            <!-- Estado activo debajo del arco -->
+            <text x="120" y="108" text-anchor="middle" fill="#C4A46A" style="font-size:11px;font-weight:700;letter-spacing:0.16em">${_c.etiqueta}</text>
+            <!-- Pivote y aguja -->
+            <g transform="translate(120,90)">
+                <circle cx="0" cy="0" r="6" fill="#0d1b2a" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                <circle cx="0" cy="0" r="2.5" fill="#C4A46A"/>
+                <g id="baro-needle" style="transform:rotate(0deg);transition:transform 1.2s cubic-bezier(0.25,1,0.5,1)">
+                    <line x1="0" y1="2" x2="0" y2="-70" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round"/>
+                    <polygon points="0,-74 -2.5,-68 2.5,-68" fill="rgba(255,255,255,0.9)"/>
+                </g>
+            </g>
+        </svg>
+        <p style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;margin:10px 0 0;text-align:center;max-width:240px">${_c.frase}</p>
+    `;
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            const needle = el.querySelector('#baro-needle');
+            if (needle) needle.style.transform = `rotate(${_c.angulo}deg)`;
+        });
+    });
+}
+
+// ── Tarjeta 1: SEÑAL OCULTA ──────────────────────────────────────────
+function _hoyRenderSenalOculta(activations, lord, cs, ts, ts2, qs) {
+    const el = document.getElementById('hoy-senal-oculta-body');
+    if (!el) return;
+
+    if (!activations.length) {
+        const lordP2 = lord
+            ? `<p style="${ts2}">Tu año opera bajo <strong>${lord}</strong> — y sin interferencia exterior, ese proceso avanza con más fondo propio que ruido de fuera. Un día donde el campo interno tiene más espacio del habitual.</p>`
+            : '';
+        el.innerHTML = `<p style="${ts}">El cielo de hoy no genera <strong>contactos directos</strong> con tu carta. Eso no vuelve el día menos importante: indica que la señal principal no viene de un impacto externo, sino de cómo respondes a lo que ya estaba en marcha.</p>
+<p style="${ts2}">Cuando no hay fricción ni apertura marcada desde fuera, el día puede servir para observar <strong>tu propio ritmo</strong> con más claridad.</p>${lordP2}`;
+        return;
+    }
+
+    const _rank = {CONJUNCIÓN:0, OPOSICIÓN:1, HOUSE:2};
+    const _sorted = [...activations]
+        .sort((a,b) => (_rank[a.type]??3) - (_rank[b.type]??3))
+        .slice(0, 4);
+
+    const _hn = {
+        1:'tu identidad y presencia',2:'tus recursos y valores',3:'tu comunicación y entorno',
+        4:'tu hogar y raíces',5:'tu expresión y creatividad',6:'tu cuerpo y trabajo diario',
+        7:'tus relaciones',8:'tu transformación profunda',9:'tu expansión y creencias',
+        10:'tu dirección y vocación',11:'tu comunidad y proyectos',12:'tu mundo interior'
+    };
+    const _hdesc = {
+        1:'el espacio de la identidad y cómo te presentas',
+        2:'el territorio de tus recursos y lo que te da seguridad',
+        3:'el campo de la comunicación y los intercambios cercanos',
+        4:'el espacio del hogar, las raíces y lo íntimo',
+        5:'el territorio de la expresión, el juego y la creatividad',
+        6:'el campo del trabajo cotidiano, el cuerpo y la rutina',
+        7:'el espacio de los vínculos y las relaciones significativas',
+        8:'el territorio de la transformación y lo que está debajo de la superficie',
+        9:'el campo de la expansión, las ideas y el horizonte',
+        10:'el espacio de la vocación y lo que construyes en el mundo',
+        11:'el territorio de la comunidad, los proyectos y el colectivo',
+        12:'el campo del mundo interior, el silencio y lo que no se nombra',
+    };
+
+    const _hum = a => {
+        if (a.type==='HOUSE') {
+            const _area = _hn[a.house]||`tu casa ${a.house}`;
+            const _desc = _hdesc[a.house]||'';
+            return {
+                p1: `<strong>${a.transit}</strong> ilumina hoy <strong>${_area}</strong>${_desc?' — '+_desc:''}. La activación no es genérica — es una señal de que algo en esa zona de tu vida está disponible para moverse o ser reconocido.`,
+                p2: ''
+            };
+        }
+        if (a.type==='CONJUNCIÓN') return {
+            p1: `<strong>${a.transit}</strong> en tránsito toca hoy tu <strong>${a.natal} natal</strong> — el día amplifica directamente esa parte de tu carta.`,
+            p2: `La energía que tu ${a.natal} natal porta se hace más presente, más activa, más fácil de reconocer en lo que ocurre. Es un buen momento para notar dónde aparece eso.`
+        };
+        if (a.type==='OPOSICIÓN') return {
+            p1: `<strong>${a.transit}</strong> enfrenta hoy tu <strong>${a.natal} natal</strong> — hay tensión creativa disponible.`,
+            p2: `Puede que sientas dos registros tirando en direcciones distintas: lo que aporta el tránsito y lo que lleva tu ${a.natal} natal. Esa polaridad no es un obstáculo — es información sobre dónde hay presión activa hoy.`
+        };
+        return {p1: a.desc||'', p2:''};
+    };
+
+    const _rqP = {
+        'Sol':'¿Dónde sientes hoy que algo en ti quiere ser más visible?',
+        'Luna':'¿Qué emoción del día te parece más significativa en este momento?',
+        'Mercurio':'¿Qué conversación o idea del día lleva más peso de lo que esperabas?',
+        'Venus':'¿Qué es lo que más valoras en este momento?',
+        'Marte':'¿Dónde sientes hoy el impulso de actuar o de resistir?',
+        'Júpiter':'¿Dónde sientes hoy que algo se expande más allá de lo que esperabas?',
+        'Saturno':'¿Dónde sientes que algo te pide más estructura o compromisos más firmes?',
+    };
+    const _rqH = {
+        1:'¿Cómo quieres presentarte hoy?',2:'¿Qué te da seguridad o qué te la quita hoy?',
+        3:'¿Qué intercambio o conversación del día tiene más peso?',4:'¿Qué parte de tu mundo interior está más presente hoy?',
+        5:'¿Qué quieres crear o expresar hoy?',6:'¿Qué tarea cotidiana pide más atención hoy?',
+        7:'¿Qué relación o encuentro tiene más peso hoy?',8:'¿Qué está cambiando sin que lo hayas decidido?',
+        9:'¿Qué perspectiva nueva tienes hoy que no tenías ayer?',10:'¿Qué quieres construir o hacer visible hoy?',
+        11:'¿Qué proyecto o conexión pide más presencia hoy?',12:'¿Qué estás procesando en silencio que todavía no has nombrado?',
+    };
+
+    const _top = _sorted[0];
+    const _q = (_top.type==='HOUSE' && _rqH[_top.house]) ? _rqH[_top.house] : (_rqP[_top.transit]||'');
+
+    el.innerHTML = _sorted.map(a => {
+        const {p1,p2} = _hum(a);
+        return `<div style="${cs}"><p style="${ts}">${p1}</p>${p2?`<p style="${ts2}">${p2}</p>`:''}</div>`;
+    }).join('') + (_q ? `<p style="${qs}">${_q}</p>` : '');
+}
+
+// ── Tarjeta 2: LUNA EN TU CARTA ──────────────────────────────────────
+function _hoyRenderLunaEnTuCarta(moonHouse, lunaSign, cs, ts, ts2) {
+    const el = document.getElementById('hoy-luna-carta-body');
+    if (!el) return;
+
+    const _texts = {
+        1:{p1:`La Luna está hoy en tu <strong>Casa 1 — identidad y presencia</strong>. La energía emocional del día se dirige hacia ti mismo: cómo te ves, cómo te sientes en tu propia piel, qué quieres proyectar hacia fuera.`,
+           p2:`Los estados internos de hoy tienen más visibilidad de lo habitual — no solo para ti, sino para quien está cerca. Lo que sientes se traslada con más facilidad a cómo te presentas. Un buen día para notar qué quieres mostrar y qué prefieres proteger.`},
+        2:{p1:`La Luna está hoy en tu <strong>Casa 2 — recursos y valores</strong>. La energía emocional se orienta hacia lo que tienes, lo que vale y lo que te da estabilidad.`,
+           p2:`Lo que hoy te tranquiliza — o lo que te genera incomodidad — tiene que ver con esa capa de seguridad. Puede que algo relacionado con dinero, posesiones o lo que aprecias genuinamente hable con más fuerza de lo habitual.`},
+        3:{p1:`La Luna está hoy en tu <strong>Casa 3 — comunicación y entorno cercano</strong>. La energía emocional fluye a través de palabras, conversaciones y movimiento en el entorno inmediato.`,
+           p2:`Los intercambios del día tienen más peso del habitual. Lo que se dice — o lo que no se dice — puede quedarse. Es un buen día para prestar atención a cómo te comunicas y a qué escuchas realmente.`},
+        4:{p1:`La Luna está hoy en tu <strong>Casa 4 — hogar y raíces</strong>. La energía emocional vuelve a lo más íntimo: la familia, el espacio físico donde vives, lo que sientes como tuyo de verdad.`,
+           p2:`Puede que lo cotidiano y familiar tengan más peso de lo esperado. Es un día que favorece lo cercano, lo conocido y lo que no necesita explicación. La energía no está afuera — está adentro.`},
+        5:{p1:`La Luna está hoy en tu <strong>Casa 5 — expresión y creatividad</strong>. La energía emocional quiere salir — crear, jugar, disfrutar de lo que da placer genuino.`,
+           p2:`Lo que te da alegría real tiene más fuerza hoy. No es necesario que sea productivo ni útil — el disfrute tiene su propia lógica y el campo hoy lo facilita. Es un buen día para lo que simplemente vale la pena hacer.`},
+        6:{p1:`La Luna está hoy en tu <strong>Casa 6 — trabajo cotidiano y cuerpo</strong>. La energía emocional se orienta hacia lo práctico: la rutina, el cuerpo, las tareas que sostienen el día a día.`,
+           p2:`Lo pequeño importa hoy más de lo habitual. La atención al detalle, al ritmo físico y a lo que funciona o no funciona en la rutina tiene más densidad que en otros días. El cuerpo también habla.`},
+        7:{p1:`La Luna está hoy en tu <strong>Casa 7 — relaciones</strong>. La energía emocional busca el encuentro: los vínculos cercanos, lo que ocurre en el espacio entre tú y los demás.`,
+           p2:`Lo que pasa en las relaciones hoy tiene más peso. Es un buen día para conversaciones pendientes, para notar cómo te afecta lo que los otros proyectan y para ser consciente de lo que tú proyectas también.`},
+        8:{p1:`La Luna está hoy en tu <strong>Casa 8 — transformación y profundidad</strong>. La energía emocional va hacia lo que está debajo de la superficie: lo que no se ve, lo que no se habla, lo que está cambiando sin que lo hayas decidido.`,
+           p2:`Puede que hoy notes algo que normalmente permanece más oculto. No es necesario forzar la claridad — lo que emerge desde este territorio tiene su propio ritmo. No hace falta nombrarlo todo todavía.`},
+        9:{p1:`La Luna está hoy en tu <strong>Casa 9 — expansión y horizonte</strong>. La energía emocional mira más lejos de lo habitual: ideas, creencias, perspectivas que van más allá de lo cotidiano.`,
+           p2:`Tu forma de ver las cosas tiene más amplitud hoy. Es un buen día para preguntarse el porqué detrás de lo que ocurre, para aprender algo que amplíe el marco o para dejar que la perspectiva cambie un poco.`},
+        10:{p1:`La Luna está hoy en tu <strong>Casa 10 — vocación y dirección</strong>. La energía emocional se orienta hacia lo que construyes en el mundo: tu lugar visible, tu trabajo, lo que quieres que sea reconocido.`,
+            p2:`El foco está en el afuera más que en el adentro. Lo que ocurre en el plano profesional o público tiene más resonancia emocional hoy. Lo que haces hacia el exterior también dice algo de cómo te sientes.`},
+        11:{p1:`La Luna está hoy en tu <strong>Casa 11 — comunidad y proyectos</strong>. La energía emocional busca lo colectivo: tus vínculos más amplios, los proyectos compartidos, las personas con las que tienes algo en común más allá de lo íntimo.`,
+            p2:`Lo que pertenece a un grupo, una red o una causa tiene más presencia hoy. Es un buen día para notar qué tipo de colectivo te nutre y cuál te desgasta.`},
+        12:{p1:`La Luna está hoy en tu <strong>Casa 12 — mundo interior</strong>. La energía emocional se retira hacia adentro: lo que se procesa en silencio, lo que no necesita ser explicado ni mostrado.`,
+            p2:`Es un día para la quietud y la escucha interna. Lo que emerge desde este lugar es real aunque no tenga forma clara todavía — no hace falta forzarlo hacia afuera.`},
+    };
+
+    if (moonHouse && _texts[moonHouse]) {
+        const {p1,p2} = _texts[moonHouse];
+        el.innerHTML = `<p style="${ts}">${p1}</p><p style="${ts2}">${p2}</p>`;
+        return;
+    }
+    // Fallback: signo lunar
+    const _signTone = {
+        'Aries':'impulso y movimiento directo','Tauro':'calma, cuerpo y arraigo','Géminis':'curiosidad, conexión y palabras',
+        'Cáncer':'cuidado, hogar y memoria','Leo':'expresión, presencia y juego','Virgo':'atención, detalle y servicio',
+        'Libra':'equilibrio, relación y estética','Escorpio':'profundidad, transformación y silencio','Sagitario':'expansión, significado y movimiento',
+        'Capricornio':'estructura, compromiso y dirección','Acuario':'distancia, innovación y colectivo','Piscis':'sensibilidad, disolución y mundo interior',
+    };
+    const _tono = lunaSign ? (_signTone[lunaSign]||lunaSign) : 'un registro emocional en transición';
+    el.innerHTML = `<p style="${ts}">La Luna transita hoy por ${_kIcon(lunaSign||'', 14, 'rgba(74,63,42,0.75)')}<strong>${lunaSign||'su posición actual'}</strong>. La energía emocional del día se mueve desde el registro de ${_tono}.</p>
+<p style="${ts2}">Sin casa natal disponible, el tono del signo es la referencia: lo que ${lunaSign?`<strong>${lunaSign}</strong> `:'el signo de la Luna '}colorea hoy es lo que da textura al campo emocional.</p>`;
+}
+
+// ── Tarjeta 3: PLANETAS EN ESCENA ─────────────────────────────────────
+function _hoyRenderPlanetasEnEscena(planetDay, transits, moonHouse, cs, ts, ts2) {
+    const el = document.getElementById('hoy-planetas-escena-body');
+    if (!el) return;
+
+    const _signFn = {
+        'Aries':'trabaja con impulso directo e iniciativa sin demora',
+        'Tauro':'trabaja desde arraigo, cuerpo y consolidación progresiva',
+        'Géminis':'trabaja desde intercambio, versatilidad y conexión rápida',
+        'Cáncer':'trabaja desde cuidado, memoria y sensibilidad emocional',
+        'Leo':'trabaja desde expresión, presencia y generosidad activa',
+        'Virgo':'trabaja desde precisión, servicio y atención al detalle',
+        'Libra':'trabaja desde equilibrio, relación y búsqueda del acuerdo',
+        'Escorpio':'trabaja desde profundidad, intensidad y transformación',
+        'Sagitario':'trabaja desde expansión, horizonte y búsqueda de sentido',
+        'Capricornio':'trabaja desde estructura, compromiso y dirección al largo plazo',
+        'Acuario':'trabaja desde innovación, distancia y perspectiva colectiva',
+        'Piscis':'trabaja desde sensibilidad, fluidez y mundo interior',
+    };
+    const _signImpl = {
+        'Aries':'La energía no espera el momento perfecto — lo que está decidido puede moverse hoy.',
+        'Tauro':'Lo que importa hoy está cerca y es concreto. Funciona bien lo sólido y lo que ya tiene base.',
+        'Géminis':'Los intercambios del día tienen más peso del habitual. La conversación es un recurso real.',
+        'Cáncer':'La energía emocional está más activa. Lo cercano y familiar tiene ventaja sobre lo distante.',
+        'Leo':'La expresión propia y la presencia tienen más espacio. Lo que se hace con intención se nota.',
+        'Virgo':'Lo práctico y detallado tiene ventaja. Prestar atención a lo concreto da resultados hoy.',
+        'Libra':'Los vínculos y el equilibrio son el foco. El diálogo y el acuerdo facilitan más de lo habitual.',
+        'Escorpio':'La profundidad y lo no dicho tienen más peso. No hace falta forzar la superficie.',
+        'Sagitario':'La perspectiva amplia facilita el movimiento. Es un buen día para ver el conjunto antes que el detalle.',
+        'Capricornio':'La estructura y el compromiso dan soporte. Lo que requiere paciencia tiene más tracción hoy.',
+        'Acuario':'La mirada colectiva o innovadora facilita el día. El distanciamiento puede ser un recurso.',
+        'Piscis':'La sensibilidad y la escucha interna tienen ventaja. Funciona bien lo que no se fuerza.',
+    };
+
+    const _items = [];
+    _items.push({planet:planetDay, sign:transits[planetDay]||'', house:null, role:'planeta del día'});
+    if (planetDay !== 'Luna') {
+        _items.push({planet:'Luna', sign:transits['Luna']||'', house:moonHouse, role:'tono emocional'});
+    }
+    for (const rp of ['Mercurio','Venus','Marte']) {
+        if (_items.find(i=>i.planet===rp) || _items.length >= 3) break;
+        if (transits[rp]) { _items.push({planet:rp, sign:transits[rp], house:null, role:''}); break; }
+    }
+
+    el.innerHTML = _items.map(item => {
+        const _lbl = `display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:0.1em;color:#b8a070;margin:0 0 6px`;
+        const _hdr = [
+            _kIcon(item.planet, 14, '#b8a070'),
+            `<span>${item.planet.toUpperCase()}</span>`,
+            item.sign ? `<span style="opacity:0.45"> · </span>${_kIcon(item.sign, 11, 'rgba(180,160,120,0.65)')}<span>${item.sign.toUpperCase()}</span>` : '',
+            item.house ? `<span style="opacity:0.45"> · CASA ${item.house}</span>` : '',
+        ].filter(Boolean).join('');
+        const _fn = item.sign ? (_signFn[item.sign]||('opera en '+item.sign+' hoy')) : 'opera en tránsito hoy';
+        const _impl = _signImpl[item.sign] || '';
+        const _roleNote = item.role === 'planeta del día'
+            ? ' Como planeta del día, su tono marca el carácter general del momento.'
+            : item.role === 'tono emocional'
+            ? ' Como modulador emocional, colorea el registro interno del día más que el externo.'
+            : '';
+        const _p2 = _impl ? _impl + (_roleNote ? ' ' + _roleNote.trim() : '') : _roleNote.trim();
+        return `<div style="${cs}">
+            <p style="${_lbl}">${_hdr}</p>
+            <p style="${ts}"><strong>${item.planet}</strong> ${_fn}.</p>
+            ${_p2?`<p style="${ts2}">${_p2}</p>`:''}
+        </div>`;
+    }).join('');
+}
+
+// ── Tarjeta 4: EL ORIGEN DEL DÍA ─────────────────────────────────────
+function _hoyRenderOrigenDelDia(lord, planetDay, cs, ts, ts2) {
+    const el = document.getElementById('hoy-origen-dia-body');
+    if (!el) return;
+
+    const _tones = {
+        'Sol':'claridad y foco','Luna':'emoción y receptividad','Marte':'impulso y movimiento',
+        'Mercurio':'intercambio y análisis','Júpiter':'apertura y generosidad',
+        'Venus':'relación y armonía','Saturno':'paciencia y estructura',
+    };
+
+    const _ic = n => _kIcon(n, 14, 'rgba(74,63,42,0.75)');
+    if (!lord) {
+        el.innerHTML = `<p style="${ts}">Hoy es día de ${_ic(planetDay)}<strong>${planetDay}</strong>. La energía del día trabaja desde ${_tones[planetDay]||'su registro propio'} — y ese tono no resuena ni tensiona ningún fondo anual en particular.</p>
+<p style="${ts2}">El día tiene su propio carácter. Lo que encuentres hoy viene directamente del planeta del día, sin interferencia de un ciclo más largo.</p>`;
+        return;
+    }
+
+    const _rel = {
+        'Sol':      {'Luna':'Tensión','Marte':'Tensión','Mercurio':'Neutro','Júpiter':'Afinidad','Venus':'Afinidad','Saturno':'Tensión','Sol':'Afinidad'},
+        'Luna':     {'Luna':'Afinidad','Marte':'Tensión','Mercurio':'Neutro','Júpiter':'Afinidad','Venus':'Afinidad','Saturno':'Tensión','Sol':'Neutro'},
+        'Marte':    {'Luna':'Tensión','Marte':'Afinidad','Mercurio':'Tensión','Júpiter':'Neutro','Venus':'Tensión','Saturno':'Neutro','Sol':'Afinidad'},
+        'Mercurio': {'Luna':'Neutro','Marte':'Tensión','Mercurio':'Afinidad','Júpiter':'Neutro','Venus':'Afinidad','Saturno':'Neutro','Sol':'Afinidad'},
+        'Júpiter':  {'Luna':'Afinidad','Marte':'Neutro','Mercurio':'Neutro','Júpiter':'Afinidad','Venus':'Afinidad','Saturno':'Tensión','Sol':'Afinidad'},
+        'Venus':    {'Luna':'Afinidad','Marte':'Tensión','Mercurio':'Afinidad','Júpiter':'Afinidad','Venus':'Afinidad','Saturno':'Neutro','Sol':'Neutro'},
+        'Saturno':  {'Luna':'Tensión','Marte':'Neutro','Mercurio':'Neutro','Júpiter':'Tensión','Venus':'Neutro','Saturno':'Afinidad','Sol':'Tensión'},
+    };
+    const _lQ = {
+        'Sol':'identidad y foco','Luna':'emoción y cuidado','Marte':'acción y voluntad',
+        'Mercurio':'pensamiento y comunicación','Júpiter':'expansión y significado',
+        'Venus':'vínculo y valor','Saturno':'estructura y consolidación',
+    };
+
+    const _type = (_rel[lord]&&_rel[lord][planetDay]) || 'Neutro';
+    let _p1, _p2;
+    if (_type==='Afinidad') {
+        _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong> — y hoy el ${_ic(planetDay)}<strong>día de ${planetDay}</strong> trabaja en el mismo registro. Los dos planetas comparten un tono afín: ${_lQ[lord]||lord} y ${_tones[planetDay]||planetDay} no se contradicen.`;
+        _p2 = `Hay coherencia entre el fondo del año y la superficie del día. Lo que ocurra hoy no es ruido externo — encaja con lo que llevas construyendo. Un día donde el cielo acompaña en lugar de tensionar.`;
+    } else if (_type==='Tensión') {
+        _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong>, que trabaja con ${_lQ[lord]||lord}. Hoy es ${_ic(planetDay)}<strong>día de ${planetDay}</strong>, que funciona desde un registro distinto: ${_tones[planetDay]||planetDay}.`;
+        _p2 = `Los dos planetas no trabajan en el mismo tono — y esa diferencia se siente. No es un obstáculo: es información sobre dónde hay presión activa en este momento. La fricción entre el fondo anual y el día tiene algo que decirte.`;
+    } else {
+        _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong>. Hoy es ${_ic(planetDay)}<strong>día de ${planetDay}</strong>, que trabaja desde su propio registro sin resonar especialmente con el fondo anual ni tensionarlo.`;
+        _p2 = `El día tiene su tono propio, independiente del ciclo que llevas. Lo que encuentres hoy viene del planeta del día — el señor del año se mantiene en el fondo sin interferir.`;
+    }
+    el.innerHTML = `<p style="${ts}">${_p1}</p><p style="${ts2}">${_p2}</p>`;
+}
+
+// ── Tarjeta 5: BRÚJULA KAIROS ─────────────────────────────────────────
+function _hoyRenderBrujulaKairos(radarStatus, planetDay, cs, ts, ts2) {
+    const el = document.getElementById('hoy-brujula-body');
+    if (!el) return;
+
+    const _bank = {
+        'peak': {
+            'Sol':'<strong>La energía está alta y el foco es claro.</strong> Funciona bien avanzar en lo que ya está en marcha — no abrir nuevos frentes hoy.',
+            'Luna':'<strong>Alta intensidad emocional disponible.</strong> Puede ayudar elegir dónde poner la atención antes de que el día decida por ti.',
+            'Marte':'<strong>Mucha energía disponible, pero puede ser intensa.</strong> Conviene canalizarla hacia algo concreto antes de que se disperse en varios frentes.',
+            'Mercurio':'<strong>Momento de claridad mental alta.</strong> Buen día para conversaciones difíciles o decisiones que llevan tiempo pendientes.',
+            'Júpiter':'<strong>Expansión disponible, pero con riesgo de sobreestimar.</strong> Puede ayudar verificar antes de comprometerse.',
+            'Venus':'<strong>Energía disponible en lo relacional.</strong> Es un buen momento para conversaciones que importan — el registro emocional está abierto.',
+            'Saturno':'<strong>Intensidad alta con energía de consolidación.</strong> Funciona bien trabajar en lo que requiere estructura y atención sostenida.',
+        },
+        'integration': {
+            'Sol':'<strong>Día de asimilación con foco disponible.</strong> Puede ayudar dejar que lo que ya está avanzando continúe sin empujarlo más.',
+            'Luna':'<strong>Ritmo emocional en integración.</strong> Es un buen día para lo cercano y lo que no requiere velocidad.',
+            'Marte':'<strong>Energía de acción en modo más lento.</strong> Funciona bien lo concreto y lo pequeño en lugar de los grandes movimientos.',
+            'Mercurio':'<strong>Momento de reflexión más que de comunicación activa.</strong> Las ideas que llegan hoy tienen calidad — merece la pena anotarlas.',
+            'Júpiter':'<strong>Apertura suave disponible.</strong> Es un buen momento para recibir antes que para dar.',
+            'Venus':'<strong>Energía receptiva en lo relacional.</strong> Hoy la presencia vale más que la iniciativa.',
+            'Saturno':'<strong>Integración con estructura.</strong> Funciona bien revisar, ordenar y consolidar lo que ya existe.',
+        },
+        'low': {
+            'Sol':'<strong>Momento de pausa activa con foco reducido.</strong> Conviene gestionar el ritmo — hacer lo esencial, no lo óptimo.',
+            'Luna':'<strong>Ritmo emocional bajo.</strong> Es mejor no forzar conversaciones o decisiones que pueden esperar.',
+            'Marte':'<strong>Energía de acción reducida.</strong> Puede ayudar redirigir el impulso hacia tareas pequeñas y concretas.',
+            'Mercurio':'<strong>Claridad mental reducida.</strong> No es el mejor momento para compromisos importantes o comunicaciones de alto impacto.',
+            'Júpiter':'<strong>Expansión en pausa.</strong> Es mejor no comprometerse a cosas grandes hoy — esperar a que el ritmo cambie.',
+            'Venus':'<strong>Energía relacional en pausa.</strong> Conviene preservar la energía en lugar de invertirla hacia el exterior.',
+            'Saturno':'<strong>Pausa con peso de estructura.</strong> Las tareas rutinarias de bajo impacto son las más sostenibles hoy.',
+        },
+        'neutral': {
+            'Sol':'<strong>Día de ritmo estable.</strong> Funciona bien lo continuo — sostener lo que ya está en marcha.',
+            'Luna':'<strong>Ritmo emocional estable.</strong> Sin tensión especial ni apertura especial — el día fluye con su propio tono.',
+            'Marte':'<strong>Energía de acción disponible en modo estable.</strong> Buen momento para tareas que requieren impulso sin urgencia.',
+            'Mercurio':'<strong>Claridad mental estable.</strong> Es un día funcionalmente bueno para trabajar sin grandes exigencias.',
+            'Júpiter':'<strong>Apertura disponible sin exceso.</strong> Día favorable para movimientos moderados en la dirección correcta.',
+            'Venus':'<strong>Energía relacional equilibrada.</strong> Sin tensión especial — el contexto acompaña.',
+            'Saturno':'<strong>Estabilidad con peso.</strong> Funciona bien lo estructurado y lo que requiere paciencia.',
+        },
+    };
+
+    // Segundo párrafo único por planeta × radar — sin coaching, con textura real
+    const _radarPlanetNuance = {
+        'peak': {
+            'Sol':      'El foco intensificado del día es un recurso real — conviene usarlo en lo que ya tiene dirección, no en abrir nuevos frentes.',
+            'Luna':     'La intensidad emocional disponible es real — elegir dónde ponerla antes de que el momento lo decida por ti tiene más valor que reaccionar desde ella.',
+            'Marte':    'Hay mucho impulso activo hoy — la pregunta no es si actuar, sino con qué claridad de dirección.',
+            'Mercurio': 'La mente está rápida, pero rapidez no siempre es claridad. Vale verificar antes de comprometerse.',
+            'Júpiter':  'La expansión disponible puede llevar a comprometerse con más de lo que el momento puede sostener — mejor un paso firme que tres rápidos.',
+            'Venus':    'El registro relacional está abierto — las conversaciones de hoy tienen más peso de lo habitual, en cualquier dirección.',
+            'Saturno':  'La intensidad alta con estructura produce avances reales — funciona bien trabajar en lo que requiere concentración sostenida.',
+        },
+        'integration': {
+            'Sol':      'Sostener el foco sin empujarlo es la postura más eficaz hoy — lo que ya está en marcha tiene tracción propia.',
+            'Luna':     'El registro emocional en integración permite procesar sin sobrecarga — un buen momento para lo cercano y lo que no requiere velocidad.',
+            'Marte':    'El impulso en modo lento es más preciso — lo concreto y lo pequeño tienen más retorno que los grandes movimientos.',
+            'Mercurio': 'Las ideas que llegan en integración son más profundas que rápidas — merece la pena anotar antes de compartir.',
+            'Júpiter':  'Recibir antes que dar es la postura más alineada — el día favorece la recepción sobre la expansión activa.',
+            'Venus':    'La presencia vale más que la iniciativa — estar disponible sin forzar el encuentro tiene su propio valor.',
+            'Saturno':  'Revisar, ordenar y consolidar tiene ventaja hoy — lo que ya existe se fortalece con atención sostenida.',
+        },
+        'low': {
+            'Sol':      'Hacer lo esencial sin exigir el rendimiento habitual es lo que el ritmo del día pide — no hay que sumar, hay que gestionar.',
+            'Luna':     'Las conversaciones o decisiones emocionales que puedan esperar es mejor dejarlas para otro momento — el campo no está abierto para lo irreversible.',
+            'Marte':    'Redirigir el impulso hacia tareas pequeñas y concretas evita la frustración — el movimiento mayor espera mejor momento.',
+            'Mercurio': 'La claridad mental reducida no es señal de bloqueo permanente — es señal de que hoy el procesamiento es más lento y eso tiene que respetarse.',
+            'Júpiter':  'Los compromisos grandes esperan — lo que se promete desde un ritmo bajo cuesta más de cumplir de lo que parece en el momento.',
+            'Venus':    'Preservar la energía relacional es más sabio que invertirla hoy — el campo no está abierto para el encuentro.',
+            'Saturno':  'Las tareas rutinarias de bajo impacto son las más sostenibles hoy — la estructura aguanta, pero no pide más de lo necesario.',
+        },
+        'neutral': {
+            'Sol':      'Funciona bien sostener el foco en lo que ya está avanzando — sin buscar nuevos puntos de entrada ni forzar la claridad.',
+            'Luna':     'El ritmo emocional neutro permite escuchar con más claridad — sin ruido de fondo, la señal interna es más limpia de lo habitual.',
+            'Marte':    'La energía disponible es suficiente para lo concreto — sin urgencia pero sin estancamiento. El impulso rinde más cuando tiene tarea específica.',
+            'Mercurio': 'La mente tiene tracción estable — un buen momento para tareas que requieren concentración sin presión ni urgencia.',
+            'Júpiter':  'La apertura es moderada y real — lo que llega hoy llega de forma natural, sin sobrecarga ni expectativa excesiva.',
+            'Venus':    'Los vínculos funcionan bien en modo receptivo hoy — estar presente vale más que tener iniciativa. La relación no necesita ser forzada.',
+            'Saturno':  'La estructura del día es funcional — lo que requiere disciplina tiene el terreno disponible. Nada fuera de lo ordinario, y eso es suficiente.',
+        },
+    };
+
+    const _status = _bank[radarStatus]||_bank['neutral'];
+    const _p1 = _status[planetDay]||`Hoy es día de ${planetDay}. ${_status['Sol']}`;
+    const _p2 = (_radarPlanetNuance[radarStatus]&&_radarPlanetNuance[radarStatus][planetDay])
+        || 'El contexto acompaña lo que ya está en marcha.';
+    el.innerHTML = `<p style="${ts}">${_p1}</p><p style="${ts2}">${_p2}</p>`;
+}
+
+// ── Tarjeta 6: PUNTO DE ATENCIÓN ──────────────────────────────────────
+function _hoyRenderPuntoDeAtencion(activations, radarStatus, cs, ts, ts2) {
+    const el = document.getElementById('hoy-punto-atencion-body');
+    if (!el) return;
+
+    const _oppBank = {
+        'Sol':{
+            p1:'<strong>El Sol</strong> enfrenta hoy tu <strong>[natal] natal</strong>. Puede que sientas una tensión entre lo que quieres proyectar y lo que algo en ti quiere guardar o proteger.',
+            p2:'Conviene no forzar la claridad — a veces la ambigüedad también es información. No todo necesita resolverse hoy.'
+        },
+        'Luna':{
+            p1:'<strong>La Luna</strong> enfrenta hoy tu <strong>[natal] natal</strong>. El registro emocional puede estar polarizado — alto por momentos, bajo por otros.',
+            p2:'No es el mejor momento para tomar decisiones importantes desde los extremos. Lo que sientes ahora tiene más intensidad de lo que tendrá mañana.'
+        },
+        'Mercurio':{
+            p1:'<strong>Mercurio</strong> enfrenta hoy tu <strong>[natal] natal</strong>. La comunicación puede tener más fricción de lo habitual.',
+            p2:'Revisar antes de enviar; escuchar antes de responder. No todo lo que parece urgente comunicar necesita salir hoy.'
+        },
+        'Venus':{
+            p1:'<strong>Venus</strong> enfrenta hoy tu <strong>[natal] natal</strong>. Puede haber tensión entre lo que quieres dar y lo que algo en ti necesita proteger.',
+            p2:'No forzar el acuerdo donde hay conflicto real. La incomodidad en los vínculos de hoy tiene algo que decir — no hace falta silenciarla.'
+        },
+        'Marte':{
+            p1:'<strong>Marte</strong> enfrenta hoy tu <strong>[natal] natal</strong>. La energía disponible puede convertirse fácilmente en reactividad.',
+            p2:'Conviene hacer una pausa antes de actuar desde el primer impulso. La acción más efectiva de hoy probablemente no es la más rápida.'
+        },
+        'Júpiter':{
+            p1:'<strong>Júpiter</strong> enfrenta hoy tu <strong>[natal] natal</strong>. El riesgo no es la falta de energía — es sobreestimar lo que el día puede sostener.',
+            p2:'Mejor un paso firme que tres pasos rápidos. Lo que se compromete hoy bajo esta tensión puede costar más de sostener de lo que parece.'
+        },
+        'Saturno':{
+            p1:'<strong>Saturno</strong> enfrenta hoy tu <strong>[natal] natal</strong>. Puede haber una sensación de resistencia o de que algo no avanza como debería.',
+            p2:'No es señal de fracaso — es señal de que algo necesita más base antes de moverse. Hoy la pausa puede ser más productiva que el esfuerzo.'
+        },
+    };
+
+    const _opps = activations.filter(a=>a.type==='OPOSICIÓN');
+    if (_opps.length > 0) {
+        const _opp = _opps[0];
+        const _tmpl = _oppBank[_opp.transit];
+        if (_tmpl) {
+            const _natal = _opp.natal||'planeta';
+            el.innerHTML = `<p style="${ts}">${_tmpl.p1.replace('[natal]',_natal)}</p><p style="${ts2}">${_tmpl.p2}</p>`;
+        } else {
+            el.innerHTML = `<p style="${ts}"><strong>${_opp.transit}</strong> enfrenta tu <strong>${_opp.natal||'carta'} natal</strong> hoy. Hay tensión creativa disponible — no hace falta resolverla, sino reconocerla.</p>
+<p style="${ts2}">Conviene no actuar desde el primer impulso. Lo que la tensión señala tiene más valor que lo que la tensión produce si se ignora.</p>`;
+        }
+        return;
+    }
+
+    if (radarStatus==='peak') {
+        el.innerHTML = `<p style="${ts}"><strong>La energía del día está alta.</strong> Eso puede ser útil, pero también puede llevar a sobreestimar lo que es posible o a reaccionar con más intensidad de lo que la situación pide.</p>
+<p style="${ts2}">Hoy vale la pena hacer una pausa antes de responder — no por desconfianza, sino para distinguir entre lo que de verdad requiere acción y lo que la intensidad del momento hace parecer urgente.</p>`;
+        return;
+    }
+
+    el.innerHTML = `<p style="${ts}">No hay fricciones activas hoy entre el cielo y tu carta. El día no pide corrección ni defensa.</p>
+<p style="${ts2}">El momento invita más a sostener lo que está en marcha que a ajustar o proteger. Eso, de por sí, es una forma de información: cuando no hay fricción, la energía puede ir a lo que importa sin resistencia.</p>`;
 }
 
 async function saveJournalEntry() {
