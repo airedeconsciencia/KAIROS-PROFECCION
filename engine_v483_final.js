@@ -5342,70 +5342,187 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
                            : d === 0 ? 'Hoy' : d === 1 ? 'Mañana'
                            : d <= 30 ? `En ${d} días` : `En ${Math.round(d/7)} semanas`;
 
-    // ── CRONOESFERA ANUAL v1.0 ────────────────────────────────────────────────
-    // Gadget de orientación temporal — solo visualiza datos existentes, sin interpretación nueva.
-    // Posición: primera tarjeta de AÑO Premium (antes de "Tu energía guía").
-    // Regla de gadgets: cada gadget se coloca donde mejor ayuda a leer el módulo, no al final.
+    // ── GADGETS VISUALES AÑO PREMIUM ─────────────────────────────────────────
+    // Regla: cada gadget se coloca donde mejor ayuda a leer el módulo (no todos al final).
+    // Cronoesfera: apertura · Mapa de Territorios: intermedio · Espejo Temporal: cierre.
 
-    // Mes del ciclo — base: fecha de cumpleaños como año cero de la profección
+    // ── Estilos de gadgets — inyección única ─────────────────────────────────
+    if (!document.getElementById('kairos-gadgets-styles')) {
+        const _kgSt = document.createElement('style');
+        _kgSt.id = 'kairos-gadgets-styles';
+        _kgSt.textContent = `
+            @keyframes crono-pulse {
+                0%   { opacity:0.5; filter:drop-shadow(0 0 2px #d7c188); }
+                50%  { opacity:1;   filter:drop-shadow(0 0 8px #d7c188); }
+                100% { opacity:0.5; filter:drop-shadow(0 0 2px #d7c188); }
+            }
+            @keyframes hoy-pulse {
+                0%   { opacity:0.5; filter:drop-shadow(0 0 1px #d7c188); }
+                50%  { opacity:1;   filter:drop-shadow(0 0 5px #d7c188); }
+                100% { opacity:0.5; filter:drop-shadow(0 0 1px #d7c188); }
+            }
+            .crono-active-segment { animation: crono-pulse 3s infinite ease-in-out; }
+            .crono-node { transition: transform 0.3s ease, opacity 0.3s ease; }
+            .crono-node:hover { transform: scale(1.2); opacity:1 !important; }
+            .mapa-segmento { transition: opacity 0.3s ease, stroke-width 0.3s ease; }
+            .mapa-segmento:hover { opacity:1 !important; stroke-width:14px !important; }
+            .mapa-marker { transition: transform 0.3s ease, filter 0.3s ease; }
+            .mapa-marker:hover { transform:scale(1.3); filter:drop-shadow(0 0 4px rgba(255,255,255,0.6)); }
+            .espejo-hoy-glow { animation: hoy-pulse 2.5s infinite ease-in-out; }
+            .espejo-nodo { transition: transform 0.2s ease, opacity 0.2s ease; }
+            .espejo-nodo:hover { transform:scale(1.25); opacity:1 !important; }
+        `;
+        document.head.appendChild(_kgSt);
+    }
+
+    // ── Variables compartidas por los 3 gadgets ───────────────────────────────
+    // Mes del ciclo — base: cumpleaños como año cero de la profección
     const _crBDay = state.user?.birthDay, _crBMon = state.user?.birthMonth;
     const _crToday = new Date();
     const _crHasBirthdate = _crBDay && _crBMon;
-    let _crCycleMonth = null, _crCyclePct = null;
+    let _crCycleMonth = null, _crCyclePct = null, _crDaysSince = null;
     if (_crHasBirthdate) {
         const _crThisYearBday = new Date(_crToday.getFullYear(), _crBMon - 1, _crBDay);
         const _crCycleStart = _crToday >= _crThisYearBday
             ? _crThisYearBday
             : new Date(_crToday.getFullYear() - 1, _crBMon - 1, _crBDay);
-        const _crDaysSince = Math.floor((_crToday - _crCycleStart) / 86400000);
+        _crDaysSince  = Math.floor((_crToday - _crCycleStart) / 86400000);
         _crCycleMonth = Math.min(12, Math.floor(_crDaysSince / 30.44) + 1);
         _crCyclePct   = Math.min(100, Math.round(_crDaysSince / 365 * 100));
     }
 
-    // Próximo eclipse — reutiliza _ET y _eclDias ya definidos
-    const _crNextEcl = _ET.find(e => _eclDias(e) > 0) || null;
+    // Próximo eclipse
+    const _crNextEcl     = _ET.find(e => _eclDias(e) > 0) || null;
     const _crNextEclDays = _crNextEcl ? _eclDias(_crNextEcl) : null;
     const _crNextEclTxt  = _crNextEclDays === 1 ? 'mañana'
                          : _crNextEclDays !== null ? `en ${_crNextEclDays} días`
                          : null;
+    // _crEclipsePct: posición REAL del eclipse en el año (no la posición actual del usuario)
+    const _crEclipsePct = (_crDaysSince !== null && _crNextEclDays !== null)
+        ? Math.min(100, Math.round((_crDaysSince + _crNextEclDays) / 365 * 100))
+        : null;
 
-    // Júpiter y Saturno por casa — cálculo inline (no toca Tránsitos Maestros)
-    const _ZODIAC_CR = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
-    const _crCalcHouse = (tr, asc) => { const t = _ZODIAC_CR.indexOf(tr), a = _ZODIAC_CR.indexOf(asc); return (t === -1 || a === -1) ? null : (t - a + 12) % 12 + 1; };
-    const _crAsc   = state.user?.asc || null;
-    const _crJupSg = window.CURRENT_TRANSITS?.['Júpiter'] || window.CURRENT_TRANSITS?.['Jupiter'] || null;
-    const _crSatSg = window.CURRENT_TRANSITS?.['Saturno'] || window.CURRENT_TRANSITS?.['Saturn'] || null;
-    const _crJupH  = (_crJupSg && _crAsc) ? _crCalcHouse(_crJupSg, _crAsc) : null;
-    const _crSatH  = (_crSatSg && _crAsc) ? _crCalcHouse(_crSatSg, _crAsc) : null;
+    // Júpiter y Saturno por casa (whole-sign)
+    const _ZODIAC_CR  = ['Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario','Capricornio','Acuario','Piscis'];
+    const _crCalcH    = (tr, asc) => { const t=_ZODIAC_CR.indexOf(tr), a=_ZODIAC_CR.indexOf(asc); return (t===-1||a===-1)?null:(t-a+12)%12+1; };
+    const _crAsc      = state.user?.asc || null;
+    const _crJupSg    = window.CURRENT_TRANSITS?.['Júpiter'] || window.CURRENT_TRANSITS?.['Jupiter'] || null;
+    const _crSatSg    = window.CURRENT_TRANSITS?.['Saturno'] || window.CURRENT_TRANSITS?.['Saturn'] || null;
+    const _crJupH     = (_crJupSg && _crAsc) ? _crCalcH(_crJupSg, _crAsc) : null;
+    const _crSatH     = (_crSatSg && _crAsc) ? _crCalcH(_crSatSg, _crAsc) : null;
 
-    // HTML del gadget
-    const blockCronos = `<div id="annual-premium-cronos" style="${CARD}">
-        <span style="${LBL}">Orientación temporal</span>
-        <p style="font-size:15px;font-weight:700;color:#4a3f2a;margin:0 0 14px">Año de ${lordOriginal} · Casa ${casaActiva}</p>
-        ${_crHasBirthdate ? `
-        <div style="margin-bottom:14px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-                <span style="font-size:11px;color:rgba(74,63,42,0.55)">Mes ${_crCycleMonth} de 12</span>
-                <span style="font-size:11px;color:rgba(74,63,42,0.40)">${_crCyclePct}%</span>
-            </div>
-            <div style="height:4px;background:rgba(180,160,120,0.15);border-radius:2px;overflow:hidden">
-                <div style="height:100%;width:${_crCyclePct}%;background:rgba(184,160,112,0.50);border-radius:2px"></div>
-            </div>
-        </div>` : ''}
-        <div style="display:flex;flex-direction:column;gap:6px">
-            ${_crNextEclTxt ? `
-            <div style="display:flex;align-items:center;gap:8px">
-                <span style="font-size:10px;font-weight:700;color:rgba(184,160,112,0.80);letter-spacing:0.10em;text-transform:uppercase">Eclipse</span>
-                <span style="font-size:12px;color:rgba(74,63,42,0.65)">${_crNextEclTxt}</span>
-            </div>` : ''}
-            ${(_crJupH || _crSatH) ? `
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-                ${_crJupH ? `<span style="font-size:12px;color:rgba(74,63,42,0.55)">Júpiter · Casa ${_crJupH}</span>` : ''}
-                ${(_crJupH && _crSatH) ? `<span style="color:rgba(74,63,42,0.25)">·</span>` : ''}
-                ${_crSatH ? `<span style="font-size:12px;color:rgba(74,63,42,0.55)">Saturno · Casa ${_crSatH}</span>` : ''}
-            </div>` : ''}
-        </div>
-    </div>`;
+    // Casas de eclipses para el Mapa de Territorios (calculadas desde _ET real)
+    const _crAscIdx   = _ZODIAC_CR.indexOf(_crAsc || '');
+    const _crEclHFn   = (e) => _crAscIdx >= 0 ? (e.si - _crAscIdx + 12) % 12 + 1 : null;
+    const _crFutEcls  = _ET.filter(e => _eclDias(e) > -60).slice(0, 4);
+    const _crEclH1    = _crFutEcls[0] ? _crEclHFn(_crFutEcls[0]) : null;
+    const _crEclH2    = _crFutEcls[1] ? _crEclHFn(_crFutEcls[1]) : null;
+
+    // Áreas de casas (etiquetas cortas para gadgets)
+    const _crAreas = {
+        1:'Identidad', 2:'Recursos', 3:'Entorno', 4:'Raíces',
+        5:'Expresión', 6:'Trabajo', 7:'Vínculos', 8:'Transformación',
+        9:'Expansión', 10:'Reputación', 11:'Comunidad', 12:'Interioridad'
+    };
+
+    // ── GADGET 1: CRONOESFERA ORBITAL v1.0 ───────────────────────────────────
+    // Apertura de AÑO Premium. Responde: ¿dónde estoy en mi año?
+    // 12 segmentos de arco — meses pasados en ámbar, activo pulsante, eclipse como marcador orbital.
+    (function _buildCronos() {
+        const _cx=140, _cy=140, _rRing=95, _gap=4, _strokeW=8, _rPlanets=132, _offsetA=-90;
+        let _segs='', _eclMarker='', _planets='';
+        for (let i=0;i<12;i++) {
+            const _aStart = _offsetA+(i*30)+(_gap/2), _aEnd = _offsetA+((i+1)*30)-(_gap/2);
+            const _rs=(_aStart*Math.PI)/180, _re=(_aEnd*Math.PI)/180;
+            const x1=_cx+_rRing*Math.cos(_rs), y1=_cy+_rRing*Math.sin(_rs);
+            const x2=_cx+_rRing*Math.cos(_re), y2=_cy+_rRing*Math.sin(_re);
+            const _mn=i+1;
+            let _sc='rgba(255,255,255,0.08)', _cls='', _flt='';
+            if (_crCycleMonth && _mn < _crCycleMonth) { _sc='#b8a070'; }
+            else if (_crCycleMonth && _mn === _crCycleMonth) { _sc='#d7c188'; _cls='crono-active-segment'; _flt='filter:url(#crono-glow);'; }
+            _segs += `<path d="M ${x1} ${y1} A ${_rRing} ${_rRing} 0 0 1 ${x2} ${y2}" fill="none" stroke="${_sc}" stroke-width="${_strokeW}" stroke-linecap="round" class="${_cls}" style="${_flt}"/>`;
+        }
+        if (_crEclipsePct !== null) {
+            const _aEcl = _offsetA+(_crEclipsePct*360/100), _rEcl=(_aEcl*Math.PI)/180;
+            const _xE=_cx+115*Math.cos(_rEcl), _yE=_cy+115*Math.sin(_rEcl);
+            _eclMarker = `<g transform="translate(${_xE},${_yE}) rotate(${_aEcl+45})" class="crono-node" style="opacity:0.9"><rect x="-4" y="-4" width="8" height="8" fill="#d7c188" filter="url(#crono-glow)"/></g>`;
+        }
+        if (_crJupH) { const _aJ=_offsetA+((_crJupH-1)*30)+15, _rJ=(_aJ*Math.PI)/180; _planets+=`<text x="${_cx+_rPlanets*Math.cos(_rJ)}" y="${_cy+_rPlanets*Math.sin(_rJ)+4}" text-anchor="middle" fill="#f5f0e8" class="crono-node" style="font-size:12px;font-family:sans-serif;opacity:0.5">♃</text>`; }
+        if (_crSatH) { const _aS=_offsetA+((_crSatH-1)*30)+15, _rS=(_aS*Math.PI)/180; _planets+=`<text x="${_cx+_rPlanets*Math.cos(_rS)}" y="${_cy+_rPlanets*Math.sin(_rS)+4}" text-anchor="middle" fill="#f5f0e8" class="crono-node" style="font-size:12px;font-family:sans-serif;opacity:0.5">♄</text>`; }
+        const _legend = [
+            _crCycleMonth ? `Mes ${_crCycleMonth} de 12` : null,
+            _crNextEclTxt ? `Eclipse ${_crNextEclTxt}` : null
+        ].filter(Boolean).join(' · ') || '';
+        window._kronosHTML = `<div id="annual-premium-cronos" style="background:#0d1b2a;border-radius:24px;padding:24px;margin-bottom:12px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1);display:flex;flex-direction:column;align-items:center;box-sizing:border-box">
+            <svg viewBox="0 0 280 280" width="100%" style="max-width:280px;overflow:visible">
+                <defs><filter id="crono-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs>
+                <circle cx="140" cy="140" r="110" fill="#070f18" opacity="0.5"/>
+                <circle cx="140" cy="140" r="115" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="3 3"/>
+                ${_segs}${_eclMarker}${_planets}
+                <text x="140" y="128" text-anchor="middle" fill="#f5f0e8" style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:system-ui,sans-serif">${lordOriginal}</text>
+                <line x1="115" y1="136" x2="165" y2="136" stroke="rgba(215,193,136,0.3)" stroke-width="1"/>
+                <text x="140" y="154" text-anchor="middle" fill="#b8a070" style="font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase">CASA ${casaActiva}</text>
+            </svg>
+            ${_legend ? `<p style="margin:16px 0 0;font-size:12px;color:rgba(245,240,232,0.6);letter-spacing:0.5px;text-align:center">${_legend}</p>` : ''}
+        </div>`;
+    })();
+    const blockCronos = window._kronosHTML || '';
+    delete window._kronosHTML;
+
+    // ── GADGET 2: MAPA DE TERRITORIOS v1.1 ───────────────────────────────────
+    // Intermedio — entre bloques A-D y Activaciones. Responde: ¿qué territorios están vivos?
+    (function _buildMapa() {
+        const _cx=140, _cy=140, _rRing=95, _rPerim=115, _rLabel=128, _gapA=3, _strokeBase=4, _strokeActivo=10;
+        let _baseSegs='', _activeSegs='', _labelSegs='', _planets='';
+        const _areaPrincipal = _crAreas[casaActiva] || 'Ciclo';
+        const _labeledH = new Set();
+        for (let i=1;i<=12;i++) {
+            const _aStart=-90+((i-1)*30)+(_gapA/2), _aEnd=-90+(i*30)-(_gapA/2);
+            const _rs=(_aStart*Math.PI)/180, _re=(_aEnd*Math.PI)/180;
+            const x1=_cx+_rRing*Math.cos(_rs), y1=_cy+_rRing*Math.sin(_rs);
+            const x2=_cx+_rRing*Math.cos(_re), y2=_cy+_rRing*Math.sin(_re);
+            _baseSegs+=`<path d="M ${x1} ${y1} A ${_rRing} ${_rRing} 0 0 1 ${x2} ${y2}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="${_strokeBase}" stroke-linecap="round"/>`;
+            // Etiqueta sobre segmento activo (radio exterior al anillo)
+            const _midRad = (-90+((i-1)*30)+15)*Math.PI/180;
+            const _lx = (_cx+_rLabel*Math.cos(_midRad)).toFixed(1);
+            const _ly = (_cy+_rLabel*Math.sin(_midRad)+2.5).toFixed(1);
+            if (i===Number(casaActiva)) {
+                _activeSegs+=`<path d="M ${x1} ${y1} A ${_rRing} ${_rRing} 0 0 1 ${x2} ${y2}" fill="none" stroke="#d7c188" stroke-width="${_strokeActivo}" stroke-linecap="round" class="mapa-segmento" filter="url(#mapa-glow)"/>`;
+                if (!_labeledH.has(i)) {
+                    _labelSegs+=`<text x="${_lx}" y="${_ly}" text-anchor="middle" fill="#d7c188" style="font-size:7px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:system-ui,sans-serif">${_crAreas[i]||`C${i}`}</text>`;
+                    _labeledH.add(i);
+                }
+            } else if (i===_crEclH1||i===_crEclH2) {
+                _activeSegs+=`<path d="M ${x1} ${y1} A ${_rRing} ${_rRing} 0 0 1 ${x2} ${y2}" fill="none" stroke="#f5f0e8" stroke-width="${_strokeActivo-2}" stroke-linecap="round" opacity="0.85" class="mapa-segmento"/>`;
+                if (!_labeledH.has(i)) {
+                    _labelSegs+=`<text x="${_lx}" y="${_ly}" text-anchor="middle" fill="rgba(245,240,232,0.75)" style="font-size:7px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;font-family:system-ui,sans-serif">${_crAreas[i]||`C${i}`}</text>`;
+                    _labeledH.add(i);
+                }
+            }
+        }
+        const _angC = (n) => -90+((n-1)*30)+15;
+        if (_crJupH) {
+            const _aJ=(_angC(_crJupH)*Math.PI)/180;
+            _planets+=`<g transform="translate(${_cx+_rPerim*Math.cos(_aJ)},${_cy+_rPerim*Math.sin(_aJ)})" class="mapa-marker"><circle r="4.5" fill="#7eb8c9"/><text y="-8" text-anchor="middle" fill="#7eb8c9" style="font-size:9px;font-weight:bold;font-family:monospace">♃</text></g>`;
+        }
+        if (_crSatH) {
+            const _aS=(_angC(_crSatH)*Math.PI)/180;
+            _planets+=`<g transform="translate(${_cx+_rPerim*Math.cos(_aS)},${_cy+_rPerim*Math.sin(_aS)})" class="mapa-marker"><circle r="4" fill="#a0a8b0"/><text y="13" text-anchor="middle" fill="#a0a8b0" style="font-size:9px;font-weight:bold;font-family:monospace">♄</text></g>`;
+        }
+        window._mapaHTML = `<div id="annual-premium-mapa" style="background:#0d1b2a;border-radius:24px;padding:24px;margin-bottom:12px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1);display:flex;flex-direction:column;align-items:center;box-sizing:border-box">
+            <p style="margin:0 0 16px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);text-align:center">LOS ESCENARIOS PRINCIPALES DEL AÑO</p>
+            <svg viewBox="0 0 280 280" width="100%" style="max-width:280px;overflow:visible">
+                <defs><filter id="mapa-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs>
+                <circle cx="140" cy="140" r="80" fill="#070f18" opacity="0.4"/>
+                ${_baseSegs}${_activeSegs}${_labelSegs}${_planets}
+                <text x="140" y="134" text-anchor="middle" fill="#f5f0e8" style="font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:system-ui,sans-serif">${_areaPrincipal}</text>
+                <text x="140" y="154" text-anchor="middle" fill="#a0a8b0" style="font-size:11px;font-weight:500;letter-spacing:1px;font-family:system-ui,sans-serif">CASA ${casaActiva}</text>
+            </svg>
+            <p style="margin:14px 0 0;font-size:11px;color:rgba(245,240,232,0.3);letter-spacing:0.3px;text-align:center;line-height:1.6">● Territorio principal &nbsp;·&nbsp; ◌ Eclipse &nbsp;·&nbsp; ♃ Júpiter &nbsp;·&nbsp; ♄ Saturno</p>
+        </div>`;
+    })();
+    const blockMapa = window._mapaHTML || '';
+    delete window._mapaHTML;
 
     // Territorios natales por casa (lenguaje humano, sin tecnicismos)
     const _TERR = {
@@ -5807,10 +5924,57 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
         </div>`;
     }
 
-    // Cronoesfera (orientación temporal) + A/B/C/D + Activaciones Natales + Eclipses del Año v1.3 + Tránsitos Maestros v1.0
-    // Regla de gadgets: cada gadget se coloca donde mejor ayuda a leer el módulo.
-    // Cronoesfera va primero — responde ¿dónde estoy en mi año? antes de cualquier contenido.
-    container.innerHTML = `${blockCronos}${blockA}${blockB}${blockC}${blockD}${blockActivaciones}${blockEclipses}${blockTransitos}`;
+    // ── GADGET 3: ESPEJO TEMPORAL v1.0 ───────────────────────────────────────
+    // Cierre de AÑO Premium — después de Tránsitos. Responde: ¿qué significa este momento?
+    // Línea temporal horizontal: pasado ← HOY → eclipse → fin de ciclo.
+    (function _buildEspejo() {
+        const _xIni=20, _xFin=300, _ancho=280, _yL=60;
+        const _pxPasado = _crCyclePct !== null ? Math.round((_ancho*_crCyclePct)/100) : 0;
+        const _xHoy = _xIni + _pxPasado;
+        // Marcador HOY
+        const _markerHoy = _crCycleMonth ? `
+            <line x1="${_xHoy}" y1="42" x2="${_xHoy}" y2="68" stroke="#d7c188" stroke-width="1.5" class="espejo-hoy-glow"/>
+            <polygon points="${_xHoy},42 ${_xHoy-3},37 ${_xHoy+3},37" fill="#d7c188"/>
+            <text x="${_xHoy}" y="18" text-anchor="middle" fill="#f5f0e8" style="font-size:10px;font-weight:bold;letter-spacing:0.5px;font-family:system-ui,sans-serif">AHORA</text>
+            <text x="${_xHoy}" y="29" text-anchor="middle" fill="#d7c188" style="font-size:8px;font-weight:500;font-family:system-ui,sans-serif">MES ${_crCycleMonth}</text>` : '';
+        // Marcador Eclipse (posición real futura — usa _crEclipsePct, no _crCyclePct)
+        let _markerEcl = '';
+        if (_crEclipsePct !== null) {
+            const _xEcl = _xIni+Math.round((_ancho*_crEclipsePct)/100);
+            _markerEcl = `
+                <g transform="translate(${_xEcl},${_yL}) rotate(45)" class="espejo-nodo" style="opacity:0.9"><rect x="-4" y="-4" width="8" height="8" fill="#f5f0e8" stroke="#0d1b2a" stroke-width="1" filter="url(#espejo-glow)"/></g>
+                <text x="${_xEcl}" y="48" text-anchor="middle" fill="#f5f0e8" style="font-size:8px;font-weight:500;font-family:system-ui,sans-serif">◆ Eclipse</text>
+                ${_crNextEclTxt ? `<text x="${_xEcl}" y="95" text-anchor="middle" fill="rgba(245,240,232,0.4)" style="font-size:7.5px;font-family:system-ui,sans-serif">${_crNextEclTxt}</text>` : ''}`;
+        }
+        // Planetas — ID corregido a 'espejo-planetas-group' (coherente con HTML)
+        let _planetsE = '';
+        if (_crJupH) { const _xJ=_xIni+Math.round((_ancho*(_crJupH-1))/12); _planetsE+=`<g transform="translate(${_xJ},112)" class="espejo-nodo" style="opacity:0.55"><circle r="1" fill="#7eb8c9" cx="0" cy="-10"/><text x="0" y="0" text-anchor="middle" fill="#7eb8c9" style="font-size:10px;font-family:sans-serif">♃</text></g>`; }
+        if (_crSatH) { const _xS=_xIni+Math.round((_ancho*(_crSatH-1))/12); _planetsE+=`<g transform="translate(${_xS},112)" class="espejo-nodo" style="opacity:0.55"><circle r="1" fill="#a0a8b0" cx="0" cy="-10"/><text x="0" y="0" text-anchor="middle" fill="#a0a8b0" style="font-size:10px;font-family:sans-serif">♄</text></g>`; }
+        const _diasRestantes = _crDaysSince !== null ? 365 - _crDaysSince : null;
+        const _legendE = _crDaysSince !== null
+            ? `Llevas <strong>${_crDaysSince} días</strong> en tu año de <strong>${lordOriginal}</strong>. ${_diasRestantes !== null ? `Faltan ${_diasRestantes} días para el próximo ciclo.` : ''}`
+            : `Año de <strong>${lordOriginal}</strong>`;
+        window._espejoHTML = `<div id="annual-premium-espejo" style="background:#0d1b2a;border-radius:24px;padding:24px;margin-bottom:12px;box-shadow:0 10px 25px -5px rgba(0,0,0,0.3),inset 0 1px 1px rgba(255,255,255,0.1);display:flex;flex-direction:column;align-items:center;box-sizing:border-box">
+            <svg viewBox="0 0 320 120" width="100%" style="overflow:visible">
+                <defs><filter id="espejo-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter></defs>
+                <line x1="20" y1="60" x2="300" y2="60" stroke="rgba(255,255,255,0.1)" stroke-width="3" stroke-linecap="round"/>
+                <line x1="20" y1="60" x2="${_xIni+_pxPasado}" y2="60" stroke="#b8a070" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="20" cy="60" r="3.5" fill="#b8a070"/>
+                <text x="20" y="80" text-anchor="middle" fill="rgba(245,240,232,0.4)" style="font-size:8px;letter-spacing:0.5px;font-family:system-ui,sans-serif">Inicio</text>
+                <circle cx="300" cy="60" r="3.5" fill="rgba(255,255,255,0.2)"/>
+                <text x="300" y="80" text-anchor="middle" fill="rgba(245,240,232,0.4)" style="font-size:8px;letter-spacing:0.5px;font-family:system-ui,sans-serif">Fin</text>
+                ${_markerHoy}${_markerEcl}
+                <g id="espejo-planetas-group">${_planetsE}</g>
+            </svg>
+            <p style="margin:12px 0 0;font-size:11px;color:rgba(245,240,232,0.5);letter-spacing:0.3px;text-align:center;line-height:1.4">${_legendE}</p>
+        </div>`;
+    })();
+    const blockEspejo = window._espejoHTML || '';
+    delete window._espejoHTML;
+
+    // Gadgets intercalados — Cronoesfera (apertura) · Mapa (intermedio) · Espejo (cierre)
+    // Regla: cada gadget en el punto donde mejor ayuda a leer el módulo.
+    container.innerHTML = `${blockCronos}${blockA}${blockB}${blockC}${blockD}${blockMapa}${blockActivaciones}${blockEclipses}${blockTransitos}${blockEspejo}`;
 
     // TRADUCCIÓN PSICOLÓGICA DE ACTIVACIONES — Capa C (MOVIMIENTO)
     const HOUSE_ACTIVATION_NARRATIVE = {
