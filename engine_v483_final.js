@@ -2668,7 +2668,7 @@ async function renderTabContent(tabId) {
     }
 
     html = `
-            <div class="px-4 pt-4 space-y-6 pb-32 animate-fade-in">
+            <div class="px-4 pt-4 space-y-6 pb-6 animate-fade-in">
 
                 <!-- HOY-VISUAL-1: Portal Editorial Superior -->
                 <div id="daily-portal" class="rounded-[2.5rem] bg-[#F7F4EE] border border-[rgba(180,160,120,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.03)] px-6 pt-10 pb-9 space-y-7">
@@ -2823,102 +2823,6 @@ async function renderTabContent(tabId) {
                                 <span style="font-size:16px;color:#b8a070">↑</span>
                                 <span style="font-size:10px;color:#b8a070;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Volver al inicio de HOY</span>
                             </button>
-                        </div>
-
-                        <!-- Guía KAIROS HOY — toggle -->
-                        <div style="text-align:center;padding:0 24px 28px">
-                            <button id="hoy-guia-toggle" onclick="(function(){const g=document.getElementById('hoy-guia-kairos');const open=g.style.display!=='none';g.style.display=open?'none':'block';document.getElementById('hoy-guia-chevron').style.transform=open?'rotate(0deg)':'rotate(180deg)';document.getElementById('hoy-guia-toggle').style.opacity=open?'0.5':'0.85';})();" style="background:none;border:0.5px solid rgba(180,160,120,0.3);border-radius:20px;padding:7px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;opacity:0.5;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="if(document.getElementById('hoy-guia-kairos').style.display==='none')this.style.opacity='0.5'">
-                                <span style="font-size:10px;color:#b8a070;letter-spacing:1.2px;text-transform:uppercase;font-weight:700">¿Qué es cada módulo?</span>
-                                <span id="hoy-guia-chevron" style="font-size:10px;color:#b8a070;display:inline-block;transition:transform 0.25s">▾</span>
-                            </button>
-                        </div>
-
-                        <!-- Guía KAIROS HOY — contenido -->
-                        <div id="hoy-guia-kairos" style="display:none;padding:0 20px 40px">
-
-                            <p style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;text-align:center;margin:0 0 20px">Guía KAIROS · HOY Premium</p>
-                            <p style="font-size:12px;color:rgba(80,65,40,0.55);line-height:1.7;margin:0 0 24px;text-align:center">Cada módulo de HOY Premium lee una capa distinta de tu día. Esta guía explica qué muestra cada uno y cómo leerlo.</p>
-
-                            <!-- Separador: Gadgets -->
-                            <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
-                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
-                                <span style="font-size:9px;color:#b8a070;letter-spacing:0.12em;font-weight:700;text-transform:uppercase">Los 3 gadgets</span>
-                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
-                            </div>
-
-                            <!-- Gadget 1: Barómetro -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Barómetro del Día</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Indica el estado energético del momento: si el día está orientado a la acción (IMPULSAR), al mantenimiento de lo que ya avanza (SOSTENER) o a la observación y la espera (OBSERVAR). Combina tránsitos planetarios, posición lunar y tu carta natal.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No es una instrucción de lo que debes hacer — es una lectura del terreno. Hay días con mucha presión y claridad para avanzar, días donde lo valioso es sostener sin forzar, y días donde la señal más inteligente es esperar antes de comprometerse.</p>
-                            </div>
-
-                            <!-- Gadget 2: Planetas Activos -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Planetas Activos Hoy</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Los tres planetas que más influyen en el día, ordenados por relevancia: el protagonista (planeta del día según la tradición de horas planetarias), el modulador emocional (Luna y su posición en tu carta), y el tono de fondo activo en tránsito.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cada uno aparece con su signo actual y una barra de intensidad relativa. El planeta en la cima es el que más colorea las decisiones, encuentros y estados internos de ese día. No todos los planetas están igualmente activos todos los días.</p>
-                            </div>
-
-                            <!-- Gadget 3: Pulso -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:24px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Pulso del Día</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Una curva visual que muestra cómo se distribuye la energía del día en tres franjas: mañana, tarde y noche. El punto dorado marca el momento presente dentro de esa curva.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">La altura de la curva indica intensidad relativa — no valor ni calidad. Los momentos altos suelen favorecer la acción externa y la visibilidad; los bajos, la integración y el trabajo interno. Conocer el pulso ayuda a situar las tareas del día donde tienen más respaldo energético.</p>
-                            </div>
-
-                            <!-- Separador: Tarjetas -->
-                            <div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
-                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
-                                <span style="font-size:9px;color:#b8a070;letter-spacing:0.12em;font-weight:700;text-transform:uppercase">Las 6 tarjetas</span>
-                                <div style="flex:1;height:0.5px;background:rgba(180,160,120,0.2)"></div>
-                            </div>
-
-                            <!-- Tarjeta 1: Señal Oculta -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Señal Oculta</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">La capa más personal de HOY. Detecta qué planetas o puntos de tu carta natal están siendo activados por los tránsitos del día — conjunciones, oposiciones, activaciones de casas — y los nombra directamente.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Es información que no existe sin tu carta natal: si Marte transita tu Casa 7, si Venus contacta tu Sol, si el Señor del Año está siendo aspectado. La "señal" es lo que el cielo de hoy le dice específicamente a tu mapa — no al mundo en general.</p>
-                            </div>
-
-                            <!-- Tarjeta 2: Luna en tu Carta -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Luna en tu Carta</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Muestra en qué casa de tu carta natal transita la Luna hoy y qué zona de tu experiencia activa esa posición. La Luna se mueve rápido — cambia de casa cada dos o tres días.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cada vez que la Luna atraviesa una casa natal, esa área de tu vida se vuelve más sensible y receptiva. La casa donde cae hoy indica dónde el registro emocional tiene más peso e información disponible, y dónde puede ser más productivo dirigir la atención interna.</p>
-                            </div>
-
-                            <!-- Tarjeta 3: Planetas en Escena -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Planetas en Escena</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Un análisis de los planetas protagonistas del día: cómo operan en su signo actual, qué tono traen a la experiencia, y su función en tu carta natal específica — casa donde están colocados, rol en tu configuración.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No describe lo que va a ocurrir. Describe el idioma en el que tenderán a expresarse los encuentros, decisiones y estados internos del día. Cuando sabes qué planeta está en primer plano y en qué registro opera, puedes leer la experiencia con más precisión y menos fricción.</p>
-                            </div>
-
-                            <!-- Tarjeta 4: El Origen del Día -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">El Origen del Día</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Conecta el planeta del día con tu ciclo anual: cómo se relacionan el planeta que rige este día y el Señor de tu Año — el planeta que gobierna tu ciclo desde tu último cumpleaños hasta el próximo.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Cuando trabajan desde el mismo registro, hay coherencia entre la urgencia del día y la dirección del año. Cuando trabajan desde registros distintos aparece un diálogo — a veces productivo, a veces tenso — entre lo inmediato y lo que tu ciclo anual está desplegando. Leer esa relación da profundidad a por qué ciertos días resuenan más que otros.</p>
-                            </div>
-
-                            <!-- Tarjeta 5: Brújula KAIROS -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Brújula KAIROS</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Una orientación sobre la postura que permite navegar mejor este día concreto, calculada a partir de la combinación del estado energético del momento (radar) y el planeta del día. Hay 28 lecturas distintas — una para cada combinación posible de 7 planetas × 4 estados del radar.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">No predice ni prescribe. Ofrece un ángulo de lectura desde el que el terreno tiende a ser más navegable. La brújula no dice qué hacer — señala en qué dirección el día tiene más tracción natural. Usarla o no es siempre una elección.</p>
-                            </div>
-
-                            <!-- Tarjeta 6: Punto de Atención -->
-                            <div style="background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px">
-                                <span style="font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px">Punto de Atención</span>
-                                <p style="font-size:13px;color:#4a3f2a;line-height:1.65;margin:0">Aparece cuando hay una fricción activa entre los tránsitos del día y puntos importantes de tu carta natal — especialmente oposiciones o tensiones angulares que conviene tener en el radar. Si no hay fricciones activas ese día, el módulo lo indica.</p>
-                                <p style="font-size:13px;color:rgba(74,63,42,0.65);line-height:1.65;margin:8px 0 0">Las fricciones no son señales de alarma. Son zonas donde la energía pide más conciencia. Una oposición activa significa que dos fuerzas están operando en simultáneo y que la tensión entre ellas tiene información valiosa — no necesariamente que algo vaya a salir mal.</p>
-                            </div>
-
-                            <!-- Cierre guía -->
-                            <p style="font-size:11px;color:rgba(80,65,40,0.35);text-align:center;margin:16px 0 0;line-height:1.65;letter-spacing:0.02em">Todos los módulos leen tu carta natal específica.<br>Lo que ves no es astrología genérica — es tu día.</p>
-
                         </div>
 
                     </section>
@@ -3811,6 +3715,39 @@ async function renderTabContent(tabId) {
       (state.subscription?.level ?? 0) > 0;
   if (tabId === 'daily' && _isPremiumHoy && state.user?.natalPlanets) {
       renderHoyPremium();
+  } else if (tabId === 'daily' && !_isPremiumHoy) {
+      // [HOY_FREE] Tarjetas bloqueadas — sin gadgets, idéntico al patrón AÑO _locked()
+      const _hoyFreeSection = document.getElementById('hoy-premium-v1-section');
+      if (_hoyFreeSection) {
+          const _CARD = `background:rgba(247,244,238,0.6);border-radius:16px;padding:20px;border:0.5px solid rgba(180,160,120,0.20);margin-bottom:12px`;
+          const _LBL  = `font-size:9px;font-weight:700;color:#b8a070;letter-spacing:0.14em;text-transform:uppercase;display:block;margin-bottom:8px`;
+          const _LOCK_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+          const _LOCK_SM  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+          const _hoyLocked = (title, teaser) => `
+              <div style="${_CARD};text-align:center">
+                  <div style="display:flex;justify-content:center;align-items:center;gap:6px;margin-bottom:10px">
+                      <span style="${_LBL};margin:0">${title}</span>
+                      <div style="opacity:0.6;flex-shrink:0">${_LOCK_SVG}</div>
+                  </div>
+                  <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:280px">${teaser}</p>
+                  <div style="text-align:center">
+                      <button onclick="window._kairosPremiumCTA&&window._kairosPremiumCTA()" style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6">${_LOCK_SM} Seguir profundizando</button>
+                  </div>
+              </div>`;
+          _hoyFreeSection.innerHTML =
+              _hoyLocked('Señal Oculta',
+                  'Las activaciones que el cielo de hoy produce directamente en tu carta natal — qué patrones propios están siendo convocados.') +
+              _hoyLocked('Luna en tu Carta',
+                  'Dónde cae la Luna de hoy en tu carta natal y qué tipo de movimiento interno activa ese tránsito en ti.') +
+              _hoyLocked('Planetas en Escena',
+                  'Qué planetas protagonizan el día, qué función desempeña cada uno y cómo se expresan desde su posición actual.') +
+              _hoyLocked('El Origen del Día',
+                  'Cómo se relaciona el planeta del día con tu señor del año — si hay afinidad, tensión o neutralidad entre ambos ciclos.') +
+              _hoyLocked('Brújula KAIROS',
+                  'Una orientación concreta sobre la postura que permite leer mejor este día, calculada desde tu configuración natal y el estado del momento.') +
+              _hoyLocked('Punto de Atención',
+                  'Si hay alguna fricción activa entre el cielo de hoy y tu carta natal — qué pide ser visto sin necesidad de resolverse.');
+      }
   }
   
   if (tabId === 'contact') {
@@ -4260,34 +4197,46 @@ function _hoyRenderLunaEnTuCarta(moonHouse, lunaSign, cs, ts, ts2) {
 
     const _texts = {
         1:{p1:`La Luna está hoy en tu <strong>Casa 1 — identidad y presencia</strong>. La energía emocional del día se dirige hacia ti mismo: cómo te ves, cómo te sientes en tu propia piel, qué quieres proyectar hacia fuera.`,
-           p2:`Los estados internos de hoy tienen más visibilidad de lo habitual — no solo para ti, sino para quien está cerca. Lo que sientes se traslada con más facilidad a cómo te presentas. Un buen día para notar qué quieres mostrar y qué prefieres proteger.`},
+           p2:`Los estados internos de hoy tienen más visibilidad de lo habitual — no solo para ti, sino para quien está cerca. Lo que sientes se traslada con más facilidad a cómo te presentas.`,
+           p3:`Es posible que hoy seas más consciente de lo que proyectas antes de decirlo — una expresión, un tono, cómo entras al espacio. El registro de la propia presencia simplemente está más encendido.`},
         2:{p1:`La Luna está hoy en tu <strong>Casa 2 — recursos y valores</strong>. La energía emocional se orienta hacia lo que tienes, lo que vale y lo que te da estabilidad.`,
-           p2:`Lo que hoy te tranquiliza — o lo que te genera incomodidad — tiene que ver con esa capa de seguridad. Puede que algo relacionado con dinero, posesiones o lo que aprecias genuinamente hable con más fuerza de lo habitual.`},
+           p2:`Lo que hoy te tranquiliza — o lo que te genera incomodidad — tiene que ver con esa capa de seguridad. Puede que algo relacionado con dinero, posesiones o lo que aprecias genuinamente hable con más fuerza de lo habitual.`,
+           p3:`Es posible que notes con más claridad qué cosas te hacen sentir más o menos seguros. No siempre son las que esperarías. La Luna en esta casa suele señalar lo que realmente importa, más que lo que creías que importaba.`},
         3:{p1:`La Luna está hoy en tu <strong>Casa 3 — comunicación y entorno cercano</strong>. La energía emocional fluye a través de palabras, conversaciones y movimiento en el entorno inmediato.`,
-           p2:`Los intercambios del día tienen más peso del habitual. Lo que se dice — o lo que no se dice — puede quedarse. Es un buen día para prestar atención a cómo te comunicas y a qué escuchas realmente.`},
+           p2:`Los intercambios del día tienen más peso del habitual. Lo que se dice — o lo que no se dice — puede quedarse. Lo que escuchas tiene más densidad de información que en otros días.`,
+           p3:`La conversación de hoy lleva más carga emocional de lo que parece en la superficie. Una frase, una respuesta, el tono de alguien — puede que todo eso resuene más hondo de lo esperado. Vale la pena prestar atención.`},
         4:{p1:`La Luna está hoy en tu <strong>Casa 4 — hogar y raíces</strong>. La energía emocional vuelve a lo más íntimo: la familia, el espacio físico donde vives, lo que sientes como tuyo de verdad.`,
-           p2:`Puede que lo cotidiano y familiar tengan más peso de lo esperado. Es un día que favorece lo cercano, lo conocido y lo que no necesita explicación. La energía no está afuera — está adentro.`},
+           p2:`Puede que lo cotidiano y familiar tengan más peso de lo esperado. Es un día que favorece lo cercano, lo conocido y lo que no necesita explicación.`,
+           p3:`La energía no está afuera hoy. Está adentro y cerca. Lo que sientes sobre tu espacio, sobre las personas de tu entorno íntimo, sobre lo que consideras hogar — todo eso tiene más presencia y más señal de lo habitual.`},
         5:{p1:`La Luna está hoy en tu <strong>Casa 5 — expresión y creatividad</strong>. La energía emocional quiere salir — crear, jugar, disfrutar de lo que da placer genuino.`,
-           p2:`Lo que te da alegría real tiene más fuerza hoy. No es necesario que sea productivo ni útil — el disfrute tiene su propia lógica y el campo hoy lo facilita. Es un buen día para lo que simplemente vale la pena hacer.`},
+           p2:`Lo que te da alegría real tiene más fuerza hoy. No es necesario que sea productivo ni útil — el disfrute tiene su propia lógica y el campo hoy lo facilita.`,
+           p3:`Es posible que algo que normalmente haces sin darle mucho peso tenga hoy una luminosidad extra. La alegría sin justificación es real y disponible — si hay espacio para ella, suele aparecer.`},
         6:{p1:`La Luna está hoy en tu <strong>Casa 6 — trabajo cotidiano y cuerpo</strong>. La energía emocional se orienta hacia lo práctico: la rutina, el cuerpo, las tareas que sostienen el día a día.`,
-           p2:`Lo pequeño importa hoy más de lo habitual. La atención al detalle, al ritmo físico y a lo que funciona o no funciona en la rutina tiene más densidad que en otros días. El cuerpo también habla.`},
+           p2:`Lo pequeño importa hoy más de lo habitual. La atención al detalle, al ritmo físico y a lo que funciona o no funciona en la rutina tiene más densidad que en otros días.`,
+           p3:`El cuerpo también habla hoy — el nivel de energía, la tensión, el hambre, el ritmo. Puede que lo práctico y rutinario lleve más color emocional de lo esperado. Lo que funciona o no funciona en el día a día es hoy más visible de lo habitual.`},
         7:{p1:`La Luna está hoy en tu <strong>Casa 7 — relaciones</strong>. La energía emocional busca el encuentro: los vínculos cercanos, lo que ocurre en el espacio entre tú y los demás.`,
-           p2:`Lo que pasa en las relaciones hoy tiene más peso. Es un buen día para conversaciones pendientes, para notar cómo te afecta lo que los otros proyectan y para ser consciente de lo que tú proyectas también.`},
+           p2:`Lo que pasa en las relaciones hoy tiene más peso. Cómo te afecta lo que los otros proyectan, y lo que tú proyectas sobre ellos, tiene más nitidez de lo habitual.`,
+           p3:`Lo que alguien dice — o no dice — puede pesar más hoy. El espacio relacional está cargado de información. No siempre es cómodo, pero sí es más legible que en otros días. Vale la pena notar qué llega y desde dónde.`},
         8:{p1:`La Luna está hoy en tu <strong>Casa 8 — transformación y profundidad</strong>. La energía emocional va hacia lo que está debajo de la superficie: lo que no se ve, lo que no se habla, lo que está cambiando sin que lo hayas decidido.`,
-           p2:`Puede que hoy notes algo que normalmente permanece más oculto. No es necesario forzar la claridad — lo que emerge desde este territorio tiene su propio ritmo. No hace falta nombrarlo todo todavía.`},
+           p2:`Puede que hoy notes algo que normalmente permanece más oculto. No es necesario forzar la claridad — lo que emerge desde este territorio tiene su propio ritmo.`,
+           p3:`Puede que una sensación difícil de nombrar sea más presente hoy, o que algo que estaba en el fondo ascienda un poco. No hace falta forzarlo ni nombrarlo todo todavía. Este territorio pide escucha, no resolución.`},
         9:{p1:`La Luna está hoy en tu <strong>Casa 9 — expansión y horizonte</strong>. La energía emocional mira más lejos de lo habitual: ideas, creencias, perspectivas que van más allá de lo cotidiano.`,
-           p2:`Tu forma de ver las cosas tiene más amplitud hoy. Es un buen día para preguntarse el porqué detrás de lo que ocurre, para aprender algo que amplíe el marco o para dejar que la perspectiva cambie un poco.`},
+           p2:`Tu forma de ver las cosas tiene más amplitud hoy. La perspectiva puede cambiar un poco — o llegar algo que amplíe el marco habitual.`,
+           p3:`Es posible que algo que lees, escuchas o piensas hoy se instale de una forma diferente a otros días. El marco habitual tiene más porosidad. Lo que llega puede quedar. Merece la pena estar atento a las ideas que aparecen hoy.`},
         10:{p1:`La Luna está hoy en tu <strong>Casa 10 — vocación y dirección</strong>. La energía emocional se orienta hacia lo que construyes en el mundo: tu lugar visible, tu trabajo, lo que quieres que sea reconocido.`,
-            p2:`El foco está en el afuera más que en el adentro. Lo que ocurre en el plano profesional o público tiene más resonancia emocional hoy. Lo que haces hacia el exterior también dice algo de cómo te sientes.`},
+            p2:`El foco está en el afuera más que en el adentro. Lo que ocurre en el plano profesional o público tiene más resonancia emocional hoy.`,
+            p3:`Lo que haces hacia afuera lleva hoy más carga interna. Cómo se siente el trabajo, el reconocimiento o la falta de él — todo eso habla con más fuerza. Lo que haces hacia el exterior dice algo sobre cómo estás, más de lo que parece.`},
         11:{p1:`La Luna está hoy en tu <strong>Casa 11 — comunidad y proyectos</strong>. La energía emocional busca lo colectivo: tus vínculos más amplios, los proyectos compartidos, las personas con las que tienes algo en común más allá de lo íntimo.`,
-            p2:`Lo que pertenece a un grupo, una red o una causa tiene más presencia hoy. Es un buen día para notar qué tipo de colectivo te nutre y cuál te desgasta.`},
+            p2:`Lo que pertenece a un grupo, una red o una causa tiene más presencia hoy. Lo que te aporta ese entorno y lo que te cuesta también es más perceptible.`,
+            p3:`Es posible que hoy notes con más claridad qué tipo de comunidad o red te nutre y cuál te desgasta. Los vínculos amplios tienen su propio tono emocional cuando la Luna pasa por aquí — y suelen decir algo verdadero sobre cómo estás en relación con los demás.`},
         12:{p1:`La Luna está hoy en tu <strong>Casa 12 — mundo interior</strong>. La energía emocional se retira hacia adentro: lo que se procesa en silencio, lo que no necesita ser explicado ni mostrado.`,
-            p2:`Es un día para la quietud y la escucha interna. Lo que emerge desde este lugar es real aunque no tenga forma clara todavía — no hace falta forzarlo hacia afuera.`},
+            p2:`Lo que emerge desde este lugar es real aunque no tenga forma clara todavía — no hace falta forzarlo hacia afuera. La quietud tiene su propia información.`,
+            p3:`Es posible que la necesidad de silencio o de estar sin explicaciones sea más real hoy. No es retiro — es escucha. El mundo interior tiene acceso prioritario cuando la Luna pasa por aquí. Respetar ese ritmo tiene más valor que forzar la actividad.`},
     };
 
     if (moonHouse && _texts[moonHouse]) {
-        const {p1,p2} = _texts[moonHouse];
-        el.innerHTML = `<p style="${ts}">${p1}</p><p style="${ts2}">${p2}</p>`;
+        const {p1,p2,p3} = _texts[moonHouse];
+        el.innerHTML = `<p style="${ts}">${p1}</p><p style="${ts2}">${p2}</p><p style="${ts2}">${p3}</p>`;
         return;
     }
     // Fallback: signo lunar
@@ -4336,6 +4285,16 @@ function _hoyRenderPlanetasEnEscena(planetDay, transits, moonHouse, cs, ts, ts2)
         'Piscis':'La sensibilidad y la escucha interna tienen ventaja. Funciona bien lo que no se fuerza.',
     };
 
+    const _planetP3 = {
+        'Sol':'Cuando el Sol lidera el día, la atención tiende a buscar coherencia y dirección. Es posible que lo que haces hoy tenga más que ver con quién quieres ser que con lo que simplemente toca hacer.',
+        'Luna':'Cuando la Luna es protagonista, el registro emocional tiene más voz que la lógica. Lo que sientes antes de pensar es información — no ruido. Vale la pena escucharlo antes de descartarlo.',
+        'Marte':'Cuando Marte lidera, la energía quiere moverse. Puede que la quietud cueste más de lo habitual, o que la frustración sea más inmediata. El impulso, bien orientado, da resultados concretos hoy.',
+        'Mercurio':'Cuando Mercurio está en primer plano, las palabras pesan más en ambas direcciones. Lo que dices hoy puede quedar — y lo que escuchas también. El pensamiento está activo y con ganas de conectar.',
+        'Júpiter':'Cuando Júpiter lidera, la perspectiva se amplía de forma natural. Los problemas pueden parecer más manejables o puede llegar algo que abre una puerta que no estaba visible. La apertura es real — aunque conviene no comprometerse con todo lo que se ve desde ella.',
+        'Venus':'Cuando Venus está en primer plano, la atención va hacia la calidad de los vínculos y la experiencia. Lo que toca una nota de valor genuino tiene más presencia hoy. También lo que duele en ese registro.',
+        'Saturno':'Cuando Saturno lidera, el peso de lo que está sin resolver puede ser más presente — no como obstáculo, sino como señal de qué pide atención real. Este día recompensa la seriedad y la paciencia más que la rapidez.',
+    };
+
     const _items = [];
     _items.push({planet:planetDay, sign:transits[planetDay]||'', house:null, role:'planeta del día'});
     if (planetDay !== 'Luna') {
@@ -4362,10 +4321,13 @@ function _hoyRenderPlanetasEnEscena(planetDay, transits, moonHouse, cs, ts, ts2)
             ? ' Como modulador emocional, colorea el registro interno del día más que el externo.'
             : '';
         const _p2 = _impl ? _impl + (_roleNote ? ' ' + _roleNote.trim() : '') : _roleNote.trim();
+        const _p3 = (item.role === 'planeta del día' || item.role === 'tono emocional')
+            ? (_planetP3[item.planet] || '') : '';
         return `<div style="${cs}">
             <p style="${_lbl}">${_hdr}</p>
             <p style="${ts}"><strong>${item.planet}</strong> ${_fn}.</p>
             ${_p2?`<p style="${ts2}">${_p2}</p>`:''}
+            ${_p3?`<p style="${ts2}">${_p3}</p>`:''}
         </div>`;
     }).join('');
 }
@@ -4404,18 +4366,21 @@ function _hoyRenderOrigenDelDia(lord, planetDay, cs, ts, ts2) {
     };
 
     const _type = (_rel[lord]&&_rel[lord][planetDay]) || 'Neutro';
-    let _p1, _p2;
+    let _p1, _p2, _p3;
     if (_type==='Afinidad') {
         _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong> — y hoy el ${_ic(planetDay)}<strong>día de ${planetDay}</strong> trabaja en el mismo registro. Los dos planetas comparten un tono afín: ${_lQ[lord]||lord} y ${_tones[planetDay]||planetDay} no se contradicen.`;
-        _p2 = `Hay coherencia entre el fondo del año y la superficie del día. Lo que ocurra hoy no es ruido externo — encaja con lo que llevas construyendo. Un día donde el cielo acompaña en lugar de tensionar.`;
+        _p2 = `Hay coherencia entre el fondo del año y la superficie del día. Lo que ocurra hoy no es ruido externo — encaja con lo que llevas construyendo.`;
+        _p3 = `En la práctica, esto suele sentirse como menos fricción interna. Las cosas que haces hoy tienden a encajar con el impulso más largo que llevas — no hay que negociar tanto con uno mismo para que algo avance.`;
     } else if (_type==='Tensión') {
         _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong>, que trabaja con ${_lQ[lord]||lord}. Hoy es ${_ic(planetDay)}<strong>día de ${planetDay}</strong>, que funciona desde un registro distinto: ${_tones[planetDay]||planetDay}.`;
-        _p2 = `Los dos planetas no trabajan en el mismo tono — y esa diferencia se siente. No es un obstáculo: es información sobre dónde hay presión activa en este momento. La fricción entre el fondo anual y el día tiene algo que decirte.`;
+        _p2 = `Los dos planetas no trabajan en el mismo tono — y esa diferencia se siente. La fricción entre el fondo anual y el día no es un obstáculo: es información sobre dónde hay presión activa.`;
+        _p3 = `En la práctica, puede sentirse como un día donde algo exige y otra cosa resiste. No tiene por qué resolverse hoy. A veces la tensión entre dos registros no es un problema a solucionar sino información sobre dónde está la energía real.`;
     } else {
         _p1 = `Tu año opera bajo ${_ic(lord)}<strong>${lord}</strong>. Hoy es ${_ic(planetDay)}<strong>día de ${planetDay}</strong>, que trabaja desde su propio registro sin resonar especialmente con el fondo anual ni tensionarlo.`;
         _p2 = `El día tiene su tono propio, independiente del ciclo que llevas. Lo que encuentres hoy viene del planeta del día — el señor del año se mantiene en el fondo sin interferir.`;
+        _p3 = `En la práctica, esto suele sentirse como un día con su propio carácter, sin el peso extra del ciclo más largo. Puede ser liberador — o simplemente neutro. Lo que ocurre hoy viene del momento, no del fondo.`;
     }
-    el.innerHTML = `<p style="${ts}">${_p1}</p><p style="${ts2}">${_p2}</p>`;
+    el.innerHTML = `<p style="${ts}">${_p1}</p><p style="${ts2}">${_p2}</p><p style="${ts2}">${_p3}</p>`;
 }
 
 // ── Tarjeta 5: BRÚJULA KAIROS ─────────────────────────────────────────
@@ -4704,6 +4669,43 @@ const KAIROS_GUIDE = {
     'daily-resonance': {
       title: "Resonancia Personal",
       content: "Esta es la capa más profunda, donde el cielo de hoy toca directamente tu mapa natal. Describe cómo resuena tu identidad única con la frecuencia del momento.\n\nEs la parte más privada y específica de la guía. Te explica por qué este día puede sentirse diferente para ti que para los demás, basándose en la configuración exacta de tus planetas natales."
+    },
+    // HOY Premium — 9 módulos
+    'daily-gadget-barometro': {
+      title: "Barómetro del Día",
+      content: "Indica el estado energético del momento: si el día está orientado a la acción (IMPULSAR), al mantenimiento de lo que ya avanza (SOSTENER) o a la observación y la espera (OBSERVAR).\n\nNo es una instrucción de lo que debes hacer — es una lectura del terreno. Combina tránsitos planetarios, posición lunar y tu carta natal para mostrar en qué registro se mueve la energía del momento.\n\nHay días con presión y claridad para avanzar, días donde lo valioso es sostener sin forzar, y días donde la señal más inteligente es esperar antes de comprometerse."
+    },
+    'daily-gadget-reloj': {
+      title: "Planetas Activos Hoy",
+      content: "Los tres planetas que más influyen en el día, ordenados por relevancia: el protagonista (planeta del día según la tradición de horas planetarias), el modulador emocional (Luna y su posición en tu carta), y el tono de fondo activo en tránsito.\n\nCada planeta aparece con su signo actual y una barra de intensidad relativa. El planeta en la cima es el que más colorea las decisiones, encuentros y estados internos del día.\n\nNo todos los planetas están igualmente activos todos los días — esta jerarquía cambia cada jornada."
+    },
+    'daily-gadget-pulso': {
+      title: "Pulso del Día",
+      content: "Una curva visual que muestra cómo se distribuye la energía del día en tres franjas: mañana, tarde y noche. El punto dorado marca el momento presente dentro de esa curva.\n\nLa altura de la curva indica intensidad relativa — no valor ni calidad. Los momentos altos suelen favorecer la acción externa y la visibilidad; los bajos, la integración y el trabajo interno.\n\nConocer el pulso ayuda a situar las tareas del día donde tienen más respaldo energético."
+    },
+    'daily-premium-senal-oculta': {
+      title: "Señal Oculta",
+      content: "La capa más personal de HOY. Detecta qué planetas o puntos de tu carta natal están siendo activados por los tránsitos del día — conjunciones, oposiciones, activaciones de casas — y los nombra directamente.\n\nEs información que no existe sin tu carta natal: si Marte transita tu Casa 7, si Venus contacta tu Sol, si el Señor del Año está siendo aspectado. La señal es lo que el cielo de hoy le dice específicamente a tu mapa — no al mundo en general."
+    },
+    'daily-premium-luna-carta': {
+      title: "Luna en tu Carta",
+      content: "Muestra en qué casa de tu carta natal transita la Luna hoy y qué zona de tu experiencia activa esa posición. La Luna se mueve rápido — cambia de casa cada dos o tres días.\n\nCada vez que la Luna atraviesa una casa natal, esa área de tu vida se vuelve más sensible y receptiva. La casa donde cae hoy indica dónde el registro emocional tiene más peso e información disponible.\n\nEsta tarjeta es diferente para cada persona — la misma Luna en el mismo día activa casas distintas según dónde estén en cada carta natal."
+    },
+    'daily-premium-planetas-escena': {
+      title: "Planetas en Escena",
+      content: "Un análisis de los planetas protagonistas del día: cómo operan en su signo actual, qué tono traen a la experiencia, y su función en tu carta natal específica — casa donde están colocados, rol en tu configuración.\n\nNo describe lo que va a ocurrir. Describe el idioma en el que tenderán a expresarse los encuentros, decisiones y estados internos del día.\n\nCuando sabes qué planeta está en primer plano y en qué registro opera, puedes leer la experiencia con más precisión y menos fricción."
+    },
+    'daily-premium-origen-dia': {
+      title: "El Origen del Día",
+      content: "Conecta el planeta del día con tu ciclo anual: cómo se relacionan el planeta que rige este día y el Señor de tu Año — el planeta que gobierna tu ciclo desde tu último cumpleaños hasta el próximo.\n\nCuando trabajan desde el mismo registro, hay coherencia entre la urgencia del día y la dirección del año. Cuando trabajan desde registros distintos aparece un diálogo — a veces productivo, a veces tenso — entre lo inmediato y lo que tu ciclo anual está desplegando.\n\nLeer esa relación da profundidad a por qué ciertos días resuenan más que otros."
+    },
+    'daily-premium-brujula': {
+      title: "Brújula KAIROS",
+      content: "Una orientación sobre la postura que permite navegar mejor este día concreto, calculada a partir de la combinación del estado energético del momento y el planeta del día.\n\nNo predice ni prescribe. Ofrece un ángulo de lectura desde el que el terreno tiende a ser más navegable.\n\nLa brújula no dice qué hacer — señala en qué dirección el día tiene más tracción natural. Usarla o no es siempre una elección."
+    },
+    'daily-premium-punto-atencion': {
+      title: "Punto de Atención",
+      content: "Aparece cuando hay una fricción activa entre los tránsitos del día y puntos importantes de tu carta natal — especialmente oposiciones o tensiones angulares que conviene tener en el radar.\n\nLas fricciones no son señales de alarma. Son zonas donde la energía pide más conciencia. Una oposición activa significa que dos fuerzas están operando en simultáneo y que la tensión entre ellas tiene información valiosa.\n\nSi no hay fricciones activas ese día, el módulo lo indica — lo que también es información."
     }
   },
   weekly: {
@@ -5187,7 +5189,13 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
             _locked('Cómo se mueve ahora',
                 `El movimiento actual de tu ${lordOriginal} y lo que produce en este tramo del año.`) +
             _locked('Por qué este ciclo te afecta así',
-                `La razón natal concreta — no genérica — por la que este año se expresa así en ti.`);
+                `La razón natal concreta — no genérica — por la que este año se expresa así en ti.`) +
+            _locked('Activaciones de tu carta este año',
+                `Qué planetas de tu carta natal están siendo activados por el cielo de este ciclo y en qué áreas de vida se mueven esas energías.`) +
+            _locked('Eclipses del año',
+                `Qué eclipses impactan tu carta natal este año, en qué casas caen y qué ciclos abren o cierran para ti.`) +
+            _locked('Tránsitos maestros',
+                `Los movimientos lentos — Saturno, Júpiter, Plutón — que están operando sobre tu carta natal este año y qué transformaciones de fondo producen.`);
         return;
     }
 
@@ -6828,7 +6836,7 @@ async function renderAnnualPremiumBlock(lordOriginal, profection, lang) {
     // Cierre del bloque AÑO Premium — remate visual después del Espejo Temporal
     const blockCierre = `<div id="annual-premium-cierre" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 16px;gap:14px">
         <span style="font-size:20px;color:rgba(215,193,136,0.75);letter-spacing:4px">✦</span>
-        <p style="margin:0;font-size:12px;color:rgba(245,240,232,0.55);letter-spacing:1px;text-align:center;font-style:italic">Tu ciclo continúa.</p>
+        <p style="margin:0;font-size:12px;color:rgba(80,65,40,0.45);letter-spacing:1px;text-align:center;font-style:italic">Tu ciclo continúa.</p>
         <button onclick="document.querySelector('#annual-premium-cronos')?.scrollIntoView({behavior:'smooth',block:'start'});" style="background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 20px;opacity:0.65;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.65'">
             <span style="font-size:16px;color:#d7c188">↑</span>
             <span style="font-size:10px;color:#d7c188;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Volver al inicio del año</span>

@@ -199,20 +199,121 @@ Estado en `engine_v483_final.js`. Versión: v650.5.225+.
 
 ---
 
-## 5. PENDIENTES HOY PREMIUM — ANTES DE PRODUCCIÓN
+## 5. PATRÓN ESTADO FREE — TARJETAS BLOQUEADAS
 
-| Tarea | Prioridad | Estado |
-|-------|-----------|--------|
-| Guía KAIROS HOY — explicación de los 9 módulos para el usuario | Alta | ⏳ pendiente |
-| Profundidad narrativa — p3 "traducción humana" en tarjetas más débiles | Media | ⏳ pendiente |
-| PLANETAS EN ESCENA — tercera capa por signo×planeta | Media | ⏳ pendiente |
-| Alineación visual MES Premium con estos tokens | Media | ⏳ sin auditar |
-| Alineación visual SEMANA Premium con estos tokens | Media | ⏳ sin auditar (módulo cerrado) |
-| Producción | — | 🔒 solo tras Guía KAIROS + profundidad validada |
+Todo módulo premium debe tener un estado free que siga este patrón exacto (implementado en AÑO y HOY).
+
+### 5.A — Reglas del estado free
+
+- **Los gadgets NO aparecen** en estado free. Solo las tarjetas de texto, bloqueadas.
+- **El cierre premium** (✦ + botón scroll) NO aparece en estado free.
+- **El contenido libre** (triplete, matiz, resonancia, pregunta central) SÍ aparece siempre, independientemente del nivel de suscripción.
+- El teaser de cada tarjeta describe QUÉ aporta ese módulo, sin revelar el dato concreto.
+
+### 5.B — Función _locked (patrón canónico)
+
+```javascript
+const _locked = (title, teaser) => `
+    <div style="${CARD};text-align:center">
+        <div style="display:flex;justify-content:center;align-items:center;gap:6px;margin-bottom:10px">
+            <span style="${LBL};margin:0">${title}</span>
+            <div style="opacity:0.6;flex-shrink:0">${LOCK_SVG}</div>
+        </div>
+        <p style="font-size:13px;color:rgba(80,65,40,0.55);line-height:1.65;margin:0 auto 18px;max-width:280px">${teaser}</p>
+        <div style="text-align:center">
+            <button onclick="window._kairosPremiumCTA&&window._kairosPremiumCTA()"
+                style="background:transparent;border:0.5px solid #d7c188;border-radius:10px;padding:11px 20px;color:#d7c188;font-size:12px;letter-spacing:0.06em;cursor:default;display:inline-flex;align-items:center;gap:8px;opacity:0.6">
+                ${LOCK_SM} Seguir profundizando
+            </button>
+        </div>
+    </div>`;
+```
+
+SVGs de candado:
+```javascript
+LOCK_SVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8a070" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`
+LOCK_SM  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#d7c188" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`
+```
+
+### 5.C — Registro de módulos bloqueados por tab
+
+| Tab | Módulos bloqueados (free) | Implementado |
+|-----|--------------------------|--------------|
+| AÑO | Tu energía guía · Lo que se activa este año · Cómo se mueve ahora · Por qué este ciclo te afecta así | ✅ v1.0 |
+| HOY | Señal Oculta · Luna en tu Carta · Planetas en Escena · El Origen del Día · Brújula KAIROS · Punto de Atención | ✅ v1.2 |
+| MES | *(pendiente — patrón idéntico)* | ⏳ |
+| SEMANA | *(pendiente — módulo cerrado ⛔)* | ⏳ |
 
 ---
 
-## 6. CHECKLIST DE ALINEACIÓN — PARA NUEVOS MÓDULOS PREMIUM
+## 6. PENDIENTES HOY PREMIUM — ANTES DE PRODUCCIÓN
+
+| Tarea | Prioridad | Estado |
+|-------|-----------|--------|
+| Guía KAIROS HOY — 9 módulos en KAIROS_GUIDE.daily + panel flotante | Alta | ✅ v1.2 |
+| Profundidad narrativa p3 — Luna + Planetas + Origen | Media | ✅ v1.2 |
+| Tarjetas bloqueadas HOY no-premium | Alta | ✅ v1.2 |
+| Fix cierre AÑO texto color | Alta | ✅ v1.2 |
+| PLANETAS EN ESCENA — tercera capa por signo×planeta | Baja | ⏳ pendiente |
+| Alineación visual MES Premium con estos tokens | Media | ⏳ sin auditar |
+| Alineación visual SEMANA Premium con estos tokens | Media | ⏳ sin auditar (módulo cerrado) |
+| Producción | — | 🔒 solo tras validación visual staging |
+
+---
+
+## 7. PATRÓN DE CONVERSIÓN PREMIUM
+
+### 7.A — Los tres estados de un módulo
+
+```
+FREE         → Contenido base visible para todos (triplete, resonancia, narrativa, pregunta central).
+NO-PREMIUM   → Tarjetas bloqueadas: candado + título + teaser + CTA "Seguir profundizando".
+PREMIUM      → Contenido real desbloqueado: gadgets + tarjetas completas con datos natales.
+```
+
+Los gadgets NO aparecen en estado no-premium — solo las tarjetas bloqueadas con teaser.
+El teaser describe qué aporta el módulo sin revelar el dato real.
+
+### 7.B — Hook de conversión: `window._kairosPremiumCTA`
+
+Todos los botones "Seguir profundizando" llaman a `window._kairosPremiumCTA()`.
+Es el único punto de entrada a la pasarela de pago/suscripción.
+
+Estado actual (provisional): la función existe pero no tiene destino implementado.
+Estado futuro (sprint dedicado): debe redirigir al flujo de pago.
+
+```javascript
+// Definición futura del hook (sprint pasarela)
+window._kairosPremiumCTA = function() {
+    // → Abrir modal de suscripción / Stripe Checkout / pantalla de upgrade
+    // NO implementar hasta decidir: Stripe + Firebase Extension + planes
+};
+```
+
+### 7.C — Arquitectura recomendada para la pasarela (sprint futuro)
+
+Stack recomendado: **Stripe + Firebase Extension for Stripe**
+- Firebase Auth ya está activo → Stripe Extension escribe `stripeRole` en Firestore automáticamente
+- `state.subscription.level` ya existe como campo de control en el engine
+- Solo hay que conectar el webhook de Stripe → Firestore → actualizar `subscription.level`
+- Un único sprint dedicado, sin mezclar con trabajo de módulos
+
+Módulos que requieren pasarela activa: AÑO, HOY, SEMANA, MES, MATRIX.
+Todos los CTA de todos los módulos apuntan al mismo `window._kairosPremiumCTA`.
+
+### 7.D — Registro de estado free por tab
+
+| Tab | Nº tarjetas bloqueadas | Módulos | Estado |
+|-----|------------------------|---------|--------|
+| AÑO | 7 | Tu energía guía · Lo que se activa · Cómo se mueve · Por qué te afecta · Activaciones natales · Eclipses del año · Tránsitos maestros | ✅ v1.2 |
+| HOY | 6 | Señal Oculta · Luna en tu Carta · Planetas en Escena · Origen del Día · Brújula KAIROS · Punto de Atención | ✅ v1.2 |
+| MES | *(pendiente)* | — | ⏳ |
+| SEMANA | *(pendiente — módulo cerrado ⛔)* | — | ⏳ |
+| MATRIX | *(pendiente)* | — | ⏳ |
+
+---
+
+## 8. CHECKLIST DE ALINEACIÓN — PARA NUEVOS MÓDULOS PREMIUM
 
 Antes de declarar un módulo premium listo para producción:
 
@@ -229,4 +330,4 @@ Antes de declarar un módulo premium listo para producción:
 
 ---
 
-*KAIROS_PREMIUM_FRAMEWORK.md — Creado 2026-06-12 — Claude Cowork — Basado en HOY Premium v1.2 (v650.5.225+)*
+*KAIROS_PREMIUM_FRAMEWORK.md — Creado 2026-06-12 — Actualizado 2026-06-13 — Claude Cowork — Basado en HOY Premium v1.2 (v650.5.225+)*
